@@ -1,6 +1,19 @@
 # MIGRATION STATUS — Football Daily Standalone Repository
 Updated: 2026-10-12 (Asia/Yangon)
 
+## VERIFIED REPOSITORY-TO-PRODUCTION BRIDGE — 2026-10-12
+
+- **Authoritative editable source:** `futurecode064-cyber/future-code-football-daily` branch `main`.
+- **Existing Cloudflare Pages host retained:** `future-code-football-daily.pages.dev`. It stays connected to the original repository `futurecode064-cyber/AI-Recap-GitHub`, branch `football-daily-render`.
+- **Guarded GitHub synchronization:** `.github/workflows/football-standalone-sync.yml` installed on the **default branch** `main` of the original repository. It runs at UTC minute 11 and 41 (roughly every 30 minutes), with manual `workflow_dispatch` available.
+- This is **GitHub repository content synchronization only**; it does not scrape soccer sites or re-check live match scores. When the Football source tree has no changes, it performs **no commit, no redeploy**.
+- The first parity run of the installed bridge was successful (no changes needed). The old production branch contains a safety marker `.github/football-sync-state.json` recording the verified existing `football-daily/` Git tree SHA. If a change was made directly to the old production branch by another process, the sync **aborts rather than overwriting that work**.
+- New-repo updates are staged only under `football-daily/`, verified byte-for-byte via Git tree SHA, tested with Node/Python and `daily_guard.py audit`, then published by a single old-repo commit. Cloudflare's existing Git integration should deploy this commit automatically. GitHub schedule timings can be delayed by the GitHub platform; this is not an immediate webhook.
+- The old repo's **15-minute score/H2H polling**, **3-hour fixture polling**, and **automatic old-branch rollover** have had their schedules disabled on `main` (2026-10-12). Their manual dispatch option is preserved as a fallback only; using a legacy manual workflow may cause a guard conflict that must be reconciled before the next sync. The separate daily read-only publication audit remains scheduled.
+- User-approved 06:00 Yangon preparation remains research/draft-only; **user must explicitly approve GitHub publication** to the new authoritative repository. Daily sports results are not polled repeatedly.
+- **Important:** At this point, the guarded bridge has been installed and passed its initial parity run; a changed-source publish and matching Cloudflare live deployment still need to be verified. Do not describe the end-to-end cutover as verified until that check passes.
+- Existing domain/project, new `workers.dev` test site, original APK repositories and brand URLs were not deleted, renamed or disconnected.
+
 ## TEST DEPLOYMENT VERIFIED — 2026-10-12 14:52 MMT
 
 - Cloudflare test project name: `future-code-football-test`; deployed as a **Cloudflare Worker with Static Assets**, not a classic Pages project.
