@@ -1,0 +1,93 @@
+/* YKZ FAMILY GROUP — PURE RED #e00000 / GOLD #ffcf58 / BLACK #111111. Brand-only theme. */
+:root.ykz-theme{
+ color-scheme:dark;
+ --ink:#111111;--panel:#202020;--panel2:#292929;--border:#6f2424;
+ --cream:#fff9ed;--muted:#d4c8bd;--orange:#ffcf58;--green:#ffcf58;
+ --ykz-red:#e00000;--ykz-red-dark:#960000;--ykz-gold:#ffcf58;--ykz-navy:#171717
+}
+.ykz-theme body{background:#111111;color:#fff9ed}
+.ykz-theme .site-header{background:linear-gradient(105deg,#b00000,#4a0000);border-bottom:1px solid #b43333}
+.ykz-theme .header-inner{min-height:86px;height:auto;padding:10px 0}
+.ykz-theme .logo{gap:12px}
+.ykz-theme .ykz-site-logo{width:53px;height:64px;object-fit:contain;background:#fff;border-radius:10px;padding:3px;flex:none}
+.ykz-theme .logo-lines b{font-size:23px;line-height:1.15;letter-spacing:.04em;color:#fff9ec}
+.ykz-theme .logo-lines small{font:700 12px var(--font);color:#ffdc83}
+.ykz-theme .top-edition{color:#ffe1a2;font-size:11px}
+.ykz-theme .hero{background:radial-gradient(circle at 87% 12%,#e0000055,transparent 38%),linear-gradient(120deg,#9f0000,#151515 82%);
+ border-bottom:1px solid #a72f2f}
+.ykz-theme .hero:after{border-color:#dd00004c;box-shadow:0 0 0 75px #ca000020,0 0 0 160px #a0000012}
+.ykz-theme .hero-topline,.ykz-theme .hero-foot{border-color:#a33838;color:#e2d2c5}
+.ykz-theme .eyebrow,.ykz-theme .hero-number small{color:#ffdc91}
+.ykz-theme .ykz-hero-slogan{display:inline-block;margin:0 0 10px;padding:8px 17px;color:#fff2cd;
+ background:#dc0000;border:1px solid #ffcf58;border-radius:999px;font-weight:800;font-size:12px}
+.ykz-theme .hero-desc{color:#f0dfd6}
+.ykz-theme .dashboard-bar,.ykz-theme .match-card{background:#202020;border-color:#823131}
+.ykz-theme .dashboard-stat{border-color:#823131}
+.ykz-theme .dashboard-stat .status-label{color:#ffcf58}
+.ykz-theme .reload-btn:hover{background:#431717}
+.ykz-theme .filters button{background:#292929;border-color:#933333;color:#f2e5dc}
+.ykz-theme .filters button.selected{background:#d50000;border-color:#ff4a4a;color:#fff}
+.ykz-theme .filters .filter-special{background:#302a1c;border-color:#b18b32;color:#ffdf96}
+.ykz-theme .match-topline{background:#980000;border-color:#ad3434}
+.ykz-theme .vs-banner{background:radial-gradient(circle at 50% 50%,#bc0000 0,#252525 44%,#1b1b1b 100%)}
+.ykz-theme .side:first-child{background:linear-gradient(120deg,#790000,#9b000055)}
+.ykz-theme .side:last-child{background:linear-gradient(240deg,#262626,#ad000047)}
+.ykz-theme .player-name{background:#151515e6}
+.ykz-theme .vs-circle{background:#191919;border-color:#ffcf58;color:#ffdf98}
+.ykz-theme .odds-grid{border-color:#9c3e3e}
+.ykz-theme .odd{background:#292929}
+.ykz-theme .odd+.odd{border-color:#9c3e3e}
+.ykz-theme .odd small{color:#e6d5c7}
+.ykz-theme .analysis-body p{color:#fff0e5}
+.ykz-theme .form-three-grid>.form-team,.ykz-theme .form-three-grid>.h2h-records{background:#2c2525;border-color:#8a3535}
+.ykz-theme .form-h2h,.ykz-theme .form-team,.ykz-theme .h2h-records{border-color:#8b3333}
+.ykz-theme .date-tabs button,.ykz-theme .date-tab-odds{border-color:#923333;background:#292525;color:#faf0e5}
+.ykz-theme .date-tabs button.active{background:#d00000;color:white;border-color:#ff4a4a}
+.ykz-theme .date-tabs .date-tab-odds:hover{color:#ffdc8a;border-color:#ffcf58}
+.ykz-theme .results-download-bar{background:#292525;border-color:#903030}
+.ykz-theme .results-png-btn{background:linear-gradient(120deg,#d50000,#ffcb58);color:white;border-color:#ffcf82}
+.ykz-theme footer{background:#151515;border-color:#882a2a}
+.ykz-theme .footer-inner p{color:#d5c5ba}
+/* Same odds markup and compact mobile layout, brand-specific coloring only */
+.ykz-theme .odds-hero{background:linear-gradient(115deg,#ba0000,#181818);border-color:#a93434}
+.ykz-theme .odds-hero h1 span{color:#ffcf58}
+.ykz-theme .odds-kicker{color:#ffda90}
+.ykz-theme .odds-subtitle{color:#e4d1c6}
+.ykz-theme .odds-nav a{background:#2d2424;border-color:#933333}
+.ykz-theme .odds-nav a.active{background:#d50000;border-color:#ff6666;color:#fff}
+.ykz-theme .odds-overview{background:#282828;border-color:#873333}
+.ykz-theme .odds-group{background:#202020;border-color:#8e3030}
+.ykz-theme .odds-group h2{background:linear-gradient(90deg,#bd0000,#390000);color:#ffe099;border-color:#913333}
+.ykz-theme .odds-table th{background:#870000;color:#ffe5bc}
+.ykz-theme .odds-table td{border-color:#7a3434}
+.ykz-theme .odds-table tr:hover td{background:#302020}
+.ykz-theme .odds-table .upper{color:#ffdc82}
+.ykz-theme .odds-table .price{color:#fff6de}
+.ykz-theme .odds-table .prediction{color:#ffdd94}
+.ykz-theme .odds-table .time{color:#ffcd90}
+.ykz-theme .odds-note{background:#292525;border-left-color:#ffcf58;color:#f1ded3}
+.ykz-theme .odds-export-actions button{background:linear-gradient(120deg,#d10000,#ffcf58);
+ border-color:#ffcf86;color:white}
+.ykz-theme .odds-table tr{background:#292525}
+.ykz-theme .team-badge{background:#fff}
+.ykz-theme .league-mark{background:#fff9ef}
+@media(max-width:620px){
+ .ykz-theme .ykz-site-logo{width:44px;height:52px}
+ .ykz-theme .header-inner{min-height:74px}
+ .ykz-theme .logo-lines b{font-size:16px;letter-spacing:.01em}
+ .ykz-theme .logo-lines small{font-size:10px}
+ .ykz-theme .hero-main{padding:34px 0 32px}
+ .ykz-theme .ykz-hero-slogan{font-size:11px}
+}
+
+/* Strong YKZ scarlet treatment for headers, navigation, tables and mobile cards. */
+.ykz-theme .site-header{background:linear-gradient(110deg,#c50000,#720000 67%,#151515);border-bottom:2px solid #ffcf58}
+.ykz-theme .hero{background:radial-gradient(circle at 82% 15%,#e0000055,transparent 42%),linear-gradient(110deg,#a80000,#4c0000 64%,#151515);border-color:#b43333}
+.ykz-theme .odds-hero{background:linear-gradient(110deg,#ba0000,#5c0000 70%,#151515)}
+.ykz-theme .odds-group h2{background:linear-gradient(90deg,#bb0000,#590000);color:#ffcf58}
+.ykz-theme .odds-table th{background:#8f0000}
+.ykz-theme .date-tabs button.active,.ykz-theme .filters button.selected,.ykz-theme .odds-nav a.active{background:#d50000;color:#fff;border-color:#ff4545}
+.ykz-theme .match-topline{background:linear-gradient(90deg,#a50000,#500000);border-color:#a93434}
+.ykz-theme .vs-banner{background:linear-gradient(90deg,#660000,#242424 37%,#242424 63%,#660000)}
+.ykz-theme .results-png-btn,.ykz-theme .odds-export-actions button{background:#d50000;color:white;border-color:#ffcf58}
+@media(max-width:700px){.ykz-theme .odds-table tr{background:#282525;border-color:#882b2b}}
