@@ -1,4 +1,19 @@
 # MIGRATION STATUS — Football Daily Standalone Repository
+
+## PRODUCTION MIRROR — END-TO-END VERIFIED (2026-10-12)
+
+**STATUS: COMPLETE.** The user tested the separate Cloudflare Workers site on a real phone and confirmed that football matches appeared and PNG downloads worked. The original Cloudflare Pages project was NOT recreated or disconnected.
+
+- **Canonical repo to edit:** https://github.com/futurecode064-cyber/future-code-football-daily — branch `main`. Approved football match/odds/results updates belong here, only after explicit publication approval.
+- **Existing production repo:** `futurecode064-cyber/AI-Recap-GitHub` branch `football-daily-render` (used purely as the original Cloudflare Pages delivery source for this project). Do not edit it directly for new reports.
+- **Sync workflow:** `AI-Recap-GitHub/.github/workflows/football-standalone-sync.yml` on its default `main` branch, scheduled approximately every 30 minutes (UTC minutes 11 and 41), plus manual dispatch. Runs skip commits/deployments when the Football tree is unchanged. No football-score internet polling occurs.
+- **End-to-end changed-source verification:** Workflow run https://github.com/futurecode064-cyber/AI-Recap-GitHub/actions/runs/38225848925 **success**. New source version `7a70677483773f4d84a370eb1666269c28573670` was mirrored into original Cloudflare Pages branch production commit `5e0179d2000167b52c0de65b227d753c7bf7c54b`. The resulting `football-daily/` tree hash in both repos matches exactly: `0446f1ac6efc82867f9d7542a8a1a80b5db89433`.
+- **Public Cloudflare production proven to have received the change:** https://future-code-football-daily.pages.dev/BRAND_SITES.md and https://future-code-football-daily.pages.dev/DAILY_APPROVED_FORMAT.md both now contain the **new standalone repository** as the approved publication source. Original `/` and `/ykz-family/` remain publicly accessible.
+- **Original repo unnecessary polling disabled:** 15-minute Scores/H2H and every-three-hour Fixture schedules removed, along with the old automatic rollover's scheduled writes. All remain manual emergency-only. Daily read-only publication audit stays enabled; user-approved 06:00 Yangon research-only task unchanged.
+- **Safety:** `.github/football-sync-state.json` on the original production branch records the last synced tree. Any independently changed production subtree triggers a conflict error instead of destructive overwrite. New football source must pass JS tests and Python daily report audit before sync pushes.
+- **No new Cloudflare API token required, no additional paid service, no new custom domain, no moving of the `pages.dev` address.** GitHub's cron jobs can run late; production publication is not instantaneous (typically the next scheduled sync). Optional manual workflow dispatch can speed it up.
+- **IMPORTANT** This implementation retains the old repository as a delivery mirror because the existing Cloudflare Pages project stays Git-connected to it; the software source of truth and editorial workflow are now independent in the new repository.
+
 Updated: 2026-10-12 (Asia/Yangon)
 
 ## VERIFIED REPOSITORY-TO-PRODUCTION BRIDGE — 2026-10-12
@@ -11,7 +26,7 @@ Updated: 2026-10-12 (Asia/Yangon)
 - New-repo updates are staged only under `football-daily/`, verified byte-for-byte via Git tree SHA, tested with Node/Python and `daily_guard.py audit`, then published by a single old-repo commit. Cloudflare's existing Git integration should deploy this commit automatically. GitHub schedule timings can be delayed by the GitHub platform; this is not an immediate webhook.
 - The old repo's **15-minute score/H2H polling**, **3-hour fixture polling**, and **automatic old-branch rollover** have had their schedules disabled on `main` (2026-10-12). Their manual dispatch option is preserved as a fallback only; using a legacy manual workflow may cause a guard conflict that must be reconciled before the next sync. The separate daily read-only publication audit remains scheduled.
 - User-approved 06:00 Yangon preparation remains research/draft-only; **user must explicitly approve GitHub publication** to the new authoritative repository. Daily sports results are not polled repeatedly.
-- **Important:** At this point, the guarded bridge has been installed and passed its initial parity run; a changed-source publish and matching Cloudflare live deployment still need to be verified. Do not describe the end-to-end cutover as verified until that check passes.
+- **Important:** Changed-source sync and public Cloudflare live delivery were verified end-to-end; see the production mirror verification section above.
 - Existing domain/project, new `workers.dev` test site, original APK repositories and brand URLs were not deleted, renamed or disconnected.
 
 ## TEST DEPLOYMENT VERIFIED — 2026-10-12 14:52 MMT
@@ -22,8 +37,8 @@ Updated: 2026-10-12 (Asia/Yangon)
 - Verified publicly served resources: `/app.js`, `/odds.js`, `/ykz-family/brand.css`, `/ykz-family/brand.js`, `/data/today.json`, `/data/odds/2026-10-12.json`, `/data/archive/2026-10-11.json`.
 - YKZ slogan verified as `အတူရှေ့ဆက် YKZ`; CSS verified true red `#e00000`. Screenshot deploy log states `Success! Build completed` and 36 assets uploaded. Warnings about `workers_dev` and `preview_urls` being default-enabled are informational, not failed builds.
 - Existing live `https://future-code-football-daily.pages.dev/ykz-family/` still responded with the approved YKZ header/slogan.
-- **Not yet verified**: match-card JS data hydration on a real browser session, score refresh behavior, mobile layout, image downloads/PNG exports, and the Git-triggered deployment for later commits.
-- **PRODUCTION NOT MIGRATED**: original `future-code-football-daily.pages.dev` still uses the original Cloudflare Pages deployment. Do not delete/disconnect/change the original project. The new `workers.dev` site is a working staging URL; no DNS or old project routing was switched.
+- **User-confirmed on real phone:** populated match cards and PNG downloads work on the test Worker. **Verified via Cloudflare production:** changed-source documentation was deployed after the guarded GitHub sync. No repeated sports score polling.
+- **PRODUCTION HOST UNCHANGED, MIRROR VERIFIED**: original `future-code-football-daily.pages.dev` remains on its existing Cloudflare Pages deployment, now receiving the latest approved source through the guarded GitHub sync. Do not delete/disconnect/change the original project. The new `workers.dev` site is a working staging URL; no DNS or old project routing was switched.
 - For future updates, do not publish the same football report to two independent Git sources unless explicitly implementing tested synchronization; daily 06:00 preparation remains draft-only and requires explicit user approval before GitHub publishing.
 
 ## VERIFIED COMPLETED
@@ -40,7 +55,7 @@ Updated: 2026-10-12 (Asia/Yangon)
 - Site: https://future-code-football-daily.pages.dev/
 - YKZ brand: https://future-code-football-daily.pages.dev/ykz-family/
 - Original production git source remains `futurecode064-cyber/AI-Recap-GitHub`, branch `football-daily-render`.
-- New repository is a standalone, verified copy, **NOT YET** the source automatically deployed to that existing production Pages project. Publishing to new repo `main` alone will **not** update the current live site until hosting is connected or a proven synchronization path is established.
+- New repository is now the canonical editable source. Publishing to new repo `main` is mirrored to the legacy Cloudflare Pages production source by the guarded scheduled GitHub Action; updates may be delayed until its next run.
 - Preserve the original source and deployment. Do not delete, transfer/rename the original Pages project, or disconnect its Git integration to try to connect this new repo; this can break the existing pages.dev hostname.
 
 ## NEXT: SAFE NO-DOWNTIME PRODUCTION CUTOVER
