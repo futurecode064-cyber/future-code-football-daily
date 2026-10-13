@@ -38,7 +38,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png"
         },
         {
           "home": "Manchester United",
@@ -47,7 +49,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png"
         },
         {
           "home": "Manchester United",
@@ -56,7 +60,20 @@
           "awayGoals": 1,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png"
+        },
+        {
+          "home": "Atletico Madrid",
+          "away": "Manchester United",
+          "homeGoals": 1,
+          "awayGoals": 1,
+          "date": "2021/22",
+          "seasonLabel": "21/22",
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/atletico-madrid-vs-manchester-united/1882765/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -74,7 +91,9 @@
           "awayGoals": 2,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png"
         },
         {
           "home": "Barcelona",
@@ -83,7 +102,9 @@
           "awayGoals": 0,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png"
         },
         {
           "home": "Barcelona",
@@ -92,7 +113,9 @@
           "awayGoals": 1,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png"
         },
         {
           "home": "Galatasaray",
@@ -101,7 +124,9 @@
           "awayGoals": 2,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png"
         },
         {
           "home": "Galatasaray",
@@ -110,7 +135,9 @@
           "awayGoals": 1,
           "date": "2021/22",
           "seasonLabel": "21/22",
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/galatasaray-vs-barcelona/1882842/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -152,7 +179,9 @@
           "awayGoals": 3,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png"
         },
         {
           "home": "Napoli",
@@ -161,7 +190,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png"
         },
         {
           "home": "Villarreal",
@@ -170,7 +201,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png"
         },
         {
           "home": "Villarreal",
@@ -179,7 +212,9 @@
           "awayGoals": 2,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png"
         },
         {
           "home": "Napoli",
@@ -188,7 +223,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/villarreal-vs-napoli/1882830/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -206,7 +243,9 @@
           "awayGoals": 2,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png"
         },
         {
           "home": "Bristol City",
@@ -215,7 +254,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
         },
         {
           "home": "Bristol City",
@@ -224,7 +265,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
         },
         {
           "home": "Blackburn Rovers",
@@ -233,7 +276,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png"
         },
         {
           "home": "Bristol City",
@@ -242,7 +287,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -260,7 +307,9 @@
           "awayGoals": 3,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
         },
         {
           "home": "Burnley",
@@ -269,7 +318,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png"
         },
         {
           "home": "Charlton Athletic",
@@ -278,7 +329,9 @@
           "awayGoals": 3,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
         },
         {
           "home": "Burnley",
@@ -287,7 +340,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png"
         },
         {
           "home": "Charlton Athletic",
@@ -296,7 +351,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -314,7 +371,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png"
         },
         {
           "home": "Watford",
@@ -323,7 +382,9 @@
           "awayGoals": 2,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
         },
         {
           "home": "Watford",
@@ -332,7 +393,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
         },
         {
           "home": "Cardiff City",
@@ -341,7 +404,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png"
         },
         {
           "home": "Watford",
@@ -350,7 +415,9 @@
           "awayGoals": 3,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -368,7 +435,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png"
         },
         {
           "home": "Swansea City",
@@ -377,7 +446,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
         },
         {
           "home": "Millwall",
@@ -386,7 +457,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png"
         },
         {
           "home": "Swansea City",
@@ -395,7 +468,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
         },
         {
           "home": "Swansea City",
@@ -404,7 +479,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -430,7 +507,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
         },
         {
           "home": "Preston North End",
@@ -439,7 +518,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png"
         },
         {
           "home": "Birmingham City",
@@ -448,7 +529,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
         },
         {
           "home": "Preston North End",
@@ -457,7 +540,9 @@
           "awayGoals": 1,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png"
         },
         {
           "home": "Birmingham City",
@@ -466,7 +551,9 @@
           "awayGoals": 2,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
         }
       ],
       "hasLiveScoreH2H": true,
@@ -484,7 +571,9 @@
           "awayGoals": 2,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png"
         },
         {
           "home": "Middlesbrough",
@@ -493,7 +582,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
         },
         {
           "home": "Stoke City",
@@ -502,7 +593,9 @@
           "awayGoals": 3,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png"
         },
         {
           "home": "Middlesbrough",
@@ -511,7 +604,9 @@
           "awayGoals": 0,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
         },
         {
           "home": "Middlesbrough",
@@ -520,7 +615,9 @@
           "awayGoals": 5,
           "date": "",
           "seasonLabel": null,
-          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/"
+          "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
         }
       ],
       "hasLiveScoreH2H": true,

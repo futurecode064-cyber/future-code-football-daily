@@ -187,17 +187,59 @@
       "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/494/schedule?dates=2026",
       "form": [
         {
+          "date": "2026-10-09",
+          "opponent": "FC Zlin",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://www.footylogos.com/dls/logo/fc-zlin.png",
+          "sourceUrl": "https://www.slavia.cz/cze/match/6838",
+          "resultVerified": true
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Viktoria Plzen",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://www.footylogos.com/dls/logo/viktoria-plzen.png",
+          "sourceUrl": "https://www.slavia.cz/eng/match/6837",
+          "resultVerified": true
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Varnsdorf",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.slavia.cz/",
+          "resultVerified": true
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Teplice",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://www.footylogos.com/dls/logo/fk-teplice.png",
+          "sourceUrl": "https://www.slavia.cz/cze/matches/1?competition=382&season=2027&type=played",
+          "resultVerified": true
+        },
+        {
           "date": "2026-09-10",
           "opponent": "Lens",
           "teamGoals": 2,
           "opponentGoals": 3,
           "venueSide": "home",
           "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
-          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915440",
-          "matchId": "401915440"
+          "sourceUrl": "https://www.livescore.com/en/football/europe/champions-league/slavia-prague-vs-lens/1882869/",
+          "resultVerified": true
         }
       ],
-      "availableTotal": 1
+      "availableTotal": 1,
+      "extraSourceUrl": "https://www.slavia.cz/",
+      "supplementalVerification": "LiveScore and official Slavia fixture list used, ESPN has limited Czech league matches."
     },
     {
       "name": "Arsenal",
