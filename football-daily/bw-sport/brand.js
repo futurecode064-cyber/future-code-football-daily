@@ -2,7 +2,7 @@
 (function(){
  const root=document.documentElement;
  root.classList.add("bw-theme");
- const logo=new URL("./assets/logo.webp",document.baseURI).href;
+ const logo=new URL("./assets/logo.webp?v=no-tagline-20261013",document.baseURI).href;
  root.dataset.footballBrandName="BW SPORT ဘောလုံးဂျာနယ်";
  root.dataset.footballBrandLogoUrl=logo;
  // All group sites share the original verified football data, history and odds.
