@@ -2833,7 +2833,38 @@
           "verificationProvider": "ESPN 2026 team schedule"
         }
       ],
-      "headToHead": [],
+      "headToHead": [
+        {
+          "date": "2026-04-03",
+          "home": "West Bromwich Albion",
+          "away": "Wrexham",
+          "homeGoals": 2,
+          "awayGoals": 2,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png"
+        },
+        {
+          "date": "2025-08-16",
+          "home": "Wrexham",
+          "away": "West Bromwich Albion",
+          "homeGoals": 2,
+          "awayGoals": 3,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+        },
+        {
+          "date": "1930-01-11",
+          "home": "Wrexham",
+          "away": "West Bromwich Albion",
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+        }
+      ],
       "myanmarOdds": {
         "provider": "User-supplied 13.pdf",
         "market": "Myanmar opening prices",
@@ -2885,8 +2916,8 @@
       "standingsAsOf": "2026-10-11 13:55 UK",
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/352/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/383/schedule?dates=2026",
-      "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/wrexham-vs-west-bromwich-albion/1802439/h2h/",
-      "headToHeadVerificationStatus": "No previous head-to-head history confirmed at LiveScore; do not manufacture matches."
+      "headToHeadSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+      "headToHeadVerificationStatus": "Verified historic meetings on Football Web Pages and club archive; latest two Championship meetings were in 2025/26. Third prior match dated 1930. LiveScore page omitted its H2H section, so independent historical database used."
     },
     {
       "league": "Championship",

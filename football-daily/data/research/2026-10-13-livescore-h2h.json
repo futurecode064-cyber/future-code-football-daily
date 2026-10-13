@@ -490,10 +490,41 @@
     {
       "home": "Wrexham",
       "away": "West Bromwich Albion",
-      "sourceUrl": "https://www.livescore.com/en/football/england/championship/wrexham-vs-west-bromwich-albion/1802439/h2h/",
-      "previousMeetings": [],
+      "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+      "previousMeetings": [
+        {
+          "date": "2026-04-03",
+          "home": "West Bromwich Albion",
+          "away": "Wrexham",
+          "homeGoals": 2,
+          "awayGoals": 2,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png"
+        },
+        {
+          "date": "2025-08-16",
+          "home": "Wrexham",
+          "away": "West Bromwich Albion",
+          "homeGoals": 2,
+          "awayGoals": 3,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+        },
+        {
+          "date": "1930-01-11",
+          "home": "Wrexham",
+          "away": "West Bromwich Albion",
+          "homeGoals": 1,
+          "awayGoals": 0,
+          "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
+          "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+        }
+      ],
       "hasLiveScoreH2H": false,
-      "notes": "No confirmed previous head-to-head results on LiveScore H2H tab; page shows team form or no H2H."
+      "notes": "LiveScore showed no records, cross-verified historically at Football Web Pages and Wrexham AFC club archive."
     },
     {
       "home": "Birmingham City",
@@ -623,5 +654,6 @@
       "hasLiveScoreH2H": true,
       "notes": "LiveScore separate H2H tab; season labels only when present; exact historical match dates not invented."
     }
-  ]
+  ],
+  "additionalSourceUrl": "https://wrexhamafcarchive.co.uk/headtohead.php?id=154"
 }
