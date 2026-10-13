@@ -1853,55 +1853,60 @@
           "away": "Bristol City",
           "homeGoals": 1,
           "awayGoals": 2,
-          "date": "",
+          "date": "2026-02-24",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
         },
         {
           "home": "Bristol City",
           "away": "Blackburn Rovers",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2025-11-04",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
         },
         {
           "home": "Bristol City",
           "away": "Blackburn Rovers",
           "homeGoals": 2,
           "awayGoals": 1,
-          "date": "",
+          "date": "2025-01-25",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
         },
         {
           "home": "Blackburn Rovers",
           "away": "Bristol City",
           "homeGoals": 3,
           "awayGoals": 0,
-          "date": "",
+          "date": "2024-09-14",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
         },
         {
           "home": "Bristol City",
           "away": "Blackburn Rovers",
           "homeGoals": 5,
           "awayGoals": 0,
-          "date": "",
+          "date": "2024-04-10",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/333.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
         }
       ],
       "myanmarOdds": {
@@ -1956,7 +1961,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/333/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/365/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/bristol-city-vs-blackburn-rovers/1802433/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/bristol-city/blackburn-rovers"
     },
     {
       "league": "Championship",
@@ -2099,55 +2105,60 @@
           "away": "Burnley",
           "homeGoals": 0,
           "awayGoals": 3,
-          "date": "",
+          "date": "2016-05-07",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
         },
         {
           "home": "Burnley",
           "away": "Charlton Athletic",
           "homeGoals": 4,
           "awayGoals": 0,
-          "date": "",
+          "date": "2015-12-19",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
         },
         {
           "home": "Charlton Athletic",
           "away": "Burnley",
           "homeGoals": 0,
           "awayGoals": 3,
-          "date": "",
+          "date": "2014-03-22",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
         },
         {
           "home": "Burnley",
           "away": "Charlton Athletic",
           "homeGoals": 3,
           "awayGoals": 0,
-          "date": "",
+          "date": "2013-09-28",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
         },
         {
           "home": "Charlton Athletic",
           "away": "Burnley",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2013-03-02",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/372.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
         }
       ],
       "myanmarOdds": {
@@ -2203,7 +2214,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/379/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/372/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/burnley-vs-charlton-athletic/1802435/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/burnley/charlton-athletic"
     },
     {
       "league": "Championship",
@@ -2346,55 +2358,60 @@
           "away": "Watford",
           "homeGoals": 1,
           "awayGoals": 1,
-          "date": "",
+          "date": "2025-01-14",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
         },
         {
           "home": "Watford",
           "away": "Cardiff City",
           "homeGoals": 1,
           "awayGoals": 2,
-          "date": "",
+          "date": "2024-12-29",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
         },
         {
           "home": "Watford",
           "away": "Cardiff City",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2024-02-03",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
         },
         {
           "home": "Cardiff City",
           "away": "Watford",
           "homeGoals": 1,
           "awayGoals": 1,
-          "date": "",
+          "date": "2023-10-07",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
         },
         {
           "home": "Watford",
           "away": "Cardiff City",
           "homeGoals": 1,
           "awayGoals": 3,
-          "date": "",
+          "date": "2023-04-19",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/347.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
         }
       ],
       "myanmarOdds": {
@@ -2450,7 +2467,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/347/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/395/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/cardiff-city-vs-watford/1802436/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/cardiff-city/watford"
     },
     {
       "league": "Championship",
@@ -2593,55 +2611,60 @@
           "away": "Swansea City",
           "homeGoals": 2,
           "awayGoals": 1,
-          "date": "",
+          "date": "2026-01-04",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
         },
         {
           "home": "Swansea City",
           "away": "Millwall",
           "homeGoals": 1,
           "awayGoals": 1,
-          "date": "",
+          "date": "2025-09-27",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
         },
         {
           "home": "Millwall",
           "away": "Swansea City",
           "homeGoals": 1,
           "awayGoals": 0,
-          "date": "",
+          "date": "2025-04-26",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
         },
         {
           "home": "Swansea City",
           "away": "Millwall",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2024-10-26",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
         },
         {
           "home": "Swansea City",
           "away": "Millwall",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2024-05-04",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/318.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
         }
       ],
       "myanmarOdds": {
@@ -2696,7 +2719,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/391/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/318/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/millwall-vs-swansea-city/1802437/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/millwall/swansea-city"
     },
     {
       "league": "Championship",
@@ -2842,7 +2866,8 @@
           "awayGoals": 2,
           "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion"
         },
         {
           "date": "2025-08-16",
@@ -2852,7 +2877,8 @@
           "awayGoals": 3,
           "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion"
         },
         {
           "date": "1930-01-11",
@@ -2862,7 +2888,8 @@
           "awayGoals": 0,
           "sourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/383.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion"
         }
       ],
       "myanmarOdds": {
@@ -2917,7 +2944,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/352/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/383/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion",
-      "headToHeadVerificationStatus": "Verified historic meetings on Football Web Pages and club archive; latest two Championship meetings were in 2025/26. Third prior match dated 1930. LiveScore page omitted its H2H section, so independent historical database used."
+      "headToHeadVerificationStatus": "Verified historic meetings on Football Web Pages and club archive; latest two Championship meetings were in 2025/26. Third prior match dated 1930. LiveScore page omitted its H2H section, so independent historical database used.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/wrexham/west-bromwich-albion"
     },
     {
       "league": "Championship",
@@ -3060,55 +3088,60 @@
           "away": "Preston North End",
           "homeGoals": 2,
           "awayGoals": 1,
-          "date": "",
+          "date": "2026-04-22",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
         },
         {
           "home": "Preston North End",
           "away": "Birmingham City",
           "homeGoals": 0,
           "awayGoals": 1,
-          "date": "",
+          "date": "2025-10-21",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
         },
         {
           "home": "Birmingham City",
           "away": "Preston North End",
           "homeGoals": 1,
           "awayGoals": 0,
-          "date": "",
+          "date": "2024-04-01",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
         },
         {
           "home": "Preston North End",
           "away": "Birmingham City",
           "homeGoals": 2,
           "awayGoals": 1,
-          "date": "",
+          "date": "2023-09-19",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
         },
         {
           "home": "Birmingham City",
           "away": "Preston North End",
           "homeGoals": 1,
           "awayGoals": 2,
-          "date": "",
+          "date": "2023-01-21",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/392.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
         }
       ],
       "myanmarOdds": {
@@ -3163,7 +3196,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/392/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/394/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/birmingham-city-vs-preston-north-end/1802434/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/birmingham-city/preston-north-end"
     },
     {
       "league": "Championship",
@@ -3306,55 +3340,60 @@
           "away": "Middlesbrough",
           "homeGoals": 1,
           "awayGoals": 2,
-          "date": "",
+          "date": "2026-01-21",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
         },
         {
           "home": "Middlesbrough",
           "away": "Stoke City",
           "homeGoals": 0,
           "awayGoals": 0,
-          "date": "",
+          "date": "2025-09-30",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
         },
         {
           "home": "Stoke City",
           "away": "Middlesbrough",
           "homeGoals": 1,
           "awayGoals": 3,
-          "date": "",
+          "date": "2025-02-25",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
         },
         {
           "home": "Middlesbrough",
           "away": "Stoke City",
           "homeGoals": 2,
           "awayGoals": 0,
-          "date": "",
+          "date": "2024-09-28",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
         },
         {
           "home": "Middlesbrough",
           "away": "Stoke City",
           "homeGoals": 0,
           "awayGoals": 5,
-          "date": "",
+          "date": "2024-08-27",
           "seasonLabel": null,
           "sourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
           "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
-          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png"
+          "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "exactDateSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
         }
       ],
       "myanmarOdds": {
@@ -3410,7 +3449,8 @@
       "lastFiveSourceHome": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/336/schedule?dates=2026",
       "lastFiveSourceAway": "https://site.api.espn.com/apis/site/v2/sports/soccer/all/teams/369/schedule?dates=2026",
       "headToHeadSourceUrl": "https://www.livescore.com/en/football/england/championship/stoke-city-vs-middlesbrough/1802440/h2h/",
-      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable."
+      "headToHeadVerificationStatus": "Match scores verified at LiveScore H2H; exact game dates may be unavailable.",
+      "headToHeadExactDatesSourceUrl": "https://www.footballwebpages.co.uk/head-to-head/stoke-city/middlesbrough"
     }
   ],
   "noFixturesLeagues": [],

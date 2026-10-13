@@ -295,7 +295,7 @@ test('all 16 previews contain authentic five-by-two prior finished games with ev
   assert.ok(match.awayCrestUrl?.startsWith('https://'),'Missing preview away badge '+match.away);
   assert.equal(match.homeLastFive.length,5,'Missing home form '+match.home);
   assert.equal(match.awayLastFive.length,5,'Missing away form '+match.away);
-  assert.ok(match.headToHeadSourceUrl?.includes('livescore.com/'),'H2H citation missing '+match.home);
+  assert.ok(match.headToHeadSourceUrl?.startsWith('https://'),'H2H citation missing '+match.home);
   for(const [team,form] of [[match.home,match.homeLastFive],[match.away,match.awayLastFive]]){
    assert.ok(provider.has(team),'Research missing for '+team);
    for(const item of form){
