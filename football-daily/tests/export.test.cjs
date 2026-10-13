@@ -102,11 +102,11 @@ test('native Canvas export contains no DOM snapshot / external export dependency
  assert.ok(js.includes('canvas.toBlob'));
 });
 
-test('today preview PNG accepts verified teams and five-game form when no historical H2H/odds exist',async()=>{
+test('today preview PNG accepts bookmaker odds and verified form with no fabricated H2H',async()=>{
  const x=harness(),match=current.matches[0];
  assert.ok(match.homeLastFive?.length===5&&match.awayLastFive?.length===5);
  assert.equal(match.headToHead.length,0);
- assert.equal(match.homeOdds,null);
+ assert.ok(Number(match.homeOdds)>1);
  await x.window.FutureCodeCardExport.save({...match,home:match.homeDisplay,away:match.awayDisplay},{brandName:'FUTURE CODE FOOTBALL',leagueLabel:'UEFA Champions League'});
  const labels=x.drawn.filter(n=>n.type==='text').map(n=>n.value);
  assert.ok(labels.includes(match.homeDisplay));

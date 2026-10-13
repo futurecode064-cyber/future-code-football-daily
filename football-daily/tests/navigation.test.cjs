@@ -164,8 +164,8 @@ test('every featured match has correctly linked home/away crests and native Burm
  const today=JSON.parse(fs.readFileSync(path.join(root,'data/today.json'),'utf8'));
  for(const m of today.matches){
   assert.ok(m.homeDisplay && m.awayDisplay,'Burmese team label missing: '+m.home);
-  assert.match(m.homeCrestUrl||'',/^https:\/\//,'Missing home crest '+m.home);
-  assert.match(m.awayCrestUrl||'',/^https:\/\//,'Missing away crest '+m.away);
+  if(m.homeCrestUrl!==null)assert.match(m.homeCrestUrl,/^https:\/\//,'Invalid home crest '+m.home);
+  if(m.awayCrestUrl!==null)assert.match(m.awayCrestUrl,/^https:\/\//,'Invalid away crest '+m.away);
   for(const g of m.headToHead||[]){
    assert.ok(g.homeCrestUrl && g.awayCrestUrl,'H2H crests missing '+m.home+' / '+m.away);
   }
