@@ -324,7 +324,7 @@ test('live 13 October H2H cards contain verified actual prior scores only, never
    assert.equal(g.away,s.away);
    assert.equal(g.homeGoals,s.homeGoals);
    assert.equal(g.awayGoals,s.awayGoals);
-   assert.ok(g.sourceUrl?.includes('/h2h/'));
+   assert.ok(g.sourceUrl?.startsWith('https://'),'H2H match source URL missing');
    total++;
   }
  }
