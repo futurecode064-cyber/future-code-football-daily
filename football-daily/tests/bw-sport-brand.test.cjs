@@ -10,7 +10,7 @@ test("BW SPORT is a separate premium blue microsite sharing exactly the canonica
  for(const html of [home,odds]){
   assert.ok(html.includes("BW SPORT ဘောလုံးဂျာနယ်"));
   assert.ok(!html.includes(["MORE","THAN","A","GAME"].join(" ")),"Tagline must not appear on BW page");
-  assert.ok(html.includes("./assets/logo.webp"));
+  assert.ok(html.includes("./assets/logo.webp?v=no-tagline-20261013"));
   assert.ok(html.includes("./brand.css"));
   assert.ok(html.includes("./brand.js"));
   assert.ok(html.includes("../canvas-image-kit.js"));
@@ -41,7 +41,7 @@ test("BW SPORT uses isolated electric-blue and silver colors on pages and comple
  assert.ok(css.includes(".bw-theme .special-analysis"));
  assert.ok(css.includes(".bw-theme .odds-export-actions button"));
  assert.ok(config.includes('root.classList.add("bw-theme")'));
- assert.ok(config.includes('new URL("./assets/logo.webp",document.baseURI)'));
+ assert.ok(config.includes('new URL("./assets/logo.webp?v=no-tagline-20261013",document.baseURI)'));
  assert.ok(config.includes('id:"bw-sport"')&&config.includes("footballBrandLogoUrl"));
  assert.ok(kit.includes('const bwBranded='));
  assert.ok(kit.includes('"BW SPORT ဘောလုံးဂျာနယ်"'));
