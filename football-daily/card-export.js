@@ -91,7 +91,7 @@
   fill(ctx,M,14,fullWidth,66,C.bg,10);
   text(ctx,opts.leagueLabel||MM[match.league]||match.league||"FOOTBALL",M+16,46,22,C.orange,true);
   if(isYKZ){
-   text(ctx,"YKZ FAMILY GROUP",W/2,44,17,C.orange,true,"center");
+   text(ctx,"YKZ FAMILY GROUP · အတူရှေ့ဆက် YKZ",W/2,44,17,C.orange,true,"center");
    crest(ctx,opts.brandLogoUrl||document.documentElement?.dataset?.footballBrandLogoUrl,W-107,20,48,"YKZ");
   }else text(ctx,match.kickoffYangon||"",W-M-18,45,19,C.muted,true,"right");
   const heroY=86,heroH=387,sideW=450,middleW=252;
