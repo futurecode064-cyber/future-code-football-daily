@@ -1,0 +1,44 @@
+name: Build BW Sport Android APK
+on:
+  push:
+    branches:
+      - build/bw-sport-android-v1
+    paths:
+      - .github/workflows/build-bw-sport-apk.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Download prepared BW Sport Android source
+        run: |
+          curl --fail --location --retry 3 --max-time 90 'https://futurecodeaistudio.floot.app/_cdn/static/f45c0c89-04fd-458a-8974-1a24cf4fe3e1-BW-Sport-Journal-Android-Source.zip' -o source.zip
+          unzip -q source.zip
+          test -f BW-Sport-Android/app/build.gradle
+          test -f BW-Sport-Android/app/src/main/assets/download_bridge.js
+      - name: Assemble Android APK
+        run: gradle --no-daemon --stacktrace -p BW-Sport-Android assembleDebug
+      - name: Name installable APK
+        run: cp BW-Sport-Android/app/build/outputs/apk/debug/app-debug.apk BW-Sport-Journal-v1.0.0.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: BW-Sport-Android-APK
+          path: BW-Sport-Journal-v1.0.0.apk
+          retention-days: 30
