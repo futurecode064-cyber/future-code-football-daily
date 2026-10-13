@@ -100,8 +100,8 @@ test('archived 12 Oct editorial sheet preserves all 17 user-submitted prices and
   assert.equal(m.myanmarOdds.goalTotalOdds,quote.goalTotalOdds);
   assert.equal(m.dailyPreviewText.split('**').length,5);
   assert.equal(m.status,'finished');
-  assert.match(m.finalScore,/^\\d+-\\d+$/);
-  assert.match(m.finalScoreSourceUrl,/^https:\\/\\//);
+  assert.ok(/^\d+-\d+$/.test(m.finalScore),'Invalid verified final score for '+m.home);
+  assert.ok(m.finalScoreSourceUrl?.startsWith('https://'),'Final score source missing '+m.home);
  }
 });
 
@@ -170,7 +170,7 @@ test('historical sourced 1X2 prices stay in the archived report; missing current
   for(const key of ['homeOdds','drawOdds','awayOdds']){
    assert.ok(Number(m[key])>1,'Missing historical sourced 1X2 '+key+' for '+m.home);
   }
-  assert.ok(m.oddsProvider&&/^https:\\/\\//.test(m.oddsSourceUrl),'Historical odds attribution missing '+m.home);
+  assert.ok(m.oddsProvider&&m.oddsSourceUrl?.startsWith('https://'),'Historical odds attribution missing '+m.home);
   assert.equal(m.oddsMarket,'Full-time 1X2');
   assert.equal(m.oddsIsLive,false);
   assert.ok(m.myanmarOdds.bodyOdds&&m.myanmarOdds.goalTotalOdds);
