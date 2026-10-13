@@ -67,6 +67,7 @@ test('YKZ full PNG gets brand colors, slogan, logo and brand-specific filenames;
  const kit=read('canvas-image-kit.js');
  const odds=read('daily-image-export.js');
  const preview=read('card-export.js');
+ const css=read('ykz-family/brand.css');
  assert.ok(kit.includes('document.documentElement?.dataset?.footballBrandName==="YKZ FAMILY GROUP"'));
  assert.ok(kit.includes('အတူရှေ့ဆက် YKZ'));
  assert.ok(kit.includes('footballBrandLogoUrl'));
