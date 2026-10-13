@@ -27,19 +27,19 @@ test("normal website articles always use one flowing Burmese paragraph, bold ver
   const t=m.dailyPreviewText;
   assert.ok(typeof t==="string"&&t.trim().length>=250,desc+": dailyPreviewText must be a substantial article");
   assert.equal(t,t.trim(),desc+": no edge whitespace");
-  assert.ok(!/\\n\\s*\\n/.test(t),desc+": one narrative paragraph only");
-  assert.ok(!/^\\s*(?:\\d+[.)]|[-*])\\s/m.test(t),desc+": no enumerated checklist");
+  assert.ok(!/\n\s*\n/.test(t),desc+": one narrative paragraph only");
+  assert.ok(!/^\s*(?:\d+[.)]|[-*])\s/m.test(t),desc+": no enumerated checklist");
   assert.ok(!/အချက်အလက် မရှိလို့|Source မရသေး|Data မရသေး|မအတည်ပြုရသေးတဲ့ Data|AI ပွဲကြိုသုံးသပ်ချက်ကို မထုတ်ဝေ/.test(t),desc+": no reader-facing research disclaimer");
-  const emph=[...t.matchAll(/\\*\\*([^*\\n]+)\\*\\*/g)].map(x=>x[1]);
+  const emph=[...t.matchAll(/\*\*([^*\n]+)\*\*/g)].map(x=>x[1]);
   assert.equal(emph.length,2,desc+": use exactly two bold spans (verdict and scores)");
   assert.match(emph[0],/ရွေး|ပိုမြင်|နှစ်သက်|ယုံကြည်|အားသာ|အနိုင်|မရှုံး/,desc+": first bold span is the reasoned match verdict");
-  assert.match(emph[1],/[0-9၀-၉]+\\s*[-–:]\\s*[0-9၀-၉]+\\s*သို့မဟုတ်\\s*[0-9၀-၉]+\\s*[-–:]\\s*[0-9၀-၉]+/,desc+": second bold span contains two predictions");
+  assert.match(emph[1],/[0-9၀-၉]+\s*[-–:]\s*[0-9၀-၉]+\s*သို့မဟုတ်\s*[0-9၀-၉]+\s*[-–:]\s*[0-9၀-၉]+/,desc+": second bold span contains two predictions");
   assert.ok(t.indexOf("**"+emph[0]+"**")<t.indexOf("**"+emph[1]+"**"),desc+": verdict must precede scores");
   assert.ok(m.homeDisplay&&m.awayDisplay,desc+": use source PDF Burmese display names");
   if(domestic.has(m.league)){
    assertStanding(m.homeStanding,desc+" home");
    assertStanding(m.awayStanding,desc+" away");
-   assert.ok(/^https?:\\/\\//.test(m.standingsSourceUrl||""),desc+": standings require a source URL");
+   assert.ok(/^https?:\/\//.test(m.standingsSourceUrl||""),desc+": standings require a source URL");
    assert.ok(hasRank(t,m.homeStanding.position),desc+": home table position not in prose");
    assert.ok(hasRank(t,m.awayStanding.position),desc+": away table position not in prose");
    assert.ok(t.includes(nativeDigits(m.homeStanding.points))&&t.includes(nativeDigits(m.awayStanding.points)),desc+": include both clubs' points");
