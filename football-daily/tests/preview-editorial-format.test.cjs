@@ -36,10 +36,14 @@ test("normal website articles always use one flowing Burmese paragraph, bold ver
   assert.match(emph[1],/^\s*[0-9၀-၉]+\s*[-–:]\s*[0-9၀-၉]+\s*သို့မဟုတ်\s*[0-9၀-၉]+\s*[-–:]\s*[0-9၀-၉]+\s*$/,desc+": second bold span contains exactly two predictions");
   assert.ok(t.indexOf("**"+emph[0]+"**")<t.indexOf("**"+emph[1]+"**"),desc+": verdict must precede scores");
   assert.ok(m.homeDisplay&&m.awayDisplay,desc+": use source PDF Burmese display names");
-  if(domestic.has(m.league)){
+  if(domestic.has(m.league)||m.league==="UEFA Champions League"){
    assertStanding(m.homeStanding,desc+" home");
    assertStanding(m.awayStanding,desc+" away");
    assert.ok(/^https?:\/\//.test(m.standingsSourceUrl||""),desc+": standings require a source URL");
+   assert.ok(t.includes(nativeDigits(m.homeStanding.played)+" ပွဲ")&&t.includes(nativeDigits(m.awayStanding.played)+" ပွဲ"),desc+": include BOTH teams' played matches");
+   for(const field of [["wins"," နိုင်"],["draws"," သရေ"],["losses"," ရှုံး"]]){
+    assert.ok(t.includes(nativeDigits(m.homeStanding[field[0]])+field[1])&&t.includes(nativeDigits(m.awayStanding[field[0]])+field[1]),desc+": include both teams' "+field[0]);
+   }
    assert.ok(hasRank(t,m.homeStanding.position),desc+": home table position not in prose");
    assert.ok(hasRank(t,m.awayStanding.position),desc+": away table position not in prose");
    assert.ok(t.includes(nativeDigits(m.homeStanding.points))&&t.includes(nativeDigits(m.awayStanding.points)),desc+": include both clubs' points");
