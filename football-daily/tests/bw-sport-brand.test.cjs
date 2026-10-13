@@ -9,7 +9,7 @@ test("BW SPORT is a separate premium blue microsite sharing exactly the canonica
  const home=read("bw-sport/index.html"),odds=read("bw-sport/odds.html");
  for(const html of [home,odds]){
   assert.ok(html.includes("BW SPORT ဘောလုံးဂျာနယ်"));
-  assert.ok(html.includes("MORE THAN A GAME"));
+  assert.ok(!html.includes(["MORE","THAN","A","GAME"].join(" ")),"Tagline must not appear on BW page");
   assert.ok(html.includes("./assets/logo.webp"));
   assert.ok(html.includes("./brand.css"));
   assert.ok(html.includes("./brand.js"));
@@ -45,7 +45,10 @@ test("BW SPORT uses isolated electric-blue and silver colors on pages and comple
  assert.ok(config.includes('id:"bw-sport"')&&config.includes("footballBrandLogoUrl"));
  assert.ok(kit.includes('const bwBranded='));
  assert.ok(kit.includes('"BW SPORT ဘောလုံးဂျာနယ်"'));
- assert.ok(exporter.includes('const isBW=')&&exporter.includes('"BW SPORT · MORE THAN A GAME"'));
+ assert.ok(exporter.includes('const isBW=')&&exporter.includes('"BW SPORT ဘောလုံးဂျာနယ်"'));
+ assert.ok(!kit.includes(["MORE","THAN","A","GAME"].join(" ")));
+ assert.ok(!exporter.includes(["MORE","THAN","A","GAME"].join(" ")));
+ assert.ok(!config.includes(["MORE","THAN","A","GAME"].join(" ")));
  assert.ok(exporter.includes("opts.brandLogoUrl"));
  assert.ok(read("ykz-family/brand.js").includes('root.classList.add("ykz-theme")'));
  assert.ok(!read("index.html").includes("bw-theme"));
