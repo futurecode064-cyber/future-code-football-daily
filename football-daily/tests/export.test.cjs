@@ -6,6 +6,7 @@ const path=require('node:path');
 const root=path.join(__dirname,'..');
 const sources=['canvas-image-kit.js','daily-image-export.js','card-export.js'].map(file=>fs.readFileSync(path.join(root,file),'utf8'));
 const sheet=JSON.parse(fs.readFileSync(path.join(root,'data/odds/2026-10-12.json'),'utf8'));
+const currentSheet=JSON.parse(fs.readFileSync(path.join(root,'data/odds/2026-10-13.json'),'utf8'));
 const report=JSON.parse(fs.readFileSync(path.join(root,'data/archive/2026-10-12.json'),'utf8'));
 const current=JSON.parse(fs.readFileSync(path.join(root,'data/today.json'),'utf8'));
 
@@ -112,4 +113,23 @@ test('today preview PNG accepts verified teams and five-game form when no histor
  assert.ok(labels.includes(match.awayDisplay));
  assert.ok(labels.includes('ထိပ်တိုက်တွေ့ဆုံမှု H2H'));
  assert.ok(x.clicked[0]?.endsWith('.png'));
+});
+
+test('13 Oct PNG contains all 21 user-provided fixture rows, prices, internet forecasts and original Myanmar labels',async()=>{
+ const x=harness();
+ await x.window.FutureCodeDailyExport.saveOdds(currentSheet);
+ const labels=x.drawn.filter(n=>n.type==='text').map(n=>n.value);
+ assert.equal(currentSheet.matches.length,21);
+ assert.equal(x.canvases[0].width,1360);
+ const groups=new Set(currentSheet.matches.map(m=>m.league));
+ assert.equal(x.canvases[0].height,222+groups.size*131+21*73+80);
+ assert.ok(x.clicked[0].endsWith('odds-2026-10-13.png'));
+ for(const match of currentSheet.matches){
+  assert.ok(labels.includes(match.home),'Missing original converted home '+match.home);
+  assert.ok(labels.includes(match.away),'Missing original converted away '+match.away);
+  assert.ok(labels.includes(match.goalTotalOdds),'Missing original total '+match.home);
+  assert.ok(labels.includes(match.pdfLastColumn),'Missing original internet forecast '+match.home);
+  if(match.bodyOdds!==null)assert.ok(labels.includes(match.bodyOdds),'Missing original body price '+match.home);
+  assert.ok(labels.includes(match.kickoffDisplay),'Missing Myanmar overnight time '+match.home);
+ }
 });
