@@ -6,11 +6,6 @@ on:
         description: Approved YYYY-MM-DD report date
         required: true
         default: '2026-10-14'
-  push:
-    branches:
-      - fix/evening-static-png-direct-download-20261014
-    paths:
-      - .github/workflows/generate-evening-odds-png.yml
 permissions:
   contents: write
 concurrency:
