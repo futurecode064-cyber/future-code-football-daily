@@ -9,10 +9,8 @@
 
   const leagueLabels={
     "UEFA Champions League":"ချန်ပီယံလိဂ်",
-    "Championship":"အင်္ဂလန် ချန်ပီယံရှစ်",
-    "German 3. Liga":"ဂျာမန် လိဂ် ၃"
+    "Championship":"အင်္ဂလန် ချန်ပီယံရှစ်"
   };
-  const svgSafeUrl=u=>{try{const x=new URL(u);return x.protocol==="https:"?x.href:"";}catch{return "";}};
   function el(tag,cls,value){
     const e=document.createElement(tag);if(cls)e.className=cls;
     if(value!==undefined)e.textContent=String(value);return e;
@@ -52,18 +50,13 @@
     thead.appendChild(group);thead.appendChild(titles);table.appendChild(thead);
     const body=el("tbody");
     for(const m of matches){
-      const tr=el("tr",m.identityVerified===false?"needs-name-review":"");
+      const tr=el("tr");
       tr.appendChild(el("td","evening-time",m.kickoffDisplay));
       const pair=el("td","evening-pair");
-      if(m.identityVerified===false){
-        pair.textContent="ပွဲစဉ် "+m.row+" — အသင်းအမည် စစ်ဆေးရန်";
-        pair.title="PDF မူရင်း Legacy Font: "+(m.sourceHomeLegacy||"")+" / "+(m.sourceAwayLegacy||"");
-      }else{
-        const a=el("span","",m.home),b=el("span","",m.away);
-        pair.appendChild(a);pair.appendChild(el("span","evening-vs","VS"));pair.appendChild(b);
-      }
+      const a=el("span","",m.home),b=el("span","",m.away);
+      pair.appendChild(a);pair.appendChild(el("span","evening-vs","VS"));pair.appendChild(b);
       tr.appendChild(pair);
-      tr.appendChild(el("td","evening-upper",m.identityVerified===false?"စစ်ဆေးရန်":m.upperTeam));
+      tr.appendChild(el("td","evening-upper",m.upperTeam));
       const fields=[
         ["morningBodyOdds","eveningBodyOdds"],
         ["morningGoalTotalOdds","eveningGoalTotalOdds"]
@@ -94,10 +87,10 @@
   async function png(data,onlyLeague){
     const groups=groupMatches(onlyLeague?data.matches.filter(m=>m.league===onlyLeague):data.matches);
     const included=groups.flatMap(g=>g[1]);
-    if(!included.length||included.some(m=>m.identityVerified===false))throw Error("Team labels still need review");
+    if(!included.length)throw Error("No comparison data");
     const kit=window.FutureCodeCanvasKit;
     if(!kit)throw Error("PNG exporter unavailable");
-    const {create,fill,line,text,fit,fonts,download}=kit;
+    const {create,fill,text,fit,fonts,download}=kit;
     const M=24, widths=[145,330,180,132,132,230,132,132,230],W=widths.reduce((a,b)=>a+b,0)+2*M;
     const H=230+groups.reduce((s,g)=>s+113+g[1].length*82,s)+65;
     const xs=[M];for(const w of widths)xs.push(xs[xs.length-1]+w);
@@ -129,7 +122,6 @@
       }
       y+=7;
     }
-    text(ctx,"မူလ/ယခု ကြေးလိုင်း မတူပါက လိုင်းပြောင်းခြင်းကို သီးခြားဖော်ပြထားသည်။",M+10,H-27,16,"#3f4852");
     const brand=window.FutureCodeBrandConfig?.id||"future-code";
     await download(canvas,brand+"-evening-odds-"+data.reportDate+(onlyLeague?"-"+onlyLeague.replace(/[^a-z0-9]+/ig,"-"):"")+".png");
   }
@@ -140,14 +132,12 @@
     section.id="eveningOddsSection";section.hidden=true;
     const header=el("div","evening-head");
     const heading=el("h2","", "ညနေခင်းကြေးပြောင်း");
-    const lead=el("p","evening-lead","မနက် (မူလ) ကြေးနှင့် ညနေ (ယခု) ကြေးကို နှိုင်းယှဉ်ထားသည်။");
-    header.appendChild(heading);header.appendChild(lead);section.appendChild(header);
+    header.appendChild(heading);section.appendChild(header);
     const line=el("p","evening-summary","");section.appendChild(line);
     const actions=el("div","evening-actions"),allButton=el("button","evening-png-btn","⬇ ညနေခင်းကြေးပြောင်း PNG Download");
     allButton.type="button";allButton.disabled=true;
     actions.appendChild(allButton);section.appendChild(actions);
     const root=el("div","evening-group-list");section.appendChild(root);
-    section.appendChild(el("p","evening-note","ကွာခြားချက်သည် ကြေးမှတ်ပြောင်းလဲမှုဖြစ်ပြီး ကြေးလိုင်းပြောင်းလျှင် လိုင်းအသစ်ကိုပါ သီးခြားပြသည်။"));
     main.appendChild(section);
     const link=el("a","evening-nav-link","ညနေခင်းကြေးပြောင်း");
     link.href="#eveningOddsSection";
@@ -157,20 +147,17 @@
        new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Yangon",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
     fetch(new URL("data/odds/evening/"+day+".json",rootUrl),{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("No evening update");return r.json();}).then(data=>{
       if(!Array.isArray(data.matches)||data.reportDate!==day)throw Error("Invalid evening data");
-      const pending=data.matches.filter(m=>m.identityVerified===false).length;
       section.hidden=false;link.hidden=false;
-      line.textContent=data.reportDate.split("-").reverse().join("/")+" · စုစုပေါင်း "+data.matches.length+" ပွဲ"+(pending?" · အသင်းအမည်စိစစ်ရန် "+pending+" ပွဲ":"");
+      line.textContent=data.reportDate.split("-").reverse().join("/")+" · "+data.matches.length+" ပွဲ";
       const groups=groupMatches(data.matches);
       for(const [league,items] of groups){
         const holder=el("div","evening-competition");
         const leagueActions=el("div","evening-league-actions"),button=el("button","evening-league-png","⬇ ဒီလိဂ် PNG");
-        button.type="button";button.disabled=items.some(m=>m.identityVerified===false);
-        button.title=button.disabled?"အသင်းအမည်စစ်ဆေးပြီးမှ PNG ထုတ်နိုင်သည်":"";
+        button.type="button";
         button.addEventListener("click",async()=>{button.disabled=true;try{await png(data,league);}catch(e){console.error(e);}finally{button.disabled=false;}});
         leagueActions.appendChild(button);holder.appendChild(leagueActions);holder.appendChild(tableFor(league,items));root.appendChild(holder);
       }
-      allButton.disabled=!!pending;
-      if(pending){const note=el("span","evening-review-note","PDF ထဲမှ အသင်းအမည် "+pending+" ပွဲ စိစစ်ပြီးမှ ပွဲအားလုံး PNG ထုတ်နိုင်ပါမည်။");actions.appendChild(note);}
+      allButton.disabled=false;
       allButton.addEventListener("click",async()=>{allButton.disabled=true;try{await png(data);}catch(e){console.error(e);}finally{allButton.disabled=false;}});
     }).catch(e=>{console.info("Evening odds not available for this date",e);section.remove();link.remove();});
   }
