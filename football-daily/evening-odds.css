@@ -11,7 +11,6 @@
 .evening-odds-section[hidden]{display:none!important}
 .evening-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px}
 .evening-head h2{font-size:clamp(22px,3vw,30px);color:var(--sheet-accent,#ffb784);margin:0;line-height:1.9}
-.evening-lead{font-size:13px;color:#cdd9dd;line-height:1.9;margin:0}
 .evening-summary{font-size:13px;line-height:1.85;color:#dcebe8;margin:10px 0 18px}
 .evening-actions,.evening-league-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:12px 0 16px}
 .evening-actions button,.evening-league-actions button{
@@ -22,7 +21,6 @@
   padding:8px 17px;cursor:pointer
 }
 .evening-actions button:disabled,.evening-league-actions button:disabled{opacity:.45;cursor:not-allowed}
-.evening-review-note{font-size:11px;color:#ffcf8d;line-height:1.8}
 .evening-competition{margin:22px 0 28px}
 .evening-league-actions{justify-content:flex-end;margin:0 0 7px}
 .evening-league{
@@ -57,12 +55,10 @@
 .evening-table .is-up{color:#116b50}
 .evening-table .is-down{color:#a32e3d}
 .evening-table .is-line{color:#935b15}
-.evening-table .needs-name-review td.evening-pair{font-size:11px;color:#8b4423}
 .evening-pair{min-width:200px;font-weight:800}
 .evening-vs{margin:0 7px;color:#b9333f;font:900 11px "Barlow Condensed",sans-serif}
 .evening-time{min-width:120px;white-space:normal}
-.evening-note{margin:16px 0;background:#202e31;border-left:3px solid var(--sheet-accent,#e8a270);padding:13px 18px;color:#d4e1dd;font-size:12px;line-height:2}
-.odd-nav-link{font-size:12px}
+.evening-nav-link{font-size:12px}
 @media(max-width:700px){
  .evening-odds-section{margin:30px 0 18px}
  .evening-table{min-width:1170px}
