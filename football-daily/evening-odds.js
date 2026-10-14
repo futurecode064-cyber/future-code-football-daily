@@ -117,7 +117,7 @@
     img.src=pngUrl;img.alt="ညနေခင်းကြေးပြောင်း PNG Preview";
     panel.appendChild(img);backdrop.appendChild(panel);document.body.appendChild(backdrop);
     // Attempt immediate save; fallback link remains available even if the device blocks it.
-    save.click();
+    try{save.click();}catch(err){console.info("Manual PNG Save link available",err);}
   }
   function bindDownload(button,data,league){
     const label=button.textContent;
@@ -220,5 +220,5 @@
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
   else boot();
-  window.FutureCodeEveningOdds={parseQuote,difference};
+  window.FutureCodeEveningOdds={parseQuote,difference,showPngPreview};
 })();
