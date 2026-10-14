@@ -307,7 +307,7 @@ test('Myanmar overnight convention is shared across odds HTML, full Canvas PNG a
  const odds=fs.readFileSync(path.join(root,'odds.js'),'utf8');
  const png=fs.readFileSync(path.join(root,'daily-image-export.js'),'utf8');
  assert.ok(odds.includes('const time=m.kickoffDisplay||m.kickoff||"";'));
- assert.ok(png.includes('const clock=m.kickoffDisplay||'));
+ assert.ok(png.includes('const clock=String(m.kickoffDisplay||m.kickoff||"")'),'PNG preserves exact Myanmar overnight label');
  assert.ok(!odds.includes('၁၃ ရက် မနက်'));
  const preview=JSON.parse(fs.readFileSync(path.join(root,'data/today.json'),'utf8'));
  assert.ok(preview.matches.some(m=>m.kickoffCalendarDate==='2026-10-15'&&m.kickoffYangon.includes('၁၄ ရက်နေ့ ည ၁:၃၀')));
