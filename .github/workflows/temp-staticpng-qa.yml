@@ -1,0 +1,25 @@
+name: Verify static evening odds PNG downloads
+on:
+  push:
+    branches:
+      - fix/evening-static-png-direct-download-20261014
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript and Python syntax
+        run: |
+          node --check football-daily/evening-odds.js
+          node --check football-daily/odds.js
+          python -m py_compile football-daily/scripts/generate_evening_png.py
+      - name: Static PNG image and direct-link regression
+        run: node --test football-daily/tests/evening-odds.test.cjs
+      - name: All football Website tests
+        run: node --test football-daily/tests/*.test.cjs
