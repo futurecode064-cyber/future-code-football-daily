@@ -119,8 +119,8 @@
       for(const [i,m] of items.entries()){
         fill(ctx,M,y,W-M*2,82,i%2?"#f2f4f7":"#ffffff");
         fill(ctx,xs[2],y,widths[2],82,"#e5e7eb");
-        for(const x of xs)line(ctx,x,y,x,y+82,"#c9d0d8");
-        line(ctx,M,y+81,W-M,y+81,"#c9d0d8");
+        for(const x of xs)fill(ctx,x,y,1,82,"#c9d0d8");
+        fill(ctx,M,y+81,W-M*2,1,"#c9d0d8");
         const bodyDiff=difference(m.morningBodyOdds,m.eveningBodyOdds);
         const goalsDiff=difference(m.morningGoalTotalOdds,m.eveningGoalTotalOdds);
         const vals=[m.kickoffDisplay,m.home+" VS "+m.away,m.upperTeam,m.morningBodyOdds,m.eveningBodyOdds,bodyDiff.text,m.morningGoalTotalOdds,m.eveningGoalTotalOdds,goalsDiff.text];
