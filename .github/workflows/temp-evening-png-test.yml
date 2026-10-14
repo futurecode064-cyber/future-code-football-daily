@@ -1,0 +1,27 @@
+name: Verify evening PNG export repair
+on:
+  push:
+    branches:
+      - fix/evening-odds-png-save-2026-10-14
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check football-daily/evening-odds.js
+          node --check football-daily/odds.js
+          node --check football-daily/tests/evening-odds.test.cjs
+      - name: Evening PNG export regression
+        run: node --test football-daily/tests/evening-odds.test.cjs
+      - name: All football website tests
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Python syntax
+        run: python -m py_compile football-daily/scripts/daily_guard.py football-daily/scripts/sync_scores.py
