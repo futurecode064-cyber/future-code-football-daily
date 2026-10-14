@@ -36,10 +36,12 @@ jobs:
       - name: Football score and report Python syntax
         run: |
           python -m py_compile football-daily/scripts/daily_guard.py football-daily/scripts/sync_scores.py
-          # Presentation-only commits may happen after midnight before a new report is approved.
-          # Preserve strict current-day validation whenever football data changes.
-          if git rev-parse HEAD^ >/dev/null 2>&1 && git diff --quiet HEAD^ HEAD -- football-daily/data; then
-            echo "Football data unchanged; skip date-sensitive daily publication audit for UI-only update."
+          # Full daily report + Myanmar odds publication requires strict current-day checks.
+          # Verified previous-night FT results are archived separately and must be allowed
+          # while the user withholds today's match previews and Special Choices.
+          # Archive-only updates are validated by node tests/verified-results.test.cjs.
+          if git rev-parse HEAD^ >/dev/null 2>&1 && git diff --quiet HEAD^ HEAD -- football-daily/data/today.json football-daily/data/odds; then
+            echo "Today's report and odds unchanged; skip current-day publication audit (UI/archive-only update)."
           else
             python football-daily/scripts/daily_guard.py audit
           fi
