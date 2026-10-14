@@ -217,5 +217,5 @@
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
   else boot();
-  window.FutureCodeEveningOdds={parseQuote,difference,showPngPreview};
+  window.FutureCodeEveningOdds={parseQuote,difference,showPngPreview,png};
 })();
