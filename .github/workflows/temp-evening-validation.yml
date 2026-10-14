@@ -1,0 +1,25 @@
+name: Evening odds branch validation
+on:
+  push:
+    branches:
+      - feature/evening-odds-2026-10-14
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check football-daily/evening-odds.js
+          node --check football-daily/odds.js
+          node --check football-daily/tests/evening-odds.test.cjs
+      - name: New evening feature regression
+        run: node --test football-daily/tests/evening-odds.test.cjs
+      - name: Existing full website suite
+        run: node --test football-daily/tests/*.test.cjs
