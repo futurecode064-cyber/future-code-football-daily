@@ -228,13 +228,18 @@ test('navigation has three equally grouped Yesterday/Today/Odds boxes in both en
   assert.ok(html.includes('daily-image-export.js'),filename);
  }
 });
-test('mobile odds shows all four columns without horizontal table scrolling',()=>{
+test('mobile odds keeps screenshot-style table grid with horizontal scrolling instead of dark cards',()=>{
  const html=fs.readFileSync(path.join(root,'odds.html'),'utf8');
+ const css=fs.readFileSync(path.join(root,'odds-sheet-theme.css'),'utf8');
  assert.ok(html.includes('id="oddsPngBtn"'));
- assert.ok(html.includes('daily-image-export.js'));
- assert.match(html,/\.odds-table\{min-width:0;width:100%;display:block/);
- assert.ok(html.includes('grid-template-columns:repeat(4,minmax(0,1fr))'));
- assert.match(html,/\.odds-table thead\{display:none\}/);
+ assert.ok(html.includes('daily-image-export.js?v=ledger-20261014'));
+ assert.ok(html.includes('odds-sheet-theme.css?v=ledger-20261014'));
+ assert.ok(html.indexOf('odds-sheet-theme.css')>html.indexOf('</style>'),'New stylesheet must override old inline card CSS');
+ assert.ok(css.includes('overflow-x:auto!important'));
+ assert.ok(css.includes('display:table-row!important'));
+ assert.ok(css.includes('display:table-cell!important'));
+ assert.ok(css.includes('display:table-header-group!important'));
+ assert.ok(css.includes('background:#fff!important'));
 });
 test('new screenshot-inspired team hero and WDL–1X2–WDL layout is responsive and has no H2H panel',()=>{
  const js=fs.readFileSync(path.join(root,'app.js'),'utf8');
