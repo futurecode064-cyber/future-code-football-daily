@@ -4,7 +4,7 @@
   const me=document.currentScript;
   const rootUrl=new URL("./",me&&me.src?me.src:document.baseURI);
   const style=document.createElement("link");
-  style.rel="stylesheet";style.href=new URL("evening-odds.css?v=20261014-1",rootUrl).href;
+  style.rel="stylesheet";style.href=new URL("evening-odds.css?v=20261014-savefix-2",rootUrl).href;
   document.head.appendChild(style);
 
   const leagueLabels={
