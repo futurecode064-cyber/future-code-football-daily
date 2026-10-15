@@ -1,0 +1,26 @@
+name: One-time market and form research Oct 15
+on:
+  push:
+    branches: [improve/football-20261015-odds-form-special]
+    paths: [.github/workflows/temp-market-form-research.yml]
+permissions:
+  contents: write
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests beautifulsoup4
+      - name: Collect independently supplied match betting triplets and completed results
+        run: python football-daily/scripts/scrape_20261015_market.py
+      - name: Save research source snapshot on feature branch only
+        run: |
+          git config user.name "future-code-research[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add football-daily/data/research/2026-10-15-market-form-scan.json
+          git commit -m "Store cited Oct 15 market prices and historic scores for editorial verification" || exit 0
+          git push origin HEAD:improve/football-20261015-odds-form-special
