@@ -49,7 +49,8 @@ test("Oct 14 13 original Burmese preview articles, authentic club crests and two
   assert.ok(m.dailyPreviewText.length>=500&&m.dailyPreviewText.match(/\*\*/g)?.length===4);
   assert.ok(m.homeCrestUrl?.startsWith("https://")&&m.awayCrestUrl?.startsWith("https://"));
   assert.ok(m.researchSources.length>=2&&m.homeLastFive.length>=2&&m.awayLastFive.length>=5);
-  assert.match(m.finalScore,/^\d+-\d+$/);\n  assert.equal(m.finalScoreIsVerified,true);
+  assert.match(m.finalScore,/^\d+-\d+$/);
+  assert.equal(m.finalScoreIsVerified,true);
   for(const side of ["homeLastFive","awayLastFive"]){
    for(const item of m[side]){
     assert.ok(item.sourceUrl.startsWith("https://"));
