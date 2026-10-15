@@ -1,4 +1,5 @@
 name: Validate original uploaded Conference League texts
+# Rerun with exact user-written draw verdicts accepted in editorial assertions.
 on:
   push:
     branches: [editorial/user-verbatim-conference-20261015]
