@@ -1,4 +1,5 @@
 name: Validate no preview predicted scores and retained internet odds forecast
+# Post-audit-rule fix: verify the updated publication guard and all four branded pages
 on:
   push:
     branches:
