@@ -14,7 +14,7 @@
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
-      "awayCrestUrl": null,
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/13083.png",
       "homeOdds": "1.30",
       "drawOdds": "5.50",
       "awayOdds": "8.50",
@@ -133,7 +133,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -146,8 +148,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2990.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
       "homeOdds": "4.75",
       "drawOdds": "4.20",
       "awayOdds": "1.61",
@@ -266,7 +268,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -279,8 +283,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3362.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/617.png",
       "homeOdds": "2.70",
       "drawOdds": "3.25",
       "awayOdds": "2.63",
@@ -399,7 +403,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -548,7 +554,9 @@
       ],
       "specialPickType": "team",
       "specialPickLabel": "လီယွန်",
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -561,8 +569,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2790.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
       "homeOdds": "3.30",
       "drawOdds": "3.75",
       "awayOdds": "2.05",
@@ -681,7 +689,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -694,7 +704,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/21615.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
       "homeOdds": "7.50",
       "drawOdds": "5.25",
@@ -814,7 +824,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -827,8 +839,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/433.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/987.png",
       "homeOdds": "1.33",
       "drawOdds": "5.50",
       "awayOdds": "8.00",
@@ -947,7 +959,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -960,7 +974,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/5807.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
       "homeOdds": "2.50",
       "drawOdds": "3.50",
@@ -1080,7 +1094,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1229,7 +1245,9 @@
       ],
       "specialPickType": "team",
       "specialPickLabel": "ဘုန်းမောက်",
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1378,7 +1396,9 @@
       ],
       "specialPickType": "team",
       "specialPickLabel": "ဘင်ဖီကာ",
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1528,7 +1548,9 @@
       ],
       "specialPickType": "team",
       "specialPickLabel": "ဂျူဗင်တပ်",
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1541,8 +1563,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/622.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/11706.png",
       "homeOdds": "1.91",
       "drawOdds": "3.80",
       "awayOdds": "3.70",
@@ -1661,7 +1683,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1674,8 +1698,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/11505.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20024.png",
       "homeOdds": "1.40",
       "drawOdds": "4.75",
       "awayOdds": "7.50",
@@ -1794,7 +1818,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1807,8 +1833,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/490.png",
       "homeOdds": "1.85",
       "drawOdds": "3.70",
       "awayOdds": "3.90",
@@ -1927,7 +1953,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -1940,8 +1968,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/597.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/441.png",
       "homeOdds": "2.00",
       "drawOdds": "3.60",
       "awayOdds": "3.60",
@@ -2060,7 +2088,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -2074,7 +2104,7 @@
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-      "awayCrestUrl": null,
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/435.png",
       "homeOdds": "2.30",
       "drawOdds": "3.50",
       "awayOdds": "3.00",
@@ -2193,7 +2223,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -2206,7 +2238,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1010.png",
       "homeOdds": "1.22",
       "drawOdds": "6.25",
@@ -2326,7 +2358,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Europa League",
@@ -2340,7 +2374,7 @@
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
-      "awayCrestUrl": null,
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1895.png",
       "homeOdds": "1.95",
       "drawOdds": "4.10",
       "awayOdds": "3.74",
@@ -2459,7 +2493,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -2472,7 +2508,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/8089.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
       "homeOdds": "3.30",
       "drawOdds": "3.20",
@@ -2592,7 +2628,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -2605,7 +2643,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/10834.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
       "homeOdds": "5.50",
       "drawOdds": "4.50",
@@ -2725,7 +2763,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -2738,8 +2778,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/21943.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/572.png",
       "homeOdds": "6.25",
       "drawOdds": "4.20",
       "awayOdds": "1.50",
@@ -2858,7 +2898,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3007,7 +3049,9 @@
       ],
       "specialPickType": "total-over",
       "specialPickLabel": "ဂိုးပေါ် ၂.၅",
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3020,8 +3064,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3611.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7853.png",
       "homeOdds": "1.61",
       "drawOdds": "4.20",
       "awayOdds": "4.75",
@@ -3140,7 +3184,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3153,8 +3199,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/8169.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/997.png",
       "homeOdds": "6.50",
       "drawOdds": "4.50",
       "awayOdds": "1.44",
@@ -3273,7 +3319,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3286,8 +3334,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7672.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2290.png",
       "homeOdds": "2.60",
       "drawOdds": "3.50",
       "awayOdds": "2.60",
@@ -3406,7 +3454,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3419,8 +3469,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20301.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20703.png",
       "homeOdds": "1.30",
       "drawOdds": "5.50",
       "awayOdds": "8.50",
@@ -3539,7 +3589,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3552,8 +3604,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/443.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20710.png",
       "homeOdds": "1.20",
       "drawOdds": "6.50",
       "awayOdds": "15.00",
@@ -3672,7 +3724,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3685,8 +3739,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T16:45:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/19246.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2528.png",
       "homeOdds": "1.90",
       "drawOdds": "3.50",
       "awayOdds": "4.00",
@@ -3805,7 +3859,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3819,7 +3875,7 @@
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
-      "awayCrestUrl": null,
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/22281.png",
       "homeOdds": "1.30",
       "drawOdds": "5.25",
       "awayOdds": "9.50",
@@ -3938,7 +3994,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -3951,8 +4009,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/620.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/17856.png",
       "homeOdds": "1.13",
       "drawOdds": "9.00",
       "awayOdds": "17.00",
@@ -4071,7 +4129,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4084,8 +4144,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20028.png",
       "homeOdds": "1.03",
       "drawOdds": "17.00",
       "awayOdds": "41.00",
@@ -4204,7 +4264,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4217,7 +4279,7 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/909.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2994.png",
       "homeOdds": "2.50",
       "drawOdds": "3.20",
@@ -4337,7 +4399,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4350,8 +4414,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/262.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3101.png",
       "homeOdds": "2.90",
       "drawOdds": "3.75",
       "awayOdds": "2.20",
@@ -4470,7 +4534,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4483,8 +4549,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7922.png",
       "homeOdds": "1.22",
       "drawOdds": "6.00",
       "awayOdds": "12.00",
@@ -4603,7 +4669,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4616,8 +4684,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/936.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20025.png",
       "homeOdds": "1.25",
       "drawOdds": "5.50",
       "awayOdds": "12.00",
@@ -4736,7 +4804,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     },
     {
       "league": "UEFA Conference League",
@@ -4749,8 +4819,8 @@
       "nightEditorialDate": "2026-10-15",
       "kickoffUtc": "2026-10-15T19:00:00Z",
       "venue": null,
-      "homeCrestUrl": null,
-      "awayCrestUrl": null,
+      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/152.png",
+      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3024.png",
       "homeOdds": "1.20",
       "drawOdds": "7.50",
       "awayOdds": "10.00",
@@ -4869,7 +4939,9 @@
       ],
       "status": "scheduled",
       "specialChoice": false,
-      "oddsVerifiedDate": "2026-10-15"
+      "oddsVerifiedDate": "2026-10-15",
+      "homeCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500",
+      "awayCrestSourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/uefa.europa.conf/scoreboard?dates=20261015&limit=500"
     }
   ],
   "noFixturesLeagues": [],
