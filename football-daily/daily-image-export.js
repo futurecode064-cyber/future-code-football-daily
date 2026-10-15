@@ -26,7 +26,7 @@
    {header:"#830b15",deep:"#45060c",accent:"#ffdc78",bodyText:"#131720"}:
    {header:"#215c55",deep:"#163e3b",accent:"#ffcb92",bodyText:"#131720"};
   const white="#ffffff",light="#f7f8fa",rule="#cbd2da",upper="#e7e9ed",upperAlt="#dfe2e7";
-  const widths=[155,402,195,166,164,230],xs=[M];
+  const widths=[155,540,225,196,196],xs=[M];
   for(const w of widths)xs.push(xs[xs.length-1]+w);
 
   // Header color is the brand's own theme. Everything underneath the heading
@@ -51,7 +51,7 @@
    text(ctx,leagues[league]||league,M+73,y+33,26,white,true,"left",W-M*2-95);
    y+=69;
    fill(ctx,M,y,W-M*2,44,palette.deep);
-   const titles=["ပွဲချိန်","ယှဉ်ပြိုင်မည့်အသင်း","အပေါ်အသင်း","ဘော်ဒီကြေး","ဂိုးပေါင်းကြေး","အင်တာနက်ခန့်မှန်းချက်"];
+   const titles=["ပွဲချိန်","ယှဉ်ပြိုင်မည့်အသင်း","အပေါ်အသင်း","ဘော်ဒီကြေး","ဂိုးပေါင်းကြေး"];
    for(let i=0;i<titles.length;i++){
     text(ctx,titles[i],xs[i]+widths[i]/2,y+23,fit(ctx,titles[i],widths[i]-12,17,12),white,true,"center",widths[i]-12);
    }
@@ -74,7 +74,6 @@
     text(ctx,m.upperTeam||"—",xs[2]+widths[2]/2,y+37,fit(ctx,m.upperTeam||"—",widths[2]-16,19,12),palette.bodyText,true,"center",widths[2]-16);
     text(ctx,m.bodyOdds??"—",xs[3]+widths[3]/2,y+37,20,palette.bodyText,true,"center",widths[3]-12);
     text(ctx,m.goalTotalOdds??"—",xs[4]+widths[4]/2,y+37,20,palette.bodyText,true,"center",widths[4]-12);
-    text(ctx,m.pdfLastColumn??"—",xs[5]+widths[5]/2,y+37,20,palette.bodyText,true,"center",widths[5]-12);
     y+=73;
    }
    y+=18;
