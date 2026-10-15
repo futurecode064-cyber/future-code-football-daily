@@ -47,9 +47,26 @@ for x in scan[:3]:
   images=[{"alt":e.get("alt"),"src":e.get("src"),"data_src":e.get("data-src")} for e in soup.find_all("img") if e.get("src") or e.get("data-src")]
   print("BOOKIE_IMG",x["label"],json.dumps(images[:25],ensure_ascii=False),flush=True)
  except Exception as e:print("BOOKIE_IMG_ERROR",str(e),flush=True)
+ALIASES={
+  "Aarhus": "AGF",
+  "Ajax": "Ajax Amsterdam",
+  "Brighton": "Brighton & Hove Albion",
+  "Celje": "NK Celje",
+  "Copenhagen": "F.C. København",
+  "Crvena Zvezda": "Red Star Belgrade",
+  "Gent": "KAA Gent",
+  "Hearts": "Heart of Midlothian",
+  "Iberia Tbilisi": "Iberia 1999",
+  "Jagiellonia": "Jagiellonia Bialystok",
+  "Omonia": "Omonia Nicosia",
+  "Rennes": "Stade Rennais",
+  "Riga": "Riga FC",
+  "Universitatea Craiova": "CSU Craiova"
+}
+print("AVAILABLE_ESPN_TEAMS", json.dumps(sorted(teams.keys()),ensure_ascii=False),flush=True)
 needed=sorted(set(k for m in today["matches"] for k in (m["home"],m["away"])))
 for name in needed:
- choices=sorted(((similarity(name,seen),seen,obj) for seen,obj in teams.items()),key=lambda z:z[0],reverse=True)
+ choices=sorted(((1.0 if ALIASES.get(name)==seen else similarity(name,seen),seen,obj) for seen,obj in teams.items()),key=lambda z:z[0],reverse=True)
  if choices and choices[0][0]>=.75:
   score,source,obj=choices[0]
   candidate.append({"name":name,"matchName":source,"confidence":round(score,3),**obj})
