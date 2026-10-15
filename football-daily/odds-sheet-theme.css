@@ -68,8 +68,7 @@ body .odds-content .odds-table td.time{
   color:#20252b!important;font:800 12px "Barlow Condensed","Noto Sans Myanmar",sans-serif!important;
   white-space:normal!important;line-height:1.7!important;
 }
-body .odds-content .odds-table td.price,
-body .odds-content .odds-table td.prediction{
+body .odds-content .odds-table td.price{
   font:800 17px "Barlow Condensed","Noto Sans Myanmar",sans-serif!important;
   color:#111820!important;line-height:1.5!important;
 }
@@ -95,11 +94,10 @@ body .odds-content .odds-matchup .team-badge{
 body .odds-content .odds-matchup .logo-fallback{color:#111820!important;}
 body .odds-content .odds-table td:nth-child(n+3)::before{content:none!important;display:none!important;}
 body .odds-content .odds-table th:nth-child(1){width:13%;}
-body .odds-content .odds-table th:nth-child(2){width:36%;}
-body .odds-content .odds-table th:nth-child(3){width:15%;}
-body .odds-content .odds-table th:nth-child(4){width:11%;}
-body .odds-content .odds-table th:nth-child(5){width:11%;}
-body .odds-content .odds-table th:nth-child(6){width:14%;}
+body .odds-content .odds-table th:nth-child(2){width:42%;}
+body .odds-content .odds-table th:nth-child(3){width:17%;}
+body .odds-content .odds-table th:nth-child(4){width:14%;}
+body .odds-content .odds-table th:nth-child(5){width:14%;}
 /* Screen width never turns table cells into cards: match source's ledger style. */
 @media(max-width:700px){
  body .odds-content .odds-group{margin:18px 0!important;}
@@ -116,5 +114,4 @@ body .odds-export-sheet .odds-table th{background:var(--sheet-brand)!important;c
 body .odds-export-sheet .odds-table td.upper{background:#e8eaed!important;}
 body .odds-export-sheet .odds-table .club-label,
 body .odds-export-sheet .odds-table .price,
-body .odds-export-sheet .odds-table .time,
-body .odds-export-sheet .odds-table .prediction{color:#161b21!important;}
+body .odds-export-sheet .odds-table .time{color:#161b21!important;}
