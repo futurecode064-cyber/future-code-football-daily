@@ -1,4 +1,5 @@
 name: One-time 20261015 team badge verification
+# Validate 14 alias spellings against ESPN's dated fixture list.
 on:
   push:
     branches: [improve/football-20261015-odds-form-special]
