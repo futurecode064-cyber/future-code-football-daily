@@ -15,33 +15,105 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.30",
+      "drawOdds": "5.50",
+      "awayOdds": "8.50",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Feyenoord",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Telstar",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Sunderland",
           "teamGoals": 0,
           "opponentGoals": 1,
           "venueSide": "away",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Willem II",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Heerenveen",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Ironi Tiberias",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Hapoel Kiryat Shmona",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "GNK Dinamo Zagreb",
+          "opponent": "Dinamo Zagreb",
           "teamGoals": 0,
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Hapoel Petah Tikva",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Maccabi Tel Aviv",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/"
         }
       ],
       "headToHead": [],
@@ -60,7 +132,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -75,14 +148,41 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "4.75",
+      "drawOdds": "4.20",
+      "awayOdds": "1.61",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Slask Wroclaw",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Cottbus",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Radomiak Radom",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Crystal Palace",
@@ -90,18 +190,63 @@
           "opponentGoals": 4,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Gornik Zabrze",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
         }
       ],
       "awayLastFive": [
         {
-          "date": "2026-09-16",
-          "opponent": "Celje",
+          "date": "2026-10-10",
+          "opponent": "Mainz",
+          "teamGoals": 4,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "RB Leipzig",
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "NK Celje",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Augsburg",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Union Berlin",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/"
         }
       ],
       "headToHead": [],
@@ -120,7 +265,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -135,14 +281,32 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.70",
+      "drawOdds": "3.25",
+      "awayOdds": "2.63",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Aluminij Kidricevo",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "NS Mura",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Bayer Leverkusen",
@@ -150,10 +314,46 @@
           "opponentGoals": 2,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "NK Bravo",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "NK Rudar Velenje",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "APK Karmotissa",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Krasava ENY Ypsonas",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Celta Vigo",
@@ -161,7 +361,25 @@
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Apollon Limassol",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Aris Limassol",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/"
         }
       ],
       "headToHead": [],
@@ -180,7 +398,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -195,14 +414,32 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.30",
+      "drawOdds": "3.70",
+      "awayOdds": "3.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "Lens",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Rennes",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Anderlecht",
@@ -210,18 +447,72 @@
           "opponentGoals": 1,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Paris FC",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Auxerre",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Nottm Forest",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Bristol City",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Leeds",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Lech Poznań",
+          "opponent": "Lech Poznan",
           "teamGoals": 4,
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Ipswich",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13043457/uefa-europa-league/lyon-vs-crystal-palace/"
         }
       ],
       "headToHead": [],
@@ -256,7 +547,8 @@
         "https://www.uefa.com/uefaeuropaleague/match/2050076/"
       ],
       "specialPickType": "team",
-      "specialPickLabel": "လီယွန် မရှုံး"
+      "specialPickLabel": "လီယွန် မရှုံး",
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -271,14 +563,41 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "3.30",
+      "drawOdds": "3.75",
+      "awayOdds": "2.05",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Grazer AK",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "FC Blau Weiss Linz",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "SK Sturm Graz",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Levski Sofia",
@@ -286,18 +605,63 @@
           "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "SV Ried",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Sassuolo",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Lecce",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Benfica",
           "teamGoals": 0,
           "opponentGoals": 2,
           "venueSide": "home",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Lazio",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Juventus",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044764/uefa-europa-league/fc-salzburg-vs-ac-milan/"
         }
       ],
       "headToHead": [],
@@ -316,7 +680,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -331,33 +696,105 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "7.50",
+      "drawOdds": "5.25",
+      "awayOdds": "1.36",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Tondela",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Lillestrøm",
+          "opponent": "Lillestrom",
           "teamGoals": 2,
           "opponentGoals": 1,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Leixoes",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Benfica B",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-08-29",
+          "opponent": "Vizela",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Brighton",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Man City",
+          "teamGoals": 3,
+          "opponentGoals": 5,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "AZ Alkmaar",
+          "opponent": "AZ",
           "teamGoals": 1,
           "opponentGoals": 0,
           "venueSide": "home",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Arsenal",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "Hull",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044385/uefa-europa-league/scu-torreense-vs-sunderland/"
         }
       ],
       "headToHead": [],
@@ -376,7 +813,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -391,33 +829,105 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.33",
+      "drawOdds": "5.50",
+      "awayOdds": "8.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Pardubice",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Vysocina Jihlava",
+          "teamGoals": 5,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Sigma Olomouc",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Ararat-Armenia",
+          "opponent": "Ararat Armenia",
           "teamGoals": 4,
           "opponentGoals": 1,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "FK Jablonec",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Molde",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-10-01",
+          "opponent": "Baerum",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Viking FK",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Torreense",
+          "opponent": "SCU Torreense",
           "teamGoals": 1,
           "opponentGoals": 2,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Valerenga",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/"
         }
       ],
       "headToHead": [],
@@ -436,7 +946,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -451,33 +962,105 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.50",
+      "drawOdds": "3.50",
+      "awayOdds": "2.70",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "OH Leuven",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Antwerp",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Viktoria Plzeň",
+          "opponent": "Viktoria Plzen",
           "teamGoals": 3,
           "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Lommel",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Charleroi",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Deportivo A Coruna",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Athletic Bilbao",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Valencia",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Bournemouth",
           "teamGoals": 1,
           "opponentGoals": 2,
           "venueSide": "home",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Atletico Madrid",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044372/uefa-europa-league/union-saint-gilloise-vs-real-sociedad/"
         }
       ],
       "headToHead": [],
@@ -496,7 +1079,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -511,14 +1095,32 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3746.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.18",
+      "drawOdds": "7.00",
+      "awayOdds": "15.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Chelsea",
+          "teamGoals": 1,
+          "opponentGoals": 5,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Liverpool",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Real Sociedad",
@@ -526,10 +1128,55 @@
           "opponentGoals": 1,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Brentford",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "Lincoln City",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "FK Austria Vienna",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Floridsdorfer AC",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Salzburg",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Rennes",
@@ -537,7 +1184,16 @@
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "LASK Linz",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044761/uefa-europa-league/bournemouth-vs-sk-sturm-graz/"
         }
       ],
       "headToHead": [],
@@ -572,7 +1228,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "specialPickType": "team",
-      "specialPickLabel": "ဘုန်းမောက် အနိုင်"
+      "specialPickLabel": "ဘုန်းမောက် အနိုင်",
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -587,33 +1244,105 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/256.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.25",
+      "drawOdds": "6.00",
+      "awayOdds": "11.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Guimaraes",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Porto",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Milan",
+          "opponent": "AC Milan",
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Gil Vicente",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Moreirense",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Motherwell",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Rangers",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Ferencváros",
+          "opponent": "Ferencvarosi TC",
           "teamGoals": 1,
           "opponentGoals": 3,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Rangers",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "St Johnstone",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044760/uefa-europa-league/benfica-vs-celtic/"
         }
       ],
       "headToHead": [],
@@ -648,7 +1377,8 @@
         "https://www.celticfc.com/news/2026/october/14/manager--we-re-looking-forward-to-tough-benfica-test/"
       ],
       "specialPickType": "team",
-      "specialPickLabel": "ဘင်ဖီကာ အနိုင်"
+      "specialPickLabel": "ဘင်ဖီကာ အနိုင်",
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -663,33 +1393,105 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "3.50",
+      "drawOdds": "3.10",
+      "awayOdds": "2.25",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
-          "date": "2026-09-16",
-          "opponent": "Omonia",
+          "date": "2026-10-11",
+          "opponent": "Elche",
           "teamGoals": 0,
-          "opponentGoals": 1,
+          "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
-        }
-      ],
-      "awayLastFive": [
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
         {
-          "date": "2026-09-17",
-          "opponent": "N.E.C. Nijmegen",
+          "date": "2026-09-19",
+          "opponent": "Racing Santander",
           "teamGoals": 5,
           "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Omonia Nicosia",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Malaga",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Getafe",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Cagliari",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Atalanta",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "NEC",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Sassuolo",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "AC Milan",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044371/uefa-europa-league/celta-vigo-vs-juventus/"
         }
       ],
       "headToHead": [],
@@ -725,7 +1527,8 @@
         "https://www.juventus.com/en/news/articles/squad-list-celta-juventus-15-10-26"
       ],
       "specialPickType": "team",
-      "specialPickLabel": "ဂျူဗင်တပ် မရှုံး"
+      "specialPickLabel": "ဂျူဗင်တပ် မရှုံး",
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -740,14 +1543,32 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.91",
+      "drawOdds": "3.80",
+      "awayOdds": "3.70",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Debreceni VSC",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Nyiregyhaza Spartacus",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Celtic",
@@ -755,18 +1576,72 @@
           "opponentGoals": 1,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "DEAC",
+          "teamGoals": 7,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Ujpest",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Mlada Boleslav",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Slavia Prague",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Union Saint-Gilloise",
+          "opponent": "Union Saint Gilloise",
           "teamGoals": 0,
           "opponentGoals": 3,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Sigma Olomouc",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Hradec Kralove",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/"
         }
       ],
       "headToHead": [],
@@ -785,7 +1660,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -800,14 +1676,41 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.40",
+      "drawOdds": "4.75",
+      "awayOdds": "7.50",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Gornik Zabrze",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-29",
+          "opponent": "Suduva Marijampole",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Legia Warsaw",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Olympiacos",
@@ -815,18 +1718,63 @@
           "opponentGoals": 2,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Wisla Krakow",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Alashkert FC",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Shirak",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Sparta Praha",
+          "opponent": "Sparta Prague",
           "teamGoals": 1,
           "opponentGoals": 4,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Syunik",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Ararat Yerevan",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/"
         }
       ],
       "headToHead": [],
@@ -845,7 +1793,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -860,14 +1809,32 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.85",
+      "drawOdds": "3.70",
+      "awayOdds": "3.90",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Ajax",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Go Ahead Eagles",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Juventus",
@@ -875,18 +1842,72 @@
           "opponentGoals": 5,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Cambuur Leeuwarden",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "Excelsior",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Cherno More Varna",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Salzburg",
+          "opponent": "FC Salzburg",
           "teamGoals": 0,
           "opponentGoals": 1,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Botev Vratsa",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "CSKA Sofia",
+          "teamGoals": 2,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "CSKA 1948 Sofia",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/"
         }
       ],
       "headToHead": [],
@@ -905,7 +1926,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -920,25 +1942,79 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.00",
+      "drawOdds": "3.60",
+      "awayOdds": "3.60",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "Hajduk Split",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-10-04",
+          "opponent": "Vukovar 91",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-09-30",
+          "opponent": "HNK Segesta",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "NK Lokomotiva Zagreb",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Hapoel Beer-Sheva",
+          "opponent": "Hapoel Beer Sheva",
           "teamGoals": 0,
           "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Cercle Brugge",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Zulte-Waregem",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
         {
           "date": "2026-09-16",
           "opponent": "Lyon",
@@ -946,7 +2022,25 @@
           "opponentGoals": 2,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "KV Mechelen",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Genk",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/"
         }
       ],
       "headToHead": [],
@@ -965,7 +2059,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -980,33 +2075,105 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.30",
+      "drawOdds": "3.50",
+      "awayOdds": "3.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Troyes",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "PSG",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Beşiktaş",
+          "opponent": "Besiktas",
           "teamGoals": 1,
           "opponentGoals": 4,
           "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Rennes",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Paris FC",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Panathinaikos",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Levadiakos",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Jagiellonia",
+          "opponent": "Jagiellonia Bialystok",
           "teamGoals": 2,
           "opponentGoals": 1,
           "venueSide": "home",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "OFI Crete",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "Volos NFC",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044237/uefa-europa-league/marseille-vs-olympiacos/"
         }
       ],
       "headToHead": [],
@@ -1025,7 +2192,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -1040,33 +2208,105 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1010.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.22",
+      "drawOdds": "6.25",
+      "awayOdds": "13.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
+          "date": "2026-10-11",
+          "opponent": "Auxerre",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Laval",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Lyon",
+          "teamGoals": 0,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
           "date": "2026-09-16",
-          "opponent": "Sturm Graz",
+          "opponent": "SK Sturm Graz",
           "teamGoals": 0,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3746.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Marseille",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
         }
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-10",
+          "opponent": "AEK Athens",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Asteras Tripolis",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
           "date": "2026-09-17",
-          "opponent": "Hoffenheim",
+          "opponent": "TSG Hoffenheim",
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "home",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Olympiacos",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Nestos Chrisoupolis",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044236/uefa-europa-league/rennes-vs-ofi-crete/"
         }
       ],
       "headToHead": [],
@@ -1085,7 +2325,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Europa League",
@@ -1100,33 +2341,105 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.95",
+      "drawOdds": "4.10",
+      "awayOdds": "3.74",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Hamburg",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Paderborn",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "OFI Crete",
           "teamGoals": 0,
           "opponentGoals": 2,
           "venueSide": "away",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1010.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "VfB Stuttgart",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Borussia Dortmund",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Kocaelispor",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Amedspor",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
         {
           "date": "2026-09-17",
           "opponent": "Marseille",
           "teamGoals": 4,
           "opponentGoals": 1,
           "venueSide": "home",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Erzurumspor FK",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Fenerbahce",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044759/uefa-europa-league/tsg-hoffenheim-vs-besiktas/"
         }
       ],
       "headToHead": [],
@@ -1145,7 +2458,8 @@
         "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1160,15 +2474,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "3.30",
+      "drawOdds": "3.20",
+      "awayOdds": "2.25",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "FK Csikszereda Miercurea Ciuc",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-10-04",
+          "opponent": "CSM Slatina",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "FCSB",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "CS Corvinul Hunedoara",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Universitatea Cluj",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Barcelona",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Malaga",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "Real Betis",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Deportivo A Coruna",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Celta Vigo",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1185,7 +2591,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1200,15 +2607,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "5.50",
+      "drawOdds": "4.50",
+      "awayOdds": "1.53",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "CSKA 1948 Sofia",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Lokomotiv Plovdiv",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Lokomotiv 1929 Sofia",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Arda Kardzhali",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Levski Sofia",
+          "teamGoals": 4,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Toulouse",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Pisa",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Lens",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Strasbourg",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "PSG",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1225,7 +2724,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1240,15 +2740,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "6.25",
+      "drawOdds": "4.20",
+      "awayOdds": "1.50",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Laci",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Partizani Tirana",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "AF Elbasani",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Skenderbeu Korce",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-08-31",
+          "opponent": "FK Vora",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "FC Copenhagen",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Odense BK",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-14",
+          "opponent": "Brondby",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-10",
+          "opponent": "Sundby",
+          "teamGoals": 7,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "FC Nordsjaelland",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1265,7 +2857,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1280,15 +2873,107 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/489.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/139.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "4.50",
+      "drawOdds": "4.33",
+      "awayOdds": "1.61",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Dinamo Zagreb",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "HNK Rijeka",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Slaven Belupo",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "NK Vardarac",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "NK Rudes",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "NEC",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Excelsior",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-15",
+          "opponent": "Willem II",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Fortuna Sittard",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "PSV",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1321,7 +3006,8 @@
         "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/"
       ],
       "specialPickType": "total-over",
-      "specialPickLabel": "ဂိုးပေါ် ၂.၅"
+      "specialPickLabel": "ဂိုးပေါ် ၂.၅",
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1336,15 +3022,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.61",
+      "drawOdds": "4.20",
+      "awayOdds": "4.75",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Zulte-Waregem",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Standard Liege",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Genk",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Cercle Brugge",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-03",
+          "opponent": "OH Leuven",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-12",
+          "opponent": "Sonderjyske",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Vendsyssel FF",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "AC Horsens",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Skjold",
+          "teamGoals": 6,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "FC Nordsjaelland",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1361,7 +3139,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1376,15 +3155,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "6.50",
+      "drawOdds": "4.50",
+      "awayOdds": "1.44",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "FC Inter",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-10-08",
+          "opponent": "AC Oulu",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "VPS Vaasa",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "HJK Helsinki",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-08",
+          "opponent": "IF Gnistan",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Samsunspor",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Galatasaray",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Konyaspor",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Genclerbirligi",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        },
+        {
+          "date": "2026-08-31",
+          "opponent": "Amedspor",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1401,7 +3272,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1416,15 +3288,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.60",
+      "drawOdds": "3.50",
+      "awayOdds": "2.60",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Lucerne",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Verona",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Lausanne-Sport",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "St Gallen",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Young Boys",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "FK Radnicki 1923",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Radnicki Nis",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "FK Zeleznicar Pancevo",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "IMT Novi Belgrade",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        },
+        {
+          "date": "2026-09-10",
+          "opponent": "FK Radnik Surdulica",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1441,7 +3405,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1456,15 +3421,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.30",
+      "drawOdds": "5.50",
+      "awayOdds": "8.50",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Degerfors",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-10-06",
+          "opponent": "FC Trollhättan",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "GAIS",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "AIK",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "BK Hacken",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "FC Ordino",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Rodez Aveyron",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Rangers",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "CE Carroi",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "AC d'Escaldes",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1481,7 +3538,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1496,15 +3554,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.20",
+      "drawOdds": "6.50",
+      "awayOdds": "15.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Olympiacos",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Kalamata",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Kifisias FC",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Panetolikos",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-10",
+          "opponent": "Kifisias FC",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "BSK Banja Luka",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-27",
+          "opponent": "Vojvodina",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Siroki Brijeg",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "FK Sloga Doboj",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Zrinjski Mostar",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044225/uefa-conference-league/panathinaikos-vs-borac-banja-luka/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1521,7 +3671,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1536,15 +3687,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.90",
+      "drawOdds": "3.50",
+      "awayOdds": "4.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Tukums 2000",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Aris Limassol",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "FK Jelgava",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-15",
+          "opponent": "SK Super Nova",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "FK Auda",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Zhetysu",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "FC Astana",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Tobol Kostanay",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "FK Zhenys",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "FK Kaspyi Aktau",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1561,7 +3804,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1576,15 +3820,107 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.30",
+      "drawOdds": "5.25",
+      "awayOdds": "9.50",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-12",
+          "opponent": "Venezia",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Juventus",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Cagliari",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Roma",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-08-31",
+          "opponent": "Bologna",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Anorthosis Famagusta",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "AEL Limassol",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "AEK Larnaca",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Olympiakos Nicosia",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        },
+        {
+          "date": "2026-09-03",
+          "opponent": "Omonia Nicosia",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1601,7 +3937,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1616,15 +3953,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.13",
+      "drawOdds": "9.00",
+      "awayOdds": "17.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "Viking FK",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Bodo/Glimt",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Os",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "IK Start",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Lillestrom",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Europa FC",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Mons Calpe SC",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Europa Point",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-08-30",
+          "opponent": "Glacis United FC",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        },
+        {
+          "date": "2026-08-27",
+          "opponent": "Larne FC",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1641,7 +4070,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1656,15 +4086,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.03",
+      "drawOdds": "17.00",
+      "awayOdds": "41.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Sunderland",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Arsenal",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Man Utd",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Coventry",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Leeds",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "FK Minija",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FK Siauliai",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "FK Zalgiris Vilnius",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Panevezys",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Suduva Marijampole",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1681,7 +4203,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1696,15 +4219,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2994.png",
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.50",
+      "drawOdds": "3.20",
+      "awayOdds": "2.90",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Midtjylland",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-10-04",
+          "opponent": "Hamburg",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Brondby",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-15",
+          "opponent": "Skovshoved",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "AC Horsens",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "Sporting",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Santa Clara",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-14",
+          "opponent": "Estoril",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-10",
+          "opponent": "Estrela",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Alverca",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044915/uefa-conference-league/fc-copenhagen-vs-braga/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1721,7 +4336,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1736,15 +4352,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "2.90",
+      "drawOdds": "3.75",
+      "awayOdds": "2.20",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "St Mirren",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Kilmarnock",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-15",
+          "opponent": "Falkirk",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Stenhousemuir",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Dundee",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "Odense BK",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Viborg",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Vatanspor",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "AGF Aarhus",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        },
+        {
+          "date": "2026-09-07",
+          "opponent": "Midtjylland",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043510/uefa-conference-league/hearts-vs-fc-nordsjaelland/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1761,7 +4469,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1776,15 +4485,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.22",
+      "drawOdds": "6.00",
+      "awayOdds": "12.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Schalke",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Eintracht Frankfurt",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Borussia M'gladbach",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Paderborn",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-08-30",
+          "opponent": "Werder Bremen",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "FC Brno",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Dukla Praha",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Trinity Zlin",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Sparta Prague",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Banik Ostrava",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1801,7 +4602,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1816,15 +4618,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.25",
+      "drawOdds": "5.50",
+      "awayOdds": "12.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "KV Mechelen",
+          "teamGoals": 3,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Westerlo",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "SK Beveren",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "RAAL La Louviere",
+          "teamGoals": 4,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-02",
+          "opponent": "Union Saint Gilloise",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Meshakhte Tkibuli",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-10-04",
+          "opponent": "Dinamo Tbilisi",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-21",
+          "opponent": "FC Rustavi",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "Dila Gori",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "FC Spaeri",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1841,7 +4735,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     },
     {
       "league": "UEFA Conference League",
@@ -1856,15 +4751,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
+      "homeOdds": "1.20",
+      "drawOdds": "7.50",
+      "awayOdds": "10.00",
+      "oddsProvider": "Bet365",
+      "oddsSourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Fortuna Sittard",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Werder Bremen",
+          "teamGoals": 7,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "PSV",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "ADO Den Haag",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-09",
+          "opponent": "Telstar",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "FC Zurich",
+          "teamGoals": 2,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Kriens",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "FC Vaduz",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Servette",
+          "teamGoals": 2,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Grasshoppers",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/"
+        }
+      ],
       "headToHead": [],
       "myanmarOdds": {
         "provider": "User-supplied Myanmar morning sheet",
@@ -1881,7 +4868,8 @@
         "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--202627-conference-league-all-the-league-phase-fixtures/"
       ],
       "status": "scheduled",
-      "specialChoice": false
+      "specialChoice": false,
+      "oddsVerifiedDate": "2026-10-15"
     }
   ],
   "noFixturesLeagues": [],
