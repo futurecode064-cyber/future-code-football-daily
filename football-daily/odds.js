@@ -64,7 +64,7 @@ function render(data){
   header.appendChild(button);section.appendChild(header);
   const wrap=element("div","odds-table-wrap"),table=element("table","odds-table");
   const thead=element("thead"),tr=element("tr");
-  for(const name of ["ပွဲချိန်","ယှဉ်ပြိုင်မည့်အသင်း","အပေါ်အသင်း","ဘော်ဒီကြေး","ဂိုးပေါင်းကြေး"])
+  for(const name of ["ပွဲချိန်","ယှဉ်ပြိုင်မည့်အသင်း","အပေါ်အသင်း","ဘော်ဒီကြေး","ဂိုးပေါင်းကြေး","အင်တာနက်ခန့်မှန်းချက်"])
    tr.appendChild(element("th","",name));
   thead.appendChild(tr);table.appendChild(thead);const tbody=element("tbody");
   for(const m of matches){
@@ -72,7 +72,7 @@ function render(data){
    const time=m.kickoffDisplay||m.kickoff||"";
    const t=element("td","time",time),pair=element("td","team-pair");
    pair.appendChild(matchCell(m));
-   append(row,t,pair,element("td","upper",m.upperTeam),element("td","price",m.bodyOdds),element("td","price",m.goalTotalOdds));
+   append(row,t,pair,element("td","upper",m.upperTeam),element("td","price",m.bodyOdds),element("td","price",m.goalTotalOdds),element("td","prediction",m.pdfLastColumn));
    tbody.appendChild(row);
   }
   table.appendChild(tbody);wrap.appendChild(table);section.appendChild(wrap);root.appendChild(section);
