@@ -1,0 +1,29 @@
+name: Validate no preview predicted scores and retained internet odds forecast
+on:
+  push:
+    branches:
+      - fix/remove-all-predicted-scores-20261015
+permissions:
+  contents: read
+jobs:
+  all-football-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: JavaScript syntax
+        run: |
+          node --check football-daily/app.js
+          node --check football-daily/card-export.js
+          node --check football-daily/odds.js
+          node --check football-daily/daily-image-export.js
+      - name: Full website test suite including score-forecast separation
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Daily report audit
+        run: python football-daily/scripts/daily_guard.py audit
