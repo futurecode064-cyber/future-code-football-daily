@@ -1,0 +1,25 @@
+name: Verify full 36-match professional editorial rewrite
+on:
+  push:
+    branches:
+      - editorial/36-evidence-based-previews-20261015
+permissions:
+  contents: read
+jobs:
+  full-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Editorial quality 36 matches and exact bold ending
+        run: node --test football-daily/tests/editorial-quality-20261015.test.cjs
+      - name: Whole football and PNG regression suite
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Publication guard
+        run: python football-daily/scripts/daily_guard.py audit
