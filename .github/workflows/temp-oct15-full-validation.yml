@@ -1,0 +1,41 @@
+name: Validate 15 October researched odds, form and Special Choices
+on:
+  push:
+    branches: [improve/football-20261015-odds-form-special]
+    paths: [.github/workflows/temp-oct15-full-validation.yml]
+permissions:
+  contents: read
+jobs:
+  full-suite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify complete Node test suite
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Check daily report audit
+        run: python football-daily/scripts/daily_guard.py audit
+      - name: Check all 72 crest identities and verified market rows
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("football-daily/data")
+          day=json.loads((root/"today.json").read_text())
+          odds=json.loads((root/"odds/2026-10-15.json").read_text())
+          logos=json.loads((root/"research/2026-10-15-verified-logos.json").read_text())
+          assert len(day["matches"])==len(odds["matches"])==36
+          assert len(logos)==72
+          assert all(m["homeLastFive"] and len(m["homeLastFive"])==5 and len(m["awayLastFive"])==5 for m in day["matches"])
+          assert all(m["oddsProvider"]=="Bet365" for m in day["matches"])
+          assert all(m["homeCrestUrl"] and m["awayCrestUrl"] for m in day["matches"])
+          assert sum(1 for m in day["matches"] if m.get("specialChoice"))==5
+          assert all("မရှုံးတဲ့ရွေးချယ်မှု" not in m["dailyPreviewText"] for m in day["matches"])
+          print("Verified 36 matches, 72 crests, 360 form entries, five ranked direct-pick Specials")
+          PY
