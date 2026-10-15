@@ -1,0 +1,25 @@
+name: Validate exact user-provided Europa League prose
+on:
+  push:
+    branches:
+      - editorial/user-verbatim-europa-20261015
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact copied eighteen UEFA Europa article assertions
+        run: node --test football-daily/tests/editorial-quality-20261015.test.cjs
+      - name: All branded-site and image exporter tests
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Daily publishing guard
+        run: python football-daily/scripts/daily_guard.py audit
