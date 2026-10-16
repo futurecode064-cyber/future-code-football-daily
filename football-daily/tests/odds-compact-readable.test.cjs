@@ -12,7 +12,7 @@ test("all four sites use one compact, large-text original/current market table",
  const js=read("odds.js"),css=read("odds-sheet-theme.css");
  assert.ok(js.includes('["9%","34%","14%","8%","8%","8%","8%","11%"]'));
  assert.ok(js.includes('t.title=time;'),"full Myanmar editorial time remains in title");
- for(const rule of ["max-width:1160px","min-width:980px","font:800 15px/1.6","font:800 16px/1.5","-webkit-overflow-scrolling:touch"]){
+ for(const rule of ["max-width:1140px","min-width:880px","font:800 15px/1.6","font:800 16px/1.5","-webkit-overflow-scrolling:touch"]){
   assert.ok(css.includes(rule),"missing compact style "+rule);
  }
  assert.ok(!js.includes("evening-odds.js"),"afternoon odds must not create another section");
