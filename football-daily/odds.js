@@ -63,6 +63,11 @@ function render(data){
   });
   header.appendChild(button);section.appendChild(header);
   const wrap=element("div","odds-table-wrap"),table=element("table","odds-table");
+  const columns=element("colgroup");
+  for(const width of ["12%","32%","16%","8%","8%","8%","8%","8%"]){
+   const col=element("col");col.style.width=width;columns.appendChild(col);
+  }
+  table.appendChild(columns);
   const thead=element("thead"),tr=element("tr","odds-heading-row"),sub=element("tr","odds-subheading-row");
   for(const name of ["ပွဲချိန်","ယှဉ်ပြိုင်မည့်အသင်း","အပေါ်အသင်း"]){
    const th=element("th","odds-heading-fixed",name);th.rowSpan=2;tr.appendChild(th);
