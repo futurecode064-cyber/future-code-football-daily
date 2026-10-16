@@ -120,8 +120,8 @@ function mergeLatestOdds(morning,update){
   const currentBodyOdds=typeof x.eveningBodyOdds==="string"?x.eveningBodyOdds.trim():"";
   const currentGoalTotalOdds=typeof x.eveningGoalTotalOdds==="string"?x.eveningGoalTotalOdds.trim():"";
   return {...m,
-   currentBodyOdds:/^(?:-\\d+|\\d+[+-]\\d+|\\d+=)$/.test(currentBodyOdds)?currentBodyOdds:"",
-   currentGoalTotalOdds:/^(?:-\\d+|\\d+[+-]\\d+|\\d+=)$/.test(currentGoalTotalOdds)?currentGoalTotalOdds:""
+   currentBodyOdds:/^(?:-\d+|\d+[+-]\d+|\d+=)$/.test(currentBodyOdds)?currentBodyOdds:"",
+   currentGoalTotalOdds:/^(?:-\d+|\d+[+-]\d+|\d+=)$/.test(currentGoalTotalOdds)?currentGoalTotalOdds:""
   };
  });
  return {...morning,matches:merged};
