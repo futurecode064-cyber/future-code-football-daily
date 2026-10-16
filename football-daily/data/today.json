@@ -19,7 +19,7 @@
       "drawOdds": "3.60",
       "awayOdds": "2.60",
       "oddsProvider": "Bet365",
-      "oddsSourceUrl": "https://oddsfilter.com/",
+      "oddsSourceUrl": "https://oddsfilter.com/event/1001550151-frosinone-sassuolo",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
@@ -159,7 +159,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/serie-a/2026-2027/frosinone-sassuolo_mtc21874106/live-stats.shtml",
         "standingsSource": "https://www.tntsports.co.uk/football/serie-a/2026-2027/frosinone-sassuolo_mtc21874106/live-table.shtml"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "La Liga",
@@ -178,7 +179,7 @@
       "drawOdds": "3.40",
       "awayOdds": "3.40",
       "oddsProvider": "PokerStars",
-      "oddsSourceUrl": "https://www.sportytrader.com/",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/la-liga-espanola/117/deportivo-la-coruna-levante/36100479/",
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
@@ -318,7 +319,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/la-liga/2026-2027/rc-deportivo-levante-ud_mtc21891399/live-stats.shtml",
         "standingsSource": "https://www.laliga.com/partido/temporada-2026-2027-laliga-ea-sports-rc-deportivo-levante-ud-9"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Bundesliga",
@@ -333,15 +335,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "1.91",
+      "drawOdds": "4.00",
+      "awayOdds": "3.60",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "RB Leipzig",
+          "teamGoals": 0,
+          "opponentGoals": 6,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url="
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Freiburg",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url="
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Mainz",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url="
+        },
+        {
+          "date": "2026-09-06",
+          "opponent": "Augsburg",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url="
+        },
+        {
+          "date": "2026-08-29",
+          "opponent": "Union Berlin",
+          "teamGoals": 3,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url="
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Mönchengladbach",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Hamburg",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Werder Bremen",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Stuttgart",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
+        },
+        {
+          "date": "2026-08-29",
+          "opponent": "Hoffenheim",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 5,
@@ -375,16 +469,19 @@
       },
       "dailyPreviewText": "ဖရန့်ဖတ်က ဘွန်ဒက်စ်လီဂါ ၅ ပွဲမှာ ၅ မှတ်နဲ့ အဆင့် ၁၄ ဖြစ်နေပြီး သွင်းဂိုး ၉ ဂိုးရှိပေမယ့် ပေးဂိုး ၁၆ ဂိုးအထိ ရှိပါတယ်။ လိုက်ပ်ဇစ်နဲ့ပွဲမှာ ၀-၆ အရှုံးရခဲ့တာက ခံစစ်တန်းကြား အကွာအဝေး ပြဿနာကို ထင်ထင်ရှားရှား ပြနေပါတယ်။\nကိုလုံးက ၅ ပွဲမှာ ၇ မှတ်နဲ့ အဆင့် ၁၀ မှာ ရပ်တည်နေပြီး ၈ ဂိုးသွင်း၊ ၁၀ ဂိုးပေးထားပါတယ်။ မိုချန်ဂလာဘတ်ကို ၂-၁ နိုင်ထားသော်လည်း အဝေးကွင်း ၂ ပွဲစလုံး ရှုံးထားတဲ့အတွက် ခံစစ်ကို စောစောစုဖွဲ့ပြီး တန်ပြန်တိုက်စစ်ကို အားကိုးရနိုင်ပါတယ်။\nဖရန့်ဖတ်က အိမ်ကွင်းဖြစ်ပေမယ့် ခံစစ်ပေးဂိုးများမှုဟာ စိုးရိမ်ရတဲ့အချက်ပါ။ ကိုလုံးဘက်က စနစ်တကျကစားနိုင်ရင် အသာစီးရဖို့ရှိတာကြောင့် **ကိုလုံးကို ရွေးချယ်ပါတယ်။**",
       "researchSources": [
-        "https://datencenter.dfb.de/de/competitions/bundesliga/seasons/2026-2027/matchday/5"
+        "https://datencenter.dfb.de/de/competitions/bundesliga/seasons/2026-2027/matchday/5",
+        "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url=",
+        "https://datencenter.dfb.de/en/competitions/bundesliga/seasons/2026-2027/teams/1-fc-cologne?datacenter_name=data-center%3Fhistorize_title%3DEintracht+Frankfurt+Bundesliga+2026%2F27&historize_url="
       ],
       "status": "scheduled",
       "specialChoice": false,
       "pdfLastColumn": "2-2",
       "myanmarOddsSource": "16.pdf; last-column score is internet prediction not actual FT",
       "editorialFactBasis": {
-        "lastFiveSource": null,
+        "lastFiveSource": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url=",
         "standingsSource": "https://datencenter.dfb.de/de/competitions/bundesliga/seasons/2026-2027/matchday/5"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 1",
@@ -399,15 +496,107 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "3.00",
+      "drawOdds": "3.50",
+      "awayOdds": "2.30",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "PSG",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Lorient",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Lens",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-05",
+          "opponent": "Nice",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-08-30",
+          "opponent": "Rennes",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Monaco",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Le Havre",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Lorient",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-09-03",
+          "opponent": "Lille",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        },
+        {
+          "date": "2026-08-29",
+          "opponent": "Brest",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 6,
@@ -443,16 +632,18 @@
       "researchSources": [
         "https://ligue1.com/en/match-sheet/l1_championship_match_73877/summary",
         "https://ligue1.com/?type_classement=EXT",
-        "https://www.reuters.com/sports/soccer/psg-beat-le-mans-3-1-monaco-stay-top-despite-draw-2026-10-10/"
+        "https://www.reuters.com/sports/soccer/psg-beat-le-mans-3-1-monaco-stay-top-despite-draw-2026-10-10/",
+        "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027"
       ],
       "status": "scheduled",
       "specialChoice": false,
       "pdfLastColumn": "1-2",
       "myanmarOddsSource": "16.pdf; last-column score is internet prediction not actual FT",
       "editorialFactBasis": {
-        "lastFiveSource": null,
+        "lastFiveSource": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027",
         "standingsSource": "https://ligue1.com/?type_classement=EXT"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Championship",
@@ -467,12 +658,12 @@
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/379.png",
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.88",
+      "drawOdds": "3.40",
+      "awayOdds": "2.38",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -611,7 +802,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/championship/2026-2027/live-burnley-wolverhampton-wanderers_mtc21887267/live-stats.shtml",
         "standingsSource": "https://www.skysports.com/football/burnley-vs-wolverhampton-wanderers/table/560620"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "2. Bundesliga",
@@ -626,12 +818,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "3.10",
+      "drawOdds": "4.20",
+      "awayOdds": "2.00",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -770,7 +962,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://oleball.com/match/energie-cottbus-vs-nurnberg-MGAWP87M",
         "standingsSource": "https://www.bundesliga.com/en/2bundesliga/table/2026-2027"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "2. Bundesliga",
@@ -785,12 +978,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.70",
+      "drawOdds": "4.00",
+      "awayOdds": "2.20",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -929,7 +1122,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://oleball.com/match/holstein-kiel-vs-hertha-berlin-BY5NVY4B",
         "standingsSource": "https://www.bundesliga.com/en/2bundesliga/table/2026-2027"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Serie B",
@@ -944,12 +1138,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "1.75",
+      "drawOdds": "3.60",
+      "awayOdds": "4.00",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/serie-b-italiana/12199689/verona-catanzaro/36181831/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -1088,7 +1282,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/serie-b/2026-2027/live-hellas-verona-catanzaro_mtc21920525/live-stats.shtml",
         "standingsSource": "https://www.skynetcalcio.com/en/classifica.php?id=2"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "La Liga 2",
@@ -1103,15 +1298,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.30",
+      "drawOdds": "3.60",
+      "awayOdds": "2.80",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Almería",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-10-03",
+          "opponent": "Cádiz",
+          "teamGoals": 0,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-28",
+          "opponent": "Castellón",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Granada",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-13",
+          "opponent": "Tenerife",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Eldense",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-10-05",
+          "opponent": "Tenerife",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-27",
+          "opponent": "Real Valladolid",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Albacete",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        },
+        {
+          "date": "2026-09-12",
+          "opponent": "Almería",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 9,
@@ -1143,18 +1430,20 @@
         "sourceUrl": null,
         "checkedAt": "2026-10-16"
       },
-      "dailyPreviewText": "လီဂန်းနက်စ်က စပိန်လာလီဂါ ၂ မှာ ၉ ပွဲကစားပြီး ၁၁ မှတ်နဲ့ အဆင့် ၁၆ ရပ်တည်နေပါတယ်။ ၆ ဂိုးသာ သွင်းနိုင်ပေမယ့် ၁၄ ဂိုးပေးထားရတာကြောင့် ဂိုးရဖို့ရော ဂိုးမပေးရဖို့ပါ အားထုတ်ရမယ့်အနေအထား ဖြစ်ပါတယ်။ သို့သော် ၃ ပွဲနိုင်ထားပြီး သရေပွဲနှစ်ပွဲကလည်း ရမှတ်စုဆောင်းနိုင်မှုကို ပြပါတယ်။\nကော်ဒိုဘာက ၉ ပွဲမှာ ၉ မှတ်နဲ့ အဆင့် ၁၈ မှာရှိပါတယ်။ ၁၄ ဂိုးသွင်းထားပေမယ့် ၂၀ ဂိုးအထိ ပေးထားပြီး နောက်ဆုံး အယ်လ်ဒန်စီကို ၁-၂ ရှုံးထားပါတယ်။ ပြိုင်ဘက်ထက် ဂိုးပိုသွင်းနိုင်ပေမယ့် ခံစစ်စည်းကမ်းပိုင်းမှာ လွတ်ကွက်များနေတာကြောင့် ရလဒ်ထိန်းနိုင်ဖို့ ခက်ခဲနေပါတယ်။\nအိမ်ရှင်ရဲ့ တိုက်စစ်ဂိုးနည်းမှုက စိုးရိမ်ရပေမယ့် ကော်ဒိုဘာခံစစ်ကွက်လပ်တွေကို ဖိအားပေးနိုင်မယ့် အခွင့်အရေးရှိပါတယ်။ အိမ်ကွင်းနဲ့ ရမှတ်ပိုသာမှုအပေါ် အခြေခံပြီး **လီဂန်းနက်စ်ကို ရွေးချယ်ပါတယ်။**",
+      "dailyPreviewText": "လီဂန်းနက်စ်က စပိန်လာလီဂါ ၂ မှာ ၉ ပွဲကစားပြီး ၁၁ မှတ်နဲ့ အဆင့် ၁၆ မှာ ရပ်တည်နေပါတယ်။ ၆ ဂိုးသာသွင်းပြီး ၁၄ ဂိုးပေးထားတဲ့အပြင် နောက်ဆုံး အယ်မေရီးယားကို ၀-၃၊ ကာဒစ်ဇ်ကို ၀-၄၊ ကက်စတဲလွန်ကို ၀-၂ ဆက်တိုက်ရှုံးခဲ့ပါတယ်။ ဒီရလဒ်တွေက တိုက်စစ်အဆုံးသတ်နဲ့ ခံစစ်တည်ငြိမ်မှု နှစ်မျိုးစလုံး အားနည်းနေကြောင်း ပြနေပါတယ်။\nကော်ဒိုဘာက ၉ ပွဲမှာ ၉ မှတ်နဲ့ အဆင့် ၁၈ မှာရှိပြီး ၁၄ ဂိုးသွင်း၊ ၂၀ ဂိုးပေးထားပါတယ်။ နောက်ဆုံး အယ်လ်ဒန်စီကို ၁-၂ ရှုံးခဲ့ပေမယ့် တီနာရစ်ဖ်ကို ၃-၂၊ အယ်လ်ဘာစီတေးကို ၂-၁ အနိုင်ရထားတဲ့အတွက် ဂိုးရနိုင်စွမ်းမှာ ပြိုင်ဘက်ထက် ပိုအားကောင်းနေပါတယ်။ ပေးဂိုးများတဲ့ ခံစစ်ကတော့ စိတ်မချရသေးပါဘူး။\nနှစ်သင်းစလုံး ခံစစ်အားနည်းပေမယ့် လီဂန်းနက်စ်ရဲ့ သုံးပွဲဆက်ဂိုးမသွင်းနိုင်တဲ့ ပုံစံနဲ့ ယှဉ်ရင် ဧည့်သည်ဘက်က အနိုင်ရဖို့ ပိုအခွင့်အရေးရှိပါတယ်။ လက်ရှိတိုက်စစ်ခြေစွမ်းကို အခြေခံပြီး **ကော်ဒိုဘာကို ရွေးချယ်ပါတယ်။**",
       "researchSources": [
-        "https://www.laliga.com/es-GB/partido/temporada-2026-2027-laliga-hypermotion-cd-leganes-cordoba-cf-10"
+        "https://www.laliga.com/es-GB/partido/temporada-2026-2027-laliga-hypermotion-cd-leganes-cordoba-cf-10",
+        "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml"
       ],
       "status": "scheduled",
       "specialChoice": false,
       "pdfLastColumn": "2-1",
       "myanmarOddsSource": "16.pdf; last-column score is internet prediction not actual FT",
       "editorialFactBasis": {
-        "lastFiveSource": null,
+        "lastFiveSource": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml",
         "standingsSource": "https://www.laliga.com/es-GB/partido/temporada-2026-2027-laliga-hypermotion-cd-leganes-cordoba-cf-10"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 2",
@@ -1169,12 +1458,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.63",
+      "drawOdds": "3.30",
+      "awayOdds": "2.30",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/ligue-2-francesa/57/annecy-nancy/36172781/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -1313,7 +1602,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/ligue-2-bkt/2026-2027/live-fc-annecy-as-nancy-lorraine_mtc21875371/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 2",
@@ -1328,12 +1618,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.55",
+      "drawOdds": "3.00",
+      "awayOdds": "2.50",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/ligue-2-francesa/57/grenoble-boulogne/36172779/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -1472,7 +1762,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.eurosport.fr/football/ligue-2/2026-2027/live-grenoble-foot-38-us-boulogne_mtc21875278/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 2",
@@ -1487,12 +1778,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.00",
+      "drawOdds": "3.40",
+      "awayOdds": "3.30",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -1631,7 +1922,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://franceleague.net/match/guingamp-vs-pau-fc-2026-10-16",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 2",
@@ -1646,12 +1938,12 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "1.67",
+      "drawOdds": "3.75",
+      "awayOdds": "4.20",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/ligue-2-francesa/57/reims-dijon/36184029/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "homeLastFive": [
         {
@@ -1790,7 +2082,8 @@
       "editorialFactBasis": {
         "lastFiveSource": "https://www.tntsports.co.uk/football/ligue-2-bkt/2026-2027/stade-de-reims-dijon-fco_mtc21875290/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     },
     {
       "league": "Ligue 2",
@@ -1805,15 +2098,107 @@
       "venue": null,
       "homeCrestUrl": null,
       "awayCrestUrl": null,
-      "homeOdds": null,
-      "drawOdds": null,
-      "awayOdds": null,
-      "oddsProvider": null,
-      "oddsSourceUrl": null,
-      "oddsMarket": null,
+      "homeOdds": "2.05",
+      "drawOdds": "3.30",
+      "awayOdds": "3.30",
+      "oddsProvider": "PokerStars",
+      "oddsSourceUrl": "https://www.pokerstars.es/sports/futbol/1/matches/",
+      "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-09",
+          "opponent": "Pau",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-10-02",
+          "opponent": "Rennes",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Sochaux",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Dijon",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Red Star",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-10-10",
+          "opponent": "Red Star",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Grenoble",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-11",
+          "opponent": "Boulogne",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-09-04",
+          "opponent": "Dunkerque",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        },
+        {
+          "date": "2026-08-28",
+          "opponent": "Sochaux",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 8,
@@ -1848,16 +2233,18 @@
       "dailyPreviewText": "လာဗယ်လွိုက်က လီဂူး ၂ မှာ ၈ ပွဲကစားပြီး ၅ မှတ်နဲ့ အဆင့် ၁၈ မှာရှိပါတယ်။ ၁၀ ဂိုးသွင်းထားသော်လည်း ၁၇ ဂိုးအထိ ပေးထားရတာကြောင့် ခံစစ်ပိုင်းက ပြိုင်ပွဲထဲမှာ စိုးရိမ်ရဆုံးအနေအထားတစ်ခုဖြစ်နေပါတယ်။ နောက်ဆုံး ပီရူးကို ၂-၃ ရှုံးခဲ့လို့ ဂိုးသွင်းနိုင်ရုံနဲ့ အမှတ်ယူဖို့ မလွယ်သေးပါဘူး။\nကလဲယားမောင့်ကတော့ ၈ ပွဲမှာ ၆ မှတ်နဲ့ အဆင့် ၁၇ မှာ ရှိပြီး အနိုင်မရသေးပေမယ့် သရေ ၆ ပွဲရထားပါတယ်။ ၆ ဂိုးသွင်း၊ ၉ ဂိုးပေးထားပြီး ရက်စတားကို ၂-၃ ရှုံးခဲ့တာက ထိန်းထားနိုင်တဲ့အချိန်အချို့ရှိသော်လည်း အဆုံးသတ်ပိုင်းမှာ အားနည်းနေတာကို ပြပါတယ်။\nနှစ်သင်းစလုံး ခြေမမှန်သေးပေမယ့် လာဗယ်ရဲ့ ခံစစ်ဂိုးပေးနှုန်းအလွန်မြင့်နေတာက အဓိကအားနည်းချက် ဖြစ်ပါတယ်။ ပြိုင်ဘက်နောက်တန်းကို အသုံးချနိုင်မှုအပေါ် အခြေခံပြီး **ကလဲယားမောင့်ကို ရွေးချယ်ပါတယ်။**",
       "researchSources": [
         "https://last5games.com/matches/clermont-vs-laval-19717581/",
-        "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
+        "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general",
+        "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html"
       ],
       "status": "scheduled",
       "specialChoice": false,
       "pdfLastColumn": "1-1",
       "myanmarOddsSource": "16.pdf; last-column score is internet prediction not actual FT",
       "editorialFactBasis": {
-        "lastFiveSource": null,
+        "lastFiveSource": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
-      }
+      },
+      "oddsVerifiedDate": "2026-10-16"
     }
   ],
   "noFixturesLeagues": [],
