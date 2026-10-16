@@ -55,7 +55,7 @@ test("Paired previews omit both league labels and Future Code footer",()=>{
  const app=fs.readFileSync(path.join(root,"app.js"),"utf8");
  assert.ok(app.includes('pairMode:!document.documentElement.dataset.footballBrandName'));
  const main=fs.readFileSync(path.join(root,"index.html"),"utf8");
- assert.ok(main.includes("20261016-pair2"));
+ assert.ok(main.includes("20261016-pair-hd2x"));
  for(const site of ["ykz-family","bw-sport","ko-thet-family"]){
   assert.ok(!fs.readFileSync(path.join(root,site,"index.html"),"utf8").includes("pairMode"));
  }
