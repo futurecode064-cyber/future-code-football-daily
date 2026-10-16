@@ -74,7 +74,7 @@
      fill(ctx,x+w/2+2,y+30,w/2-4,27,"#f0f5f3",5);
      text(ctx,"မူလ",x+w/4,y+44,15,white,true,"center",w/2-10);
      text(ctx,"ယခု",x+3*w/4,y+44,15,palette.bodyText,true,"center",w/2-10);
-     line(ctx,x+w/2,y+30,27,"#ffffffa0");
+     fill(ctx,x+w/2,y+30,1,27,"#ffffffa0");
     }
    }
    y+=62;
