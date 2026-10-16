@@ -140,7 +140,8 @@
   const url=URL.createObjectURL(blob),link=document.createElement("a");
   link.href=url;link.download=filename;
   document.body.appendChild(link);link.click();link.remove();
-  setTimeout(()=>URL.revokeObjectURL(url),60000);
+  const revokeTimer=setTimeout(()=>URL.revokeObjectURL(url),60000);
+  if(typeof revokeTimer?.unref==="function")revokeTimer.unref();
  }
  async function saveOddsSmart(data,options={}){
   if(!data||!Array.isArray(data.matches)||!data.matches.length)throw Error("No selected matches");
