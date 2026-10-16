@@ -188,7 +188,7 @@ body .odds-content .odds-league-header .odds-league-download{
 /* Desktop: compact centered ledger. Mobile: retain a legible table with
    horizontal scrolling rather than shrinking Burmese text to tiny glyphs. */
 body .odds-content .odds-group{
- max-width:1160px!important;
+ max-width:1140px!important;
  margin:15px auto 18px!important;
  border-radius:10px!important;
 }
@@ -199,8 +199,8 @@ body .odds-content .odds-table-wrap{
 body .odds-content .odds-group .odds-table{
  table-layout:fixed!important;
  width:100%!important;
- min-width:980px!important;
- max-width:1160px!important;
+ min-width:880px!important;
+ max-width:1140px!important;
  margin:0 auto!important;
  font-size:14px!important;
 }
@@ -310,7 +310,7 @@ body .odds-content .odds-league-header .odds-league-download{
 }
 @media(max-width:700px){
  body .odds-content .odds-group{margin:12px 0 15px!important}
- body .odds-content .odds-group .odds-table{min-width:980px!important}
+ body .odds-content .odds-group .odds-table{min-width:880px!important}
  body .odds-content .odds-group .odds-table td.price{font-size:16px!important}
  body .odds-content .odds-matchup .club-label{font-size:15px!important}
  body .odds-content .odds-group .odds-table td.upper{font-size:15px!important}
