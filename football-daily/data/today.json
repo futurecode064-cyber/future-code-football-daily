@@ -160,7 +160,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/serie-a/2026-2027/frosinone-sassuolo_mtc21874106/live-stats.shtml",
         "standingsSource": "https://www.tntsports.co.uk/football/serie-a/2026-2027/frosinone-sassuolo_mtc21874106/live-table.shtml"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "La Liga",
@@ -173,8 +175,8 @@
       "nightEditorialDate": "2026-10-16",
       "kickoffUtc": "2026-10-16T19:00:00.000Z",
       "venue": null,
-      "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
-      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
+      "homeCrestUrl": "https://raw.githubusercontent.com/luukhopman/football-logos/master/logos/Spain%20-%20LaLiga/Deportivo%20A%20Coru%C3%B1a.png",
+      "awayCrestUrl": "https://raw.githubusercontent.com/luukhopman/football-logos/master/logos/Spain%20-%20LaLiga/Levante%20UD.png",
       "homeOdds": "2.00",
       "drawOdds": "3.40",
       "awayOdds": "3.40",
@@ -320,7 +322,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/la-liga/2026-2027/rc-deportivo-levante-ud_mtc21891399/live-stats.shtml",
         "standingsSource": "https://www.laliga.com/partido/temporada-2026-2027-laliga-ea-sports-rc-deportivo-levante-ud-9"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://github.com/luukhopman/football-logos",
+      "awayCrestSourceUrl": "https://github.com/luukhopman/football-logos"
     },
     {
       "league": "Bundesliga",
@@ -481,7 +485,9 @@
         "lastFiveSource": "https://datencenter.dfb.de/competitions/bundesliga/seasons/2026-2027/teams/eintracht-frankfurt?datacenter_name=datencenter%3Fhistorize_title%3DBundesliga+2026%2F27%2C+28.+Spieltag&historize_url=",
         "standingsSource": "https://datencenter.dfb.de/de/competitions/bundesliga/seasons/2026-2027/matchday/5"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Ligue 1",
@@ -643,7 +649,9 @@
         "lastFiveSource": "https://www.soccerstats.com/pmatch.asp?league=france&stats=61-11-7-2027",
         "standingsSource": "https://ligue1.com/?type_classement=EXT"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Championship",
@@ -803,7 +811,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/championship/2026-2027/live-burnley-wolverhampton-wanderers_mtc21887267/live-stats.shtml",
         "standingsSource": "https://www.skysports.com/football/burnley-vs-wolverhampton-wanderers/table/560620"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "2. Bundesliga",
@@ -963,7 +973,9 @@
         "lastFiveSource": "https://oleball.com/match/energie-cottbus-vs-nurnberg-MGAWP87M",
         "standingsSource": "https://www.bundesliga.com/en/2bundesliga/table/2026-2027"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "2. Bundesliga",
@@ -1123,7 +1135,9 @@
         "lastFiveSource": "https://oleball.com/match/holstein-kiel-vs-hertha-berlin-BY5NVY4B",
         "standingsSource": "https://www.bundesliga.com/en/2bundesliga/table/2026-2027"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Serie B",
@@ -1283,7 +1297,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/serie-b/2026-2027/live-hellas-verona-catanzaro_mtc21920525/live-stats.shtml",
         "standingsSource": "https://www.skynetcalcio.com/en/classifica.php?id=2"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "La Liga 2",
@@ -1443,7 +1459,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/laliga-hypermotion/2026-2027/cd-leganes-cordoba-cf_mtc21892066/live-stats.shtml",
         "standingsSource": "https://www.laliga.com/es-GB/partido/temporada-2026-2027-laliga-hypermotion-cd-leganes-cordoba-cf-10"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Ligue 2",
@@ -1603,7 +1621,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/ligue-2-bkt/2026-2027/live-fc-annecy-as-nancy-lorraine_mtc21875371/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Ligue 2",
@@ -1617,7 +1637,7 @@
       "kickoffUtc": "2026-10-16T18:00:00.000Z",
       "venue": null,
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/6994.png",
-      "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/7869.png",
+      "awayCrestUrl": "https://assets.footylogos.com/logos/boulogne/boulogne-logo-footylogos.svg",
       "homeOdds": "2.55",
       "drawOdds": "3.00",
       "awayOdds": "2.50",
@@ -1763,7 +1783,9 @@
         "lastFiveSource": "https://www.eurosport.fr/football/ligue-2/2026-2027/live-grenoble-foot-38-us-boulogne_mtc21875278/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.footylogos.com/logos/boulogne"
     },
     {
       "league": "Ligue 2",
@@ -1923,7 +1945,9 @@
         "lastFiveSource": "https://franceleague.net/match/guingamp-vs-pau-fc-2026-10-16",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Ligue 2",
@@ -2083,7 +2107,9 @@
         "lastFiveSource": "https://www.tntsports.co.uk/football/ligue-2-bkt/2026-2027/stade-de-reims-dijon-fco_mtc21875290/live-stats.shtml",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     },
     {
       "league": "Ligue 2",
@@ -2244,7 +2270,9 @@
         "lastFiveSource": "https://www.telefootball.net/GB/Laval-Clermont-Foot-63-2026-10-16-675450.html",
         "standingsSource": "https://www.lequipe.fr/Football/ligue-2/page-classement-equipes/general"
       },
-      "oddsVerifiedDate": "2026-10-16"
+      "oddsVerifiedDate": "2026-10-16",
+      "homeCrestSourceUrl": "https://www.espn.com/soccer/team/",
+      "awayCrestSourceUrl": "https://www.espn.com/soccer/team/"
     }
   ],
   "noFixturesLeagues": [],
