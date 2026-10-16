@@ -43,7 +43,7 @@ test("all four brands use only one integrated morning/latest price table",()=>{
  assert.ok(!odds.includes('evening-odds.js'),"Do not load separate evening section anymore");
  assert.ok(!odds.includes('eveningOddsSection'));
  for(const html of ["odds.html","ykz-family/odds.html","bw-sport/odds.html","ko-thet-family/odds.html"]){
-  assert.match(read(html),/odds\\.js/);
+  assert.match(read(html),/odds\.js/);
   assert.match(read(html),/oddsList/);
  }
  // Historical afternoon reports and PNGs remain archived, not discarded.
