@@ -9,7 +9,7 @@ function fixture(n){
  return {reportDate:'2026-10-16',matches:Array.from({length:n},(_,i)=>({
   league:i<Math.floor(n/2)?'Premier League':'La Liga',
   home:'HOME-'+i,away:'AWAY-'+i,kickoffDisplay:'20:00',
-  upperTeam:'HOME-'+i,bodyOdds:'80',goalTotalOdds:'2-75',pdfLastColumn:'1-0'
+  upperTeam:'TOP-'+i,bodyOdds:'80',goalTotalOdds:'2-75',pdfLastColumn:'1-0'
  }))};
 }
 function harness(brand){
