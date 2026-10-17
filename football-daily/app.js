@@ -387,6 +387,7 @@ function renderResultsPngButtons(){
  let host=$("resultsPngPages");
  if(!host){
   host=node("div","results-png-pages");host.id="resultsPngPages";
+  const heading=node("strong","results-parts-heading","ဂိုးရလဒ် PNG Download");bar.insertBefore(heading,bar.firstChild);
   const old=$("resultsPngBtn");
   if(old){old.style.display="none";old.insertAdjacentElement("afterend",host);}
   else bar.insertBefore(host,bar.firstChild);
