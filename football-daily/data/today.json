@@ -32,6 +32,24 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football/hull-city-vs-everton/559499"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Ipswich Town",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Wolves",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-16"
         }
       ],
       "awayLastFive": [
@@ -43,6 +61,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Brentford",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-18"
         }
       ],
       "headToHead": [],
@@ -120,9 +147,27 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Chelsea",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-18"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "Linz ASK",
+          "teamGoals": 6,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
         {
           "date": "2026-10-11",
           "opponent": "Manchester City",
@@ -131,6 +176,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Bournemouth",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -208,6 +262,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Manchester United",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "awayLastFive": [
@@ -219,6 +282,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Newcastle United",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/361.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -289,6 +361,15 @@
       "oddsVerifiedDate": "2026-10-17",
       "homeLastFive": [
         {
+          "date": "2026-10-14",
+          "opponent": "Paris Saint-Germain",
+          "teamGoals": 2,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
           "date": "2026-10-11",
           "opponent": "Liverpool",
           "teamGoals": 3,
@@ -296,6 +377,24 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Sunderland",
+          "teamGoals": 5,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "Norwich City",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-17"
         }
       ],
       "awayLastFive": [
@@ -307,6 +406,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Everton",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -384,9 +492,27 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-12"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Hull City",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "Fenerbahce",
+          "teamGoals": 6,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
         {
           "date": "2026-10-10",
           "opponent": "Brentford",
@@ -395,6 +521,24 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Tottenham Hotspur",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Coventry City",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-16"
         }
       ],
       "headToHead": [],
@@ -463,7 +607,26 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-12",
+          "opponent": "Atalanta",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-12"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Lazio",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "awayLastFive": [
         {
           "date": "2026-10-10",
@@ -473,6 +636,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Fiorentina",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -541,7 +713,26 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Lecce",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Torino",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "awayLastFive": [
         {
           "date": "2026-10-10",
@@ -551,6 +742,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Roma",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/104.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -621,6 +821,15 @@
       "oddsVerifiedDate": "2026-10-17",
       "homeLastFive": [
         {
+          "date": "2026-10-14",
+          "opponent": "Real Madrid",
+          "teamGoals": 3,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
           "date": "2026-10-11",
           "opponent": "Como",
           "teamGoals": 0,
@@ -628,6 +837,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Inter Milan",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -639,6 +857,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Parma",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -745,13 +972,13 @@
           "sourceUrl": "https://www.laliga.com/en-GB/clubs/villarreal-cf/results"
         },
         {
-          "date": "2026-09-14",
-          "opponent": "Real Betis",
-          "teamGoals": 1,
-          "opponentGoals": 2,
-          "venueSide": "home",
+          "date": "2026-09-17",
+          "opponent": "Malaga",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
           "opponentCrestUrl": null,
-          "sourceUrl": "https://www.laliga.com/en-GB/clubs/villarreal-cf/results"
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-17"
         }
       ],
       "awayLastFive": [
@@ -883,7 +1110,44 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "FC Porto",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-10-11",
+          "opponent": "Osasuna",
+          "teamGoals": 5,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Deportivo La Coruna",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "Getafe",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-17"
+        }
+      ],
       "awayLastFive": [
         {
           "date": "2026-10-10",
@@ -893,6 +1157,24 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Sevilla",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Racing Santander",
+          "teamGoals": 7,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-16"
         }
       ],
       "headToHead": [],
@@ -961,8 +1243,37 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Racing Santander",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Real Sociedad",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-09-19",
+          "opponent": "Alaves",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 8,
@@ -1030,7 +1341,26 @@
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
       "homeLastFive": [],
-      "awayLastFive": [],
+      "awayLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "SK Slovan Bratislava",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Borussia Dortmund",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/124.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 5,
@@ -1097,7 +1427,26 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "SC Freiburg",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Elversberg",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        }
+      ],
       "awayLastFive": [],
       "headToHead": [],
       "homeStanding": {
@@ -1165,7 +1514,17 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-09-20",
+          "opponent": "Schalke 04",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        }
+      ],
       "awayLastFive": [],
       "headToHead": [],
       "homeStanding": {
@@ -1234,7 +1593,26 @@
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
       "homeLastFive": [],
-      "awayLastFive": [],
+      "awayLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "Bodo/Glimt",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Stuttgart",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 5,
@@ -1301,8 +1679,28 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-09-19",
+          "opponent": "FC Augsburg",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-09-20",
+          "opponent": "TSG Hoffenheim",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 5,
@@ -1369,8 +1767,28 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
-      "awayLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-09-18",
+          "opponent": "1. FC Union Berlin",
+          "teamGoals": 7,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-18"
+        }
+      ],
+      "awayLastFive": [
+        {
+          "date": "2026-09-20",
+          "opponent": "Bayer Leverkusen",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        }
+      ],
       "headToHead": [],
       "homeStanding": {
         "played": 5,
@@ -1437,8 +1855,36 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Nice",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Paris FC",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "awayLastFive": [
+        {
+          "date": "2026-10-14",
+          "opponent": "Manchester City",
+          "teamGoals": 4,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
         {
           "date": "2026-10-10",
           "opponent": "Le Mans",
@@ -1447,6 +1893,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Marseille",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -1524,6 +1979,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Nice",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "awayLastFive": [
@@ -1535,6 +1999,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Auxerre",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -1603,7 +2076,26 @@
       "oddsMarket": "Full-time 1X2",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-17",
-      "homeLastFive": [],
+      "homeLastFive": [
+        {
+          "date": "2026-10-11",
+          "opponent": "Marseille",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Angers",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        }
+      ],
       "awayLastFive": [],
       "headToHead": [],
       "homeStanding": {
@@ -1680,6 +2172,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Birmingham City",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -1691,6 +2192,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Charlton Athletic",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -1768,6 +2278,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "West Ham United",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/371.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -1779,6 +2298,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Swansea City",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -1856,6 +2384,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Bristol City",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-18"
         }
       ],
       "awayLastFive": [
@@ -1867,6 +2404,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Cardiff City",
+          "teamGoals": 1,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/385.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -1944,6 +2490,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Middlesbrough",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/369.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -1955,6 +2510,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Preston North End",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/394.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -2032,6 +2596,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-18",
+          "opponent": "Watford",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/395.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-18"
         }
       ],
       "awayLastFive": [
@@ -2043,6 +2616,24 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Stoke City",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/336.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
+        },
+        {
+          "date": "2026-09-16",
+          "opponent": "Fleetwood Town",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-16"
         }
       ],
       "headToHead": [],
@@ -2120,6 +2711,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Burnley",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -2131,6 +2731,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Sheffield United",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/398.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -2208,6 +2817,24 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Bolton Wanderers",
+          "teamGoals": 3,
+          "opponentGoals": 4,
+          "venueSide": "home",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
+        },
+        {
+          "date": "2026-09-17",
+          "opponent": "Manchester City",
+          "teamGoals": 0,
+          "opponentGoals": 5,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-17"
         }
       ],
       "awayLastFive": [
@@ -2219,6 +2846,24 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-10-11",
+          "opponent": "Southampton",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/376.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Blackburn Rovers",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/365.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -2296,6 +2941,24 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-10-11",
+          "opponent": "Portsmouth",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/387.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-11"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Wrexham",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/352.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -2307,6 +2970,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Norwich City",
+          "teamGoals": 4,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "headToHead": [],
@@ -2384,6 +3056,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Lincoln City",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -2395,6 +3076,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-14"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Millwall",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/391.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -2472,6 +3162,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-20",
+          "opponent": "Wolves",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-20"
         }
       ],
       "awayLastFive": [
@@ -2483,6 +3182,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Portsmouth",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/387.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
@@ -2560,6 +3268,15 @@
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Southampton",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/376.png",
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "awayLastFive": [
@@ -2571,6 +3288,15 @@
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-10"
+        },
+        {
+          "date": "2026-09-19",
+          "opponent": "Queens Park Rangers",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "opponentCrestUrl": null,
+          "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-09-19"
         }
       ],
       "headToHead": [],
