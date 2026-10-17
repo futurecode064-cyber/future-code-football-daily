@@ -330,6 +330,7 @@ html.football-copy-guard [role="textbox"] *{
  display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0;
 }
 .odds-png-parts{flex:1 1 100%;margin:1px 0 8px}
+.odds-parts-heading,.results-parts-heading{display:block;flex:1 1 100%;font:800 14px/1.65 "Noto Sans Myanmar",sans-serif;color:#f2b87b;margin:0 0 3px}
 .odds-league-png-parts{justify-content:flex-end}
 .odds-part-download,.results-part-download{
  min-height:39px;padding:9px 13px;border:1px solid #ffce9a;border-radius:9px;
