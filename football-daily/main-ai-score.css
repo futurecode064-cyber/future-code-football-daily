@@ -1,7 +1,7 @@
 /* Dedicated MAIN homepage predictions. This stylesheet is NEVER imported by brand mirrors. */
-.fc-ai-score{margin:34px auto 40px;padding:26px;border:1px solid #344e80;border-radius:22px;background:linear-gradient(155deg,#111d43,#08162c 75%);color:#fff;font-family:'Noto Sans Myanmar',sans-serif}
-.fc-ai-score .fc-ai-eyebrow{font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:#ffbb67}
-.fc-ai-score h2{margin:7px 0 18px;font-size:clamp(22px,3.1vw,31px);line-height:1.55;color:#fff}
+.fc-ai-predictions{margin:34px auto 40px;padding:26px;border:1px solid #344e80;border-radius:22px;background:linear-gradient(155deg,#111d43,#08162c 75%);color:#fff;font-family:'Noto Sans Myanmar',sans-serif}
+.fc-ai-predictions .fc-ai-eyebrow{font:700 12px 'Barlow Condensed',sans-serif;letter-spacing:2px;color:#ffbb67}
+.fc-ai-predictions h2{margin:7px 0 18px;font-size:clamp(22px,3.1vw,31px);line-height:1.55;color:#fff}
 .fc-ai-controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0 0 20px}
 .fc-ai-controls label{font-size:14px;font-weight:700;color:#e5ecff}
 .fc-ai-controls select{min-height:43px;max-width:100%;min-width:195px;padding:8px 28px 8px 12px;background:#fff;color:#152457;border:1px solid #c0cee8;border-radius:9px;font:700 13px 'Noto Sans Myanmar',sans-serif}
@@ -30,7 +30,7 @@
 .fc-ai-download:disabled{opacity:.7;cursor:progress}
 .fc-ai-empty{padding:22px 14px;text-align:center;color:#e1e8ff;background:#17234c;border-radius:9px}
 @media(max-width:950px){
- .fc-ai-score{padding:15px}
+ .fc-ai-predictions{padding:15px}
  .fc-ai-table-head,.fc-ai-match{grid-template-columns:67px minmax(165px,1fr) repeat(3,75px) 52px}
  .fc-ai-table{overflow-x:auto}
  .fc-ai-table-head,.fc-ai-match{min-width:520px}
@@ -39,7 +39,7 @@
 }
 @media(max-width:650px){
  .fc-ai-score{padding:12px;border-radius:15px}
- .fc-ai-score h2{font-size:23px}
+ .fc-ai-predictions h2{font-size:23px}
  .fc-ai-controls{align-items:stretch;gap:8px}
  .fc-ai-controls label{width:100%}
  .fc-ai-controls select{width:100%;min-width:0}
