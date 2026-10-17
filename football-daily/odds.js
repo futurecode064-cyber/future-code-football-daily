@@ -198,7 +198,12 @@ function setupLeagueFilter(data){
  const legacy=document.getElementById("oddsPngBtn");
  if(legacy)legacy.style.display="none";
  let pages=document.getElementById("oddsPngPages");
- if(!pages){pages=element("div","odds-png-parts");pages.id="oddsPngPages";actions.insertBefore(pages,actions.firstChild);}
+ if(!pages){
+  pages=element("div","odds-png-parts");pages.id="oddsPngPages";
+  const heading=element("strong","odds-parts-heading","ပေါက်ကြေး PNG Download");
+  actions.insertBefore(heading,actions.firstChild);
+  actions.insertBefore(pages,heading.nextSibling);
+ }
  update();
 }
 
