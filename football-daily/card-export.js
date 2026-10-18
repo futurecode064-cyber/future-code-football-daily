@@ -70,7 +70,8 @@
   const crest=transparent
     ?(ctx,url,x,y,size,label)=>paintCrest(ctx,url,x,y,size,label,true)
     :paintCrest;
-  const text=opts.frameTheme?(ctx,value,x,y,px,color,bold,align,max)=>paintText(ctx,value,x,y,px,color===k.C.orange?opts.frameTheme.accent:color,bold,align,max):transparent
+  const themedText=opts.frameTheme?(ctx,value,x,y,px,color,bold,align,max)=>paintText(ctx,value,x,y,px,color===k.C.orange?opts.frameTheme.accent:color,bold,align,max):paintText;
+  const text=transparent
     ?(ctx,value,x,y,px=21,color=C.pale,bold=false,align="left",max)=>{
       // A glyph outline (not a rectangular panel) keeps text visible on
       // both light and dark photos behind a transparent PNG.
@@ -87,7 +88,7 @@
       }
       return paintText(ctx,value,x,y,px,color,bold,align,max);
     }
-    :paintText;
+    :themedText;
   const textKit=transparent?{...k,text}:k;
   await fonts();
   const W=1200,M=24,fullWidth=W-2*M;
