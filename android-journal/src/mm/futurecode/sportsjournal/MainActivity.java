@@ -32,16 +32,18 @@ public final class MainActivity extends Activity {
   web.setWebViewClient(new WebViewClient(){
    public boolean shouldOverrideUrlLoading(WebView w,WebResourceRequest r){String u=r.getUrl().toString();if(Policy.trustedPage(u))return false;if("https".equals(r.getUrl().getScheme()))try{startActivity(new Intent(Intent.ACTION_VIEW,r.getUrl()));}catch(Exception ignored){}return true;}
    public void onPageStarted(WebView w,String u,android.graphics.Bitmap b){currentPage=u;offline.setVisibility(View.GONE);progress.setVisibility(View.VISIBLE);}
-   public void onPageFinished(WebView w,String u){currentPage=u;progress.setVisibility(View.GONE);if(Policy.trustedPage(u))try{String js=new String(readAsset("native-save.js"),"UTF-8");w.evaluateJavascript(js,null);}catch(Exception e){msg("ပုံ Download စနစ်ကို ပြန်ဖွင့်ရန် Refresh နှိပ်ပါ။");}}
-   public void onReceivedError(WebView w,WebResourceRequest r,WebResourceError e){if(r.isForMainFrame())offline.setVisibility(View.VISIBLE);}
+   public void onPageCommitVisible(WebView w,String u){installSaveHook(w,u);}
+   public void onPageFinished(WebView w,String u){currentPage=u;progress.setVisibility(View.GONE);installSaveHook(w,u);}
+   public void onReceivedError(WebView w,WebResourceRequest r,WebResourceError e){if(r.isForMainFrame()){android.util.Log.e("FCJournalWeb",String.valueOf(e.getDescription()));offline.setVisibility(View.VISIBLE);}}
    public void onReceivedHttpError(WebView w,WebResourceRequest r,WebResourceResponse e){if(r.isForMainFrame()&&e.getStatusCode()>=400)offline.setVisibility(View.VISIBLE);}
   });
-  web.setWebChromeClient(new WebChromeClient(){public void onProgressChanged(WebView w,int n){progress.setProgress(n);}});
+  web.setWebChromeClient(new WebChromeClient(){public boolean onConsoleMessage(ConsoleMessage m){android.util.Log.d("FCJournalWeb",m.message());return true;}public void onProgressChanged(WebView w,int n){progress.setProgress(n);}});
   web.setDownloadListener((url,ua,cd,mime,length)->{if(!Policy.trustedPage(currentPage))return;if(url.startsWith("blob:")||url.startsWith("data:image/")||(url.startsWith(Policy.ORIGIN+"/")&&mime!=null&&mime.startsWith("image/")))web.evaluateJavascript("window.FCJournalSave&&window.FCJournalSave("+JSONObject.quote(url)+","+JSONObject.quote(URLUtil.guessFileName(url,cd,mime))+")",null);else msg("ပုံ Download ခလုတ်ကို အသုံးပြုပါ။");});
   if(saved==null)openIntent(getIntent());else web.restoreState(saved);
   ContentNotifier.channels(this);JournalJob.schedule(this);
   if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED&&!getPreferences(0).getBoolean("asked_notifications",false))new AlertDialog.Builder(this).setTitle("အသိပေးချက် ဖွင့်မလား").setMessage("ပွဲကြိုသုံးသပ်ချက်၊ ပေါက်ကြေးအသစ်နဲ့ App Update ရလာချိန် အသိပေးနိုင်ဖို့ Allow နှိပ်ပေးပါ။").setPositiveButton("ဖွင့်မယ်",(d,w)->{getPreferences(0).edit().putBoolean("asked_notifications",true).apply();requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},301);}).setNegativeButton("နောက်မှ",null).show();
  }
+ void installSaveHook(WebView w,String u){if(Policy.trustedPage(u))try{w.evaluateJavascript(new String(readAsset("native-save.js"),"UTF-8"),null);}catch(Exception e){msg("ပုံ Download စနစ်ကို ပြန်ဖွင့်ရန် Refresh နှိပ်ပါ။");}}
  byte[] readAsset(String name)throws IOException{try(InputStream in=getAssets().open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);return out.toByteArray();}}
  void openIntent(Intent i){String route=i.getStringExtra("route");web.loadUrl(Policy.trustedPage(route)?route:Policy.HOME);if(i.getBooleanExtra("checkUpdate",false))AppUpdate.check(this,true);}
  @Override protected void onNewIntent(Intent i){super.onNewIntent(i);setIntent(i);openIntent(i);}

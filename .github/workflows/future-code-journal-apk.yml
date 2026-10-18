@@ -41,9 +41,11 @@ jobs:
             adb install android-journal/build/journal-emulator.apk
             adb install android-journal/build/tests-emulator.apk
             adb shell am instrument -w mm.futurecode.sportsjournal.test/.SmokeInstrumentation | tee android-journal/build/smoke-test.txt
-            grep -q 'PASS: live website' android-journal/build/smoke-test.txt
             adb exec-out screencap -p > android-journal/build/android-preview.png
-            adb logcat -d -s AndroidRuntime:E > android-journal/build/android-errors.txt
+            adb logcat -d -s AndroidRuntime:E FCJournalWeb:D chromium:E > android-journal/build/android-errors.txt
+            adb shell uiautomator dump /sdcard/journal-ui.xml
+            adb pull /sdcard/journal-ui.xml android-journal/build/journal-ui.xml
+            grep -q 'PASS: live website' android-journal/build/smoke-test.txt
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -54,6 +56,7 @@ jobs:
             android-journal/build/smoke-test.txt
             android-journal/build/android-preview.png
             android-journal/build/android-errors.txt
+            android-journal/build/journal-ui.xml
           if-no-files-found: error
       - name: Publish internal compilation package for owner signing
         env:
