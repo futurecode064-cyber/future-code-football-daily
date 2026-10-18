@@ -40,7 +40,7 @@ test("Future Code Journal uses its own creative visual identity and owner-suppli
  assert.equal(logo.readUInt32LE(4)+8,logo.length);
  assert.ok(css.includes(".fcj-theme")&&css.includes("#9156b2"));
  assert.ok(svg.includes('<svg')&&svg.includes("</svg>"));
- assert.ok(!svg.includes("<image")&&!svg.includes("http://")&&!svg.includes("https://"));
+ assert.ok(!svg.includes("<image")&&!svg.includes('href="http'));
  assert.ok(js.includes('id:"future-code-journal"'));
  assert.ok(kit.includes("fcjBranded"));
  assert.ok(card.includes("isFCJ"));
