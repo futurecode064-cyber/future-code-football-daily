@@ -176,14 +176,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/bournemouth/preview/bournemouth-vs-sunderland-prediction-team-news-lineups_607069.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/premier-league/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Evanilson",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/bournemouth/preview/bournemouth-vs-sunderland-prediction-team-news-lineups_607069.html",
+          "evidence": "Scored for Bournemouth in Oct 15 Europa League 3-0 victory over Sturm Graz; forward scoring return is reported as part of current form.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Noah Sadiki",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/bournemouth/preview/bournemouth-vs-sunderland-prediction-team-news-lineups_607069.html",
+          "evidence": "Scored Sunderland's 93rd-minute winner in the Oct 15 Europa League match against Torreense.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -581,14 +593,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/leeds-united/preview/leeds-vs-man-utd-prediction-team-news-lineups_607083.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/premier-league/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "James Justin",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/leeds-united/preview/leeds-vs-man-utd-prediction-team-news-lineups_607083.html",
+          "evidence": "Put Leeds ahead against Arsenal in their October 10 Premier League defeat.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Bruno Fernandes",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/leeds-united/preview/leeds-vs-man-utd-prediction-team-news-lineups_607083.html",
+          "evidence": "Named as creator behind Man United's anticipated striker Bryan Mbeumo; source confirms attacking support role, not an independently verified assist tally.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -986,14 +1010,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/udinese/preview/udinese-vs-lecce-prediction-team-news-lineups_607022.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Jurgen Ekkelenkamp",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/udinese/preview/udinese-vs-lecce-prediction-team-news-lineups_607022.html",
+          "evidence": "Has been involved in 11 Serie A goals in calendar 2026 and just scored against Torino.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "William Geubbels",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/udinese/preview/udinese-vs-lecce-prediction-team-news-lineups_607022.html",
+          "evidence": "Lecce attacking option has not scored in the league this season; link explicitly reports limited attacking output.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1175,14 +1211,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/fiorentina/preview/fiorentina-vs-como-prediction-team-news-lineups_607028.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Mateo Pellegrino",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/fiorentina/preview/fiorentina-vs-como-prediction-team-news-lineups_607028.html",
+          "evidence": "Fiorentina current top scorer; contesting a starting forward place with Beto.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Nico Paz",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/fiorentina/preview/fiorentina-vs-como-prediction-team-news-lineups_607028.html",
+          "evidence": "Como's high-volume attacking playmaker has attempted the most shots in Serie A so far this season.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1364,14 +1412,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/ac-milan/preview/ac-milan-vs-atalanta-prediction-team-news-lineups_607046.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Alphadjo Cisse",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/ac-milan/preview/ac-milan-vs-atalanta-prediction-team-news-lineups_607046.html",
+          "evidence": "Scored a hat-trick for Milan in their midweek Europa League win over Salzburg.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Nikola Krstovic",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/ac-milan/preview/ac-milan-vs-atalanta-prediction-team-news-lineups_607046.html",
+          "evidence": "Atalanta striker scored twice and assisted once in the win against Venezia.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1553,14 +1613,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/preview/juventus-vs-lazio-prediction-team-news-lineups_607051.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Randal Kolo Muani",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/preview/juventus-vs-lazio-prediction-team-news-lineups_607051.html",
+          "evidence": "Juventus forward scored against Celta Vigo in a midweek European fixture, reports preview.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Andrea Pinamonti",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/preview/juventus-vs-lazio-prediction-team-news-lineups_607051.html",
+          "evidence": "Lazio attacker scored in league victory over Monza in previous round.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1742,14 +1814,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/osasuna/preview/osasuna-vs-racing-prediction-team-news-lineups_607021.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Ante Budimir",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/osasuna/preview/osasuna-vs-racing-prediction-team-news-lineups_607021.html",
+          "evidence": "Osasuna forward scored six goals in their first eight league matches.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Yassir Zabiri",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/osasuna/preview/osasuna-vs-racing-prediction-team-news-lineups_607021.html",
+          "evidence": "Racing Santander attacker scored seven times in eight league matches.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1931,14 +2015,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/celta-vigo/preview/celta-vigo-vs-alaves-prediction-team-news-lineups_607025.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Ferran Jutgla",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/celta-vigo/preview/celta-vigo-vs-alaves-prediction-team-news-lineups_607025.html",
+          "evidence": "Expected Celta Vigo central striker with Borja Iglesias unavailable; source confirms footballing role but not current scoring form.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Lucas Boye",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/celta-vigo/preview/celta-vigo-vs-alaves-prediction-team-news-lineups_607025.html",
+          "evidence": "Alaves forward has scored five goals across seven league outings this season.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2120,14 +2216,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/real-sociedad/preview/malaga-vs-real-sociedad-prediction-team-news-lineups_607026.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Chupe",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/real-sociedad/preview/malaga-vs-real-sociedad-prediction-team-news-lineups_607026.html",
+          "evidence": "Malaga attacker is among limited scoring options in a four-goal first-eight-match team attack; named as forward focus.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Mikel Oyarzabal",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/real-sociedad/preview/malaga-vs-real-sociedad-prediction-team-news-lineups_607026.html",
+          "evidence": "Real Sociedad attacker identified as regular attacking option despite not yet scoring in league season.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2525,14 +2633,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "needs-current-form-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/bundesliga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "named players verified in contemporaneous lineups, but quantitative current-season contribution incomplete",
+        "homeKeyPlayer": {
+          "name": "Patrik Schick",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
+          "evidence": "Leverkusen named centre-forward, expected to lead line against Freiburg in dated fixture preview.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Igor Matanovic",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
+          "evidence": "Freiburg attacking contributor and likely starting forward alongside support from Jan-Niklas Beste.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2714,14 +2834,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "needs-current-form-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/borussia-monchengladbach/preview/borussia-mbach-vs-hoffenheim-prediction-team-news-lineups_607011.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/bundesliga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "named players verified in contemporaneous lineups, but quantitative current-season contribution incomplete",
+        "homeKeyPlayer": {
+          "name": "Isac Lidberg",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/borussia-monchengladbach/preview/borussia-mbach-vs-hoffenheim-prediction-team-news-lineups_607011.html",
+          "evidence": "Listed as a candidate for Gladbach front three, not confirmed starter or goal scorer.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Fisnik Asllani",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/borussia-monchengladbach/preview/borussia-mbach-vs-hoffenheim-prediction-team-news-lineups_607011.html",
+          "evidence": "Hoffenheim attacker projected to pair up front with Tim Lemperle; preview does not verify any scoring return.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2903,14 +3035,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/angers/preview/angers-vs-marseille-prediction-team-news-lineups_607039.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "dated-match-report-roles-and-contributions-reviewed",
+        "homeKeyPlayer": {
+          "name": "Prosper Peter",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/angers/preview/angers-vs-marseille-prediction-team-news-lineups_607039.html",
+          "evidence": "Scored in each of Angers' last two Ligue 1 outings.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Amine Gouiri",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/angers/preview/angers-vs-marseille-prediction-team-news-lineups_607039.html",
+          "evidence": "Marseille forward has scored four league goals this season and is available after knock.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3092,14 +3236,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "needs-current-form-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/le-havre/preview/le-havre-vs-auxerre-prediction-team-news-lineups_607041.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "named players verified in contemporaneous lineups, but quantitative current-season contribution incomplete",
+        "homeKeyPlayer": {
+          "name": "Gauthier Gallon",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/le-havre/preview/le-havre-vs-auxerre-prediction-team-news-lineups_607041.html",
+          "evidence": "Le Havre goalkeeper expected to play after Mpasi injury and with severely weakened defensive line; recent saves/individual form not corroborated.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Danny Namaso",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/le-havre/preview/le-havre-vs-auxerre-prediction-team-news-lineups_607041.html",
+          "evidence": "Auxerre named in prospective attacking XI; no independently verified current-season goal contribution in the source.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3497,14 +3653,26 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-player-evidence-review",
+        "status": "needs-current-form-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/paris-fc/preview/paris-fc-vs-rennes-prediction-team-news-lineups_607008.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
+        "playerEvidenceAudit": "named players verified in contemporaneous lineups, but quantitative current-season contribution incomplete",
+        "homeKeyPlayer": {
+          "name": "Maxime Lopez",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/paris-fc/preview/paris-fc-vs-rennes-prediction-team-news-lineups_607008.html",
+          "evidence": "Paris FC midfielder in prospective starting XI, linking deeper midfield build-up; contribution stats not substantiated by the preview.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Boulaye Dia",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/paris-fc/preview/paris-fc-vs-rennes-prediction-team-news-lineups_607008.html",
+          "evidence": "Rennes forward scored a brace in league victory over Auxerre in the preceding gameweek.",
+          "verifiedDate": "2026-10-18"
+        }
       },
       "previewJournalist": {
         "version": "2026-10-18",
