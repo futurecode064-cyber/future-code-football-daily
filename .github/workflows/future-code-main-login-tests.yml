@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/main-only-login-current
+      - fix/main-login-forbidden-csrf-20261018
   workflow_dispatch:
 permissions:
   contents: read
