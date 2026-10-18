@@ -1,5 +1,5 @@
 # Tests include older Android WebView with the journal compatibility layer.
-name: Future Code Sports Journal APK
+name: Goal Zone Sports Journal APK
 on:
   push:
     branches: [main]
@@ -63,5 +63,5 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release view journal-build-v1.0.0 >/dev/null 2>&1 || gh release create journal-build-v1.0.0 --prerelease --title 'Journal build tools v1.0.0 (internal unsigned build)' --notes 'Compilation artifacts only. The installable owner-signed APK is distributed on the journal website.'
-          gh release upload journal-build-v1.0.0 android-journal/build/Future-Code-Sports-Journal-unsigned.apk android-journal/build/android-signing-tools.zip android-journal/build/smoke-test.txt android-journal/build/android-preview.png --clobber
+          gh release view journal-build-v1.0.1 >/dev/null 2>&1 || gh release create journal-build-v1.0.1 --prerelease --title 'Journal build tools v1.0.1 (internal unsigned build)' --notes 'Compilation artifacts only. The installable owner-signed APK is distributed on the journal website.'
+          gh release upload journal-build-v1.0.1 android-journal/build/Future-Code-Sports-Journal-unsigned.apk android-journal/build/android-signing-tools.zip android-journal/build/smoke-test.txt android-journal/build/android-preview.png --clobber

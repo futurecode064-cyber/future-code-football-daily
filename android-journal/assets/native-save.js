@@ -6,12 +6,12 @@
  async function save(url,name){try{
   let blob=objects.get(url);if(!blob){const r=await fetch(url);if(!r.ok)throw Error();blob=await r.blob()}
   if(!/^image\/(png|jpeg|webp|gif)$/.test(blob.type)||blob.size>24000000)throw Error();
-  const reader=new FileReader();reader.onload=()=>window.FCJournalNative.save(String(reader.result),name||'Future-Code-Sports-Journal.png');reader.onerror=()=>window.FCJournalNative.error();reader.readAsDataURL(blob);
+  const reader=new FileReader();reader.onload=()=>window.FCJournalNative.save(String(reader.result),name||'Goal-Zone-Sports-Journal.png');reader.onerror=()=>window.FCJournalNative.error();reader.readAsDataURL(blob);
  }catch(e){window.FCJournalNative.error()}}
  window.FCJournalSave=save;
  function take(a){if(!a||!a.hasAttribute('download'))return false;const u=a.href||'';
   if(/^(blob:|data:image\/)/i.test(u)||(/^https:\/\/future-code-football-daily\.pages\.dev\//.test(u)&&/\.(png|jpe?g|webp|gif)(\?|#|$)/i.test(u))){save(u,a.getAttribute('download'));return true}return false}
  const click=HTMLAnchorElement.prototype.click;HTMLAnchorElement.prototype.click=function(){if(take(this))return;return click.apply(this,arguments)};
  document.addEventListener('click',e=>{const a=e.target&&e.target.closest&&e.target.closest('a[download]');if(take(a)){e.preventDefault();e.stopImmediatePropagation()}},true);
- const open=window.open;window.open=function(u){if(typeof u==='string'&&/^(blob:|data:image\/)/i.test(u)){save(u,'Future-Code-Sports-Journal.png');return null}return open.apply(this,arguments)};
+ const open=window.open;window.open=function(u){if(typeof u==='string'&&/^(blob:|data:image\/)/i.test(u)){save(u,'Goal-Zone-Sports-Journal.png');return null}return open.apply(this,arguments)};
 })();

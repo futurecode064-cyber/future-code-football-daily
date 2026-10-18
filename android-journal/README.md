@@ -1,4 +1,4 @@
-# FUTURE CODE အားကစား ဂျာနယ် Android
+# ဂိုးဇုံ အားကစား ဂျာနယ် Android
 Native Java / Android SDK 35, Android 8+ (API 26), no paid services or embedded API keys.
 
 - Live website: https://future-code-football-daily.pages.dev/future-code-journal/

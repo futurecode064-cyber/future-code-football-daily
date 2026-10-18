@@ -32,7 +32,7 @@ public final class ContentNotifier {
    if(m!=null)for(int k=0;k<m.length();k++){JSONObject x=m.getJSONObject(k);String body=x.optString(evening?"eveningBodyOdds":"bodyOdds","");String goals=x.optString(evening?"eveningGoalTotalOdds":"goalTotalOdds","");if(!body.isEmpty()||!goals.isEmpty()){count++;quotes.append(x.optString("home")).append('|').append(x.optString("away")).append('|').append(body).append('|').append(goals).append(';');}}
    publish(c,evening?"odds_evening":"odds_morning",d.optString("reportDate"),true,count,quotes.toString(),evening?"ယခု ပေါက်ကြေးအသစ် ရပါပြီ":"ယနေ့ ပေါက်ကြေးများ ရပါပြီ",evening?"ဒီနေ့ပွဲတွေရဲ့ ယခု ပေါက်ကြေးတွေကို လေ့လာနိုင်ပါပြီ။":"ဒီနေ့ ကန်မယ့် ပွဲတွေရဲ့ ပေါက်ကြေးတွေကို လေ့လာနိုင်ပါပြီ။",Policy.HOME+"odds",evening?103:102);
   }catch(Exception e){/* Evening sheet is legitimately absent before publication. */}
-  try{JSONObject update=AppUpdate.latest(c);if(update!=null){String key="app_"+update.getInt("versionCode");SharedPreferences p=c.getSharedPreferences("journal_seen",0);if(!p.getBoolean(key,false)&&post(c,104,"App ဗားရှင်းအသစ် ရပါပြီ","FUTURE CODE အားကစား ဂျာနယ် "+update.getString("versionName")+" ကို Update လုပ်နိုင်ပါပြီ။",Policy.HOME,true))p.edit().putBoolean(key,true).apply();}}catch(Exception e){failed=true;}
+  try{JSONObject update=AppUpdate.latest(c);if(update!=null){String key="app_"+update.getInt("versionCode");SharedPreferences p=c.getSharedPreferences("journal_seen",0);if(!p.getBoolean(key,false)&&post(c,104,"App ဗားရှင်းအသစ် ရပါပြီ","ဂိုးဇုံ အားကစား ဂျာနယ် "+update.getString("versionName")+" ကို Update လုပ်နိုင်ပါပြီ။",Policy.HOME,true))p.edit().putBoolean(key,true).apply();}}catch(Exception e){failed=true;}
   if(failed)throw new java.io.IOException("Some update checks need retry");
  }
 }
