@@ -176,13 +176,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/bournemouth/preview/bournemouth-vs-sunderland-prediction-team-news-lineups_607069.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/premier-league/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -191,7 +192,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/bournemouth/preview/bournemouth-vs-sunderland-prediction-team-news-lineups_607069.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Premier League",
@@ -369,7 +371,20 @@
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "homeKeyPlayer": {
+          "name": "Georginio Rutter",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/brighton-and-hove-albion/preview/brighton-vs-crystal-palace-prediction-team-news-lineups_607062.html",
+          "evidence": "Brighton winger scored twice in Thursday Conference League win, providing a second attacking avenue.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Yeremy Pino",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/brighton-and-hove-albion/preview/brighton-vs-crystal-palace-prediction-team-news-lineups_607062.html",
+          "evidence": "Palace winger scored against Forest and Lyon in consecutive matches, confirmed in match preview.",
+          "verifiedDate": "2026-10-18"
+        },
+        "playerEvidenceAudit": "reviewed_against_dated_sources"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -393,7 +408,8 @@
         "https://www.pinnacle.com/en/soccer/england-premier-league/matchups/"
       ],
       "specialPreparedDate": "2026-10-18",
-      "specialPickLabel": "ဘရိုက်တန်"
+      "specialPickLabel": "ဘရိုက်တန်",
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Premier League",
@@ -565,13 +581,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/leeds-united/preview/leeds-vs-man-utd-prediction-team-news-lineups_607083.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/premier-league/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -580,7 +597,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/leeds-united/preview/leeds-vs-man-utd-prediction-team-news-lineups_607083.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Premier League",
@@ -758,7 +776,20 @@
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "homeKeyPlayer": {
+          "name": "Morgan Gibbs-White",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/arsenal/preview/nottm-forest-vs-arsenal-prediction-team-news-lineups_607033.html",
+          "evidence": "Forest chance creator leads squad for big chances and open-play chances; injury fitness uncertain for Sunday.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Bukayo Saka",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/arsenal/preview/nottm-forest-vs-arsenal-prediction-team-news-lineups_607033.html",
+          "evidence": "Saka contributed to Arsenal's decisive seven-minute scoring run versus Lille; named among likely returning starters.",
+          "verifiedDate": "2026-10-18"
+        },
+        "playerEvidenceAudit": "reviewed_against_dated_sources"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -782,7 +813,8 @@
         "https://www.pinnacle.com/en/soccer/england-premier-league/matchups/"
       ],
       "specialPreparedDate": "2026-10-18",
-      "specialPickLabel": "အာဆင်နယ်"
+      "specialPickLabel": "အာဆင်နယ်",
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Serie A",
@@ -954,13 +986,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/udinese/preview/udinese-vs-lecce-prediction-team-news-lineups_607022.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -969,7 +1002,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/udinese/preview/udinese-vs-lecce-prediction-team-news-lineups_607022.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Serie A",
@@ -1141,13 +1175,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/fiorentina/preview/fiorentina-vs-como-prediction-team-news-lineups_607028.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1156,7 +1191,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/fiorentina/preview/fiorentina-vs-como-prediction-team-news-lineups_607028.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Serie A",
@@ -1328,13 +1364,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/ac-milan/preview/ac-milan-vs-atalanta-prediction-team-news-lineups_607046.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1343,7 +1380,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/ac-milan/preview/ac-milan-vs-atalanta-prediction-team-news-lineups_607046.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Serie A",
@@ -1351,7 +1389,7 @@
       "away": "Lazio",
       "homeDisplay": "ဂျူဗင်တပ်",
       "awayDisplay": "လာဇီယို",
-      "kickoffYangon": "၁၉ ရက်နေ့ နံနက် 1:15",
+      "kickoffYangon": "၁၈ ရက်နေ့ မြန်မာ ည 1:15",
       "kickoffCalendarDate": "2026-10-19",
       "nightEditorialDate": "2026-10-18",
       "kickoffUtc": null,
@@ -1515,13 +1553,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/preview/juventus-vs-lazio-prediction-team-news-lineups_607051.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/serie-a/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1530,7 +1569,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/preview/juventus-vs-lazio-prediction-team-news-lineups_607051.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "La Liga",
@@ -1702,13 +1742,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/osasuna/preview/osasuna-vs-racing-prediction-team-news-lineups_607021.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1717,7 +1758,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/osasuna/preview/osasuna-vs-racing-prediction-team-news-lineups_607021.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "La Liga",
@@ -1889,13 +1931,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/celta-vigo/preview/celta-vigo-vs-alaves-prediction-team-news-lineups_607025.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -1904,7 +1947,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/celta-vigo/preview/celta-vigo-vs-alaves-prediction-team-news-lineups_607025.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "La Liga",
@@ -2076,13 +2120,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/real-sociedad/preview/malaga-vs-real-sociedad-prediction-team-news-lineups_607026.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/la-liga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2091,7 +2136,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/real-sociedad/preview/malaga-vs-real-sociedad-prediction-team-news-lineups_607026.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "La Liga",
@@ -2099,7 +2145,7 @@
       "away": "Sevilla",
       "homeDisplay": "ရီးရဲလ်မက်ဒရစ်",
       "awayDisplay": "ဆီဗီလာ",
-      "kickoffYangon": "၁၉ ရက်နေ့ နံနက် 1:30",
+      "kickoffYangon": "၁၈ ရက်နေ့ မြန်မာ ည 1:30",
       "kickoffCalendarDate": "2026-10-19",
       "nightEditorialDate": "2026-10-18",
       "kickoffUtc": null,
@@ -2269,7 +2315,20 @@
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "homeKeyPlayer": {
+          "name": "Arda Guler",
+          "sourceUrl": "https://www.realmadrid.com/es-ES/noticias/futbol/primer-equipo/cronicas/cronica-roma-real-madrid-14-10-2026",
+          "evidence": "Real Madrid official Roma 3-4 report confirms all three late comeback goals originated from Guler's play.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Robbie Ure",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/real-madrid/race-for-the-la-liga-title/preview/real-madrid-vs-sevilla-prediction-team-news-lineups_607030.html",
+          "evidence": "Sevilla striker scored versus Levante and is expected to play a final-third role.",
+          "verifiedDate": "2026-10-18"
+        },
+        "playerEvidenceAudit": "reviewed_against_dated_sources"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2293,7 +2352,8 @@
         "https://stake.bet/sports/soccer/spain/la-liga"
       ],
       "specialPreparedDate": "2026-10-18",
-      "specialPickLabel": "ရီးရဲလ်မက်ဒရစ်"
+      "specialPickLabel": "ရီးရဲလ်မက်ဒရစ်",
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Bundesliga",
@@ -2465,13 +2525,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/bundesliga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2480,7 +2541,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Bundesliga",
@@ -2652,13 +2714,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/borussia-monchengladbach/preview/borussia-mbach-vs-hoffenheim-prediction-team-news-lineups_607011.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/bundesliga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2667,7 +2730,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/borussia-monchengladbach/preview/borussia-mbach-vs-hoffenheim-prediction-team-news-lineups_607011.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Ligue 1",
@@ -2839,13 +2903,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/angers/preview/angers-vs-marseille-prediction-team-news-lineups_607039.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -2854,7 +2919,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/angers/preview/angers-vs-marseille-prediction-team-news-lineups_607039.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Ligue 1",
@@ -3026,13 +3092,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/le-havre/preview/le-havre-vs-auxerre-prediction-team-news-lineups_607041.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3041,7 +3108,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/le-havre/preview/le-havre-vs-auxerre-prediction-team-news-lineups_607041.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Ligue 1",
@@ -3219,7 +3287,20 @@
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "homeKeyPlayer": {
+          "name": "Gabin Bernardeau",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/lorient/preview/lorient-vs-monaco-prediction-team-news-lineups_607009.html",
+          "evidence": "Lorient midfielder scored in prior 1-0 victory over Paris FC, helping rebound in league form.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Ansu Fati",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/lorient/preview/lorient-vs-monaco-prediction-team-news-lineups_607009.html",
+          "evidence": "Monaco forward netted decisive late goal in Thursday Conference League win.",
+          "verifiedDate": "2026-10-18"
+        },
+        "playerEvidenceAudit": "reviewed_against_dated_sources"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3243,7 +3324,8 @@
         "https://www.pinnacle.com/en/soccer/france-ligue-1/matchups/"
       ],
       "specialPreparedDate": "2026-10-18",
-      "specialPickLabel": "မိုနာကို"
+      "specialPickLabel": "မိုနာကို",
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Ligue 1",
@@ -3415,13 +3497,14 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "verified",
+        "status": "needs-player-evidence-review",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/paris-fc/preview/paris-fc-vs-rennes-prediction-team-news-lineups_607008.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/ligue-1/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "playerEvidenceAudit": "dated_home_and_away_player_sources_not_yet_fully_audited"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3430,7 +3513,8 @@
         "reportDate": "2026-10-18",
         "sourceUrl": "https://www.sportsmole.co.uk/football/paris-fc/preview/paris-fc-vs-rennes-prediction-team-news-lineups_607008.html",
         "reviewedAt": "2026-10-18"
-      }
+      },
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     },
     {
       "league": "Ligue 1",
@@ -3438,7 +3522,7 @@
       "away": "Nice",
       "homeDisplay": "လိုင်ယွန်",
       "awayDisplay": "နိစ်",
-      "kickoffYangon": "၁၉ ရက်နေ့ နံနက် 1:15",
+      "kickoffYangon": "၁၈ ရက်နေ့ မြန်မာ ည 1:15",
       "kickoffCalendarDate": "2026-10-19",
       "nightEditorialDate": "2026-10-18",
       "kickoffUtc": null,
@@ -3608,7 +3692,20 @@
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
-        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified"
+        "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
+        "homeKeyPlayer": {
+          "name": "Corentin Tolisso",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/lyon/preview/lyon-vs-nice-prediction-team-news-lineups_607007.html",
+          "evidence": "Lyon midfielder scored in the midweek victory over Crystal Palace.",
+          "verifiedDate": "2026-10-18"
+        },
+        "awayKeyPlayer": {
+          "name": "Jonathan Clauss",
+          "sourceUrl": "https://www.sportsmole.co.uk/football/lyon/preview/lyon-vs-nice-prediction-team-news-lineups_607007.html",
+          "evidence": "Nice wing-back scored winning goal against Strasbourg last Sunday.",
+          "verifiedDate": "2026-10-18"
+        },
+        "playerEvidenceAudit": "reviewed_against_dated_sources"
       },
       "previewJournalist": {
         "version": "2026-10-18",
@@ -3632,7 +3729,8 @@
         "https://www.pinnacle.com/en/soccer/france-ligue-1/matchups/"
       ],
       "specialPreparedDate": "2026-10-18",
-      "specialPickLabel": "လိုင်ယွန်"
+      "specialPickLabel": "လိုင်ယွန်",
+      "oddsVerificationStatus": "reference_snapshot_not_live; exact_bookmaker_quote_timestamp_requires_review"
     }
   ],
   "noFixturesLeagues": []
