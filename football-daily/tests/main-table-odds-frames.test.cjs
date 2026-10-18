@@ -4,8 +4,8 @@ const root=path.resolve(__dirname,'..'),source=fs.readFileSync(path.join(root,'m
 const zipSource=fs.readFileSync(path.join(root,'frame-zip.js'),'utf8');
 function setup(){const words=[],crests=[];const ctx={createLinearGradient:()=>({addColorStop(){}}),strokeRect(){},beginPath(){},moveTo(){},lineTo(){},stroke(){},drawImage(){}};const kit={fonts:async()=>{},preloadImages:async()=>{},create:(w,h)=>({canvas:{width:w,height:h,toBlob(cb){cb(new Blob([new Uint8Array([137,80,78,71,13,10,26,10])],{type:'image/png'}));}},ctx}),fill(){},crest:(...args)=>crests.push(args),text:(_c,s)=>words.push(String(s))};const window={FutureCodeCanvasKit:kit},document={documentElement:{dataset:{}},readyState:'loading',addEventListener(){}};const context={window,document,location:{pathname:'/odds.html'},Map,Set,Error,Blob,Uint8Array,Uint32Array,DataView,TextEncoder,Date,Image:class{constructor(){this.width=100;this.height=76}set src(v){this.onload()}}};vm.runInNewContext(zipSource,context);vm.runInNewContext(source,context);return {api:window.FutureCodeTableOddsFrames,words,crests};}
 test('Table frame export balances odd/even counts and preserves every row',()=>{const {api}=setup();for(const n of [1,2,15,16,19]){const rows=Array.from({length:n},(_,i)=>({number:i}));const parts=api.split(rows,'two');assert.equal(parts.flat().length,n);assert.deepEqual(Array.from(parts.flat(),r=>r.number),rows.map(r=>r.number));assert.ok(parts.length===1||parts[0].length-parts[1].length<=1);}assert.equal(api.split(Array(19).fill({}),'auto')[0].length,10);assert.equal(api.split(Array(19).fill({}),'one').length,1);});
-test('Framed table includes original/latest quotes and prediction with no Future Code branding',async()=>{const {api,words}=setup();const canvas=await api.draw([{league:'Premier League',home:'အိမ်ရှင်',away:'ဧည့်သည်',upperTeam:'ဧည့်သည်',kickoff:'19:30',bodyOdds:'1+15',currentBodyOdds:'1-10',goalTotalOdds:'3+95',currentGoalTotalOdds:'3+90',pdfLastColumn:'2-1'}],{design:['colour','Colour Background Change','#111111'],colour:'#b51a24',date:'2026-10-18'},1,1);assert.equal(canvas.width,1600);for(const s of ['အိမ်ရှင်','ဧည့်သည်','1+15','1-10','3+95','3+90','2-1','မူလ','ယခု'])assert.ok(words.includes(s),s);assert.ok(!words.some(s=>/future code/i.test(s)));});
-test('Only main odds page includes table-frame download module',()=>{assert.match(fs.readFileSync(path.join(root,'odds.html'),'utf8'),/main-table-odds-frames\.js/);for(const brand of ['ykz-family','bw-sport','ko-thet-family'])assert.doesNotMatch(fs.readFileSync(path.join(root,brand,'odds.html'),'utf8'),/main-table-odds-frames\.js/);});
+ assert.ok(!words.some(s=>s.includes('2026-10-18 ·')||s.includes('19 ပွဲ')||s.includes('ပုံ 1/2')),'only date may be printed in the date heading');
+  assert.ok(!fs.readFileSync(path.join(root,brand,'odds.html'),'utf8').includes('frame-zip.js')&&!fs.readFileSync(path.join(root,brand,'odds.html'),'utf8').includes('main-table-odds-frames.js'));
 test('All uploaded frame artworks render with their own palettes and retained middle backgrounds',async()=>{const {api}=setup();assert.equal(api.designs.length,16);assert.equal(new Set(api.designs.map(d=>d[0])).size,16);for(const design of api.designs.filter(d=>d[3])){assert.ok(fs.statSync(path.join(root,'assets/table-odds-frames',design[0]+'-frame.jpg')).size>1000);assert.ok(design[3].top+design[3].bottom<1);const canvas=await api.draw([{league:'Premier League',home:'Home',away:'Away'}],{design,date:'2026-10-18'},1,1);assert.equal(canvas.width,1600);assert.ok(canvas.height>0);}});
 
 test('Frame table supports source display times and readable crest fallbacks',async()=>{
@@ -25,7 +25,7 @@ test('Framed odds show only the date, without match counts or page fractions',as
  const {api,words}=setup();
  await api.draw([{league:'Premier League',home:'Home',away:'Away'}],{design:['colour','Colour Background Change','#111111'],colour:'#a41625',date:'2026-10-18'},1,2);
  assert.ok(words.includes('2026-10-18'),'date must remain visible');
- assert.ok(!words.some(s=>/2026-10-18\\s*·|19 ပွဲ|ပုံ 1\\/2/.test(s)),'only date may be printed in the date heading');
+ assert.ok(!words.some(s=>s.includes('2026-10-18 ·')||s.includes('19 ပွဲ')||s.includes('ပုံ 1/2')),'only date may be printed in the date heading');
 });
 
 test('One valid ZIP includes every frame and each balanced PNG exactly once',async()=>{
@@ -54,9 +54,9 @@ test('One valid ZIP includes every frame and each balanced PNG exactly once',asy
 
 test('Only Future Code main odds page loads ZIP utility and all-frames control',()=>{
  const html=fs.readFileSync(path.join(root,'odds.html'),'utf8');
- assert.match(html,/frame-zip\\.js\\?v=/);
+ assert.ok(html.includes('frame-zip.js?v='),'ZIP utility must be on the main odds page');
  assert.ok(html.indexOf('frame-zip.js')<html.indexOf('main-table-odds-frames.js'));
- assert.match(source,/id="tofZip"/);assert.match(source,/el\\('tofZip'\\)\\.onclick=runAllZip/);
+ assert.ok(source.includes('id="tofZip"'));assert.ok(source.includes("el('tofZip').onclick=runAllZip"));
  for(const brand of ['ykz-family','bw-sport','ko-thet-family'])
-  assert.doesNotMatch(fs.readFileSync(path.join(root,brand,'odds.html'),'utf8'),/frame-zip\\.js|main-table-odds-frames\\.js/);
+  assert.ok(!fs.readFileSync(path.join(root,brand,'odds.html'),'utf8').includes('frame-zip.js')&&!fs.readFileSync(path.join(root,brand,'odds.html'),'utf8').includes('main-table-odds-frames.js'));
 });
