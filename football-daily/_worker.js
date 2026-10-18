@@ -169,10 +169,10 @@ function unavailable() {
   return respond("Future Code Main login setup is pending. Main site is not available until its Cloudflare secrets are configured.", 503, { "Content-Type": "text/plain; charset=utf-8" });
 }
 async function loginPost(request, env) {
-  // Keep cross-origin POST protection while tolerating Origin: null on
-  // legitimate same-origin browser forms. A fresh double-submit CSRF token
-  // is required regardless of the Origin header.
-  if (!originAllowed(request)) return respond("Forbidden", 403);
+  // Browsers can send Origin: null or omit Origin for privacy reasons.
+  // The same-site CSRF cookie + hidden token is the login POST's primary
+  // protection, instead of rejecting legitimate users based on Origin.
+  if (request.headers.get("Sec-Fetch-Site") === "cross-site") return respond("Forbidden", 403);
   const length = Number(request.headers.get("Content-Length") || 0);
   if (length > 4096) return respond("Form too large", 413);
   let form;
