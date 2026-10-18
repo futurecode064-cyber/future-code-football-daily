@@ -4,7 +4,7 @@
   if (document.documentElement.dataset.footballBrandName !== "ဂိုးဇုံ အားကစား ဂျာနယ်") return;
 
   const ROOT = new URL("../data/", document.baseURI);
-  const artwork = new URL("./assets/football-gold-stadium.webp", document.baseURI).href;
+  const artwork = new URL("./assets/goal-zone-download-banner.webp", document.baseURI).href;
   const brandLogo = new URL("./assets/logo.webp", document.baseURI).href;
   const imagePromises = new Map();
   const $ = id => document.getElementById(id);
@@ -36,28 +36,28 @@
     ctx.drawImage(img,(img.naturalWidth-sw)/2,(img.naturalHeight-sh)/2,sw,sh,x,y,w,h);
   }
   async function bannerCanvas(source){
-    const w=source.width, h=Math.max(160,Math.round(w*.215));
+    const w=source.width, h=Math.max(160,Math.round(w*270/988));
     const out=document.createElement("canvas");
     out.width=w;out.height=source.height+h;
     const ctx=out.getContext("2d");
     if (!ctx) throw Error("Canvas 2D unavailable");
     ctx.fillStyle="#080808";ctx.fillRect(0,0,w,h);
-    const [stadium,logo]=await Promise.all([loadImage(artwork),loadImage(brandLogo)]);
-    cover(ctx,stadium,0,0,w,h);
-    const gradient=ctx.createLinearGradient(0,0,w,0);
-    gradient.addColorStop(0,"rgba(0,0,0,.10)");
-    gradient.addColorStop(.32,"rgba(0,0,0,.88)");
-    gradient.addColorStop(.68,"rgba(0,0,0,.88)");
-    gradient.addColorStop(1,"rgba(0,0,0,.15)");
-    ctx.fillStyle=gradient;ctx.fillRect(0,0,w,h);
-    const logoSize=h*.95;
-    if(logo) ctx.drawImage(logo,(w-logoSize)/2,(h-logoSize)/2,logoSize,logoSize);
-    else {
-      ctx.fillStyle="#f7cf73";ctx.textAlign="center";
-      ctx.font="900 "+Math.round(h*.23)+"px sans-serif";
-      ctx.fillText("GOAL ZONE",w/2,h*.52);
+    const banner=await loadImage(artwork);
+    if(banner){
+      ctx.drawImage(banner,0,0,w,h);
+    }else{
+      // Fall back to a clear Goal Zone heading when the asset cannot load.
+      const logo=await loadImage(brandLogo);
+      const stadium=await loadImage(new URL("./assets/football-gold-stadium.webp",document.baseURI).href);
+      cover(ctx,stadium,0,0,w,h);
+      ctx.fillStyle="rgba(0,0,0,.62)";ctx.fillRect(0,0,w,h);
+      if(logo){
+        const size=h*.92;ctx.drawImage(logo,(w-size)/2,(h-size)/2,size,size);
+      }else{
+        ctx.fillStyle="#f7cf73";ctx.textAlign="center";ctx.font="900 "+Math.round(h*.22)+"px sans-serif";
+        ctx.fillText("GOAL ZONE",w/2,h*.52);
+      }
     }
-    ctx.fillStyle="#edc66b";ctx.fillRect(0,h-7,w,7);
     ctx.drawImage(source,0,h);
     return out;
   }
@@ -281,7 +281,7 @@
     bar.setAttribute("role","img");
     bar.setAttribute("aria-label","ဂိုးဇုံ GOAL ZONE အားကစားဂျာနယ်");
     const center=document.createElement("img");
-    center.src=brandLogo;center.alt="ဂိုးဇုံ GOAL ZONE";
+    center.src=artwork;center.alt="ဂိုးဇုံ GOAL ZONE";
     bar.appendChild(center);
     header.insertAdjacentElement("afterend",bar);
   }
