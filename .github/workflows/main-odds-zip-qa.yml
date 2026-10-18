@@ -1,0 +1,27 @@
+name: Temporary All Frame ZIP QA
+on:
+  push:
+    branches:
+      - feature/main-odds-frames-all-zip-20261018
+    paths:
+      - 'football-daily/main-table-odds-frames.js'
+      - 'football-daily/tests/main-table-odds-frames.test.cjs'
+      - 'football-daily/odds.html'
+      - '.github/workflows/main-odds-zip-qa.yml'
+permissions:
+  contents: read
+jobs:
+  frame-zip-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frame PNG and ZIP regression tests
+        run: |
+          node --check football-daily/main-table-odds-frames.js
+          node --check football-daily/frame-zip.js
+          node --check football-daily/tests/main-table-odds-frames.test.cjs
+          node --test football-daily/tests/main-table-odds-frames.test.cjs
