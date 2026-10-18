@@ -2,7 +2,7 @@ name: Future Code Main Login Tests
 on:
   push:
     branches:
-      - feature/main-only-login
+      - feature/main-only-login-current
   workflow_dispatch:
 permissions:
   contents: read
