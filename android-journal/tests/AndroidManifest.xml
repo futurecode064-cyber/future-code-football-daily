@@ -1,0 +1,1 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="mm.futurecode.sportsjournal.test"><uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35"/><instrumentation android:name=".SmokeInstrumentation" android:targetPackage="mm.futurecode.sportsjournal" android:label="Journal smoke tests"/><application android:label="Journal tests"/></manifest>

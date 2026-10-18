@@ -1,0 +1,63 @@
+name: Future Code Sports Journal APK
+on:
+  push:
+    branches: [main]
+    paths: ['android-journal/**', '.github/workflows/future-code-journal-apk.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android build tools
+        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager 'platforms;android-35' 'build-tools;35.0.0'"
+      - name: Compile native application and smoke tests
+        run: python3 android-journal/build.py
+      - name: Sign emulator-only test copies
+        run: |
+          keytool -genkeypair -keystore "$RUNNER_TEMP/test.jks" -storepass android -keypass android -alias test -keyalg RSA -keysize 2048 -validity 10 -dname 'CN=Android Test'
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign --ks "$RUNNER_TEMP/test.jks" --ks-pass pass:android --out android-journal/build/journal-emulator.apk android-journal/build/Future-Code-Sports-Journal-unsigned.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign --ks "$RUNNER_TEMP/test.jks" --ks-pass pass:android --out android-journal/build/tests-emulator.apk android-journal/build/journal-tests-unsigned.apk
+      - name: Enable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Test install, live journal, image saving and notifications on Android
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: |
+            adb install android-journal/build/journal-emulator.apk
+            adb install android-journal/build/tests-emulator.apk
+            adb shell am instrument -w mm.futurecode.sportsjournal.test/.SmokeInstrumentation | tee android-journal/build/smoke-test.txt
+            grep -q 'PASS: live website' android-journal/build/smoke-test.txt
+            adb exec-out screencap -p > android-journal/build/android-preview.png
+            adb logcat -d -s AndroidRuntime:E > android-journal/build/android-errors.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Future-Code-Journal-Build
+          path: |
+            android-journal/build/Future-Code-Sports-Journal-unsigned.apk
+            android-journal/build/android-signing-tools.zip
+            android-journal/build/smoke-test.txt
+            android-journal/build/android-preview.png
+            android-journal/build/android-errors.txt
+          if-no-files-found: error
+      - name: Publish internal compilation package for owner signing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view journal-build-v1.0.0 >/dev/null 2>&1 || gh release create journal-build-v1.0.0 --prerelease --title 'Journal build tools v1.0.0 (internal unsigned build)' --notes 'Compilation artifacts only. The installable owner-signed APK is distributed on the journal website.'
+          gh release upload journal-build-v1.0.0 android-journal/build/Future-Code-Sports-Journal-unsigned.apk android-journal/build/android-signing-tools.zip android-journal/build/smoke-test.txt android-journal/build/android-preview.png --clobber
