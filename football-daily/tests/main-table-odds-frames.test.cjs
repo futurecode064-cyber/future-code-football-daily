@@ -11,9 +11,9 @@ test('Frame table supports source display times and readable crest fallbacks',as
  const {api,words,crests}=setup();
  await api.draw([{league:'Premier League',home:'Home Team',away:'Away Team',kickoffDisplay:'ည ၇:၃၀',upperTeam:'Home Team'}],{design:['colour','Colour Background Change','#111111'],colour:'#b51a24',date:'2026-10-18'},1,1);
  assert.ok(words.includes('ည ၇:၃၀'),'display-only kickoff must not disappear');
- const clubCrests=crests.filter(args=>args[3]===42);
+ const clubCrests=crests.filter(args=>args[4]===42);
  assert.equal(clubCrests.length,2);
- assert.ok(clubCrests.every(args=>args[5]!==true),'use dark fallback letters on white odds rows');
+ assert.ok(clubCrests.every(args=>args[6]!==true),'use dark fallback letters on white odds rows');
 });
 test('Two page frame download never automatically clicks multiple files',()=>{
  assert.match(source,/if\(parts\.length===1\)a\.click\(\)/);
