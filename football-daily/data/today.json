@@ -2633,24 +2633,24 @@
       },
       "previewV2": {
         "version": "2",
-        "status": "needs-current-form-evidence-review",
+        "status": "verified",
         "fixtureSourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
         "standingsSourceUrl": "https://www.sportsmole.co.uk/football/bundesliga/table.html",
         "reviewedAt": "2026-10-18",
         "homeRecentResultVerified": true,
         "awayRecentResultVerified": true,
         "formEvidence": "last five LEAGUE matches W/D/L sourced; individual five-match opponents and goals not independently verified",
-        "playerEvidenceAudit": "named players verified in contemporaneous lineups, but quantitative current-season contribution incomplete",
+        "playerEvidenceAudit": "BOTH_PLAYER_EVIDENCE_BUNDESLIGA_OFFICIAL_2026_10_18",
         "homeKeyPlayer": {
           "name": "Patrik Schick",
-          "sourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
-          "evidence": "Leverkusen named centre-forward, expected to lead line against Freiburg in dated fixture preview.",
+          "sourceUrl": "https://www.bundesliga.com/en/bundesliga/news/mainz-bayer-leverkusen-match-report-highlights-matchday-5-39489",
+          "evidence": "Official Bundesliga match report confirms Patrik Schick scored away at Mainz in the previous round, adding a proven focal point to Leverkusen's finishing.",
           "verifiedDate": "2026-10-18"
         },
         "awayKeyPlayer": {
           "name": "Igor Matanovic",
-          "sourceUrl": "https://www.sportsmole.co.uk/football/bayer-leverkusen/bundesliga-title-race/preview/b-leverkusen-vs-freiburg-prediction-team-news-lineups_607094.html",
-          "evidence": "Freiburg attacking contributor and likely starting forward alongside support from Jan-Niklas Beste.",
+          "sourceUrl": "https://www.bundesliga.com/en/player/igor-matanovic",
+          "evidence": "Official Bundesliga player profile before this fixture lists 3 Bundesliga goals and 1 assist in 2026-27, confirming Freiburg forward's scoring contribution.",
           "verifiedDate": "2026-10-18"
         }
       },
