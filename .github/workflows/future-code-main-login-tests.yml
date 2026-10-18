@@ -1,0 +1,21 @@
+name: Future Code Main Login Tests
+on:
+  push:
+    branches:
+      - feature/main-only-login-current
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check worker JavaScript syntax
+        run: node --check --input-type=module < football-daily/_worker.js
+      - name: Test protected main pages and public sub-sites
+        run: node --test football-daily/tests/main-login.test.cjs
