@@ -1,3 +1,4 @@
+# Tests include older Android WebView with the journal compatibility layer.
 name: Future Code Sports Journal APK
 on:
   push:
