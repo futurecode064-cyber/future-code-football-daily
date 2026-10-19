@@ -21,7 +21,7 @@
  write(ctx,m.home,252,y+42,25,'#12202a','center',280);write(ctx,m.away,948,y+42,25,'#12202a','center',280);
  // Every quote carries its own Myanmar market name, including when the upper team is away.
  const quote=(kind,value,x)=>{ctx.fillStyle=base;ctx.fillRect(x-83,y+8,166,70);
-  write(ctx,kind==='body'?'ဘော်ဒီကြေး':'ဂိုးပေါင်းကြေး',x,y+24,17,accent,'center',162);
+  write(ctx,kind==='body'?'ဘော်ဒီကြေး':'ဂိုးပေါင်းကြေး',x,y+24,20,accent,'center',162);
   write(ctx,value||'—',x,y+57,27,'#fff','center',158);};
  if(known&&awayUpper){quote('goals',goals,468);quote('body',bodyOdds,732);}
  else if(known){quote('body',bodyOdds,468);quote('goals',goals,732);}
