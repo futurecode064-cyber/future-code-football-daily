@@ -892,5 +892,7 @@
   "resultReview": {
     "yesterdayArchive": "data/archive/2026-10-18.json",
     "yesterdayFinishedMatches": 19
-  }
+  },
+  "ownerProofreadStatus": "2026-10-19 editorial saved verbatim in data/editorial/2026-10-19-owner-verbatim-previews.txt",
+  "dailyDataValidationRequested": true
 }
