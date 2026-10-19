@@ -6,7 +6,7 @@ const path=require("node:path");
 const root=path.resolve(__dirname,"..");
 const script=fs.readFileSync(path.join(root,"brand-odds-studio.js"),"utf8");
 const sheet=JSON.parse(fs.readFileSync(path.join(root,"data/odds/2026-10-19.json"),"utf8"));
-const leagueMap=script.match(/const leagueNames=(\\{[^\\n]+\\});/);
+const leagueMap=script.match(/^ const leagueNames=(.+);$/m);
 if(!leagueMap)throw Error("Burmese league names map missing from branded odds exporter");
 const leagueNames=JSON.parse(leagueMap[1]);
 test("All 19 October odds PNG league bands and filter labels have explicit Burmese names",()=>{
