@@ -47,7 +47,7 @@ test('PNG clones the actual on-screen league groups and their HTML rows',()=>{
   assert.match(domSource,/snapshot\.style\.setProperty\("--sheet-brand", theme\)/);
   assert.match(domSource,/snapshot\.style\.setProperty\("--sheet-deep", shade\(theme, \.70\)\)/);
   assert.match(domSource,/dateBar\.textContent = String\(date \|\| ""\)/);
-  assert.doesNotMatch(domSource,/match totals|ပွဲအရေအတွက်.+dateBar/);
+  assert.doesNotMatch(domSource,/dateBar\.textContent\s*=\s*[^;]*(?:ပွဲ|part|total)/);
   assert.match(domSource,/SCALE = 2/);
 });
 test('Every uploaded frame is retained with its palette and original top/bottom artwork',()=>{
