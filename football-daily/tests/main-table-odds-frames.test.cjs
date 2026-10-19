@@ -46,7 +46,7 @@ test('Main PNG captures the existing live website odds DOM only',()=>{
   assert.match(domSource,/querySelectorAll\("\.odds-league-png-parts,button"\)/);
   assert.match(domSource,/querySelectorAll\("tbody tr"\)/);
   assert.match(domSource,/window\.domtoimage\.toBlob\(root/);
-  assert.match(domSource,/window\.FutureCodeOddsDomFrame\.lastCapture="exact-website-dom"/);
+  assert.match(domSource,/window\.FutureCodeOddsDomFrame\.lastCapture="html2canvas-website-dom"/);
   assert.doesNotMatch(domSource,/measuredCapture|fallbackTable|drawCrest|ctx\.fillText|ctx\.strokeRect/);
 });
 test('Theme alters only the cloned website palette and preserves its real headers, crests and columns',()=>{
@@ -72,8 +72,8 @@ test('PNG fits full visible table width without stretching/making a new table',(
   assert.match(domSource,/SCALE = 2/);
 });
 test('Capture errors never silently replace website table with a different layout',()=>{
-  assert.match(domSource,/throw Error\("Website Screenshot Library မရသေးပါ/);
-  assert.match(domSource,/reject\(Error\("Website Screenshot အချိန်ကုန်သွားပါပြီ"\)\)/);
+  assert.match(domSource,/throw Error\("Website PNG Screenshot မအောင်မြင်ပါ/);
+  assert.match(domSource,/timeout=setTimeout\(\(\)=>reject\(Error\(label\+" အချိန်ကြာလွန်းပါသည်"\)\),ms\)/);
   assert.doesNotMatch(domSource,/measured-website|table-fallback/);
 });
 test('All original frame banners remain unchanged and only surround the captured table',()=>{
@@ -131,8 +131,8 @@ test('Main odds page alone loads DOM renderer and frame ZIP, not sub-brands',()=
 
 test('Source scripts are only served on the main odds page and cache version is refreshed',()=>{
   const html=fs.readFileSync(path.join(root,'odds.html'),'utf8');
-  assert.match(html,/main-odds-dom-frame\.js\?v=20261019-direct-dom-v5/);
-  assert.match(html,/main-table-odds-frames\.js\?v=20261019-direct-dom-v5/);
+  assert.match(html,/main-odds-dom-frame\.js\?v=20261019-dom-capture-v6/);
+  assert.match(html,/main-table-odds-frames\.js\?v=20261019-dom-capture-v6/);
   assert.match(domSource,/document\.documentElement\.dataset\.footballBrandName/);
 });
 
