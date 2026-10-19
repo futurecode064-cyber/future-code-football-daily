@@ -135,3 +135,84 @@ test('Source scripts are only served on the main odds page and cache version is 
   assert.match(html,/main-table-odds-frames\.js\?v=20261019-direct-dom-v5/);
   assert.match(domSource,/document\.documentElement\.dataset\.footballBrandName/);
 });
+
+
+test('Main odds uses locally hosted HTML DOM screenshot with SVG capture as backup',()=>{
+  const html=fs.readFileSync(path.join(root,'odds.html'),'utf8');
+  const vendor=fs.readFileSync(path.join(root,'vendor/html2canvas.min.js'),'utf8');
+  const license=fs.readFileSync(path.join(root,'vendor/LICENSE-html2canvas.txt'),'utf8');
+  assert.ok(vendor.length>150000,'Library is bundled locally, not a fragile remote CDN');
+  assert.match(vendor,/html2canvas 1\.4\.1/);
+  assert.match(license,/MIT|Permission is hereby granted/);
+  assert.ok(html.includes('./vendor/html2canvas.min.js?v=1.4.1'));
+  assert.ok(html.indexOf('vendor/html2canvas.min.js')<html.indexOf('main-odds-dom-frame.js'));
+  assert.match(html,/main-odds-dom-frame\.js\?v=20261019-dom-capture-v6/);
+  assert.match(domSource,/window\.html2canvas\(root,/);
+  assert.match(domSource,/useCORS:true/);
+  assert.match(domSource,/window\.domtoimage\.toBlob\(root/);
+  assert.match(domSource,/window\.FutureCodeOddsDomFrame\.lastCapture="html2canvas-website-dom"/);
+  assert.match(domSource,/errors\.push\("HTML: "\+captureFailure\(error\)\)/);
+  assert.match(domSource,/errors\.push\("SVG: "\+captureFailure\(error\)\)/);
+  assert.doesNotMatch(domSource,/fallbackTable|measuredCapture|drawCrest/);
+});
+test('Actual HTML capture returns a PNG canvas without redrawing a new table',async()=>{
+  const match={league:'Premier League',home:'အိမ်ရှင်',away:'ဧည့်သည်'};
+  const removed=[],calls=[];
+  function element(kind='div'){
+    const node={
+      kind,style:{setProperty(){}},children:[],className:'',
+      scrollHeight:500,scrollWidth:960,textContent:'',
+      getBoundingClientRect:()=>({width:960,height:500}),
+      setAttribute(){},remove(){removed.push(kind);},
+      appendChild(v){this.children.push(v);return v;},
+      append(v){this.children.push(v);},
+      querySelectorAll(selector){
+        if(selector==='.odds-group')return this.children.filter(x=>x.isGroup);
+        if(selector==='tbody tr')return this.rows||[];
+        return [];
+      },
+      querySelector(){return null;},
+      cloneNode(){const clone=element('group');clone.isGroup=true;clone.rows=[{remove(){}}];return clone;}
+    };
+    return node;
+  }
+  const source=element('source'),table=element('table');
+  const document={
+    documentElement:{dataset:{}},
+    body:{appendChild(){}},
+    fonts:{ready:Promise.resolve()},
+    createElement:kind=>element(kind),
+    querySelectorAll:selector=>selector==='#oddsList .odds-group'?[source]:
+      selector==='#oddsList .odds-group .odds-table'?[table]:[],
+    querySelector:selector=>selector==='#oddsList'?element('list'):null
+  };
+  const previewCanvas={width:1940,height:1000};
+  const ctx={fillRect(){},drawImage(...args){calls.push(args);}};
+  const kit={create:(width,height)=>({canvas:{width,height},ctx})};
+  let browserCaptured=0,svgCaptured=0;
+  const window={
+    FutureCodeCanvasKit:kit,
+    html2canvas:async(root,opts)=>{
+      browserCaptured++;
+      assert.equal(root.className,'odds-content fc-odds-direct-export');
+      assert.equal(opts.scale,2);
+      assert.equal(opts.useCORS,true);
+      return previewCanvas;
+    },
+    domtoimage:{toBlob(){svgCaptured++;throw Error('Fallback should not run');}}
+  };
+  const context={window,document,location:{pathname:'/odds.html'},loadedSheet:{matches:[match]},
+    requestAnimationFrame:fn=>fn(),setTimeout,clearTimeout,
+    getComputedStyle:()=>({fontSize:'12px'}),Map,Set,Promise,URL,Image,Error,console};
+  vm.runInNewContext(domSource,context);
+  const result=await window.FutureCodeOddsDomFrame.draw([match],{
+    design:['colour','Colour Background Change','#a41625'],colour:'#196514',date:'2026-10-19'});
+  assert.equal(browserCaptured,1);
+  assert.equal(svgCaptured,0);
+  assert.equal(window.FutureCodeOddsDomFrame.lastCapture,'html2canvas-website-dom');
+  assert.equal(result.width,1940);
+  assert.equal(result.height,1000);
+  assert.equal(calls.length,1);
+  assert.equal(calls[0][0],previewCanvas);
+  assert.ok(removed.length>0,'temporary export DOM was cleaned up');
+});
