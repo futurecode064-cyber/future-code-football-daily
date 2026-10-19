@@ -202,10 +202,14 @@
       try {
         // A blocked font/image request must not leave the Download button spinning.
         const attempt = captureWebsiteGroups(rows, theme, settings.date);
-        shot = await Promise.race([
-          attempt,
-          new Promise((_,reject)=>setTimeout(()=>reject(new Error("DOM image capture timed out")),9000))
-        ]);
+        let deadline;
+        try {
+          shot = await Promise.race([
+            attempt,
+            new Promise((_,reject)=>{deadline=setTimeout(
+              ()=>reject(new Error("DOM image capture timed out")),9000);})
+          ]);
+        } finally { clearTimeout(deadline); }
         window.FutureCodeOddsDomFrame.lastCapture = "website";
       } catch (error) {
         console.warn("Website screenshot capture unavailable; rendering the same table natively.", error);
