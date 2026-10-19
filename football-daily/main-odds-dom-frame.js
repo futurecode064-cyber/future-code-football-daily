@@ -135,9 +135,8 @@
           if(badge){
             const b=rect(badge,root);
             if(badge.tagName==="IMG"){
-              const league=[...group.querySelectorAll("tbody tr")].length;
               const lg=h.textContent.trim();
-              const localKey=Object.keys(localLeagueLogos).find(key=>lg===key);
+              const localKey=group.dataset.oddsLeague;
               const local=localKey?{src:"./assets/table-odds-frames/league-"+localLeagueLogos[localKey]+".png",r:b}:null;
               await drawCrest(ctx,badge,root,lg,local);
             }else{
@@ -218,6 +217,7 @@
       const selected=new Set(matches.map(x=>all.indexOf(x)));
       if(selected.has(-1))throw Error("Website ပွဲဒေတာ မကိုက်ညီပါ");
       const group=live.cloneNode(true);
+      group.dataset.oddsLeague=league;
       group.querySelectorAll("button,.odds-league-png-parts").forEach(el=>el.remove());
       [...group.querySelectorAll("tbody tr")].forEach((tr,i)=>{if(!selected.has(i))tr.remove();});
       group.style.setProperty("width","100%","important");
