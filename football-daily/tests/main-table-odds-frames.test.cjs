@@ -73,7 +73,7 @@ test('PNG fits full visible table width without stretching/making a new table',(
 });
 test('Capture errors never silently replace website table with a different layout',()=>{
   assert.match(domSource,/throw Error\("Website Screenshot Library မရသေးပါ/);
-  assert.match(domSource,/throw Error\("Website Screenshot အချိန်ကုန်သွားပါပြီ"\)/);
+  assert.match(domSource,/reject\(Error\("Website Screenshot အချိန်ကုန်သွားပါပြီ"\)\)/);
   assert.doesNotMatch(domSource,/measured-website|table-fallback/);
 });
 test('All original frame banners remain unchanged and only surround the captured table',()=>{
