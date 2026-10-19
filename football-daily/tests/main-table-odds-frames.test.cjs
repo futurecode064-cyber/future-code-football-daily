@@ -203,7 +203,7 @@ test('Actual HTML capture returns a PNG canvas without redrawing a new table',as
   };
   const context={window,document,location:{pathname:'/odds.html'},loadedSheet:{matches:[match]},
     requestAnimationFrame:fn=>fn(),setTimeout,clearTimeout,
-    getComputedStyle:()=>({fontSize:'12px'}),Map,Set,Promise,URL,Image,Error,console};
+    getComputedStyle:()=>({fontSize:'12px'}),Map,Set,Promise,URL,Image:class {},Error,console};
   vm.runInNewContext(domSource,context);
   const result=await window.FutureCodeOddsDomFrame.draw([match],{
     design:['colour','Colour Background Change','#a41625'],colour:'#196514',date:'2026-10-19'});
