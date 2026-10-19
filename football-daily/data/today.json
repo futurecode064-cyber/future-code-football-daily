@@ -24,7 +24,7 @@
       "awayOdds": "6.25",
       "oddsProvider": "Bet365",
       "oddsSourceUrl": "https://www.bet365.com/hub/en-gb/football/football-competitions/premier-league",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -131,7 +131,15 @@
         "reviewedAt": "2026-10-19",
         "factCheckStatus": "user text preserved without silent factual correction; source verification partial"
       },
-      "oddsVerificationStatus": "reference market as cited"
+      "oddsVerificationStatus": "reference market as cited",
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-19",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      }
     },
     {
       "league": "Serie A",
@@ -151,7 +159,7 @@
       "awayOdds": "3.30",
       "oddsProvider": "Bet365",
       "oddsSourceUrl": "https://oddsrun.com/match/football/it/199/11997978/italy-serie-a/monza-vs-cagliari/",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -263,11 +271,26 @@
       "specialChoiceSourceHeading": "Special Choice #1 — မွန်ဇာ နဲ့ ကာဂလီယာရီ",
       "specialChoiceSourceSubtitle": "အီတလီ စီးရီးအေ · မြန်မာစံတော်ချိန် ၁၉ ရက်နေ့ ည 11:00",
       "specialAnalysisParagraphs": [
-        "နည်းပြ **Ivan Jurić** ရဲ့ **မွန်ဇာ** အသင်းဟာ ဒီရာသီ စီးရီးအေ ၆ ပွဲမှာ ၁ နိုင်၊ ၁ သရေ၊ ၄ ရှုံးနဲ့ ရမှတ် ၄ မှတ်သာရထားတာကြောင့် အိမ်ကွင်းမှာ အမှတ်လိုအပ်ချက်ကြီးမားနေပါတယ်။ ၁၅ ဂိုးအထိ ပေးထားရတဲ့ ခံစစ်ဟာ အဓိကစိုးရိမ်စရာဖြစ်ပြီး လာဇီယိုကို နောက်ဆုံး ၃-၁ နဲ့ ရှုံးနိမ့်ခဲ့တဲ့ပွဲမှာလည်း ခံစစ်တည်ငြိမ်မှု မလုံလောက်ခဲ့ပါဘူး။",
-        "တစ်ဖက်မှာ နည်းပြ **Fabio Pisacane** ရဲ့ **ကာဂလီယာရီ** က ၆ ပွဲမှာ ၄ နိုင်၊ ၁ သရေ၊ ၁ ရှုံးနဲ့ ၁၃ မှတ်ရထားပြီး သုံးဂိုးသာပေးထားတဲ့ ခံစစ်ကြောင့် ခြေစွမ်းပိုမိုတည်ငြိမ်ပါတယ်။ **Daniel Maldini** ကလည်း ဂိုးသွင်းခြေတွေ့နေပြီး ဂျူဗင်တပ်စ်နဲ့ နောက်ဆုံး ၁-၁ သရေကျခဲ့တဲ့ပွဲမှာ အဓိကအခန်းကဏ္ဍက ပါဝင်ခဲ့ပါတယ်။",
+        "နည်းပြ **Ivan Jurić** ရဲ့ **မွန်ဇာ** အသင်းဟာ ဒီရာသီ စီးရီးအေ ၆ ပွဲမှာ ၁ နိုင်၊ ၁ သရေ၊ ၄ ရှုံးနဲ့ ရမှတ် ၄ မှတ်သာရထားတာကြောင့် အိမ်ကွင်းမှာ အမှတ်လိုအပ်ချက်ကြီးမားနေပါတယ်။ ၁၅ ဂိုးအထိ ပေးထားရတဲ့ ခံစစ်ဟာ အဓိကစိုးရိမ်စရာဖြစ်ပြီး လာဇီယိုကို နောက်ဆုံး ၃-၁ နဲ့ ရှုံးနိမ့်ခဲ့တဲ့ပွဲမှာလည်း ခံစစ်တည်ငြိမ်မှု မလုံလောက်ခဲ့ပါဘူး။ မွန်ဇာဟာ လက်ရှိရာသီမှာ ဂိုးပေးနှုန်းမြင့်မားတာကြောင့် အိမ်ကွင်းမှာ တိုက်စစ်မြှင့်တင်ရင်း နောက်တန်းအကွာအဝေးကို ထိန်းညှိနိုင်ဖို့ လိုအပ်ပါတယ်။",
+        "တစ်ဖက်မှာ နည်းပြ **Fabio Pisacane** ရဲ့ **ကာဂလီယာရီ** က ၆ ပွဲမှာ ၄ နိုင်၊ ၁ သရေ၊ ၁ ရှုံးနဲ့ ၁၃ မှတ်ရထားပြီး သုံးဂိုးသာပေးထားတဲ့ ခံစစ်ကြောင့် ခြေစွမ်းပိုမိုတည်ငြိမ်ပါတယ်။ **Daniel Maldini** ကလည်း ဂိုးသွင်းခြေတွေ့နေပြီး ဂျူဗင်တပ်စ်နဲ့ နောက်ဆုံး ၁-၁ သရေကျခဲ့တဲ့ပွဲမှာ အဓိကအခန်းကဏ္ဍက ပါဝင်ခဲ့ပါတယ်။ ကာဂလီယာရီက ခံစစ်ကို စနစ်တကျစုစည်းပြီး ဂိုးအခွင့်အရေးရတဲ့အချိန်မှာ ထိရောက်အောင် အသုံးချဖို့ အရေးကြီးပါတယ်။",
         "မွန်ဇာဘက်က **Gustavo Varela** ရဲ့ တိုက်စစ်စွမ်းရည်နဲ့ အိမ်ကွင်းဖိအားပေးကစားမှုဟာ ကာဂလီယာရီအတွက် ခက်ခဲစေနိုင်ပေမယ့် ဧည့်သည်အသင်းရဲ့ အဝေးကွင်းရလဒ်ကောင်းတွေက စိတ်ချရပါတယ်။ ကာဂလီယာရီက အိမ်ရှင်ရဲ့ နောက်တန်းနေရာလွတ်တွေကို တန်ပြန်တိုက်စစ်နဲ့ အသုံးချနိုင်ပြီး ခံစစ်ကျစ်လျစ်မှုကြောင့် မွန်ဇာရဲ့ ဂိုးရှာဖွေမှုကို ထိန်းချုပ်နိုင်မယ့် အနေအထားရှိပါတယ်။",
-        "အိမ်ကွင်းအားသာချက်ကို လျစ်လျူရှုလို့မရပေမယ့် နှစ်သင်းရဲ့ နောက်ဆုံးရလဒ်၊ ခံစစ်တည်ငြိမ်မှုနဲ့ တိုက်စစ်အဆုံးသတ်ပိုင်းကို နှိုင်းယှဉ်ကြည့်ရာမှာ ဧည့်သည်က ပိုပြီး ပြည့်စုံပါတယ်။ **လက်ရှိခြေစွမ်းတည်ငြိမ်မှုနဲ့ ကာဂလီယာရီရဲ့ အဝေးကွင်းယုံကြည်မှုတို့ကြောင့် ဒီပွဲမှာ ကာဂလီယာရီကို ရွေးချယ်ပါတယ်။**"
-      ]
+        "မွန်ဇာဟာ ပွဲကို အိမ်ကွင်းဖိအားနဲ့ စတင်နိုင်ပေမယ့် ကာဂလီယာရီရဲ့ ပိုမိုတည်ငြိမ်တဲ့ ခံစစ်နဲ့ စည်းစနစ်ကျတဲ့ ပြန်လည်ထိုးဖောက်မှုက အရေးပါပါတယ်။ လတ်တလော ရလဒ်ပိုင်းမှာလည်း ကာဂလီယာရီက အသာရနေပြီး ပြိုင်ဘက်အားနည်းနေတဲ့ နောက်တန်းကို အသုံးချနိုင်မယ့် အလားအလာရှိပါတယ်။ **အသင်းနှစ်သင်းရဲ့ ခံစစ်တည်ငြိမ်မှုနဲ့ လတ်တလောခြေစွမ်းကို နှိုင်းယှဉ်ပြီး ကာဂလီယာရီကို ရွေးချယ်ပါတယ်။**"
+      ],
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-19",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      },
+      "specialRiskNote": "အိမ်ရှင်မွန်ဇာက အိမ်ကွင်းမှာ ဖိအားပေးကစားနိုင်ပြီး ဧည့်သည်အသင်းအနေနဲ့ ပွဲရလဒ်ကို အာမမခံနိုင်ပါ။",
+      "specialResearchSources": [
+        "https://prematchdata.com/en/seriea/2026-10-19/monza-vs-cagliari/",
+        "https://last5games.com/head-to-head/cagliari-vs-monza/585-1628/"
+      ],
+      "specialPreparedDate": "2026-10-19",
+      "specialPickLabel": "ကာဂလီယာရီ"
     },
     {
       "league": "Serie A",
@@ -287,7 +310,7 @@
       "awayOdds": "2.78",
       "oddsProvider": "SportyTrader reference",
       "oddsSourceUrl": "https://www.sportytrader.com/en/odds/parma-turin-8522159/",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -400,16 +423,18 @@
         "wins": 1,
         "draws": 1,
         "losses": 4,
-        "points": 4
+        "points": 4,
+        "position": 18
       },
       "awayStanding": {
         "played": 6,
         "wins": 2,
         "draws": 1,
         "losses": 3,
-        "points": 7
+        "points": 7,
+        "position": 12
       },
-      "standingsSourceUrl": "https://last5games.com/matches/parma-vs-torino-19713551/",
+      "standingsSourceUrl": "https://prematchdata.com/en/seriea/2026-10-19/parma-vs-torino/",
       "myanmarOdds": {
         "provider": "19.pdf user-supplied opening quote",
         "market": "Myanmar body/total",
@@ -442,7 +467,15 @@
         "reviewedAt": "2026-10-19",
         "factCheckStatus": "user text preserved without silent factual correction; source verification partial"
       },
-      "oddsVerificationStatus": "reference market as cited"
+      "oddsVerificationStatus": "reference market as cited",
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-19",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      }
     },
     {
       "league": "La Liga",
@@ -462,7 +495,7 @@
       "awayOdds": "2.62",
       "oddsProvider": "Bet365",
       "oddsSourceUrl": "https://footballnation.eu/match/la-liga/2026/797782/",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -569,7 +602,15 @@
         "reviewedAt": "2026-10-19",
         "factCheckStatus": "user text preserved without silent factual correction; source verification partial"
       },
-      "oddsVerificationStatus": "reference market as cited"
+      "oddsVerificationStatus": "reference market as cited",
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.skysports.com/football-scores-fixtures/2026-10-19",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      }
     },
     {
       "league": "La Liga 2",
@@ -589,7 +630,7 @@
       "awayOdds": "2.712",
       "oddsProvider": "1xBet",
       "oddsSourceUrl": "https://1xbet.es/es/line/football/27687-spain-segunda-division/760988575-celta-fortuna-tenerife",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -648,7 +689,7 @@
       ],
       "headToHead": [],
       "homeStanding": {
-        "position": 15,
+        "position": 13,
         "played": 9,
         "wins": 3,
         "draws": 2,
@@ -658,7 +699,7 @@
         "goalsAgainst": 15
       },
       "awayStanding": {
-        "position": 13,
+        "position": 12,
         "played": 9,
         "wins": 3,
         "draws": 3,
@@ -667,7 +708,7 @@
         "goalsFor": 11,
         "goalsAgainst": 13
       },
-      "standingsSourceUrl": "https://www.laliga.com/en-ES/match/temporada-2026-2027-laliga-hypermotion-rc-celta-fortuna-cd-tenerife-10",
+      "standingsSourceUrl": "https://www.laliga.com/es-GB/partido/temporada-2026-2027-laliga-hypermotion-rc-celta-fortuna-cd-tenerife-10",
       "myanmarOdds": {
         "provider": "19.pdf user-supplied opening quote",
         "market": "Myanmar body/total",
@@ -700,7 +741,15 @@
         "reviewedAt": "2026-10-19",
         "factCheckStatus": "user text preserved without silent factual correction; source verification partial"
       },
-      "oddsVerificationStatus": "reference market as cited"
+      "oddsVerificationStatus": "reference market as cited",
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.sofascore.com/es/football/2026-10-19",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      }
     },
     {
       "league": "Ligue 2",
@@ -720,7 +769,7 @@
       "awayOdds": "2.31",
       "oddsProvider": "FranceLeague reference",
       "oddsSourceUrl": "https://franceleague.net/match/rodez-vs-montpellier-2026-10-19",
-      "oddsMarket": "Full time 1X2 pre-match reference",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsIsLive": false,
       "oddsVerifiedDate": "2026-10-19",
       "homeLastFive": [
@@ -781,12 +830,18 @@
       "homeStanding": {
         "position": 17,
         "played": 8,
-        "points": 7
+        "points": 7,
+        "wins": 2,
+        "draws": 1,
+        "losses": 5
       },
       "awayStanding": {
         "position": 5,
         "played": 8,
-        "points": 15
+        "points": 15,
+        "wins": 4,
+        "draws": 3,
+        "losses": 1
       },
       "standingsSourceUrl": "https://franceleague.net/match/rodez-vs-montpellier-2026-10-19",
       "myanmarOdds": {
@@ -821,7 +876,15 @@
         "reviewedAt": "2026-10-19",
         "factCheckStatus": "user text preserved without silent factual correction; source verification partial"
       },
-      "oddsVerificationStatus": "reference market as cited"
+      "oddsVerificationStatus": "reference market as cited",
+      "previewJournalist": {
+        "status": "owner_approved_published",
+        "sourceUrl": "https://www.fotmob.com/matches/rodez-vs-montpellier/1pgwnd",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
+        "reportDate": "2026-10-19",
+        "reviewedAt": "2026-10-19",
+        "copyPolicy": "owner verbatim; do not rewrite"
+      }
     }
   ],
   "noFixturesLeagues": [],
