@@ -30,7 +30,7 @@
       image.src = url;
     });
   }
-  async function captureWebsiteGroups(rows, theme) {
+  async function captureWebsiteGroups(rows, theme, date) {
     if (!window.domtoimage || typeof window.domtoimage.toBlob !== "function")
       throw new Error("Website PNG capture library မရပါ။ Refresh လုပ်ကြည့်ပါ။");
     const sheet = typeof loadedSheet !== "undefined" ? loadedSheet : null;
@@ -55,6 +55,11 @@
     snapshot.style.setProperty("--sheet-deep", shade(theme, .70));
     snapshot.style.setProperty("--sheet-title", "#ffffff");
     snapshot.style.setProperty("padding", "12px 0", "important");
+    // Keep the previously approved date-only label (never add match totals).
+    const dateBar = document.createElement("div");
+    dateBar.textContent = String(date || "");
+    dateBar.style.cssText = "box-sizing:border-box;margin:0 0 13px;padding:12px 10px;text-align:center;border-radius:10px;background:" + shade(theme, .70) + ";color:#fff;font:800 23px/1.7 'Noto Sans Myanmar',sans-serif";
+    snapshot.appendChild(dateBar);
 
     for (const [league, included] of byLeague) {
       const originalGroup = sources.get(league);
@@ -113,7 +118,7 @@
 
     // Screenshot is the same HTML, headers, columns, Myanmar spellings and
     // original/current prices that users see on the main website.
-    const shot = await captureWebsiteGroups(rows, theme);
+    const shot = await captureWebsiteGroups(rows, theme, settings.date);
     const outWidth = WIDTH * SCALE;
     const topFraction = artwork ? design[3].top : 0;
     const bottomFraction = artwork ? design[3].bottom : 0;
