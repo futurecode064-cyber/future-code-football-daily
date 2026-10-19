@@ -53,7 +53,7 @@ test('PNG is based on real website league and table DOM, never a generic fallbac
 });
 test('Blocked DOM screenshot does not change the website table layout',()=>{
   assert.match(domSource,/async function measuredCapture\(root,theme\)/);
-  assert.match(domSource,/rect\(el,base\)/);
+  assert.match(domSource,/const rect=\(el,base\)=>/);
   assert.match(domSource,/querySelectorAll\("thead th"\)/);
   assert.match(domSource,/querySelectorAll\("tbody tr"\)/);
   assert.match(domSource,/querySelectorAll\("td"\)/);
