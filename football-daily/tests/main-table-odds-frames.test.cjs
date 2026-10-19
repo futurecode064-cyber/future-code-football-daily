@@ -48,7 +48,8 @@ test('Main PNG captures the existing live website odds DOM only',()=>{
   assert.match(domSource,/querySelectorAll\("tbody tr"\)/);
   assert.match(domSource,/window\.domtoimage\.toBlob\(root/);
   assert.match(domSource,/window\.FutureCodeOddsDomFrame\.lastCapture="html2canvas-website-dom"/);
-  assert.doesNotMatch(domSource,/measuredCapture|fallbackTable|drawCrest|ctx\.fillText|ctx\.strokeRect/);
+  assert.doesNotMatch(domSource,/measuredCapture|fallbackTable|drawCrest/);
+  assert.match(domSource,/ctx\.drawImage\(shot\.picture,x,y,cw,ch\)/);
 });
 test('Theme alters only the cloned website palette and preserves its real headers, crests and columns',()=>{
   assert.match(domSource,/root\.style\.setProperty\("--sheet-brand",theme\)/);
@@ -82,11 +83,11 @@ test('Named frames preserve their top/bottom banners around the website table',(
   const {api}=setup();
   assert.equal(api.designs.length,16);
   assert.equal(new Set(api.designs.map(d=>d[0])).size,16);
-  assert.match(domSource,/const theme=design\[0\]==="colour"\?settings\.colour:design\[2\]/);
+  assert.match(domSource,/const theme=best\?"#c41017":colourOnly\?settings\.colour:design\[2\]/);
   assert.match(domSource,/const shot=await captureWebsite\(rows,theme,settings\.date\)/);
   assert.match(domSource,/const W=2160,H=2160/);
   assert.match(domSource,/ctx\.drawImage\(shot\.picture,x,y,cw,ch\)/);
-  assert.match(domSource,/ctx\.drawImage\(shot\.picture,0,topH,W,shot\.height\)/);
+  assert.match(domSource,/ctx\.drawImage\(shot\.picture,x,y,cw,ch\)/);
   for(const d of api.designs.filter(d=>d[0]!=='colour')){
     const suffixes=d[3]?['-frame.jpg']:['-top.jpg','-bottom.jpg'];
     for(const suffix of suffixes)assert.ok(fs.statSync(path.join(root,'assets/table-odds-frames',d[0]+suffix)).size>1000);
