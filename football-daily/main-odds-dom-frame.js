@@ -1,7 +1,7 @@
 "use strict";
 /* Shared website odds PNG renderer: capture the ACTUAL odds table and preserve its logos, rows, and columns. */
 (function () {
-  if (!/^\/odds(?:\.html)?\/?$/.test(location.pathname)) return;
+  if (!/\/odds(?:\.html)?\/?$/.test(location.pathname)) return;
 
   // Main-site exports use a genuinely larger table, not only a higher-DPI
   // screenshot of 12–16px type. All other brand pages remain untouched.
