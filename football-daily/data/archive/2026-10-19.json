@@ -735,7 +735,7 @@
         "https://1xbet.es/es/line/football/27687-spain-segunda-division/760988575-celta-fortuna-tenerife",
         "https://spanishleague.net/match/celta-vigo-b-vs-tenerife-2026-10-19"
       ],
-      "status": "scheduled",
+      "status": "finished",
       "specialChoice": false,
       "myanmarOddsSource": "19.pdf, original morning quote; last column is prediction",
       "userPreviewVerbatim": {
@@ -761,7 +761,10 @@
         "reportDate": "2026-10-19",
         "reviewedAt": "2026-10-19",
         "copyPolicy": "owner verbatim; do not rewrite"
-      }
+      },
+      "finalScore": "1-1",
+      "finalScoreSourceUrl": "https://rfef.es/es/resultados?competition=33836086&group=33836087&journey=10",
+      "resultVerifiedDate": "2026-10-20"
     },
     {
       "league": "Ligue 2",
@@ -870,7 +873,7 @@
         "https://franceleague.net/match/rodez-vs-montpellier-2026-10-19",
         "https://www.fotmob.com/matches/rodez-vs-montpellier/1pgwnd"
       ],
-      "status": "scheduled",
+      "status": "finished",
       "specialChoice": false,
       "myanmarOddsSource": "19.pdf, original morning quote; last column is prediction",
       "userPreviewVerbatim": {
@@ -896,7 +899,10 @@
         "reportDate": "2026-10-19",
         "reviewedAt": "2026-10-19",
         "copyPolicy": "owner verbatim; do not rewrite"
-      }
+      },
+      "finalScore": "0-3",
+      "finalScoreSourceUrl": "https://www.maxifoot.fr/match/rodez-montpellier-20261019.htm",
+      "resultVerifiedDate": "2026-10-20"
     }
   ],
   "noFixturesLeagues": [],
