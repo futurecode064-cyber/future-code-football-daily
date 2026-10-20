@@ -13,7 +13,7 @@ const MAIN_EMAIL = "futurecode064@gmail.com";
 const COOKIE_NAME = "__Host-fc_main_session";
 const CSRF_COOKIE_NAME = "__Host-fc_main_login_csrf";
 const MAX_AGE_SECONDS = 8 * 60 * 60;
-const MAIN_PATHS = new Set(["/", "/index", "/index.html", "/odds", "/odds/", "/odds.html"]);
+const MAIN_PATHS = new Set(["/", "/index", "/index/", "/index.html", "/odds", "/odds/", "/odds.html"]);
 const LOGIN_PATHS = new Set(["/login", "/login/", "/login.html"]);
 const LOGOUT_PATHS = new Set(["/logout", "/logout/"]);
 const encoder = new TextEncoder();
@@ -28,7 +28,7 @@ const GZ_JOURNAL_PAGES = new Map([
   ["/future-code-journal/index.html", "Goal Zone Journal"],
   ["/future-code-journal/odds.html", "Goal Zone Odds"]
 ]);
-const GZ_STATS_PATHS = new Set([GZ_PREFIX + "stats.html", GZ_PREFIX + "stats/"]);
+const GZ_STATS_PATHS = new Set([GZ_PREFIX + "stats", GZ_PREFIX + "stats.html", GZ_PREFIX + "stats/"]);
 const GZ_VISIT_PATH = GZ_PREFIX + "api/visit";
 const GZ_REPORT_PATH = GZ_PREFIX + "api/stats";
 const GZ_VISITOR_COOKIE = "__Host-gz_anon";
