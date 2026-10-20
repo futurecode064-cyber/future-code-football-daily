@@ -108,7 +108,7 @@ test("downloaded PNG uses the same aligned six-column layout and includes all cr
  const js=read("main-ai-score.js");
  assert.match(js,/canvas\.width=1080;canvas\.height=430/);
  assert.match(js,/const columns=\[596,758,920\]/);
- assert.match(js,/picture\(leagueIcons\[match\.league\]\)/);
+ assert.match(js,/picture\(window\.FutureCodeMainLogoAssets\?\.leagueCrest\(match\.league\)\|\|leagueIcons\[match\.league\]\)/);
  assert.match(js,/picture\(match\.homeCrestUrl\),picture\(match\.awayCrestUrl\)/);
  assert.match(js,/const heading="AI ခန့်မှန်း "/);
  assert.match(js,/ctx\.fillText\(scores\[i\],x\+81,332\)/);
