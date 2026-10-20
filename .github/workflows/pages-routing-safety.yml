@@ -1,0 +1,37 @@
+name: Pages Worker Routing Safety Tests
+on:
+  push:
+    branches:
+      - main
+      - fix/pages-worker-routing-2026-10-20
+    paths:
+      - 'football-daily/_routes.json'
+      - 'football-daily/_worker.js'
+      - 'football-daily/tests/pages-routes.test.cjs'
+      - 'football-daily/tests/main-login.test.cjs'
+      - 'football-daily/tests/goal-zone-analytics.test.cjs'
+      - '.github/workflows/pages-routing-safety.yml'
+  pull_request:
+    paths:
+      - 'football-daily/_routes.json'
+      - 'football-daily/_worker.js'
+      - 'football-daily/tests/pages-routes.test.cjs'
+      - '.github/workflows/pages-routing-safety.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate worker JavaScript syntax
+        run: node --check football-daily/_worker.js
+      - name: Run complete football website regression suite
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Verify publication checker rejects stale data and wrong routes
+        run: python3 -m unittest discover -s football-daily/tests -p test_verify_live.py
