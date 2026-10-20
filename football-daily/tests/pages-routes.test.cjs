@@ -41,8 +41,8 @@ test("Main login, news publishing and editor routes invoke the Worker", () => {
 
 test("Goal Zone analytics and APK download counters invoke the Worker", () => {
   for (const p of [
-    "/future-code-journal/", "/future-code-journal/index.html",
-    "/future-code-journal/odds.html",
+    "/future-code-journal/", "/future-code-journal/index", "/future-code-journal/index.html",
+    "/future-code-journal/odds", "/future-code-journal/odds/", "/future-code-journal/odds.html",
     "/future-code-journal/android/api/visit",
     "/future-code-journal/android/api/stats",
     "/future-code-journal/android/stats",
