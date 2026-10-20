@@ -346,6 +346,14 @@ async function serveMain(request, env) {
 }
 export default {
   async fetch(request, env) {
+    const response = await handleRequest(request, env);
+    const headers = new Headers(response.headers);
+    // A live positive/negative probe distinguishes Worker responses from static assets.
+    headers.set("X-Football-Worker", "selective-routes-v1");
+    return new Response(response.body, {status: response.status, statusText: response.statusText, headers});
+  }
+};
+async function handleRequest(request, env) {
     const path = new URL(request.url).pathname;
     if (path === "/api/editor/news" || path.startsWith("/api/editor/news/")) return newsApi(request, env, path);
     if (path.startsWith("/api/editor/")) return editorApi(request, env, path);
@@ -393,8 +401,7 @@ export default {
     if (GZ_JOURNAL_PAGES.has(path)) return gzJournalPage(request, env, GZ_JOURNAL_PAGES.get(path));
     // Shared data, scripts, brand routes and assets are publicly accessible.
     return env.ASSETS.fetch(request);
-  }
-};
+}
 
 // Owner content editor. GitHub credentials stay in encrypted Cloudflare secrets.
 const EDITOR_SOURCE = 'futurecode064-cyber/future-code-football-daily';

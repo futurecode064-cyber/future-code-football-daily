@@ -33,3 +33,5 @@ jobs:
         run: node --check football-daily/_worker.js
       - name: Run complete football website regression suite
         run: node --test football-daily/tests/*.test.cjs
+      - name: Verify publication checker rejects stale data and wrong routes
+        run: python3 -m unittest discover -s football-daily/tests -p test_verify_live.py
