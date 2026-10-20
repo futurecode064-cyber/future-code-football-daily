@@ -25,7 +25,10 @@ const encoder = new TextEncoder();
 const GZ_PREFIX = "/future-code-journal/android/";
 const GZ_JOURNAL_PAGES = new Map([
   ["/future-code-journal/", "Goal Zone Journal"],
+  ["/future-code-journal/index", "Goal Zone Journal"],
   ["/future-code-journal/index.html", "Goal Zone Journal"],
+  ["/future-code-journal/odds", "Goal Zone Odds"],
+  ["/future-code-journal/odds/", "Goal Zone Odds"],
   ["/future-code-journal/odds.html", "Goal Zone Odds"]
 ]);
 const GZ_STATS_PATHS = new Set([GZ_PREFIX + "stats", GZ_PREFIX + "stats.html", GZ_PREFIX + "stats/"]);
