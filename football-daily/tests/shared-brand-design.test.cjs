@@ -31,7 +31,7 @@ for(const [id,config] of Object.entries(brands)){
   const canvas={toBlob:cb=>cb(new Blob(['png'],{type:'image/png'}))};
   const document={documentElement:{dataset:{footballBrandName:config.name}}};
   const window={FutureCodeBrandConfig:{...config,id},FutureCodeCanvasKit:{day:()=> '2026-10-20'},FutureCodeOddsDomFrame:{draw:async(...args)=>(received=args,canvas)}};
-  const context={window,document,location:{pathname:'/odds.html'},Blob,Promise,setTimeout,clearTimeout};
+  const context={window,document,location:{pathname:'/bw-sport/odds.html'},Blob,Promise,setTimeout,clearTimeout};
   vm.runInNewContext(fs.readFileSync(path.join(root,'daily-image-export.js'),'utf8'),context);
   const matches=[{league:'Premier League'}];
   const result=await window.FutureCodeDailyExport.saveOdds({matches,reportDate:'2026-10-20'},{asBlob:true});

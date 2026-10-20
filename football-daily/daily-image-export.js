@@ -68,7 +68,7 @@
   // Export the live website odds table for the main site and each brand.
   // Mirror pages use only their own palette; they do not expose frame selection.
   const oddsPage=Boolean(document?.documentElement?.dataset)&&
-    typeof location!=="undefined"&&/^\/odds(?:\.html)?\/?$/.test(location.pathname);
+    typeof location!=="undefined"&&/\/odds(?:\.html)?\/?$/.test(location.pathname);
   if(oddsPage&&window.FutureCodeOddsDomFrame?.draw){
    const config=window.FutureCodeBrandConfig||{};
    const colour=config.colors?.primary||config.colors?.gold||"#c41017";
