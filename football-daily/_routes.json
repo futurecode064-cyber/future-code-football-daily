@@ -24,7 +24,10 @@
     "/future-code-journal/android/stats",
     "/future-code-journal/android/stats/",
     "/future-code-journal/android/stats.html",
-    "/future-code-journal/android/*.apk"
+    "/future-code-journal/android/*.apk",
+    "/future-code-journal/index",
+    "/future-code-journal/odds",
+    "/future-code-journal/odds/"
   ],
   "exclude": []
 }
