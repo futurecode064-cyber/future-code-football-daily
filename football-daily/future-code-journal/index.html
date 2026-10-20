@@ -41,6 +41,13 @@
    <div class="dashboard-bar"><div class="dashboard-stat"><span class="stat-label">SELECTED DATE MATCHES</span><strong id="matchCount">—</strong></div><div class="dashboard-stat"><span class="stat-label">SPECIAL CHOICES</span><strong id="specialCount">—</strong></div><div class="dashboard-stat"><span class="stat-label">UPDATE STATUS</span><strong class="status-label" id="statusText">စစ်ဆေးနေသည်</strong></div><button id="reloadBtn" type="button" class="reload-btn"><span aria-hidden="true">↻</span> Refresh</button></div>
    <div class="section-heading"><div><span class="section-eyebrow">ဂိုးဇုံ / SPORTS JOURNAL</span><h2 id="reportHeading">ဂိုးဇုံ အားကစား ဂျာနယ်</h2></div><span class="today-pill" id="reportPill">● TODAY</span></div>
    <nav class="fcj-quick-nav" aria-label="ဂျာနယ်ကဏ္ဍများ"><a href="#matchList">ပွဲကြိုသုံးသပ်ချက်</a><a href="./odds.html">ပေါက်ကြေးများ</a><a href="#fcj-ai">AI ခန့်မှန်းချက်</a><a href="#fcNewsSection">ယနေ့ ဘောလုံးသတင်း</a><a href="./android/">Android App Download</a></nav>
+<section class="fc-news-section" id="fcNewsSection" aria-labelledby="fcNewsTitle" data-news-url="../data/news/latest.json">
+ <div class="fc-news-header"><div><span class="fc-news-eyebrow">GOAL ZONE · FOOTBALL NEWS</span><h2 id="fcNewsTitle">ယနေ့ ဘောလုံးသတင်း သီးသန့်</h2><p class="fc-news-window" id="fcNewsWindow">သတင်းများ ရယူနေသည်…</p></div><span class="fc-news-count" id="fcNewsCount" aria-live="polite"></span></div>
+ <nav class="fc-news-filters" id="fcNewsFilters" aria-label="သတင်းအမျိုးအစားရွေးရန်"></nav>
+ <div class="fc-news-grid" id="fcNewsGrid" aria-live="polite"><p class="fc-news-status">သတင်းများ ရယူနေသည်…</p></div>
+ <p class="fc-news-illustration-note">ပုံများသည် သတင်းအကြောင်းအရာကို ကိုယ်စားပြုသည့် သရုပ်ဖော်ပုံများဖြစ်သည်။ အရင်းအမြစ်လင့်ခ်ကို သတင်းတစ်ပုဒ်ချင်းစီတွင် ဖော်ပြထားသည်။</p>
+</section>
+
    <nav class="date-tabs" id="dateTabs" aria-label="မြန်မာစံတော်ချိန်ဖြင့် ရက်စွဲရွေးရန်">
      <button type="button" data-day="-1">မနေ့ကရလဒ် <small id="dateYesterday"></small></button>
      <button type="button" data-day="0" class="active">ဒီနေ့ပွဲ <small id="dateToday"></small></button>
@@ -59,12 +66,7 @@
   <div class="fcj-ai-toolbar"><label for="fcjAiLeague">ပြိုင်ပွဲရွေးရန်</label><select id="fcjAiLeague"><option value="all">ပြိုင်ပွဲအားလုံး</option></select><span id="fcjAiDate"></span></div>
   <p id="fcjAiStatus" role="status">AI ခန့်မှန်းချက်များ ရယူနေသည်…</p><div id="fcjAiCards" class="fcj-ai-grid"></div>
 </section>
-<section class="fc-news-section" id="fcNewsSection" aria-labelledby="fcNewsTitle" data-news-url="../data/news/latest.json">
- <div class="fc-news-header"><div><span class="fc-news-eyebrow">GOAL ZONE · FOOTBALL NEWS</span><h2 id="fcNewsTitle">ယနေ့ ဘောလုံးသတင်း သီးသန့်</h2><p class="fc-news-window" id="fcNewsWindow">သတင်းများ ရယူနေသည်…</p></div><span class="fc-news-count" id="fcNewsCount" aria-live="polite"></span></div>
- <nav class="fc-news-filters" id="fcNewsFilters" aria-label="သတင်းအမျိုးအစားရွေးရန်"></nav>
- <div class="fc-news-grid" id="fcNewsGrid" aria-live="polite"><p class="fc-news-status">သတင်းများ ရယူနေသည်…</p></div>
- <p class="fc-news-illustration-note">ပုံများသည် သတင်းအကြောင်းအရာကို ကိုယ်စားပြုသည့် သရုပ်ဖော်ပုံများဖြစ်သည်။ အရင်းအမြစ်လင့်ခ်ကို သတင်းတစ်ပုဒ်ချင်းစီတွင် ဖော်ပြထားသည်။</p>
-</section></main>
+</main>
 <footer><div class="container footer-inner"><div><strong>ဂိုးဇုံ <span>အားကစား ဂျာနယ်</span></strong></div><p>နေ့စဉ် အကြောင်းအရာအသစ်တင်သည့် စာမျက်နှာ</p></div></footer>
 </body>
 </html>

@@ -9,6 +9,8 @@ test("Football news is shown only on the Future Code main and Goal Zone journal 
  }
  assert.match(main,/data-news-url="\.\/data\/news\/latest\.json"/);
  assert.match(goalZone,/data-news-url="\.\.\/data\/news\/latest\.json"/);
+ assert.ok(main.indexOf("</nav>",main.indexOf('id="dateTabs"'))<main.indexOf('id="fcNewsSection"'));
+ assert.ok(goalZone.indexOf("</nav>",goalZone.indexOf('class="fcj-quick-nav"'))<goalZone.indexOf('id="fcNewsSection"'));
  for(const brand of ["ykz-family","bw-sport","ko-thet-family"]){
   const html=read(`${brand}/index.html`);
   assert.doesNotMatch(html,/news-section\.css|news-section\.js|fcNewsSection|data\/news\/latest/);

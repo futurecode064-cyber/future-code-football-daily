@@ -46,7 +46,7 @@
       updateTodayTitle();
     }
     function scrollToNav(){
-      // New content appears immediately below the five navigation cards.
+      // The selected news section appears immediately below the main navigation.
       // Focus stays on the clicked item; never scroll into hidden panels.
       nav.scrollIntoView({block:"start",behavior:"auto"});
     }
