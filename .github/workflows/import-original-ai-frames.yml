@@ -1,0 +1,40 @@
+name: Import original user-provided AI frame artwork
+on:
+  push:
+    paths:
+      - ".github/workflows/import-original-ai-frames.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-frames:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Download uploaded frame originals and verify their exact pixel files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p football-daily/assets/ai-frames
+          curl -fLsS --retry 3 --connect-timeout 20 --max-time 120 "https://futurecodeaistudio.floot.app/_cdn/static/b45c01bb-fb3e-474c-9b5a-d47febefcfa1-fc-ai-best-your-choice-reference.png" -o football-daily/assets/ai-frames/best-your-choice-upload.png
+          curl -fLsS --retry 3 --connect-timeout 20 --max-time 120 "https://futurecodeaistudio.floot.app/_cdn/static/be5af319-abbd-4a68-8ea2-b7261c73f871-fc-ai-final-goal-reference.png" -o football-daily/assets/ai-frames/final-goal-upload.png
+          curl -fLsS --retry 3 --connect-timeout 20 --max-time 120 "https://futurecodeaistudio.floot.app/_cdn/static/349046e0-74f3-4bab-b554-8a437e288932-fc-ai-special-one-reference.png" -o football-daily/assets/ai-frames/special-one-upload.png
+          printf '%s\n' \
+            "bda23c7b05f57a1b923240d79ed14c8193f702efee7c25c300c1db199129276c  football-daily/assets/ai-frames/best-your-choice-upload.png" \
+            "63441c0fbf436fc53fd57d44782ba3d7a3c04d6b5997531e34b6765b33f20155  football-daily/assets/ai-frames/final-goal-upload.png" \
+            "9bc5ed72f2345a1a4fbab74c815b52c483cd30d661a11854cc9e1dc8c46e5bf6  football-daily/assets/ai-frames/special-one-upload.png" | sha256sum -c -
+      - name: Save original frame files inside this repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add football-daily/assets/ai-frames/*.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Add exact user-uploaded AI frame art for Final Goal, Special One and Best Your Choice"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
