@@ -114,9 +114,17 @@
     }
     return out;
   }
+  const AI_COLOURS={
+    standard:{base:"#06114d",header:"#081a6d",league:["#030784","#183bfa","#090979"],footer:"#09166c"},
+    best:{base:"#051597",header:"#0815b0",league:["#0715b5","#1f45ff","#0715b5"],footer:"#0615a5"},
+    final:{base:"#503000",header:"#755007",league:["#533200","#b88a17","#5e3600"],footer:"#644000"},
+    special:{base:"#083955",header:"#0b567c",league:["#084766","#2b9aca","#074c73"],footer:"#0d5379"}
+  };
+  const AI_BRAND={best:"BEST YOUR CHOICE",final:"FINAL GOAL",special:"SPECIAL ONE GROUP"};
   async function savePage(page,opts={}){
   if(!page?.matchCount)throw Error("No matches to export");
   const {date,part=1,total=1,scope="all",predict,leagueLabel,leagueLogo,teamName,teamLogo,displayTime}=opts;
+   const theme=AI_COLOURS[opts.frame]||AI_COLOURS.standard;
   if(typeof predict!=="function")throw Error("Prediction model unavailable");
   let canvas=document.createElement("canvas");const size=dim(page);
   canvas.width=size.width;canvas.height=size.height;
@@ -133,16 +141,16 @@
   await Promise.all(images);
   const pic=url=>cache.get(safeHttps(window.FutureCodeMainLogoAssets?.imageUrl(url)||url));
   const loaded=async url=>pic(url)?await pic(url):null;
-  rect(ctx,0,0,WIDTH,size.height,"#06114d");
-  rect(ctx,0,0,WIDTH,HEADER,"#081a6d");
-  text(ctx,"FUTURE CODE FOOTBALL  ·  AI ခန့်မှန်းချက်များ",20,51,900,34,"left");
+  rect(ctx,0,0,WIDTH,size.height,theme.base);
+  rect(ctx,0,0,WIDTH,HEADER,theme.header);
+  text(ctx,(AI_BRAND[opts.frame]||"FUTURE CODE FOOTBALL")+"  ·  AI ခန့်မှန်းချက်များ",20,51,900,34,"left");
   text(ctx,date||"",WIDTH-22,46,215,23,"right","#f8d692");
   text(ctx,"ပွဲ "+page.matchCount+" ပွဲ    ·    PNG "+part+"/"+total,WIDTH-22,93,360,23,"right","#d9e4ff");
   let y=HEADER;
   const borders="#c7d1e4",scoreX=[782,948,1114],scoreW=166;
   for(const group of page.groups){
    const grad=ctx.createLinearGradient(0,y,WIDTH,y);
-   grad.addColorStop(0,"#030784");grad.addColorStop(.45,"#183bfa");grad.addColorStop(1,"#090979");
+   grad.addColorStop(0,theme.league[0]);grad.addColorStop(.45,theme.league[1]);grad.addColorStop(1,theme.league[2]);
    rect(ctx,0,y,WIDTH,LEAGUE_H,grad);
    rect(ctx,10,y+9,67,66,"#fff");
    imageOrFallback(ctx,await loaded(leagueLogo?.(group.league)),17,y+16,52,52);
@@ -174,8 +182,8 @@
     y+=ROW_H;
    }
   }
-  rect(ctx,0,size.height-FOOTER,WIDTH,FOOTER,"#09166c");
-  text(ctx,"FUTURE CODE  •  MYANMAR FOOTBALL DAILY",20,size.height-23,670,19,"left","#e1ebff");
+  rect(ctx,0,size.height-FOOTER,WIDTH,FOOTER,theme.footer);
+  text(ctx,AI_BRAND[opts.frame]||"FUTURE CODE  •  MYANMAR FOOTBALL DAILY",20,size.height-23,670,19,"left","#e1ebff");
   text(ctx,scope==="all"?"ALL LEAGUES":String(scope),WIDTH-20,size.height-23,460,19,"right","#eedca6");
   canvas=await brandCanvas(canvas,opts.frame);
    const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));
