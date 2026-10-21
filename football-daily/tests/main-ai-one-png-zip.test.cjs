@@ -30,7 +30,7 @@ test("all-four-frame ZIP preserves one PNG per frame and same full selection",()
  assert.match(html,/id="fcAiSelectedAllFramesZip"/);
  assert.match(html,/frame-zip\.js/);
  assert.match(js,/FutureCodeFrameZip\.Archive/);
- assert.match(js,/exporter\.planSinglePage\(publishedFixtures\(\),\[\.\.\.exportLeagues\]\)/);
+ assert.match(js,/FutureCodeAiBulkExport\?\.planSinglePage\(publishedFixtures\(\),\[\.\.\.exportLeagues\]\)/);
  assert.match(js,/await exporter\.renderBlob\(page,singleOptions\(frame,scope\)\)/);
  assert.match(js,/await archive\.add\("ai-predictions-"/);
  assert.match(js,/archive\.finish\(\)/);
