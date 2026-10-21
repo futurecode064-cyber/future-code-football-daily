@@ -35,7 +35,7 @@ test("all-four-frame ZIP preserves one PNG per frame and same full selection",()
  assert.match(js,/await archive\.add\("ai-predictions-"/);
  assert.match(js,/archive\.finish\(\)/);
  assert.match(renderer,/return blob;/);
- assert.match(renderer,/canvas=await brandCanvas\(canvas,opts\.frame\)/);
+ assert.match(renderer,/canvas=await brandCanvas\(canvas,opts\.frame,\{date,matchCount:page\.matchCount\}\)/);
  assert.match(renderer,/FutureCodeMainLogoAssets\?\.imageUrl\(url\)/);
  for(const site of ["bw-sport","ykz-family","ko-thet-family"])assert.ok(!read(site+"/index.html").includes("fcAiSelectedAllFramesZip"));
 });
