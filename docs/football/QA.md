@@ -19,7 +19,7 @@ Source base: 02103874457602b36c2c08bc07eb23e917d56d0c. No daily content generate
 | Owner/CSRF/secret handling | existing session required; secret forwarded only in service binding |
 | Server validation | existing owner editorial rules retained; explicit source/download QA evidence required |
 | Free CPU/D1/edge usage | NOT measured in Cloudflare |
-| Worker/D1 deployment | NOT attempted; account authentication missing |
+| Worker/D1 deployment | NOT attempted; secure Google login returned Cloudflare sign-in failure |
 | Five-site live API integration | NOT implemented/activated yet |
 | Actual downloaded PNG/mobile/APK WebView with new API | NOT tested |
 | Live no-build publication/history verification | NOT tested |
@@ -30,3 +30,7 @@ existing football facts are correct. Legacy pending editorial flags were preserv
 The new code does not fix or republish the existing daily report.
 The API has no GitHub/network publisher calls. This establishes separation in implementation;
 it does not prove real production deployment history until staging/account tests run.
+
+Remote CI on implementation commit 535e1bc0e322b765a53b6c121ba9ffde310963c6:
+- Football Engine Migration Checks: success, https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39736172739
+- Pages Worker Routing Safety Tests: success, https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39736172651

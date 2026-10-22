@@ -22,7 +22,9 @@ Production cutover: not performed. Legacy delivery workflow: not invoked.
 - Confirmed no changes to any existing daily data file. No new content creation/publication.
 
 ## Pending, with exact blockers
-AUTH-01: Dashboard in this browser shows sign-in; no Cloudflare token in runtime.
+AUTH-01: Secure Google sign-in was attempted with the selected saved account. Cloudflare returned
+  “Unable to sign in. Try again or use your email and password.” No signed-in dashboard was verified;
+  no Cloudflare token is configured. Automated sign-in stopped after that error.
   Next: secure browser authentication, verify actual account/projects/limits/bindings and deployment.
 DEPLOY-01: no staging Worker/D1 provisioned; endpoint/database IDs in project.json intentionally null.
   Next: follow DEPLOYMENT.md steps 1–5, record actual returned IDs, migrate copies only.
@@ -41,3 +43,10 @@ Never run the embedded START NOW in either reference attachment as a new content
 Do not start a replacement application or change existing themes/login/PNG layouts.
 After runtime deployment is verified, update project.json endpoint/status and adjust One-Shot branch
 if merged to main. Keep references versioned. Changing editorial rules requires reviewed hash updates.
+
+## Remote verification
+GitHub implementation commit: 535e1bc0e322b765a53b6c121ba9ffde310963c6.
+Draft PR: https://github.com/futurecode064-cyber/future-code-football-daily/pull/36
+GitHub Football Engine Migration Checks: SUCCESS, run 39736172739.
+GitHub Pages Worker Routing Safety Tests: SUCCESS, run 39736172651.
+No production sync/build/deployment was requested. Cloudflare runtime registry remains not-deployed.

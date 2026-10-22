@@ -13,7 +13,8 @@ Never rely on older README claims of a 30-minute scheduled mirror.
 ## Deployment blocker
 Cloudflare Dashboard showed the sign-in screen. No Cloudflare token/account ID is configured in
 this execution environment. No Cloudflare plugin was available in discovery. Do not invent D1 IDs,
-Worker hostnames, metric values, deployments or authentication status. Complete secure sign-in first.
+Worker hostnames, metric values, deployments or authentication status. A secure Google sign-in attempt returned “Unable to sign in. Try again or use your email and password.”
+Automated sign-in stopped after the generic failure. Authentication remains unresolved.
 
 ## Exact next steps after authentication
 1. Inspect account plan/usage and existing Pages project, production branch/source, bindings and secrets

@@ -51,7 +51,13 @@
     "legacyDeliveryBranch": "football-daily-render",
     "pagesOutputDirectory": "football-daily",
     "existingAuthenticationChanged": false,
-    "dailyContentCreatedOrPublished": false
+    "dailyContentCreatedOrPublished": false,
+    "lastAuthenticationAttempt": {
+      "method": "Google",
+      "result": "failed",
+      "message": "Unable to sign in. Try again or use your email and password.",
+      "dashboardSessionVerified": false
+    }
   },
   "next": "Secure Cloudflare authentication, account audit, staging setup, real-payload CPU/storage checks, frontend integration and full staging QA before production cutover approval"
 }
