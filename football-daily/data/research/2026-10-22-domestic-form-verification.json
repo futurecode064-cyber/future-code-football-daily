@@ -1528,12 +1528,121 @@
     },
     {
       "club": "Celta Vigo",
-      "league": "spa.1",
+      "league": "esp.1",
       "row": 11,
       "side": "away",
-      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/spa.1/teams/85/schedule?season=2026",
-      "status": "target_http_error",
-      "games": []
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/85/schedule?season=2026",
+      "status": "ok",
+      "games": [
+        {
+          "date": "2026-10-18",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Alavés",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882845"
+        },
+        {
+          "date": "2026-10-11",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Elche",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882854"
+        },
+        {
+          "date": "2026-09-19",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Racing Santander",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882864"
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Málaga",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882885"
+        },
+        {
+          "date": "2026-09-07",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Getafe",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882891"
+        },
+        {
+          "date": "2026-09-03",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Real Sociedad",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882867"
+        },
+        {
+          "date": "2026-08-30",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Athletic Club",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+          "teamGoals": 0,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882905"
+        },
+        {
+          "date": "2026-08-27",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Osasuna",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+          "teamGoals": 1,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882924"
+        },
+        {
+          "date": "2026-08-22",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Valencia",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882907"
+        }
+      ]
     },
     {
       "club": "Jagiellonia",
@@ -1758,12 +1867,121 @@
     },
     {
       "club": "Real Sociedad",
-      "league": "spa.1",
+      "league": "esp.1",
       "row": 13,
       "side": "away",
-      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/spa.1/teams/89/schedule?season=2026",
-      "status": "target_http_error",
-      "games": []
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/89/schedule?season=2026",
+      "status": "ok",
+      "games": [
+        {
+          "date": "2026-10-18",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Málaga",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+          "teamGoals": 5,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882841"
+        },
+        {
+          "date": "2026-10-11",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Deportivo",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882847"
+        },
+        {
+          "date": "2026-09-20",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Valencia",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882858"
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Atlético Madrid",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882879"
+        },
+        {
+          "date": "2026-09-07",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Elche",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882893"
+        },
+        {
+          "date": "2026-09-03",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Celta Vigo",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882867"
+        },
+        {
+          "date": "2026-08-29",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Espanyol",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/88.png",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882898"
+        },
+        {
+          "date": "2026-08-26",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Real Madrid",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+          "teamGoals": 1,
+          "opponentGoals": 4,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882919"
+        },
+        {
+          "date": "2026-08-21",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Real Betis",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882914"
+        }
+      ]
     },
     {
       "club": "Celje",
@@ -2615,12 +2833,121 @@
     },
     {
       "club": "Getafe",
-      "league": "spa.1",
+      "league": "esp.1",
       "row": 22,
       "side": "home",
-      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/spa.1/teams/2922/schedule?season=2026",
-      "status": "target_http_error",
-      "games": []
+      "sourceUrl": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/2922/schedule?season=2026",
+      "status": "ok",
+      "games": [
+        {
+          "date": "2026-10-19",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Rayo Vallecano",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/101.png",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882842"
+        },
+        {
+          "date": "2026-10-10",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Barcelona",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882853"
+        },
+        {
+          "date": "2026-09-20",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Málaga",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882861"
+        },
+        {
+          "date": "2026-09-17",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Real Betis",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882874"
+        },
+        {
+          "date": "2026-09-13",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Deportivo",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882884"
+        },
+        {
+          "date": "2026-09-07",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Celta Vigo",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882891"
+        },
+        {
+          "date": "2026-08-31",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Osasuna",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882901"
+        },
+        {
+          "date": "2026-08-23",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Racing Santander",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882911"
+        },
+        {
+          "date": "2026-08-15",
+          "competition": "2026-27 Spanish LaLiga",
+          "opponent": "Alavés",
+          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+          "teamGoals": 0,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882926"
+        }
+      ]
     },
     {
       "club": "Lugano",
@@ -4293,8 +4620,8 @@
   ],
   "meta": {
     "total": 72,
-    "teamsWithFiveDomestics": 40,
-    "teamsWithSome": 40,
-    "errorCount": 27
+    "teamsWithFiveDomestics": 43,
+    "teamsWithSome": 43,
+    "errorCount": 24
   }
 }
