@@ -1,0 +1,41 @@
+name: Football Disposable Synthetic E2E QA
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  qa:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-synthetic-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+        working-directory: services/football-engine
+      - name: Provision separate managed synthetic-only QA Worker/D1 and test full publish cycle
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+        run: node scripts/football/qa-remote-synthetic.mjs football-qa-synthetic-report.json
+      - name: Save clear synthetic-only QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-qa-synthetic-report
+          path: football-qa-synthetic-report.json
+          retention-days: 14
+          if-no-files-found: warn
+# Dedicated 'qa-smoke' assets only; no changes to original staging, existing databases or production.
+# QA fixture explicitly fake; passed gates are ENGINE TESTS, not editorial approvals.
+# Workflow deliberately fails on repeat invocation if QA resource names exist; inspect, never overwrite.
