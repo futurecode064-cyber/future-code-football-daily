@@ -10,12 +10,12 @@
  let storage=null;try{storage=root.localStorage;}catch{}
  const client=api.createClient({config:root.FC_FOOTBALL_ENGINE||{},assetRoot:assetRoot.href,pageUrl:root.location.href,
   brand:brands[relative]||'main',fetcher:root.fetch.bind(root),storage,onState:state=>{
-   if(!state.stale)return;
+   if(!state.stale&&!state.draft)return;
    const show=()=>{
     let note=root.document.getElementById('footballDataNotice');
     if(!note){note=root.document.createElement('p');note.id='footballDataNotice';note.setAttribute('role','status');
      note.style.cssText='margin:0;padding:12px 16px;background:#332914;color:#fff2c4;font-size:13px;line-height:1.8';root.document.body.prepend(note);}
-    note.textContent=state.fallback?'ချိတ်ဆက်မှု မရသဖြင့် Website တွင် သိမ်းထားသော ဒေတာကို ပြသနေသည်။ ရက်စွဲကို စစ်ဆေးပါ။':
+    note.textContent=state.draft?(state.error?'Draft ဖွင့်မရပါ။ Owner login နှင့် Version ကို စစ်ဆေးပါ။':'OWNER DRAFT PREVIEW — မထုတ်ဝေရသေးသော Version '+state.version):state.fallback?'ချိတ်ဆက်မှု မရသဖြင့် Website တွင် သိမ်းထားသော ဒေတာကို ပြသနေသည်။ ရက်စွဲကို စစ်ဆေးပါ။':
      'ချိတ်ဆက်မှု မရသဖြင့် နောက်ဆုံးသိမ်းထားသော ဒေတာကို ပြသနေသည်။ သိမ်းချိန် — '+state.fetchedAt;
    };
    if(root.document.body)show();else root.document.addEventListener('DOMContentLoaded',show,{once:true});
@@ -57,13 +57,26 @@
  }
  function createClient({config={},assetRoot,pageUrl,brand='main',fetcher=fetch,storage=null,onState=()=>{},now=new Date()}){
   const base=new URL(assetRoot),page=new URL(pageUrl),today=dayKey(now),yesterday=dayKey(now,-1);
+  const draft=page.searchParams.get('fcDraft');
+  async function privateDraft(){
+   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeoutMs||10000);
+   try{
+    if(!/^[a-f0-9-]{36}$/.test(draft))throw Error('Invalid draft version');
+    const url=new URL('api/editor/engine/draft',base);url.searchParams.set('version',draft);
+    const r=await fetcher(url,{credentials:'same-origin',cache:'no-store',signal:controller.signal});
+    if(!r.ok)throw Error('Owner draft unavailable');const b=await r.json();
+    if(b.version?.id!==draft||!b.resources?.['data/today.json'])throw Error('Incomplete draft');
+    const resources={...b.resources};if(!['main','goal-zone'].includes(brand))for(const p of Object.keys(resources))if(p.includes('/news/'))delete resources[p];
+    return {draft:true,version:draft,resources,stale:false};
+   }catch{return {draft:true,stale:true,error:'Owner draft unavailable',resources:{}};}finally{clearTimeout(timer);controller.abort();}
+  }
   const query=page.searchParams.get('date'),oddsDay=/^\d{4}-\d{2}-\d{2}$/.test(query||'')?query:today;
   const optionalPaths=[`data/archive/${yesterday}.json`,`data/fixtures/${today}.json`,`data/fixtures/${yesterday}.json`,
    `data/odds/${oddsDay}.json`,`data/odds/evening/${oddsDay}.json`];
   if(oddsDay!==today)optionalPaths.push(`data/odds/${today}.json`,`data/odds/evening/${today}.json`);
   if(['main','goal-zone'].includes(brand))optionalPaths.push('data/news/latest.json');
   let pending;
-  const ready=()=>pending||(pending=(config.enabled===true?
+  const ready=()=>pending||(pending=(draft?privateDraft():config.enabled===true?
    loadPublishedBundle({apiBase:config.apiBase,paths:['data/today.json'],optionalPaths,brand,fetcher,storage,timeoutMs:config.timeoutMs||10000}):
    Promise.resolve({fallback:'static',stale:false})).then(state=>{onState(state);return state;}));
   return {ready,async fetch(input,init){
@@ -71,6 +84,7 @@
    const path=url.pathname.startsWith(base.pathname)?url.pathname.slice(base.pathname.length):'';
    if(url.origin!==base.origin||!/^data\/(?:today\.json|(?:archive|fixtures|odds|odds\/evening)\/\d{4}-\d{2}-\d{2}\.json|news\/latest\.json)$/.test(path))return fetcher(input,init);
    const state=await ready();if(state.fallback)return fetcher(input,init);
+   if(state.draft&&state.error)return jsonResponse({error:state.error},503);
    if(init?.signal?.aborted)throw new DOMException('Aborted','AbortError');
    if(!own(state.resources,path))return jsonResponse({error:'Resource absent from page publication'},404);
    return jsonResponse(state.resources[path],200,{'X-Football-Version':state.version,'Cache-Control':'no-store'});

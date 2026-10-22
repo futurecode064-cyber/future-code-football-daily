@@ -3,7 +3,7 @@
   "currentTask": "infrastructure-migration-only",
   "repository": "futurecode064-cyber/future-code-football-daily",
   "checkpointBranch": "football-engine/workers-d1-migration",
-  "auditedSourceCommit": "02103874457602b36c2c08bc07eb23e917d56d0c",
+  "auditedSourceCommit": "09aca1257a295f1a8b935f30a204b8dc5842e630",
   "timezone": "Asia/Yangon",
   "editorialReferenceOnly": true,
   "references": [
@@ -17,7 +17,7 @@
     },
     {
       "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
-      "sha256": "e1728e1794838bf278c2076bdb295a15e44d4e82a7c08c92e906709a43854332"
+      "sha256": "54b6dcc25ac6684444486e61bc399f93bcaf8e2e8f72b886316d580cea2d040e"
     },
     {
       "path": "config/football/validation-rules.json",
@@ -136,7 +136,14 @@
       "affectedFixtureCount": 4,
       "realEditorialQaComplete": false,
       "sourceFile": "docs/football/CURATION_QA_2026_10_22.md"
+    },
+    "ownerPreview": {
+      "status": "implementation-prepared-not-yet-verified",
+      "workerName": "future-code-football-owner-preview",
+      "workflow": ".github/workflows/football-engine-owner-qa.yml",
+      "triggerLabel": "football-engine-owner-qa",
+      "productionModified": false
     }
   },
-  "next": "Keep production disabled; owner must install independent recovery secret, then full real 36-row PDF/editorial, authenticated owner, hosted quota, PNG/frame/video/WebView QA and explicit cutover approval."
+  "next": "Verify isolated hosted owner proxy and unchanged latest public snapshot browser/download parity; complete quota, durable encrypted backup and concrete cutover plan. Production remains disabled pending final approval and actual Pages binding access."
 }

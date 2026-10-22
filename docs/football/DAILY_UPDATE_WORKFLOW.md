@@ -1,7 +1,8 @@
 # Persistent daily workflow
 
 ## Current operational state
-The new Worker/D1 API has NOT been deployed or connected to the five sites.
+An isolated staging Worker/D1 API exists; production is NOT connected to the five sites.
+Staging endpoints and successful run IDs are under deployment in project.json.
 Until `config/football/project.json` says `live-verified`, do not attempt a new API
 publication, invent an endpoint, or silently fall back to the legacy GitHub publisher.
 The current infrastructure task does not authorize creating today's football content.
@@ -31,7 +32,9 @@ instead of the actual registry, API manifest, account dashboard and live sites.
    `backup-publication.mjs` then `prepare-draft-preview.mjs` to render an isolated copy of the selected
    snapshot with the existing five-brand renderers. Keep the preview local or verified owner-only;
    never host a private draft publicly. Compare all five brands, actual PNG/video downloads and mobile.
-   Live staging/browser/download QA is still pending; local JSON parity is not download QA.
+   Authenticated owner previews use ?fcDraft=VERSION on existing report/odds pages.
+   They fetch only the private owner-session proxy, never cache private drafts or silently use static data.
+   See current QA evidence in PROGRESS.md; source parity alone is not download QA.
 7. POST `/api/admin/validate` with version and evidence for every required review gate.
    Structural/editorial server validation and human/source evidence are complementary.
    Never fill passed flags until that review actually happened. Migration mode is for an unchanged

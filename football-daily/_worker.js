@@ -189,7 +189,7 @@ function nextPage(raw) {
       raw.includes("\\") || raw.includes("\r") || raw.includes("\n")) return "/";
   try {
     const parsed = new URL(raw, "https://future-code-login.invalid");
-    if (parsed.origin !== "https://future-code-login.invalid" || !(MAIN_PATHS.has(parsed.pathname) || GZ_STATS_PATHS.has(parsed.pathname) || parsed.pathname === "/editor/" || parsed.pathname === "/editor/setup.html")) return "/";
+    if (parsed.origin !== "https://future-code-login.invalid" || !(MAIN_PATHS.has(parsed.pathname) || GZ_STATS_PATHS.has(parsed.pathname) || parsed.pathname === "/editor/" || parsed.pathname === "/editor/setup.html" || parsed.pathname === "/editor/engine.html")) return "/";
     return parsed.pathname + parsed.search;
   } catch { return "/"; }
 }
