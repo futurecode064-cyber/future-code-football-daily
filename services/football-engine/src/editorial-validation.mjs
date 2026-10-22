@@ -2,7 +2,7 @@
 import {dateValid} from './validation.mjs';
 // Never count friendly/exhibition/pre-season games in competitive last-five form.
 export function isNonCompetitiveFormMatch(competition){
- return /\\b(?:friendlies|friendly|exhibition|testimonial|pre[\\s-]?season)\\b|ခြေစမ်း/iu.test(String(competition||''));
+ return /\b(?:friendlies|friendly|exhibition|testimonial|pre[\s-]?season)\b|ခြေစမ်း/iu.test(String(competition||''));
 }
 const EDITOR_LEAGUE_SIZES = {'Premier League':20,Championship:24,'League One':24,'La Liga':20,'La Liga 2':22,'Serie A':20,'Serie B':20,Bundesliga:18,'2. Bundesliga':18,'Ligue 1':18,'Ligue 2':18};
 
