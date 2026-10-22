@@ -34,7 +34,8 @@ async function checkPage(page,brand,route,viewport,type){
  const engine=await page.evaluate(async()=>{
   if(!window.FootballData) return {missingEngine:true};
   const state=await window.FootballData.ready();
-  const fetched=await window.FootballData.fetch(new URL('data/today.json',document.currentScript?.src||document.baseURI).href);
+  const loaderScript=document.querySelector('script[src*="football-data-client.js"]');
+  const fetched=await window.FootballData.fetch(new URL('data/today.json',loaderScript?.src||document.baseURI).href);
   const data=await fetched.json().catch(()=>null);
   return {enabled:window.FC_FOOTBALL_ENGINE?.enabled===true,version:state?.version||null,stale:state?.stale,
     fallback:state?.fallback||null,sourceStatus:fetched.status,date:data?.reportDate,count:data?.matches?.length,
