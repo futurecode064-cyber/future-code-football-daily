@@ -1,0 +1,45 @@
+name: Football Synthetic Video Preview Download QA
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  video-qa:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-video-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Build isolated local site copy (no Cloudflare deploy)
+        run: |
+          mkdir -p /tmp/football-video-qa-site
+          node scripts/football/prepare-staging.mjs football-daily /tmp/football-video-qa-site/site https://future-code-football-engine-qa-smoke.futurecode-dubai-86851bf2.workers.dev
+          python3 -m http.server 8788 --bind 127.0.0.1 -d /tmp/football-video-qa-site/site >/tmp/football-video-qa-site/server.log 2>&1 &
+      - name: Test visible Video Studio, actual canvas preview and download a real video file
+        env:
+          FOOTBALL_VIDEO_QA_OUTPUT: football-video-qa-evidence
+        run: node scripts/football/qa-video-synthetic.mjs
+      - name: Store video file and QA report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-video-qa-evidence
+          path: football-video-qa-evidence/
+          retention-days: 7
+          if-no-files-found: warn
+# Synthetic QA data only, no production or original staging changes.
