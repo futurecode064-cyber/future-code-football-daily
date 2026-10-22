@@ -109,3 +109,24 @@ only fixed staging names, refuses unowned name conflicts, migrates existing sour
 drafts, checks deployment IDs remain unchanged during imports, and verifies a temporary full D1 export.
 Random staging admin credentials remain in the runner and staging Worker secret store. No production
 secrets/routes/bindings change, no daily content activation, and no paid-plan operations are included.
+
+## Verified remote staging deployment — 2026-10-22 14:43 Myanmar
+- Read-only Cloudflare access succeeded earlier in run 39745156542.
+- Isolated staging workflow run 39746102616 **SUCCESS**, job 119714820014, at 2026-10-22T08:13:43Z.
+- Managed Worker: future-code-football-engine-staging; D1: future-code-football-db-staging.
+- Public staging origin: https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev
+- Staging D1 ID (not a credential): a4ddc00f-411b-4ee5-ab4a-dfe13486c334.
+- Migrations applied; Worker deployed; health verified. 36 existing JSON resources imported into
+  **private**, unpublished drafts in 3 batches, all JSON values equal.
+- Unauthorized owner API blocked; unpublished draft hidden. Admin export matches the imported snapshot.
+- During data-only imports Worker deployment IDs unchanged.
+- Staging runner exported a full D1 SQL snapshot and verified its SHA-256, but the SQL file was
+  **not retained** after the temporary runner ended. Durable private backup remains pending.
+- Recorded JSON payload bytes 2,439,913; physical D1 size and hosted CPU still unverified.
+- Production modified: false. No content activated, no production cutover.
+- This checkpoint supersedes earlier AUTH-01 and DEPLOY-01 blockers for **staging only**.
+- Remaining: live read-only smoke, secure persistent backup target, validated staging publication
+  with real QA evidence, isolated five-brand browser/PNG/video/mobile testing, measured CPU/rows,
+  stable private owner access, and production cutover only after approval.
+- Staging credentials were ephemeral. Do NOT attempt an authenticated admin call with a guessed
+  token or rerun the provisioning workflow merely to rotate credentials.

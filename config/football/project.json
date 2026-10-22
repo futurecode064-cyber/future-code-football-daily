@@ -32,11 +32,11 @@
     "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
   },
   "api": {
-    "status": "not-deployed",
-    "publicBaseUrl": null,
+    "status": "staging-deployed-private-draft",
+    "publicBaseUrl": "https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev",
     "adminBaseUrl": null,
-    "workerName": null,
-    "databaseId": null,
+    "workerName": "future-code-football-engine-staging",
+    "databaseId": "a4ddc00f-411b-4ee5-ab4a-dfe13486c334",
     "intendedPublicPath": "/api/football",
     "intendedOwnerProxyPath": "/api/editor/engine/",
     "intendedPrivatePath": "/api/admin",
@@ -92,8 +92,12 @@
     "stagingSetupWorkflow": {
       "path": ".github/workflows/football-engine-staging.yml",
       "triggerLabel": "football-engine-stage",
-      "status": "prepared-not-run"
+      "status": "success-private-draft",
+      "runId": 39746102616,
+      "workerHealthVerified": true,
+      "resourcesImported": 36,
+      "productionModified": false
     }
   },
-  "next": "Run isolated managed staging setup through GitHub secret; verify actual Worker/D1 and unchanged private migration, then hosted profiling and five-brand download QA before cutover"
+  "next": "Staging is provisioned with 36 private draft JSON resources; run non-mutating live smoke, then secure and perform actual five-brand staged QA, private backup, CPU/row profiling and approved cutover."
 }
