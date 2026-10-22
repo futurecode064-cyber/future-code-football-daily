@@ -30,7 +30,7 @@ test("All original PDF morning prices remain paired with each match, and sourced
   for(const key of ['currentBodyOdds','currentGoalTotalOdds']){
    const value=o[key]??'';
    assert.equal(typeof value,'string',key+' must remain a string');
-   assert.ok(value===''||/^(?:-\\d+|\\d+[+-]\\d+|\\d+=)$/.test(value),
+   assert.ok(value===''||/^(?:-\d+|\d+[+-]\d+|\d+=)$/.test(value),
     'invalid evening odds '+m.pdfRow+' '+key+': '+value);
   }
  }
