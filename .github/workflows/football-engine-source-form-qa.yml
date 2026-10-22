@@ -1,0 +1,34 @@
+name: Football Real-Source Form Curation Draft QA
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  form-qa:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-source-form-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test services/football-engine/tests/curation-candidate.test.mjs
+      - name: Build review-only draft outside production source
+        run: node scripts/football/curate-reviewed-form-draft.mjs football-daily /tmp/football-reviewed-candidate
+      - name: Upload only candidate data and review report; no publish or commit of daily data
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-real-source-form-review-only
+          path: /tmp/football-reviewed-candidate/
+          retention-days: 14
+# Never calls Cloudflare API, doesn't publish, doesn't alter original 36-match data.
