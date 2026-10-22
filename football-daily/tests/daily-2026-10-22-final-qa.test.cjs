@@ -70,7 +70,7 @@ test("Special Choice remains two and ends exact requested line",()=>{
 });
 test("Keep all ten October 21 news items and original photos untouched",()=>{
  const raw=fs.readFileSync(path.join(root,"data/news/latest.json"));
- const blob=crypto.createHash("sha1").update(Buffer.from("blob "+raw.length+"\\0")).update(raw).digest("hex");
+ const blob=crypto.createHash("sha1").update(Buffer.concat([Buffer.from("blob "+raw.length),Buffer.from([0]),raw])).digest("hex");
  assert.equal(blob,"7dcd8ee04d98d3f541149c55830219f0c105eab9");
  const news=JSON.parse(raw);
  assert.equal(news.date,"2026-10-21");
