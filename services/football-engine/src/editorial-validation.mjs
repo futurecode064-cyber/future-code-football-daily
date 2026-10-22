@@ -4,6 +4,10 @@ import {dateValid} from './validation.mjs';
 export function isNonCompetitiveFormMatch(competition){
  return /\b(?:friendlies|friendly|exhibition|testimonial|pre[\s-]?season)\b|ခြေစမ်း/iu.test(String(competition||''));
 }
+function validSpecialEnding(raw){
+ const last=String(raw||'').trim();
+ return last==='ဒီပွဲကို ရွေးချယ်ပါတယ်'||/\\*\\*[^*]+\\s*ကို ရွေးချယ်ပါတယ်။\\*\\*$/.test(last);
+}
 const EDITOR_LEAGUE_SIZES = {'Premier League':20,Championship:24,'League One':24,'La Liga':20,'La Liga 2':22,'Serie A':20,'Serie B':20,Bundesliga:18,'2. Bundesliga':18,'Ligue 1':18,'Ligue 2':18};
 
 export function validateEditorial(bundle,day){
@@ -49,7 +53,7 @@ function editorErrors(bundle){
    if(prices.some(x=>!Number.isFinite(Number(x))||Number(x)<=1)||!m.oddsProvider||!editorUrl(m.oddsSourceUrl))e('1X2 သုံးခုလုံး ၁ ထက်ကြီးသောကြေးနှင့် bookmaker/source ဖြည့်ပါ');
   }
   if(m.specialChoice===true){if(!Number.isInteger(m.specialChoiceRank)||m.specialChoiceRank<1||ranks.has(m.specialChoiceRank))e('Special နံပါတ် မထပ်စေရ');ranks.add(m.specialChoiceRank);
-   const p=m.specialAnalysisParagraphs;if(!Array.isArray(p)||!p.length||p.some(x=>typeof x!=='string'||x.length>20000)||!/^.*\*\*[^*]+\s*ကို ရွေးချယ်ပါတယ်။\*\*$/.test(p[p.length-1]||''))e('Special စာမူကို bold ရွေးချယ်စာသားဖြင့် အဆုံးသတ်ပါ');
+   const p=m.specialAnalysisParagraphs;if(!Array.isArray(p)||!p.length||p.some(x=>typeof x!=='string'||x.length>20000)||!validSpecialEnding(p[p.length-1]))e('Special စာမူကို bold ရွေးချယ်စာသားဖြင့် အဆုံးသတ်ပါ');
   }
   const o=sheet.matches[i];if(!o||o.league!==m.league||o.canonicalHome!==m.home||o.canonicalAway!==m.away||o.home!==m.homeDisplay||o.away!==m.awayDisplay){e('ပွဲနှင့် ကြေး အသင်းအစဉ်မကိုက်ပါ');return;}
   for(const k of ['bodyOdds','goalTotalOdds'])if(typeof o[k]!=='string'||!o[k].trim()||o[k].length>40)e('မူလ '+k+' ဖြည့်ပါ');
