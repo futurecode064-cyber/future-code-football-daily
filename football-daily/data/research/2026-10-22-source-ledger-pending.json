@@ -7,29 +7,8 @@
   "dataKind": "UNPUBLISHED_QA_WORKING_COPY",
   "totalSourceRows": 37,
   "officialOct22Fixtures": 36,
-  "status": "PUBLISH_BLOCKED",
-  "blockers": [
-    {
-      "pdfRow": 19,
-      "issue": "Kairat Almaty vs Panathinaikos PDF kickoff 23:15 Myanmar differs official 16:30 CET / 21:00 Myanmar"
-    },
-    {
-      "pdfRow": 28,
-      "issue": "Riga vs Kairat Almaty already played 2026-10-15; final 1-1; duplicated outdated fixture"
-    },
-    {
-      "pdfRow": 29,
-      "issue": "Trabzonspor PDF opponent name does not match official Hearts fixture; Myanmar odds must NOT be transferred automatically"
-    },
-    {
-      "pdfRow": 9,
-      "issue": "Milan name truncated in parsed PDF to AC; validate glyphs against page image"
-    },
-    {
-      "pdfRow": 20,
-      "issue": "Upper-team W49 spelling differing within row; validate visually"
-    }
-  ],
+  "status": "OWNER_CORRECTIONS_APPLIED_RESEARCH_CONTINUES",
+  "blockers": [],
   "officialSources": [
     "https://www.uefa.com/uefaeuropaleague/news/02a8-2174cafa5bb6-82bbc20c9b92-1000--2026-27-europa-league-all-the-league-phase-fixtures-and-re/",
     "https://www.uefa.com/uefaconferenceleague/news/02a8-2174cb200f25-b94693ddff4e-1000--2026-27-conference-league-league-phase-fixtures/"
@@ -318,7 +297,8 @@
       "internetPrediction": "1-2",
       "nowBodyOdds": null,
       "nowTotalOdds": null,
-      "status": "BLOCKED_TIME_MISMATCH"
+      "status": "OWNER_CORRECTED_TIME",
+      "verifiedEditorialKickoff": "23:15"
     },
     {
       "id": "2026-10-22-p1-r20",
@@ -453,7 +433,8 @@
       "internetPrediction": "1-0",
       "nowBodyOdds": null,
       "nowTotalOdds": null,
-      "status": "BLOCKED_PAST_FIXTURE"
+      "status": "OWNER_REMOVED",
+      "includeInPublished": false
     },
     {
       "id": "2026-10-22-p1-r29",
@@ -468,7 +449,8 @@
       "internetPrediction": "2-0",
       "nowBodyOdds": null,
       "nowTotalOdds": null,
-      "status": "BLOCKED_OPPONENT_MISMATCH"
+      "status": "OWNER_CORRECTED_NAME",
+      "ownerApprovedAwayDisplay": "မစ်လိုသီရန်"
     },
     {
       "id": "2026-10-22-p1-r30",
@@ -590,5 +572,24 @@
       "nowTotalOdds": null,
       "status": "PENDING_QA"
     }
+  ],
+  "userCorrections": {
+    "source": "User explicitly approved three corrections on 2026-10-22",
+    "row19": {
+      "kickoff": "23:15 Asia/Yangon",
+      "priority": "owner correction"
+    },
+    "row28": {
+      "action": "exclude from all daily published lists"
+    },
+    "row29": {
+      "awayDisplay": "မစ်လိုသီရန်",
+      "canonicalEnglish": "Hearts",
+      "priority": "owner naming"
+    }
+  },
+  "publishableSourceRows": 36,
+  "rowsExcluded": [
+    28
   ]
 }
