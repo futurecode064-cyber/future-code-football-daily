@@ -86,7 +86,7 @@ async function activate(env,b,rollback=false){
  if(!Number.isInteger(b.expectedGeneration))fail(400,'expectedGeneration required');
  // Monotonic generation prevents lost writes and ABA races after rollbacks.
  const result=await statement(env.DB,'UPDATE active_publication SET version_id=?,generation=generation+1,changed_at=? WHERE singleton=1 AND generation=?'+(rollback?'':' AND version_id IS ?'),v.id,new Date().toISOString(),b.expectedGeneration,...(rollback?[]:[v.parent_id])).run();
- if(result.meta.changes!==1)fail(409,'Publication changed; reload and rebase draft');
+ if(!(result.meta?.changes>=1))fail(409,'Publication changed; reload and rebase draft');
  return json({version:v.id,generation:b.expectedGeneration+1,rollback});
 }
 async function publicGet(request,env,url){

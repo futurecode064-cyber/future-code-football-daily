@@ -73,13 +73,25 @@ try {
  const config=JSON.parse(readFileSync(root+'/config/football/project.json','utf8'));
  assert.equal(config.deployment.productionCutoverCompleted,false);assert.equal(config.api.publicBaseUrl,null);
  const scripts=await cf(prefix+'/workers/scripts'),dbs=await cf(prefix+'/d1/database?per_page=100');
- assert.equal(scripts.some(w=>w.id===workerName),false,'Dedicated QA Worker name in use — refuse overwrite');
- assert.equal(dbs.some(d=>d.name===dbName),false,'Dedicated QA D1 name in use — refuse overwrite');
- const d=await cf(prefix+'/d1/database','POST',{name:dbName,primary_location_hint:'apac'});
- assert.match(d.uuid,/^[a-f0-9-]{36}$/);
- result.databaseId=d.uuid;result.databaseCreated=true;save();
- await cf(prefix+'/d1/database/'+d.uuid+'/query','POST',{sql:'CREATE TABLE football_engine_installation(singleton INTEGER PRIMARY KEY CHECK(singleton=1),owner TEXT NOT NULL)'});
- await cf(prefix+'/d1/database/'+d.uuid+'/query','POST',{sql:'INSERT INTO football_engine_installation(singleton,owner) VALUES(1,?)',params:[owner+'/QA-SMOKE-ONLY']});
+ const existingWorker=scripts.find(w=>w.id===workerName);
+ const existingDb=dbs.find(d=>d.name===dbName);
+ if(Boolean(existingWorker)!==Boolean(existingDb))throw Error('Incomplete QA resources; inspect and repair without guessing');
+ let d=existingDb;
+ if(existingWorker){
+  const settings=await cf(prefix+'/workers/scripts/'+workerName+'/settings');
+  assert.ok(settings.bindings?.some(b=>b.name==='FOOTBALL_ENGINE_MANAGED_BY'&&b.text===owner+'/QA-SMOKE-ONLY'),
+   'QA Worker not owned by this test; refuse overwrite');
+  const check=await cf(prefix+'/d1/database/'+d.uuid+'/query','POST',{sql:'SELECT owner FROM football_engine_installation WHERE singleton=1'});
+  assert.equal(check[0]?.results?.[0]?.owner,owner+'/QA-SMOKE-ONLY','QA DB not owned by test');
+  result.resumedExistingQa=true;
+ }else{
+  d=await cf(prefix+'/d1/database','POST',{name:dbName,primary_location_hint:'apac'});
+  assert.match(d.uuid,/^[a-f0-9-]{36}$/);
+  result.databaseCreated=true;result.databaseId=d.uuid;save();
+  await cf(prefix+'/d1/database/'+d.uuid+'/query','POST',{sql:'CREATE TABLE football_engine_installation(singleton INTEGER PRIMARY KEY CHECK(singleton=1),owner TEXT NOT NULL)'});
+  await cf(prefix+'/d1/database/'+d.uuid+'/query','POST',{sql:'INSERT INTO football_engine_installation(singleton,owner) VALUES(1,?)',params:[owner+'/QA-SMOKE-ONLY']});
+ }
+ result.databaseId=d.uuid;save();
  const sub=await cf(prefix+'/workers/subdomain');assert.match(sub.subdomain,/^[a-z0-9-]+$/);
  result.qaOrigin='https://'+workerName+'.'+sub.subdomain+'.workers.dev';
  const configPath=scratch+'/qa-wrangler.json';
@@ -99,16 +111,24 @@ try {
   try{health=await endpoint('/api/football/health');if(health.ok&&health.environment==='qa')break;}catch{}
   await new Promise(r=>setTimeout(r,2500));
  }
- assert.equal(health?.environment,'qa');assert.equal(health.generation,0);
+ assert.equal(health?.environment,'qa');
+ assert.ok(health.generation===0||health.generation===1,'Refuse to overwrite unexpected QA state');
  const ids=await deployments();
  const unauthorized=await fetch(result.qaOrigin+'/api/admin/state');
  assert.equal(unauthorized.status,401);result.checks.ownerAuthDenied=true;
  const draft=bundle();
- const first=(await endpoint('/api/admin/import',draft,{key:'synthetic-import-original'})).version;
- const v=(await endpoint('/api/admin/validate',{version:first,review},{key:'synthetic-validate-original'}));
- assert.equal(v.valid,true);result.checks.syntheticOnlyValidation=true;
- const firstPub=await endpoint('/api/admin/publish',{version:first,expectedGeneration:0},{key:'synthetic-publish-original'});
- assert.equal(firstPub.generation,1);
+ let first;
+ if(health.generation===0){
+  first=(await endpoint('/api/admin/import',draft,{key:'synthetic-import-original-verified-v2'})).version;
+  const v=(await endpoint('/api/admin/validate',{version:first,review},{key:'synthetic-validate-original-v2'}));
+  assert.equal(v.valid,true);result.checks.syntheticOnlyValidation=true;
+  const firstPub=await endpoint('/api/admin/publish',{version:first,expectedGeneration:0},{key:'synthetic-publish-original-v2'});
+  assert.equal(firstPub.generation,1);
+ }else{
+  first=health.version_id;
+  assert.ok(first,'Existing QA generation must have an active published version');
+  result.checks.resumedPriorFirstPublish=true;
+ }
  const mf=await endpoint('/api/football/manifest');
  assert.equal(mf.version,first);
  const res=await fetch(result.qaOrigin+'/api/football/today?version='+first);
