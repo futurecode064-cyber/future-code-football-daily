@@ -4,6 +4,10 @@ on:
     types: [labeled]
 permissions:
   contents: read
+  actions: write
+concurrency:
+  group: football-owner-preview-qa
+  cancel-in-progress: true
 jobs:
   owner-preview:
     if: >-
@@ -23,15 +27,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - name: Stop superseded owner preview QA before touching shared test credentials
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/football/cancel-superseded-owner-qa.mjs
       - run: npm ci
         working-directory: services/football-engine
-      - run: |
+      - timeout-minutes: 5
+        run: |
           npm install --no-save --no-package-lock playwright@1.64.1
-          npx playwright install --with-deps chromium
+          command -v google-chrome
+
       - run: node --test services/football-engine/tests/*.test.mjs
       - name: Hosted isolated owner session, real unchanged private draft, five brands and downloads
         env:
           FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_QA_CHROME: /usr/bin/google-chrome
         run: node scripts/football/qa-owner-hosted.mjs football-owner-hosted-evidence
       - uses: actions/upload-artifact@v4
         if: always()

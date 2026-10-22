@@ -37,8 +37,8 @@
   const result=[];let resources={};const bytes=o=>new TextEncoder().encode(JSON.stringify(o)).length;
   const body=r=>({editorialDate:draft.editorialDate,expectedGeneration:generation,sourceManifest:draft.sourceManifest,...(baseDraft?{baseDraft}:{}),resources:r});
   for(const [path,value] of Object.entries(draft.resources)){
-   if(bytes(body({[path]:value}))>1100000)throw Error(path+': Resource တစ်ခု၏ ဖိုင်အရွယ်အစား ကြီးလွန်းသည်');
-   if(Object.keys(resources).length>=20||bytes(body({...resources,[path]:value}))>1100000){result.push(body(resources));resources={};}
+   if(bytes(body({[path]:value}))>400000)throw Error(path+': Resource တစ်ခု၏ ဖိုင်အရွယ်အစား ကြီးလွန်းသည်');
+   if(Object.keys(resources).length>=20||bytes(body({...resources,[path]:value}))>400000){result.push(body(resources));resources={};}
    resources[path]=value;
   }
   if(Object.keys(resources).length)result.push(body(resources));return result;

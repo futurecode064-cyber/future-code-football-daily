@@ -1,5 +1,5 @@
 // Read-only account/project scope diagnosis and real runtime metrics. Never prints API bodies or keys.
-import {writeFileSync} from 'node:fs';
+import {writeFileSync,readFileSync} from 'node:fs';
 const token=process.env.FOOTBALL_STAGING_CF_API_TOKEN,expected='86851bf21d81d8f0972052aff8162149';
 const report={kind:'read-only-football-release-preflight',productionModified:false,checkedAt:new Date().toISOString(),pages:{},tokenPolicy:{},metrics:{},subscriptions:{}};
 async function get(path){try{const r=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000),redirect:'error'});return {status:r.status,body:await r.json()};}catch{return {status:null,body:{}};}}
@@ -14,7 +14,8 @@ try{
   if(r.body.success&&r.body.result?.name==='future-code-football-daily'){const p=r.body.result;report.pages.matches.push({accountId:id,project:p.name,productionBranch:p.production_branch,sourceOwner:p.source?.config?.owner,sourceRepo:p.source?.config?.repo_name,outputDirectory:p.build_config?.destination_dir,deploymentId:p.latest_deployment?.id,environmentBindings:Object.fromEntries(Object.entries(p.deployment_configs||{}).map(([name,c])=>[name,{envNames:Object.keys(c.env_vars||{}),serviceBindings:Object.keys(c.services||{}),d1Bindings:Object.keys(c.d1_databases||{})}]))});}}
  report.pages.readable=report.pages.matches.length>0;
  const sub=await get('/accounts/'+expected+'/subscriptions');report.subscriptions.httpStatus=sub.status;report.subscriptions.available=Boolean(sub.body.success);if(sub.body.success)report.subscriptions.planNames=(sub.body.result||[]).map(s=>s.rate_plan?.public_name||s.rate_plan?.id).filter(Boolean);
- const end=new Date(),start=new Date(+end-3*60*60*1000);const vars={accountTag:expected,datetimeStart:start.toISOString(),datetimeEnd:end.toISOString(),scriptName:'future-code-football-engine-qa-smoke'};
+ const registry=JSON.parse(readFileSync(new URL('../../config/football/project.json',import.meta.url),'utf8'));
+ const end=new Date(registry.deployment.ownerPreview?.profileEndedAt||Date.now()),start=new Date(registry.deployment.ownerPreview?.profileStartedAt||(+end-3*60*60*1000));report.metrics.window={start:start.toISOString(),end:end.toISOString()};const vars={accountTag:expected,datetimeStart:start.toISOString(),datetimeEnd:end.toISOString(),scriptName:'future-code-football-engine-qa-smoke'};
  report.metrics.workers=await gql('query($accountTag:string,$datetimeStart:string,$datetimeEnd:string,$scriptName:string){viewer{accounts(filter:{accountTag:$accountTag}){workersInvocationsAdaptive(limit:100,filter:{scriptName:$scriptName,datetime_geq:$datetimeStart,datetime_leq:$datetimeEnd}){sum{requests errors subrequests} quantiles{cpuTimeP50 cpuTimeP99} dimensions{status}}}}}',vars);
  report.metrics.d1=await gql('query($accountTag:string!,$start:Date,$end:Date,$databaseId:string){viewer{accounts(filter:{accountTag:$accountTag}){d1AnalyticsAdaptiveGroups(limit:100,filter:{date_geq:$start,date_leq:$end,databaseId:$databaseId}){sum{readQueries writeQueries rowsRead rowsWritten}}}}}',{accountTag:expected,start:start.toISOString().slice(0,10),end:end.toISOString().slice(0,10),databaseId:'86a9ed8a-deb4-46a1-80c5-e744d2b47aa5'});
  report.success=true;

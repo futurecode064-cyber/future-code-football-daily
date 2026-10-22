@@ -1,14 +1,13 @@
 export const dateValid = x => typeof x==='string' && /^\d{4}-\d{2}-\d{2}$/.test(x) && !isNaN(Date.parse(x)) && new Date(x+'T00:00:00Z').toISOString().slice(0,10)===x;
 export const resourceAllowed = p => p==='data/today.json'||p==='data/news/latest.json'||/^data\/(archive|odds|odds\/evening|fixtures|news\/archive)\/\d{4}-\d{2}-\d{2}\.json$/.test(p) && dateValid(p.slice(-15,-5));
 export function yangonDate(now=new Date(),offset=0){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Yangon',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(+now+offset*86400000));}
-export function validateResources(resources,day,{migration=false}={}) {
- const errors=[]; const report=resources['data/today.json']; const sheet=resources[`data/odds/${day}.json`];
- if(!dateValid(day)) errors.push('Invalid editorial date');
- for(const [path,value] of Object.entries(resources)){
-  if(!resourceAllowed(path)){errors.push(`Disallowed public resource: ${path}`);continue;}
-  if(!value||typeof value!=='object'||Array.isArray(value)){errors.push(`${path}: object required`);continue;}
-  if(path.includes('/news/')) {if(!Array.isArray(value.items))errors.push(`${path}: news items required`);continue;}
-  if(!dateValid(value.reportDate)||!Array.isArray(value.matches)){errors.push(`${path}: date/matches required`);continue;}
+export function validateResource(path,value){
+ const errors=[];
+
+  if(!resourceAllowed(path)){errors.push(`Disallowed public resource: ${path}`);return errors;}
+  if(!value||typeof value!=='object'||Array.isArray(value)){errors.push(`${path}: object required`);return errors;}
+  if(path.includes('/news/')) {if(!Array.isArray(value.items))errors.push(`${path}: news items required`);return errors;}
+  if(!dateValid(value.reportDate)||!Array.isArray(value.matches)){errors.push(`${path}: date/matches required`);return errors;}
   if(path!=='data/today.json' && value.reportDate!==path.slice(-15,-5))errors.push(`${path}: path/date mismatch`);
   const ids=new Set();
   value.matches.forEach((m,i)=>{
@@ -18,7 +17,12 @@ export function validateResources(resources,day,{migration=false}={}) {
    if(ids.has(id))errors.push(`${path}:${i+1}: duplicate match`);ids.add(id);
    if(m.status==='finished'&&!/^\d{1,2}-\d{1,2}$/.test(m.finalScore||''))errors.push(`${path}:${i+1}: invalid final result`);
   });
- }
+ return errors;
+}
+export function validateResources(resources,day,{migration=false}={}) {
+ const errors=[]; const report=resources['data/today.json']; const sheet=resources[`data/odds/${day}.json`];
+ if(!dateValid(day)) errors.push('Invalid editorial date');
+ for(const [path,value] of Object.entries(resources))errors.push(...validateResource(path,value));
  if(!report||report.reportDate!==day||report.published!==true)errors.push('Published current report/date required');
  if(!sheet||!Array.isArray(sheet.matches)||sheet.reportDate!==day)errors.push('Matching opening odds required');
  if(!migration&&report&&sheet&&Array.isArray(report.matches)&&Array.isArray(sheet.matches)){

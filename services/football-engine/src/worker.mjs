@@ -1,4 +1,4 @@
-import {resourceAllowed,dateValid,yangonDate,validateResources,reviewErrors} from './validation.mjs';
+import {resourceAllowed,dateValid,yangonDate,validateResource,validateResources,reviewErrors} from './validation.mjs';
 import {validateEditorial} from './editorial-validation.mjs';
 const enc=new TextEncoder(), MAX_BODY=1500000;
 const sha=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode(s))),b=>b.toString(16).padStart(2,'0')).join('');
@@ -22,7 +22,15 @@ async function authorize(request,env){
 }
 const statement=(db,sql,...args)=>db.prepare(sql).bind(...args);
 async function active(db){return db.prepare('SELECT version_id,generation,changed_at FROM active_publication WHERE singleton=1').first();}
-async function resourcesFor(db,id){const rows=await statement(db,'SELECT path,body FROM resources WHERE version_id=?',id).all();return Object.fromEntries(rows.results.map(x=>[x.path,JSON.parse(x.body)]));}
+async function resourcesFor(db,id,paths){const rows=await statement(db,'SELECT path,body FROM resources WHERE version_id=?'+(paths?' AND path IN ('+paths.map(()=>'?').join(',')+')':''),id,...(paths||[])).all();return Object.fromEntries(rows.results.map(x=>[x.path,JSON.parse(x.body)]));}
+async function snapshotResponse(db,id,metadata){
+ // Stream already validated raw JSON without parsing and stringifying every
+ // historical article again. Each D1 row stays below its own string-size limit.
+ const rows=await statement(db,'SELECT path,body FROM resources WHERE version_id=?',id).all();
+ const parts=[JSON.stringify(metadata).slice(0,-1)+',"resources":{',...rows.results.map((r,i)=>(i?',':'')+JSON.stringify(r.path)+':'+r.body),'}}'];
+ let index=0;const stream=new ReadableStream({pull(controller){if(index===parts.length)controller.close();else controller.enqueue(enc.encode(parts[index++]));}});
+ return new Response(stream,{headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
+}
 async function versionFor(db,id){const v=await statement(db,'SELECT * FROM publication_versions WHERE id=?',id).first();if(!v)fail(404,'Version not found');return v;}
 async function importDraft(request,env,b){
  const db=env.DB,a=await active(db);
@@ -31,9 +39,9 @@ async function importDraft(request,env,b){
  const entries=Object.entries(b.resources);if(entries.length<1||entries.length>20)fail(400,'Import 1–20 resources per request');
  if(!b.sourceManifest||typeof b.sourceManifest!=='object'||!Array.isArray(b.sourceManifest.files)||!b.sourceManifest.files.length||b.sourceManifest.files.some(f=>!f.name||!/^[a-f0-9]{64}$/.test(f.sha256||'')))fail(400,'Source filenames and SHA-256 hashes required');
  const key=request.headers.get('Idempotency-Key');if(!key||key.length>160)fail(400,'Idempotency-Key required');
- const inputHash=await sha(JSON.stringify(canonical(b)));
+ const inputHash='json-v2:'+await sha(JSON.stringify(b));
  const prior=await statement(db,'SELECT id,input_hash FROM publication_versions WHERE idempotency_key=?',key).first();
- if(prior){if(prior.input_hash!==inputHash)fail(409,'Idempotency key reused with different input');return json({version:prior.id,reused:true});}
+ if(prior){if(prior.input_hash!==inputHash&&prior.input_hash!==await sha(JSON.stringify(canonical(b))))fail(409,'Idempotency key reused with different input');return json({version:prior.id,reused:true});}
  if(b.expectedGeneration!==a.generation)fail(409,'Publication changed; reload before importing');
  let inherit=a.version_id;
  if(b.baseDraft){const base=await versionFor(db,b.baseDraft);if(base.parent_id!==a.version_id||base.ever_published||base.validated_at)fail(409,'Base draft is no longer editable');inherit=base.id;}
@@ -42,7 +50,7 @@ async function importDraft(request,env,b){
  const id=crypto.randomUUID(),now=new Date().toISOString();
  const ops=[statement(db,'INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',id,a.version_id,b.editorialDate,key,inputHash,JSON.stringify(b.sourceManifest),now)];
  if(inherit)ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',id,inherit));
- for(const [p,v] of entries){const text=JSON.stringify(v);const digest=await sha(text);ops.push(statement(db,'INSERT INTO resource_blobs(digest,body) VALUES(?,?) ON CONFLICT(digest) DO NOTHING',digest,text));ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET digest=excluded.digest',id,p,digest));}
+ for(const [p,v] of entries){const text=JSON.stringify(v);const digest=await sha(text);ops.push(statement(db,'INSERT INTO resource_blobs(digest,body,structural_errors,structural_revision) VALUES(?,?,?,1) ON CONFLICT(digest) DO UPDATE SET structural_errors=excluded.structural_errors,structural_revision=1 WHERE resource_blobs.structural_revision<1',digest,text,JSON.stringify(validateResource(p,v))));ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET digest=excluded.digest',id,p,digest));}
  ops.push(statement(db,'INSERT INTO audit_logs(action,version_id,created_at,detail) VALUES(?,?,?,?)','import',id,now,JSON.stringify({sourceHash:inputHash})));
  try{await db.batch(ops);}catch(e){const race=await statement(db,'SELECT id,input_hash FROM publication_versions WHERE idempotency_key=?',key).first();if(race?.input_hash===inputHash)return json({version:race.id,reused:true});throw e;}
  return json({version:id,parent:a.version_id,generation:a.generation},201);
@@ -50,7 +58,7 @@ async function importDraft(request,env,b){
 async function updateOdds(request,env,b){
  const a=await active(env.DB);if(!a.version_id)fail(409,'Opening publication required');
  if(b.expectedGeneration!==a.generation)fail(409,'Publication changed; reload before odds update');
- const v=await versionFor(env.DB,a.version_id),r=await resourcesFor(env.DB,a.version_id),day=v.editorial_date;
+ const v=await versionFor(env.DB,a.version_id),day=v.editorial_date,r=await resourcesFor(env.DB,a.version_id,['data/today.json',`data/odds/${day}.json`]);
  const sheet=r[`data/odds/${day}.json`],report=r['data/today.json'];
  if(!sheet||!report||!Array.isArray(b.updates)||!b.updates.length)fail(400,'Current odds rows required');
  const seen=new Set();
@@ -67,8 +75,10 @@ async function updateOdds(request,env,b){
  return importDraft(request,env,{editorialDate:day,expectedGeneration:b.expectedGeneration,sourceManifest:b.sourceManifest,resources:{'data/today.json':report,[`data/odds/${day}.json`]:sheet,[`data/odds/evening/${day}.json`]:evening}});
 }
 async function validateDraft(env,b){
- const v=await versionFor(env.DB,b.version),r=await resourcesFor(env.DB,v.id);
+ const v=await versionFor(env.DB,b.version),r=await resourcesFor(env.DB,v.id,['data/today.json',`data/odds/${v.editorial_date}.json`]);
+ const receipts=await statement(env.DB,'SELECT rr.path,rb.structural_errors,rb.structural_revision FROM resource_refs rr JOIN resource_blobs rb ON rb.digest=rr.digest WHERE rr.version_id=?',v.id).all();
  const errors=validateResources(r,v.editorial_date,{migration:b.mode==='migration'});
+ for(const row of receipts.results){if(row.structural_revision!==1||!row.structural_errors)errors.push('Reimport resource for current structural checks: '+row.path);else errors.push(...JSON.parse(row.structural_errors));}
  if(b.mode!=='migration')errors.push(...validateEditorial({report:r['data/today.json'],odds:r[`data/odds/${v.editorial_date}.json`]},v.editorial_date));
  if(b.mode==='migration'&&b.review?.migrationParity?.passed!==true)errors.push('Migration requires byte/content parity review');
  errors.push(...reviewErrors(b.review));
@@ -130,11 +140,11 @@ export default {async fetch(request,env,ctx){
   else if(url.pathname.startsWith('/api/admin/')){
    await authorize(request,env);const name=url.pathname.slice('/api/admin/'.length);
    if(request.method==='GET'&&name==='state')response=json(await active(env.DB));
-   else if(request.method==='GET'&&name==='draft'){const v=await versionFor(env.DB,url.searchParams.get('version'));response=json({version:v,resources:await resourcesFor(env.DB,v.id)});}
+   else if(request.method==='GET'&&name==='draft'){const v=await versionFor(env.DB,url.searchParams.get('version'));response=await snapshotResponse(env.DB,v.id,{version:v});}
    else if(request.method==='GET'&&name==='export'){
     const a=await active(env.DB),id=url.searchParams.get('version')||a.version_id;if(!id)fail(409,'No publication to export');
     const v=await versionFor(env.DB,id),review=await statement(env.DB,'SELECT evidence,reviewed_at FROM validation_reviews WHERE version_id=?',id).first();
-    response=json({schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review,resources:await resourcesFor(env.DB,id)});
+    response=await snapshotResponse(env.DB,id,{schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review});
    }
    else if(request.method==='GET'&&name==='history')response=json((await env.DB.prepare('SELECT id,editorial_date,created_at,validated_at,ever_published FROM publication_versions ORDER BY created_at DESC LIMIT 50').all()).results);
    else if(request.method==='GET'&&name==='usage'){

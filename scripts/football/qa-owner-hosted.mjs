@@ -29,9 +29,16 @@ try{
  const scripts=await cf('/workers/scripts');if(scripts.some(s=>s.id===worker)){const s=await cf('/workers/scripts/'+worker+'/settings');assert.ok(s.bindings?.some(b=>b.name==='FOOTBALL_ENGINE_MANAGED_BY'&&b.text===owner+'/OWNER-PREVIEW-ONLY'),'Unowned frontend; refusing overwrite');}
  const sub=await cf('/workers/subdomain');assert.match(sub.subdomain,/^[a-z0-9-]+$/);
  report.origin='https://'+worker+'.'+sub.subdomain+'.workers.dev';report.backendOrigin='https://'+backend+'.'+sub.subdomain+'.workers.dev';
+ const backendConfig=JSON.parse(readFileSync(root+'/services/football-engine/wrangler.jsonc.example','utf8'));
+ backendConfig.name=backend;backendConfig.main=root+'/services/football-engine/src/worker.mjs';backendConfig.account_id=account;
+ backendConfig.d1_databases[0].database_name='future-code-football-db-qa-smoke';backendConfig.d1_databases[0].database_id=db.id;
+ backendConfig.d1_databases[0].migrations_dir=root+'/services/football-engine/migrations';
+ backendConfig.vars={ENVIRONMENT:'qa',ALLOWED_ORIGINS:'https://future-code-football-daily.pages.dev,http://localhost:8788',FOOTBALL_ENGINE_MANAGED_BY:owner+'/QA-SMOKE-ONLY'};
+ writeFileSync(scratch+'/backend.json',JSON.stringify(backendConfig));wrangler(['d1','migrations','apply','DB','--remote','--config',scratch+'/backend.json']);wrangler(['deploy','--config',scratch+'/backend.json']);report.checks.currentEngineDeployedInIsolatedQa=true;
  // Coordinate only the disposable QA backend and this preview service secret; never original staging/production.
  await cf('/workers/scripts/'+backend+'/secrets','PUT',{name:'ADMIN_TOKEN',type:'secret_text',text:admin});
  let state;for(let n=0;n<12;n++){try{state=await engine('state');break;}catch(e){if(n===11)throw e;await new Promise(r=>setTimeout(r,2500));}}assert.ok(state.version_id&&state.generation>=1,'Synthetic QA publication required');
+ report.profileStartedAt=new Date().toISOString();
  const beforeBackend=await ids(backend),folder=scratch+'/batches';
  execFileSync(process.execPath,[root+'/scripts/football/prepare-migration.mjs',root+'/football-daily',folder],{stdio:'pipe'});
  let version,expected={},batch=0;const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
@@ -52,7 +59,7 @@ try{
  await cf('/workers/scripts/'+worker+'/subdomain','POST',{enabled:true,previews_enabled:false});
  const beforeFrontend=await ids(worker);
  let live=false;for(let n=0;n<8;n++){const r=await fetch(report.origin+'/api/editor/engine/state');if(r.status===401){live=true;break;}await new Promise(r=>setTimeout(r,2500));}assert.ok(live,'Owner preview not ready');
- browser=await chromium.launch({headless:true,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
+ browser=await chromium.launch({headless:true,executablePath:process.env.FOOTBALL_QA_CHROME||undefined,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
  const context=await browser.newContext({acceptDownloads:true,viewport:{width:1366,height:900}}),page=await context.newPage();
  await page.goto(report.origin+'/login?next=/editor/engine.html',{waitUntil:'domcontentloaded'});
  await page.locator('#email').fill('futurecode064@gmail.com');await page.locator('#password').fill(password);await page.locator('button[type=submit]').click();
@@ -85,6 +92,6 @@ try{
  const anon=await browser.newContext();const ap=await anon.newPage();await ap.goto(report.origin+'/?fcDraft='+version);
  const denied=await ap.evaluate(async()=>{const s=await window.FootballData.ready(),r=await window.FootballData.fetch('/data/today.json');return {error:s.error,status:r.status};});assert.equal(denied.status,503);report.checks.anonymousDraftPreviewDenied=true;await anon.close();
  assert.deepEqual(await engine('state'),state);assert.deepEqual(await ids(backend),beforeBackend);assert.deepEqual(await ids(worker),beforeFrontend);report.checks.noDeployDuringPrivateImportsOrBrowserReads=true;
- report.checks.noRealPublication=true;report.success=true;
+ report.checks.noRealPublication=true;report.profileEndedAt=new Date().toISOString();report.success=true;
 }catch(e){report.error=redact(e);report.success=false;process.exitCode=1;}
 finally{await browser?.close();rmSync(scratch,{recursive:true,force:true});writeFileSync(join(out,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({success:report.success,pages:report.pages.length,png:report.png.length,checks:report.checks,error:report.error,productionModified:false}));}

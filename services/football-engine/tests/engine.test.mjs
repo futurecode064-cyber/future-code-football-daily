@@ -81,3 +81,11 @@ test('immutable public edge cache avoids D1 reads while drafts, manifests and br
   assert.equal((await call(e,'/api/football/resource?path=data/news/latest.json&version='+id+'&brand=bw-sport',{auth:false})).status,404);
  }finally{if(old===undefined)delete globalThis.caches;else globalThis.caches=old;}
 });
+
+test('server structural receipts block bad inherited archives without re-parsing full historical bodies',async()=>{
+ const e=env(),b=bundle();b.resources['data/archive/2026-10-21.json']={reportDate:'2026-10-20',matches:[]};const id=await draft(e,b);
+ const result=await call(e,'/api/admin/validate',{body:{version:id,review}});assert.equal(result.status,422);assert.match((await result.json()).errors.join(' '),/path\/date mismatch/);
+ const fixed=bundle();fixed.resources['data/archive/2026-10-21.json']={reportDate:'2026-10-21',matches:[]};const good=await draft(e,fixed,'fixed');await validate(e,good);await publish(e,good);
+ e.DB.sql.prepare('UPDATE resource_blobs SET structural_revision=0 WHERE digest IN (SELECT digest FROM resource_refs WHERE version_id=? AND path=?)').run(good,'data/archive/2026-10-21.json');
+ const next=await draft(e,bundle(1),'next-receipt');const missing=await call(e,'/api/admin/validate',{body:{version:next,review}});assert.equal(missing.status,422);assert.match((await missing.json()).errors.join(' '),/Reimport resource/);
+});
