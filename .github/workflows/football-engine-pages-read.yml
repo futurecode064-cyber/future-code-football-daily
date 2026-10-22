@@ -25,6 +25,7 @@ jobs:
       - name: Read project metadata; do not read secret values, edit or deploy
         env:
           FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
         run: node scripts/football/check-pages-read-only.mjs football-pages-preflight.json
       - uses: actions/upload-artifact@v4
         if: always()

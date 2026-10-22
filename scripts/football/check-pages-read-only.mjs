@@ -1,6 +1,6 @@
 // Read-only Pages project visibility and deployment metadata check. Safe output only.
 import {writeFileSync} from 'node:fs';
-const token=process.env.FOOTBALL_STAGING_CF_API_TOKEN;
+const token=process.env.FOOTBALL_PAGES_CF_API_TOKEN||process.env.FOOTBALL_STAGING_CF_API_TOKEN;
 const account='86851bf21d81d8f0972052aff8162149';
 const project='future-code-football-daily';
 const dest=process.argv[2]||'football-pages-access-report.json';
