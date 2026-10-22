@@ -199,3 +199,24 @@ resources as an **unpublished private draft**, generation 0.
 Next action: complete the 6 gates on isolated staging. Then stage a cutover plan for explicit approval.
 Do not merge draft PR, change Cloudflare Pages bindings, run legacy mirror workflow, or publish real data
 merely because synthetic and encrypted staging checks pass.
+
+## Independent-key encrypted staging backup — 2026-10-22 (09:38Z)
+- User confirmed saving FOOTBALL_BACKUP_RECOVERY_KEY to GitHub repository Secrets.
+- Verified GitHub Action: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39756965147 — SUCCESS.
+- Actual runner log confirms backupKeySource=FOOTBALL_BACKUP_RECOVERY_KEY, encrypted=true,
+  restoreVerified=true, SQL bytes=2,476,646; productionModified=false.
+- Artifact football-staging-encrypted-sql (ID 12415218943), retention=90 days.
+- **Security remaining:** The chosen key value was previously displayed in this chat.
+  It should be ROTATED to a key generated privately inside a password manager, without posting it
+  to ChatGPT/GitHub code/logs, before production. Re-run backup and retain new encrypted artifact.
+  Backup also needs durable independent storage (Actions artifacts expire); production remains blocked.
+
+## Editorial source QA read-only audit — 2026-10-22
+- Compared published 2026-10-22 report/odds GitHub JSON: 36 report fixtures, 36 odds fixtures,
+  36 unique matching IDs, no index/order odds-mapping mismatch detected in this narrow check.
+- User's V3 policy says last five must exclude friendly matches. Found six 'Friendlies Clubs'
+  entries across four fixtures (#1 Ararat-Armenia HOME; #4 Lech Poznan HOME;
+  #12 Jagiellonia HOME twice and Anderlecht AWAY once; #27 Riga AWAY once).
+- New editorial validation rejects these entries. Original public JSON and D1 private draft were
+  **NOT silently changed**. Replacement competitive results require independent source verification.
+- See docs/football/CURATION_QA_2026_10_22.md for affected entries and source links.

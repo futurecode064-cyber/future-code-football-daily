@@ -118,10 +118,24 @@
     },
     "backup": {
       "stagingEncrypted": true,
-      "backupRun": 39753369330,
-      "recoveryKeyIndependent": false,
+      "backupRun": 39756965147,
+      "recoveryKeyIndependent": true,
       "backupArtifactRetentionDays": 90,
-      "durableOffsite": false
+      "durableOffsite": false,
+      "restoreVerified": true,
+      "independentKeyArtifactId": 12415218943,
+      "backupKeySeenInChat": true,
+      "secretRotationRequiredBeforeProduction": true
+    },
+    "editorialQa": {
+      "day": "2026-10-22",
+      "reportFixtures": 36,
+      "oddsFixtures": 36,
+      "fixtureIdsMatch": true,
+      "excludedFriendlyResults": 6,
+      "affectedFixtureCount": 4,
+      "realEditorialQaComplete": false,
+      "sourceFile": "docs/football/CURATION_QA_2026_10_22.md"
     }
   },
   "next": "Keep production disabled; owner must install independent recovery secret, then full real 36-row PDF/editorial, authenticated owner, hosted quota, PNG/frame/video/WebView QA and explicit cutover approval."
