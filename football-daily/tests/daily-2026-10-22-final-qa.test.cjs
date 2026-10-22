@@ -36,10 +36,13 @@ test("72 team form records contain five completed real-score rows",()=>{
   const list=m[side+"LastFive"];
   assert.equal(list.length,5,m.pdfRow+":"+side);
   let prev="9999-99-99";
+  const dates=new Set();
   for(const g of list){
    count++;
    assert.ok(g.date<"2026-10-22","future match in recent form");
    assert.ok(g.date<=prev,"misordered form");
+   assert.equal(dates.has(g.date),false,"duplicate team match date "+m.pdfRow+":"+side+" "+g.date);
+   dates.add(g.date);
    prev=g.date;
    assert.ok(Number.isInteger(Number(g.teamGoals))&&Number.isInteger(Number(g.opponentGoals)));
    assert.ok(["W","D","L"].includes(g.result));
@@ -48,6 +51,8 @@ test("72 team form records contain five completed real-score rows",()=>{
   }
  }
  assert.equal(count,360);
+ assert.equal(report.formVerification.distinctFiveRowLists,72);
+ assert.equal(report.formVerification.distinctDatedResultRows,360);
 });
 test("36 unique single-paragraph Burmese previews follow owner prompt",()=>{
  const seen=new Set();
