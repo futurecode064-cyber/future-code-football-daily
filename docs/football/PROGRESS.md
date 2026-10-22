@@ -18,7 +18,7 @@ Production cutover: not performed. Legacy delivery workflow: not invoked.
 - Owner console and service proxy using existing login/CSRF; disabled unless explicitly bound/enabled.
 - Complete-bundle/fallback adapter prepared but NOT wired into renderers.
 - Read-only migration packaging and actual 36-resource/3-batch SQLite compatibility test.
-- Existing Node suite 253 passed/1 skip; engine suite 15 passed; Python 5 passed.
+- Existing Node suite 253 passed/1 skip; engine suite 17 passed; Python 5 passed.
 - Confirmed no changes to any existing daily data file. No new content creation/publication.
 
 ## Pending, with exact blockers
@@ -50,3 +50,12 @@ Draft PR: https://github.com/futurecode064-cyber/future-code-football-daily/pull
 GitHub Football Engine Migration Checks: SUCCESS, run 39736172739.
 GitHub Pages Worker Routing Safety Tests: SUCCESS, run 39736172651.
 No production sync/build/deployment was requested. Cloudflare runtime registry remains not-deployed.
+
+## Resume checkpoint — cache isolation
+- Confirmed local implementation and remote draft PR survived the interrupted model session.
+- Scoped last-complete bundle cache by API origin and brand, so a staging or other-brand snapshot
+  cannot become the outage fallback for another environment/brand. Legacy unscoped cache is ignored.
+- Added regression coverage for origin/brand isolation, invalid API URLs and a partially failed
+  refresh preserving the previous complete version. Engine/proxy/loader suite: 17 passed.
+- Reference hash checks and diff whitespace checks pass. Production data files remain unchanged.
+- FRONTEND-01 and Cloudflare authentication/deployment blockers remain open; no production activation.
