@@ -31,7 +31,7 @@ try{
  report.origin='https://'+worker+'.'+sub.subdomain+'.workers.dev';report.backendOrigin='https://'+backend+'.'+sub.subdomain+'.workers.dev';
  // Coordinate only the disposable QA backend and this preview service secret; never original staging/production.
  await cf('/workers/scripts/'+backend+'/secrets','PUT',{name:'ADMIN_TOKEN',type:'secret_text',text:admin});
- const state=await engine('state');assert.ok(state.version_id&&state.generation>=1,'Synthetic QA publication required');
+ let state;for(let n=0;n<12;n++){try{state=await engine('state');break;}catch(e){if(n===11)throw e;await new Promise(r=>setTimeout(r,2500));}}assert.ok(state.version_id&&state.generation>=1,'Synthetic QA publication required');
  const beforeBackend=await ids(backend),folder=scratch+'/batches';
  execFileSync(process.execPath,[root+'/scripts/football/prepare-migration.mjs',root+'/football-daily',folder],{stdio:'pipe'});
  let version,expected={},batch=0;const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
