@@ -88,3 +88,13 @@ The repository's existing Cloudflare test-app build integration ran automaticall
 Only the Dashboard link is exposed; its error log/configuration requires account access.
 Do not repurpose this unknown existing test app or point it at production/analytics databases.
 An additional reader compatibility test covers Android WebView without Response.json.
+
+## Owner-browser authentication alternative
+Prepared a read-only Cloudflare API access check through GitHub Secrets, avoiding Cloud Browser.
+See CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md. The owner creates a migration-scoped user API token
+in their working browser and saves it directly as FOOTBALL_STAGING_CF_API_TOKEN in repository secrets.
+After the owner confirms saving (never supplies the token in chat), add label
+football-cloudflare-access-check to same-repository Draft PR #36. The label-triggered workflow
+performs only GET metadata requests and saves a minimal non-secret result. No main merge is needed.
+The two new authentication-bridge tests pass. Real API access has NOT been tested and is NOT assumed.
+This is access verification, not a deployment/publication workflow or a daily content build path.

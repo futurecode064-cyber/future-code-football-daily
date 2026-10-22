@@ -75,7 +75,16 @@
       "dashboardSessionVerified": false
     },
     "frontendIntegrationPrepared": true,
-    "localWorkerdParityVerified": true
+    "localWorkerdParityVerified": true,
+    "alternativeAuthentication": {
+      "status": "prepared-not-verified",
+      "method": "Cloudflare user API token stored directly in GitHub repository secret by owner",
+      "secretName": "FOOTBALL_STAGING_CF_API_TOKEN",
+      "workflow": ".github/workflows/football-cloudflare-access.yml",
+      "triggerLabel": "football-cloudflare-access-check",
+      "pullRequest": 36,
+      "instructions": "docs/football/CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md"
+    }
   },
   "next": "Secure Cloudflare account access; deploy isolated free staging Worker/D1, profile hosted CPU/storage, verify all five sites and actual downloads, configure private full-database backup, then prepare production cutover approval"
 }
