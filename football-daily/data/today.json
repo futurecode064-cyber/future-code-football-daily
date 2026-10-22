@@ -175,17 +175,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "7.00",
       "drawOdds": "4.60",
       "awayOdds": "1.55",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -373,17 +374,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.37",
       "drawOdds": "5.50",
       "awayOdds": "9.75",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -577,17 +579,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.57",
       "drawOdds": "4.50",
       "awayOdds": "6.50",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -778,17 +781,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "4.75",
       "drawOdds": "4.00",
       "awayOdds": "1.80",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -979,17 +983,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.66",
       "drawOdds": "4.50",
       "awayOdds": "5.25",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -1183,17 +1188,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "12.50",
       "drawOdds": "7.50",
       "awayOdds": "1.25",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -1387,17 +1393,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "3.70",
       "drawOdds": "3.80",
       "awayOdds": "2.05",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -1587,17 +1594,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.38",
       "drawOdds": "5.50",
       "awayOdds": "9.00",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -1792,17 +1800,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "2.05",
       "drawOdds": "3.80",
       "awayOdds": "3.60",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -1996,17 +2005,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "2.20",
       "drawOdds": "4.00",
       "awayOdds": "3.20",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -2200,17 +2210,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "2.90",
       "drawOdds": "3.60",
       "awayOdds": "2.60",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -2400,17 +2411,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "3.20",
       "drawOdds": "3.70",
       "awayOdds": "2.30",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -2604,17 +2616,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "6.80",
       "drawOdds": "4.75",
       "awayOdds": "1.52",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -2805,17 +2818,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "6.00",
       "drawOdds": "4.50",
       "awayOdds": "1.56",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -3006,17 +3020,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.53",
       "drawOdds": "4.50",
       "awayOdds": "6.50",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -3211,13 +3226,17 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "specialAnalysisParagraphs": [
-        "အိုမိုနီးယား နဲ့ ဘင်ဖီကာ တို့အတွက် ဒီဥရောပပွဲမှာ နောက်ဆုံးရဂိုးအရေအတွက်တွေက အရေးပါတဲ့ သုံးသပ်ချက်တစ်ခုပါ။ အိမ်ရှင် အိုမိုနီးယား က ဆဲလ်ဂျီ နဲ့ယှဉ်ပြိုင်ပြီး 3-0 ဂိုးနဲ့ နိုင်ခဲ့ပါတယ်။ ဧည့်သည် ဘင်ဖီကာ ကတော့ ဆဲလ်တစ် နဲ့ယှဉ်ပြိုင်ပြီး 4-1 ဂိုးနဲ့ နိုင်ခဲ့ပါတယ်။ အိုမိုနီးယား ဘက်က အိမ်ကွင်းဖိအားနဲ့ ရှေ့တန်းကိုထိုးတင်ချင်မှာဖြစ်သလို ဘင်ဖီကာ က အလယ်တန်းမှာ ဒုတိယဘောလုံးကို ဆက်တိုက်ရနိုင်ရင် တန်ပြန်တိုက်စစ်မှာ အခွင့်အရေးကြီးတွေ ဖန်တီးနိုင်ပါတယ်။ ဒီပွဲရဲ့ တိုက်စစ်အခွင့်အရေးတွေကို နှိုင်းယှဉ်ရာမှာ အလွတ်ဂိုးအခွင့်အရေး မတီထွင်ဘဲ အမှန်တကယ်ပြီးဆုံးထားတဲ့ ဥရောပပွဲရလဒ်တွေနဲ့ နောက်တန်းဂိုးပေးမှတ်တမ်းကိုပဲ အခြေခံထားပါတယ်။ အဲဒီအချက်တွေကြောင့် ဒီတစ်ပွဲအတွက် **ဘင်ဖီကာ** ဘက်ကို ပိုအလေးပေးပါတယ်။",
+        "အိုမိုနီးယားဟာ ကွန်ဖရန့်မဟုတ်ဘဲ ယူရိုပါလိဂ်ပထမနှစ်ပွဲမှာ ဆဲလ်တာဗီဂိုကို ၁-၀၊ ဆဲလ်ဂျီကို ၃-၀ နဲ့ နိုင်ထားတာကြောင့် ဥရောပပြိုင်ပွဲမှာ ဂိုးမပေးဘဲ အနိုင်ဆက်နေတဲ့ အသင်းဖြစ်ပါတယ်။ ဒီလိုခံစစ်တည်ငြိမ်မှုအတွက် နည်းပြ ဟန်နင်းဘက်ဂ်ရဲ့ ကစားသမားတွေ အနောက်တန်းနေရာချထားပုံကို ချီးကျူးရမှာဖြစ်ပေမယ့် ယနေ့ရင်ဆိုင်မယ့် ဘင်ဖီကာရဲ့ ရှေ့တန်းက အရင်နှစ်သင်းထက် ပိုပြီး ဖိအားပေးနိုင်တာကြောင့် တူညီတဲ့ပုံစံနဲ့သာ အဆင်ပြေမယ်လို့ မယူဆနိုင်ပါဘူး။",
+        "ဘင်ဖီကာက အေစီမီလန်ကွင်းမှာ ၂-၀ နဲ့ အနိုင်ရခဲ့ပြီး ဆဲလ်တစ်ကိုလည်း ၄-၁ နဲ့ နိုင်ထားတာကြောင့် ဥရောပလိဂ်ပြိုင်ပွဲမှာ သွင်းဂိုးခြောက်ဂိုး၊ ပေးဂိုးတစ်ဂိုးနဲ့ စတင်ထားပါတယ်။ ဂိုးသွင်းအဆုံးသတ်နိုင်မှုကောင်းတာနဲ့အမျှ ဘောလုံးမပိုင်တဲ့အချိန် ခံစစ်ကိုပြန်စုနိုင်စွမ်းလည်း တွေ့ရတာကြောင့် အိုမိုနီးယားရဲ့ ကျစ်လျစ်တဲ့ခံစစ်ကို ခက်ခက်ခဲခဲ ဖောက်ရနိုင်သော်လည်း အဝေးကွင်းမှာ အခွင့်အရေးဖန်တီးနိုင်ဖို့ အားသာချက်ရှိနေပါတယ်။ အောက်တိုဘာ ၁၅ ရက် ဥရောပနိုင်ပွဲအပြီး ဒီပွဲက ယခင်နှစ်ပွဲရဲ့ အပြိုင်အဆိုင်အဆင့်ထက် ပိုခက်နိုင်ပါတယ်။",
+        "အိုမိုနီးယားဘက်မှာတော့ ခံစစ်တစ်လွှာတည်းကို နောက်ဆုတ်ထားပြီး ကစားနေတာထက် ဘင်ဖီကာအနေနဲ့ ကွင်းလယ်တစ်ဝက်ကို ရောက်လာတဲ့အခါ ဘောလုံးပေးပို့ရာလမ်းကြောင်းကို ကန့်သတ်နိုင်ဖို့ လိုပါတယ်။ ဘင်ဖီကာက တောင်ပံကနေ ဖိအားတင်နိုင်ရင် အိုမိုနီးယားရဲ့ နောက်တန်းက အလယ်ကို စုသွားရပြီး ကွင်းလယ်ကြား နေရာလွတ်တွေ ပေါ်လာနိုင်ပါတယ်။ တစ်ဖက်မှာလည်း အိုမိုနီးယားက ပထမဂိုးမပေးဘဲ အချိန်ကြာကြာ ထိန်းထားနိုင်ရင် ဘင်ဖီကာရဲ့ အမြန်တိုက်စစ်အပေါ် စိတ်ရှည်မှုကို စမ်းသပ်နိုင်မှာပါ။",
+        "ဘင်ဖီကာရဲ့ လက်ရှိဥရောပနိုင်ပွဲနှစ်ပွဲထဲမှာ ဂိုးသွင်းစွမ်းရည်နဲ့ ဂိုးမပေးအောင် ထိန်းနိုင်မှုတို့ကို ပေါင်းစပ်နိုင်ထားတာက ဒီနေ့ရွေးချယ်မှုအတွက် အဓိကအကြောင်းပြချက်ဖြစ်ပါတယ်။ အိုမိုနီးယားကိုလည်း ဂိုးမပေးထားတဲ့အချက်ကြောင့် လျှော့တွက်လို့မရဘဲ အိမ်ကွင်းမှာ ခံစစ်စုဖွဲ့နိုင်ခြင်းက ဒီပွဲကို ခက်ခဲစေနိုင်ပါတယ်။ ဒါပေမယ့် မီလန်နဲ့ ဆဲလ်တစ်ကို အနိုင်ယူရာမှာ ပြခဲ့တဲ့ ဘင်ဖီကာရဲ့ အဆုံးသတ်ခြေစွမ်းက ပိုမိုအားကိုးရတာကြောင့် အိမ်ရှင်က အခွင့်အရေးတွေကို အလွန်သေချာစွာ အသုံးချနိုင်မှ ရလဒ်ကောင်းရမှာပါ။",
         "ဒီပွဲကို ရွေးချယ်ပါတယ်"
       ],
       "homeOdds": "8.00",
@@ -3225,7 +3244,7 @@
       "awayOdds": "1.38",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -3245,7 +3264,12 @@
         "verifiedRecentPostOct15": false,
         "supplementalSource": null,
         "supplementalDataGrade": null
-      }
+      },
+      "specialPreparedDate": "2026-10-22",
+      "specialResearchSources": [
+        "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
+        "https://www.oddschecker.com/football/europa-league"
+      ]
     },
     {
       "fixtureId": "fc-20261022-17",
@@ -3419,17 +3443,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "2.00",
       "drawOdds": "4.20",
       "awayOdds": "3.60",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -3617,17 +3642,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/"
       },
       "homeOdds": "1.81",
       "drawOdds": "4.00",
       "awayOdds": "4.50",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/europa-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -3820,17 +3846,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "5.25",
       "drawOdds": "4.00",
       "awayOdds": "1.70",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -4021,17 +4048,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "2.30",
       "drawOdds": "3.75",
       "awayOdds": "3.10",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -4224,13 +4252,17 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "specialAnalysisParagraphs": [
-        "ဂျဘလံနက် နဲ့ ဘရိုက်တန် တို့အတွက် ဒီဥရောပပွဲမှာ နောက်ဆုံးရဂိုးအရေအတွက်တွေက အရေးပါတဲ့ သုံးသပ်ချက်တစ်ခုပါ။ အိမ်ရှင် ဂျဘလံနက် က ဖရိုင်းဘတ် နဲ့ယှဉ်ပြိုင်ပြီး 2-3 ဂိုးနဲ့ ရှုံးခဲ့ပါတယ်။ ဧည့်သည် ဘရိုက်တန် ကတော့ ဇယ်ဂရစ် နဲ့ယှဉ်ပြိုင်ပြီး 4-0 ဂိုးနဲ့ နိုင်ခဲ့ပါတယ်။ ဂျဘလံနက် ဘက်က အိမ်ကွင်းဖိအားနဲ့ ရှေ့တန်းကိုထိုးတင်ချင်မှာဖြစ်သလို ဘရိုက်တန် က အလယ်တန်းမှာ ဒုတိယဘောလုံးကို ဆက်တိုက်ရနိုင်ရင် တန်ပြန်တိုက်စစ်မှာ အခွင့်အရေးကြီးတွေ ဖန်တီးနိုင်ပါတယ်။ ဒီပွဲရဲ့ တိုက်စစ်အခွင့်အရေးတွေကို နှိုင်းယှဉ်ရာမှာ အလွတ်ဂိုးအခွင့်အရေး မတီထွင်ဘဲ အမှန်တကယ်ပြီးဆုံးထားတဲ့ ဥရောပပွဲရလဒ်တွေနဲ့ နောက်တန်းဂိုးပေးမှတ်တမ်းကိုပဲ အခြေခံထားပါတယ်။ အဲဒီအချက်တွေကြောင့် ဒီတစ်ပွဲအတွက် **ဘရိုက်တန်** ဘက်ကို ပိုအလေးပေးပါတယ်။",
+        "ဂျဘလံနက်ဟာ ယူရိုပါကွန်ဖရန့်လိဂ် ပထမပွဲမှာ ဖရိုင်းဘတ်ကို ၂-၃ နဲ့ ရှုံးခဲ့ပြီး အောက်တိုဘာ ၁၈ ရက် ချက်လိဂ်မှာလည်း ဗစ်တိုးရီးယားပဲဇန်ကို ၂-၃ နဲ့ ထပ်ရှုံးထားပါတယ်။ နှစ်ပွဲစလုံးမှာ ရှေ့တန်းက ဂိုးနှစ်ဂိုးစီ ရယူနိုင်ခဲ့တာက အားတက်စရာဖြစ်ပေမယ့် နောက်တန်းက ဂိုးသုံးဂိုးစီပေးထားရတဲ့ အခြေအနေက အိမ်ကွင်းမှာ ဘရိုက်တန်ကို ရင်ဆိုင်တဲ့အခါ ပြန်ပြင်ဆင်ဖို့လိုတဲ့ အဓိကအချက်ဖြစ်ပါတယ်။ ခံစစ်ကြားနေရာတွေ အမြန်မပိတ်နိုင်ရင် ဘရိုက်တန်ရဲ့ ရှေ့တန်းဖိအားအောက်မှာ အခက်တွေ့နိုင်ပါတယ်။",
+        "ဘရိုက်တန်က ဇယ်ဂရစ်ကို ဥရောပအဖွင့်ပွဲမှာ ၄-၀ နဲ့ အနိုင်ရထားပြီး အင်္ဂလန်လိဂ်နောက်ဆုံးပွဲမှာ ပဲလေစ့်ကို ၅-၀ နဲ့ အနိုင်ယူထားပါတယ်။ ဒီနှစ်ပွဲမှာ ဂိုးသွင်းအဆုံးသတ်ခြေစွမ်း ပိုထက်မြက်လာတာကို တွေ့ရသလို အနောက်တန်းကလည်း ဂိုးမပေးထားတာကြောင့် ဂျဘလံနက်လို ဂိုးပေးရမှုများနေတဲ့ အသင်းကို ရင်ဆိုင်ရမှာ အသာစီးရနိုင်ပါတယ်။ အထူးသဖြင့် ဥရောပအဖွင့်ပွဲမှာ နှစ်ဂိုးသွင်းခဲ့တဲ့ ဂျော်ဂျီနီယို ရတ်တာရဲ့ ဂိုးရှေ့လှုပ်ရှားမှုက အိမ်ရှင်ခံစစ်အတွက် မဖြစ်မနေ သတိထားရမယ့်အချက်ပါ။",
+        "ဂျဘလံနက်က ဘရိုက်တန်ရဲ့ တိုက်စစ်ကို အချိန်ကြာကြာ ကာကွယ်ရတဲ့ပုံစံတစ်ခုတည်း မသုံးချင်ပါဘူး။ ချက်လိဂ်မှာ နှစ်ဂိုးသွင်းနိုင်ခဲ့သလို အိမ်ကွင်းမှာ ဘောလုံးရတဲ့အချိန် ဖိအားပြန်တင်ဖို့ ကြိုးစားလာနိုင်ပါတယ်။ ဒါပေမယ့် အလွန်အကျွံတက်ကစားချိန် နောက်တန်းနဲ့ ကွင်းလယ်ကြား အကွာအဝေးကြီးသွားရင် ဘရိုက်တန်က ဂိုးရှေ့မှာ နေရာကောင်းရနိုင်ပါတယ်။ ဘရိုက်တန်အနေနဲ့လည်း အဝေးကွင်းမှာ အစောပိုင်းကတည်းက ဂိုးလိုချင်လို့ အလွန်ဖွင့်ကစားမိရင် ဂျဘလံနက်ရဲ့ တန်ပြန်အခွင့်အရေးကို ပြန်ပေးနိုင်တာကြောင့် အရှိန်ထိန်းဖို့ လိုပါတယ်။",
+        "တစ်ဖက်အသင်းရဲ့ ဂိုးသွင်းခြေစွမ်းကိုသာ ကြည့်ရင် ဂျဘလံနက်မှာ အခွင့်အရေးမရှိဘူးလို့ မဆိုနိုင်ပါဘူး။ သို့သော် အောက်တိုဘာအတွင်း မကြာသေးတဲ့ နှစ်ပွဲမှာ ဂျဘလံနက်ရဲ့ ပေးဂိုးခြောက်ဂိုးရှိပြီး ဘရိုက်တန်က ပဲလေစ့်နဲ့ ဇယ်ဂရစ်ကို ဂိုးမပေးဘဲ ဂိုးကိုးဂိုးအထိ သွင်းထားတဲ့ အချက်က အရွေးချယ်ရခက်မှုကို လျော့သွားစေပါတယ်။ ဘရိုက်တန်ရဲ့ ရှေ့တန်းမှာ လှုပ်ရှားမှုတွေကို စနစ်တကျထိန်းနိုင်သလို အနောက်ကို ပြန်ဆင်းကာကွယ်တာလည်း သေချာနေသဖြင့် အိမ်ရှင်ဂျဘလံနက်အတွက် ရမှတ်တစ်မှတ်ယူဖို့တောင် ခက်ခဲနိုင်ပါတယ်။",
         "ဒီပွဲကို ရွေးချယ်ပါတယ်"
       ],
       "homeOdds": "12.00",
@@ -4238,7 +4270,7 @@
       "awayOdds": "1.28",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -4260,7 +4292,12 @@
         "verifiedRecentPostOct15": true,
         "supplementalSource": null,
         "supplementalDataGrade": null
-      }
+      },
+      "specialPreparedDate": "2026-10-22",
+      "specialResearchSources": [
+        "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/",
+        "https://www.oddschecker.com/football/uefa-europa-conference-league"
+      ]
     },
     {
       "fixtureId": "fc-20261022-22",
@@ -4432,17 +4469,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.95",
       "drawOdds": "3.50",
       "awayOdds": "4.33",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -4633,17 +4671,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "3.20",
       "drawOdds": "3.50",
       "awayOdds": "2.35",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -4833,17 +4872,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "6.50",
       "drawOdds": "4.20",
       "awayOdds": "1.64",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -5036,17 +5076,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "4.75",
       "drawOdds": "4.20",
       "awayOdds": "1.76",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -5237,17 +5278,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.47",
       "drawOdds": "5.00",
       "awayOdds": "7.00",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -5435,17 +5477,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.64",
       "drawOdds": "4.20",
       "awayOdds": "5.60",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -5641,17 +5684,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.34",
       "drawOdds": "6.50",
       "awayOdds": "9.50",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -5842,17 +5886,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.55",
       "drawOdds": "4.35",
       "awayOdds": "6.50",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -6050,17 +6095,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "2.25",
       "drawOdds": "4.00",
       "awayOdds": "3.10",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -6255,17 +6301,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "2.22",
       "drawOdds": "3.75",
       "awayOdds": "3.20",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -6453,17 +6500,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.82",
       "drawOdds": "3.80",
       "awayOdds": "4.60",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -6654,17 +6702,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "13.00",
       "drawOdds": "6.50",
       "awayOdds": "1.25",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -6861,17 +6910,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.69",
       "drawOdds": "4.20",
       "awayOdds": "5.00",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -7068,17 +7118,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "1.94",
       "drawOdds": "3.70",
       "awayOdds": "4.20",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
@@ -7266,17 +7317,18 @@
       "oddsVerificationStatus": "Listed 1X2 snapshot; not real-time or guaranteed available",
       "previewJournalist": {
         "status": "owner_approved_published",
-        "masterPrompt": "Pasted text(20261022-022124).txt",
+        "masterPrompt": "PROFESSIONAL_MYANMAR_FOOTBALL_JOURNALIST_MASTER_PROMPT.md",
         "reportDate": "2026-10-22",
         "authorization": "Explicit user instruction, publication held until all QA gates pass",
-        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted"
+        "sourceReview": "UEFA and ESPN supported evidence, unsourced facts omitted",
+        "sourceUrl": "https://www.uefa.com/uefaconferenceleague/news/02a8-217779a8ad3a-b4c75bb82a48-1000--conference-league-league-phase-fixtures-by-team/"
       },
       "homeOdds": "2.92",
       "drawOdds": "3.75",
       "awayOdds": "2.40",
       "oddsProvider": "Oddschecker listing (fractional odds converted to decimal)",
       "oddsSourceUrl": "https://www.oddschecker.com/football/uefa-europa-conference-league",
-      "oddsMarket": "Full-time match result 1X2",
+      "oddsMarket": "Full-time 1X2 (pre-match reference snapshot)",
       "oddsVerifiedDate": "2026-10-22",
       "oddsIsLive": false,
       "homeFormVerification": {
