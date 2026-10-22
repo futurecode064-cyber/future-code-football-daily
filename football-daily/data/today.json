@@ -1435,6 +1435,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/13083.png",
       "homeLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 Belgian Cup",
+          "opponent": "KFC Nijlen",
+          "teamGoals": 3,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.besoccer.com/team/matches/union-saint-gilloise/2027",
+          "sourceVerification": "crosschecked_goal_and_besoccer_20261022"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "Real Sociedad",
@@ -1483,18 +1495,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878982",
           "sourceVerification": "ESPN_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-17",
-          "competition": "UEFA Europa League",
-          "opponent": "Viktoria Plzeň",
-          "teamGoals": 3,
-          "opponentGoals": 0,
-          "venueSide": "away",
-          "result": "W",
-          "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
-          "sourceVerification": "UEFA_FT_2026_10_22"
         }
       ],
       "awayLastFive": [
@@ -1603,9 +1603,10 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/5807/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.besoccer.com/team/matches/union-saint-gilloise/2027"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
@@ -7386,17 +7387,22 @@
       "35:away",
       "37:away"
     ],
-    "remainingPostOct15Unconfirmed": [
-      "2:away",
-      "8:home",
-      "16:away",
-      "33:home"
-    ],
+    "remainingPostOct15Unconfirmed": [],
     "sourceLimitations": "Some clubs lack post-15 October domestic match; older data retained as last known official competitive records.",
     "allFiveScoreRecordsValidated": true,
     "archivedStatusNormalized": 120,
     "verifiedDomesticViaOfficialAndESPN": "Mixed sources; archives may be less recent for four teams",
-    "note": "Do not represent every source as UEFA-official; historical oddsrun competitive records are a secondary source and require spot review."
+    "note": "Do not represent every source as UEFA-official; historical oddsrun competitive records are a secondary source and require spot review.",
+    "asOf": "2026-10-22",
+    "noLaterCompetitiveGameConfirmedFor": [
+      "Torreense",
+      "Benfica"
+    ],
+    "postponedFixtureNoScoreFor": [
+      "Borac Banja Luka"
+    ],
+    "all72LatestAvailable": "Latest 5 are sourced; no Oct16-21 completions for Torreense, Benfica, Borac as checked against latest public schedules",
+    "sourceDisclosure": "UEFA + ESPN + selected secondary schedules; secondary data not individually official-certified"
   },
   "resultReview": {
     "archiveDate": "2026-10-21",
