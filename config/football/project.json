@@ -77,14 +77,23 @@
     "frontendIntegrationPrepared": true,
     "localWorkerdParityVerified": true,
     "alternativeAuthentication": {
-      "status": "prepared-not-verified",
+      "status": "api-read-verified",
       "method": "Cloudflare user API token stored directly in GitHub repository secret by owner",
       "secretName": "FOOTBALL_STAGING_CF_API_TOKEN",
       "workflow": ".github/workflows/football-cloudflare-access.yml",
       "triggerLabel": "football-cloudflare-access-check",
       "pullRequest": 36,
-      "instructions": "docs/football/CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md"
+      "instructions": "docs/football/CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md",
+      "verificationRun": 39745156542,
+      "verifiedAt": "2026-10-22T08:05:32.512Z",
+      "workersReadable": true,
+      "d1Readable": true
+    },
+    "stagingSetupWorkflow": {
+      "path": ".github/workflows/football-engine-staging.yml",
+      "triggerLabel": "football-engine-stage",
+      "status": "prepared-not-run"
     }
   },
-  "next": "Secure Cloudflare account access; deploy isolated free staging Worker/D1, profile hosted CPU/storage, verify all five sites and actual downloads, configure private full-database backup, then prepare production cutover approval"
+  "next": "Run isolated managed staging setup through GitHub secret; verify actual Worker/D1 and unchanged private migration, then hosted profiling and five-brand download QA before cutover"
 }

@@ -98,3 +98,14 @@ football-cloudflare-access-check to same-repository Draft PR #36. The label-trig
 performs only GET metadata requests and saves a minimal non-secret result. No main merge is needed.
 The two new authentication-bridge tests pass. Real API access has NOT been tested and is NOT assumed.
 This is access verification, not a deployment/publication workflow or a daily content build path.
+
+## Cloudflare API access verified
+Owner saved FOOTBALL_STAGING_CF_API_TOKEN directly in GitHub. Read-only workflow run 39745156542
+succeeded at 2026-10-22T08:05:32.512Z (14:35 Myanmar). Workers and D1 metadata access both succeeded.
+Neither intended staging resource exists. No credentials were exposed and no resources were changed.
+The Cloud Browser session remains unverified; API access is now available independently.
+Prepared label-triggered isolated staging workflow: football-engine-stage on PR #36. It creates
+only fixed staging names, refuses unowned name conflicts, migrates existing source JSON into private
+drafts, checks deployment IDs remain unchanged during imports, and verifies a temporary full D1 export.
+Random staging admin credentials remain in the runner and staging Worker secret store. No production
+secrets/routes/bindings change, no daily content activation, and no paid-plan operations are included.
