@@ -56,7 +56,7 @@ try{
  const context=await browser.newContext({acceptDownloads:true,viewport:{width:1366,height:900}}),page=await context.newPage();
  await page.goto(report.origin+'/login?next=/editor/engine.html',{waitUntil:'domcontentloaded'});
  await page.locator('#email').fill('futurecode064@gmail.com');await page.locator('#password').fill(password);await page.locator('button[type=submit]').click();
- await page.waitForURL('**/editor/engine.html');await page.waitForFunction(()=>!document.getElementById('status').textContent.includes('စနစ်စစ်နေသည်'));
+ await page.waitForURL(/\/editor\/engine(?:\.html)?\/?$/,{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>!document.getElementById('status').textContent.includes('စနစ်စစ်နေသည်'));
  const check=await page.evaluate(async()=>{const r=await fetch('/api/editor/engine/state');return {status:r.status,state:await r.json()};});assert.equal(check.status,200);assert.equal(check.state.generation,state.generation);report.checks.existingOwnerSessionServiceProxy=true;
  assert.equal((await context.request.post(report.origin+'/api/editor/engine/import',{headers:{Origin:'https://foreign.invalid','X-Football-Editor':'1'},data:{}})).status(),403);report.checks.ownerCsrfRejected=true;
  assert.equal((await context.request.post(report.origin+'/api/editor/save',{headers:{Origin:report.origin},data:{}})).status(),409);report.checks.legacyGithubPublisherBlocked=true;

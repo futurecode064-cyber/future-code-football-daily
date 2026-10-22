@@ -1,0 +1,36 @@
+name: Football Release Account and Runtime Preflight (Read Only)
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  existing-secrets:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-release-preflight'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify account scope, Pages project, subscriptions and runtime metrics without writes
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/football/check-cloudflare-release-access.mjs football-release-access.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: football-release-access
+          path: football-release-access.json
+          retention-days: 14
+# GET-only; no token values or Cloudflare response bodies printed.

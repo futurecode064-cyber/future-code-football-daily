@@ -63,3 +63,21 @@ test('deduplication migration preserves a populated legacy database and resource
  assert.equal(db.prepare('SELECT body FROM resources WHERE version_id=?').get('old').body,body);
  assert.equal(db.prepare('SELECT count(*) n FROM resource_refs').get().n,1);db.close();
 });
+
+test('immutable public edge cache avoids D1 reads while drafts, manifests and brand restrictions stay private',async()=>{
+ const old=globalThis.caches,items=new Map();globalThis.caches={default:{async match(k){return items.get(k.url)?.clone();},async put(k,r){items.set(k.url,r.clone());}}};
+ try{
+  const e=env(),id=await draft(e);const url='/api/football/resource?path=data/today.json&version='+id;
+  assert.equal((await call(e,url,{auth:false})).status,503);assert.equal(items.size,0);
+  await validate(e,id);await publish(e,id);
+  const r=await call(e,url,{auth:false});assert.equal(r.status,200);assert.equal(items.size,1);
+  const normal=e.DB.prepare;e.DB.prepare=()=>{throw Error('Cache hit must avoid database');};
+  const hit=await call(e,url,{auth:false});assert.equal(hit.status,200);assert.deepEqual(await hit.json(),resources()['data/today.json']);
+  assert.equal((await call(e,url,{auth:false,headers:{'If-None-Match':r.headers.get('ETag')}})).status,304);
+  const head=await call(e,url,{auth:false,method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
+  assert.equal((await call(e,'/api/football/manifest',{auth:false})).status,503);
+  e.DB.prepare=normal;
+  await call(e,'/api/football/resource?path=data/news/latest.json&version='+id+'&brand=main',{auth:false});
+  assert.equal((await call(e,'/api/football/resource?path=data/news/latest.json&version='+id+'&brand=bw-sport',{auth:false})).status,404);
+ }finally{if(old===undefined)delete globalThis.caches;else globalThis.caches=old;}
+});

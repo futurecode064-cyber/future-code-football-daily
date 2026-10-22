@@ -89,26 +89,38 @@ async function activate(env,b,rollback=false){
  if(!(result.meta?.changes>=1))fail(409,'Publication changed; reload and rebase draft');
  return json({version:v.id,generation:b.expectedGeneration+1,rollback});
 }
-async function publicGet(request,env,url){
+async function publicGet(request,env,url,ctx){
  const path=url.pathname;
  if(path==='/api/football/health'){const a=await active(env.DB);return json({ok:true,environment:env.ENVIRONMENT||'unset',...a});}
- const a=await active(env.DB);
- if(path==='/api/football/manifest')return json({schemaVersion:1,version:a.version_id,generation:a.generation,publishedAt:a.changed_at,timezone:'Asia/Yangon',cacheMaxAgeSeconds:0});
- if(!a.version_id)fail(503,'No validated publication active');
- const id=url.searchParams.get('version')||a.version_id;
- const v=await versionFor(env.DB,id);if(!v.ever_published)fail(404,'Published version not found');
+ if(path==='/api/football/manifest'){const a=await active(env.DB);return json({schemaVersion:1,version:a.version_id,generation:a.generation,publishedAt:a.changed_at,timezone:'Asia/Yangon',cacheMaxAgeSeconds:0});}
  let resource=url.searchParams.get('path');
  const day=url.searchParams.get('date')||yangonDate();if(!dateValid(day))fail(400,'Invalid date');
  const aliases={today:'data/today.json',yesterday:`data/archive/${yangonDate(new Date(),-1)}.json`,odds:`data/odds/${day}.json`,news:'data/news/latest.json',results:`data/archive/${day}.json`,fixtures:'data/today.json',previews:'data/today.json',special:'data/today.json',ai:'data/today.json'};
  const name=path.split('/').pop();if(name!=='resource'){resource=aliases[name];if(!resource)fail(404,'Unknown endpoint');}
  if(!resourceAllowed(resource))fail(400,'Disallowed resource');
  if(resource.includes('/news/')&&!['main','goal-zone'].includes(url.searchParams.get('brand')||'main'))fail(404,'News not enabled for this brand');
+ const pinned=url.searchParams.get('version');
+ if(pinned&&!/^[a-f0-9-]{36}$/.test(pinned))fail(404,'Published version not found');
+ // Only immutable, previously published resources enter the edge cache. Manifests,
+ // owner drafts and unpinned reads always reach their authoritative state.
+ const cache=globalThis.caches?.default;
+ let cacheKey;
+ if(pinned&&cache){
+  const key=new URL('/__football_published_cache__',url.origin);key.searchParams.set('environment',env.ENVIRONMENT||'unset');key.searchParams.set('version',pinned);key.searchParams.set('path',resource);cacheKey=new Request(key);
+  const hit=await cache.match(cacheKey).catch(()=>null);
+  if(hit){if(request.headers.get('If-None-Match')===hit.headers.get('ETag'))return new Response(null,{status:304,headers:hit.headers});return new Response(request.method==='HEAD'?null:hit.body,hit);}
+ }
+ const a=await active(env.DB);if(!a.version_id)fail(503,'No validated publication active');
+ const id=pinned||a.version_id;
+ const v=await versionFor(env.DB,id);if(!v.ever_published)fail(404,'Published version not found');
  const row=await statement(env.DB,'SELECT body,digest FROM resources WHERE version_id=? AND path=?',id,resource).first();if(!row)fail(404,'Resource not found in publication');
  const tag='"'+row.digest+'"';const headers={'Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff','ETag':tag,'X-Football-Version':id,'Cache-Control':url.searchParams.has('version')?'public, max-age=31536000, immutable':'no-cache'};
  if(request.headers.get('If-None-Match')===tag)return new Response(null,{status:304,headers});
- return new Response(request.method==='HEAD'?null:row.body,{headers});
+ const response=new Response(request.method==='HEAD'?null:row.body,{headers});
+ if(cacheKey&&request.method==='GET'){const save=cache.put(cacheKey,response.clone()).catch(()=>{});if(ctx?.waitUntil)ctx.waitUntil(save);else await save;}
+ return response;
 }
-export default {async fetch(request,env){
+export default {async fetch(request,env,ctx){
  const url=new URL(request.url),origin=request.headers.get('Origin');
  const allowed=(env.ALLOWED_ORIGINS||'').split(',').map(s=>s.trim()).filter(Boolean);
  let response;try{
@@ -132,7 +144,7 @@ export default {async fetch(request,env){
    else if(request.method==='POST'&&['import','validate','publish','rollback','update-odds'].includes(name)){
     const b=await bodyJson(request);response=name==='import'?await importDraft(request,env,b):name==='update-odds'?await updateOdds(request,env,b):name==='validate'?await validateDraft(env,b):await activate(env,b,name==='rollback');
    }else fail(405,'Unsupported admin endpoint/method');
-  }else if(url.pathname.startsWith('/api/football/')&&['GET','HEAD'].includes(request.method))response=await publicGet(request,env,url);
+  }else if(url.pathname.startsWith('/api/football/')&&['GET','HEAD'].includes(request.method))response=await publicGet(request,env,url,ctx);
   else fail(404,'Unknown endpoint');
  }catch(e){response=json({error:e instanceof ApiError?e.message:'Service unavailable'},e instanceof ApiError?e.status:503);}
  if(origin&&allowed.includes(origin)){
