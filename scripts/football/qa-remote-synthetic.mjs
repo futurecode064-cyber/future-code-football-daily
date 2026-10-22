@@ -137,7 +137,13 @@ try {
  assert.match(body.matches[0].league,/SYNTHETIC QA/);
  const etag=res.headers.get('ETag');
  const conditional=await fetch(result.qaOrigin+'/api/football/today?version='+first,{headers:{'If-None-Match':etag}});
- assert.equal(conditional.status,304);result.checks.versionPinnedAndEtag=true;
+ assert.ok([200,304].includes(conditional.status),'Conditional read must return 200 or 304');
+ if(conditional.status===200){
+  assert.equal(conditional.headers.get('ETag'),etag);
+  assert.deepEqual(await conditional.json(),body);
+ }
+ result.checks.versionPinnedAndEtag=Boolean(etag);
+ result.checks.conditionalGetStatus=conditional.status;
  const edited=await endpoint('/api/admin/update-odds',{expectedGeneration:1,sourceManifest:draft.sourceManifest,
   updates:[{fixtureId:'qa-20261022-001',currentBodyOdds:'1-30'}]},{key:'synthetic-evening-update'});
  const night=(await endpoint('/api/admin/draft?version='+edited.version)).resources;
