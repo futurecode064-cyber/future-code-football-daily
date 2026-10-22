@@ -17,7 +17,7 @@
   ],
   "lastFiveVerified": 0,
   "fullPreviewsPrepared": 0,
-  "specialChoicesPrepared": 0,
+  "specialChoicesPrepared": 2,
   "aiTodayGenerated": 0,
   "newsPrepared": 0,
   "relatedNewsPhotos": 0,
@@ -29,5 +29,21 @@
   "mainBranchIntentionallyUnchanged": true,
   "sourceLedgerPath": "data/research/2026-10-22-source-ledger-pending.json",
   "previousAiReviewPath": "data/research/2026-10-21-ft-ai-review-pending.json",
-  "blockedReason": "No safe mapping exists for 37 PDF rows to 36 official fixtures without fabricating odds; rest of required 22 Oct news/research/preview/photo QA outstanding"
+  "blockedReason": "Fresh 10 news with matching licensed photos missing, 1X2 unavailable, post-Oct15 domestic form unverified; do not claim complete",
+  "sourceRows": 37,
+  "activeRows": 36,
+  "removedRows": [
+    28
+  ],
+  "ownerCorrections": [
+    19,
+    29
+  ],
+  "oddsPrepared": 36,
+  "previewsPrepared": 36,
+  "logoPairs": 36,
+  "latestDomesticFormRefreshPending": true,
+  "unverifiedCurrent1X2Rows": 36,
+  "publicationStatus": "PARTIAL_DATA_PREPARED_NEWS_AND_FULL_QA_PENDING",
+  "publishedGate": "PARTIAL_NOT_COMPLETE"
 }
