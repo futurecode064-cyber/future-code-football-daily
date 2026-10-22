@@ -24,6 +24,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
       "homeLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Premier League",
+          "opponent": "BKMA",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/ararat-armenia/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "Jagiellonia",
@@ -66,16 +78,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-16",
-          "opponent": "Sparta Prague",
-          "teamGoals": 1,
-          "opponentGoals": 4,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
@@ -184,13 +186,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/arm.1/teams/20024/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/ararat-armenia/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/teams/140/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -210,6 +218,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/622.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/21615.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "NB I",
+          "opponent": "Kisvarda FC",
+          "teamGoals": 1,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/ferencvarosi-tc/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -253,16 +273,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-12",
-          "opponent": "DEAC",
-          "teamGoals": 7,
-          "opponentGoals": 0,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
@@ -364,13 +374,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/hun.1/teams/622/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/ferencvarosi-tc/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/por.2/teams/21615/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -557,13 +573,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/111/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/teams/169/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -583,6 +605,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2990.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "Ekstraklasa",
+          "opponent": "Korona Kielce",
+          "teamGoals": 6,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/lech-poznan/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -624,18 +658,6 @@
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044763/uefa-europa-league/lech-poznan-vs-bayer-leverkusen/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-17",
-          "competition": "UEFA Europa League",
-          "opponent": "Crystal Palace",
-          "teamGoals": 0,
-          "opponentGoals": 4,
-          "venueSide": "away",
-          "result": "L",
-          "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
-          "sourceVerification": "UEFA_FT_2026_10_22"
         }
       ],
       "awayLastFive": [
@@ -744,13 +766,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/pol.1/teams/2990/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/lech-poznan/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/366/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -770,6 +798,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/597.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "HNL",
+          "opponent": "NK Slaven Belupo",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/dinamo-zagreb/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -808,16 +848,6 @@
           "teamGoals": 5,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-20",
-          "opponent": "NK Lokomotiva Zagreb",
-          "teamGoals": 3,
-          "opponentGoals": 2,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044484/uefa-europa-league/dinamo-zagreb-vs-anderlecht/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -929,13 +959,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cro.1/teams/597/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/dinamo-zagreb/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/teams/147/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -1125,13 +1161,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams/1010/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/teams/131/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -1316,13 +1358,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/aut.1/teams/3746/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/teams/176/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -1405,6 +1453,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Ligat Ha'al",
+          "opponent": "Hapoel Katamon",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/hapoel-beer-sheva/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "AZ Alkmaar",
@@ -1447,16 +1507,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-16",
-          "opponent": "Dinamo Zagreb",
-          "teamGoals": 0,
-          "opponentGoals": 0,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044426/uefa-europa-league/az-vs-hapoel-beer-sheva/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "homeStanding": null,
@@ -1502,13 +1552,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/5807/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/isr.1/teams/13083/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/hapoel-beer-sheva/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -1700,13 +1756,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/349/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/103/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -1891,13 +1953,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/tur.1/teams/1895/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/384/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -2087,13 +2155,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.1/teams/256/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/85/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -2113,6 +2187,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/11505.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/441.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "Ekstraklasa",
+          "opponent": "Zaglebie Lubin",
+          "teamGoals": 0,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/jagiellonia/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -2154,21 +2240,21 @@
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044669/uefa-europa-league/jagiellonia-bialystok-vs-ararat-armenia/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
+        }
+      ],
+      "awayLastFive": [
         {
-          "date": "2026-09-16",
-          "competition": "UEFA Europa League",
-          "opponent": "Olympiacos",
+          "date": "2026-10-18",
+          "competition": "Cup",
+          "opponent": "Beerschot VA",
           "teamGoals": 1,
           "opponentGoals": 2,
           "venueSide": "away",
           "result": "L",
           "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
-          "sourceVerification": "UEFA_FT_2026_10_22"
-        }
-      ],
-      "awayLastFive": [
+          "sourceUrl": "https://sokascore.com/team/anderlecht/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -2216,18 +2302,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878984",
           "sourceVerification": "ESPN_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-16",
-          "competition": "UEFA Europa League",
-          "opponent": "Lyon",
-          "teamGoals": 1,
-          "opponentGoals": 2,
-          "venueSide": "home",
-          "result": "L",
-          "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
-          "sourceVerification": "UEFA_FT_2026_10_22"
         }
       ],
       "homeStanding": null,
@@ -2273,13 +2347,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/pol.1/teams/11505/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/jagiellonia/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/441/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/anderlecht/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -2464,13 +2544,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams/987/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/89/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -2490,6 +2576,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3362.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2790.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "1. SNL",
+          "opponent": "Maribor",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/celje/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -2533,16 +2631,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-12",
-          "opponent": "NK Bravo",
-          "teamGoals": 1,
-          "opponentGoals": 2,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
@@ -2651,13 +2739,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/slo.1/teams/3362/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/celje/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/aut.1/teams/2790/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -2840,13 +2934,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams/435/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/433/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -2866,6 +2966,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/617.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-19",
+          "competition": "1. Division",
+          "opponent": "Olympiakos",
+          "teamGoals": 2,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/omonia-nicosia/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
@@ -2909,16 +3021,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-16",
-          "opponent": "Celta Vigo",
-          "teamGoals": 1,
-          "opponentGoals": 0,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044762/uefa-europa-league/nk-celje-vs-omonia-nicosia/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
@@ -3032,13 +3134,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cyp.1/teams/617/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/omonia-nicosia/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/por.1/teams/1929/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -3226,13 +3334,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/teams/7911/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/teams/167/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -3309,6 +3423,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Cup",
+          "opponent": "Spartak Pleven",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/levski-sofia/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "N.E.C.",
@@ -3348,16 +3474,6 @@
           "teamGoals": 0,
           "opponentGoals": 1,
           "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "Botev Vratsa",
-          "teamGoals": 0,
-          "opponentGoals": 0,
-          "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044425/uefa-europa-league/nec-vs-levski-sofia/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -3406,13 +3522,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/11706/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bul.1/teams/490/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/levski-sofia/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -3432,6 +3554,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2528.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/443.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "Premier League",
+          "opponent": "Irtysh",
+          "teamGoals": 5,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/kairat-almaty/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -3469,16 +3603,6 @@
           "opponent": "Tobol Kostanay",
           "teamGoals": 1,
           "opponentGoals": 4,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-09",
-          "opponent": "FK Zhenys",
-          "teamGoals": 3,
-          "opponentGoals": 0,
           "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/",
@@ -3591,13 +3715,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/kaz.1/teams/2528/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/kairat-almaty/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/gre.1/teams/443/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -3617,6 +3747,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/2290.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/909.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "Super Liga",
+          "opponent": "Mladost Lucani",
+          "teamGoals": 5,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/fk-crvena-zvezda/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -3654,16 +3796,6 @@
           "opponent": "FK Zeleznicar Pancevo",
           "teamGoals": 2,
           "opponentGoals": 1,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "IMT Novi Belgrade",
-          "teamGoals": 1,
-          "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/",
@@ -3773,13 +3905,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ser.1/teams/2290/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/fk-crvena-zvezda/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams/909/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -3964,13 +4102,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/7922/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/331/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -4057,6 +4201,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-20",
+          "competition": "National League",
+          "opponent": "Servette",
+          "teamGoals": 5,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/lugano/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Crvena Zvezda",
@@ -4094,16 +4250,6 @@
           "teamGoals": 4,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-16",
-          "opponent": "St Gallen",
-          "teamGoals": 4,
-          "opponentGoals": 1,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043474/uefa-conference-league/lugano-vs-crvena-zvezda/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -4152,13 +4298,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/teams/2922/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/sui.1/teams/7672/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/lugano/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -4334,13 +4486,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/geo.1/teams/20025/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/swe.1/teams/20301/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -4415,6 +4573,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Liga I",
+          "opponent": "Farul Constanta",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/universitatea-craiova/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Getafe",
@@ -4452,16 +4622,6 @@
           "teamGoals": 5,
           "opponentGoals": 0,
           "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "CS Corvinul Hunedoara",
-          "teamGoals": 1,
-          "opponentGoals": 0,
-          "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043511/uefa-conference-league/cs-u-craiova-vs-getafe/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -4510,13 +4670,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/and.1/teams/20703/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/rom.1/teams/8089/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/universitatea-craiova/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -4536,6 +4702,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20028.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/620.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-19",
+          "competition": "A Lyga",
+          "opponent": "Suduva Marijampole",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/kauno-zalgiris/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -4573,16 +4751,6 @@
           "opponent": "FK Zalgiris Vilnius",
           "teamGoals": 2,
           "opponentGoals": 3,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "Panevezys",
-          "teamGoals": 1,
-          "opponentGoals": 0,
           "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044440/uefa-conference-league/brighton-vs-fk-kauno-zalgiris/",
@@ -4695,13 +4863,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ltu.1/teams/20028/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/kauno-zalgiris/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/nor.1/teams/620/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -4785,6 +4959,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Cup",
+          "opponent": "Nesebar",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/cska-sofia/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Monaco",
@@ -4822,16 +5008,6 @@
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-12",
-          "opponent": "Arda Kardzhali",
-          "teamGoals": 4,
-          "opponentGoals": 1,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044932/uefa-conference-league/cska-sofia-vs-monaco/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -4880,13 +5056,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams/3101/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bul.1/teams/10834/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/cska-sofia/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -4906,6 +5088,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/22281.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/19246.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-19",
+          "competition": "1. Division",
+          "opponent": "Apoel Nicosia",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/pafos/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -4947,19 +5141,21 @@
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-07",
-          "opponent": "Olympiakos Nicosia",
-          "teamGoals": 0,
-          "opponentGoals": 0,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044972/uefa-conference-league/atalanta-vs-pafos-fc/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "Virsliga",
+          "opponent": "Super Nova",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/riga/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -4995,16 +5191,6 @@
         {
           "date": "2026-09-19",
           "opponent": "FK Jelgava",
-          "teamGoals": 1,
-          "opponentGoals": 0,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044632/uefa-conference-league/riga-fc-vs-kairat-almaty/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-15",
-          "opponent": "SK Super Nova",
           "teamGoals": 1,
           "opponentGoals": 0,
           "venueSide": "away",
@@ -5056,13 +5242,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cyp.1/teams/22281/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/pafos/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/lat.1/teams/19246/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/riga/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -5256,13 +5448,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/tur.1/teams/997/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/sco.1/teams/262/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -5438,13 +5636,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams/7853/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/alb.1/teams/21943/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -5635,13 +5839,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/teams/139/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ita.1/teams/105/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -5829,13 +6039,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/fra.1/teams/174/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ger.1/teams/126/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -5910,6 +6126,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Veikkausliiga",
+          "opponent": "VPS",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/kups/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Trabzonspor",
@@ -5947,16 +6175,6 @@
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "HJK Helsinki",
-          "teamGoals": 0,
-          "opponentGoals": 0,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043532/uefa-conference-league/kups-kuopio-vs-trabzonspor/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -6005,13 +6223,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bih.1/teams/20710/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/fin.1/teams/8169/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/kups/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -6190,13 +6414,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/gib.1/teams/17856/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/ned.1/teams/152/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -6384,13 +6614,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/den.1/teams/572/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/936/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     },
     {
@@ -6474,6 +6710,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "Cup",
+          "opponent": "Rochefort",
+          "teamGoals": 3,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/gent/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Aarhus",
@@ -6523,16 +6771,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878990",
           "sourceVerification": "ESPN_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "Genk",
-          "teamGoals": 1,
-          "opponentGoals": 1,
-          "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044477/uefa-conference-league/gent-vs-agf-aarhus/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "homeStanding": null,
@@ -6578,13 +6816,19 @@
         "verifiedDomesticPost2026_10_15": true,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/por.1/teams/2994/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/3611/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/gent/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       }
     },
     {
@@ -6604,6 +6848,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/3024.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/489.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-17",
+          "competition": "MySports League",
+          "opponent": "Oberthurgau",
+          "teamGoals": 6,
+          "opponentGoals": 3,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sokascore.com/team/thun/results/",
+          "sourceVerification": "SECONDARY_RESULTS_SOKASCORE"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -6642,16 +6898,6 @@
           "teamGoals": 2,
           "opponentGoals": 1,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-16",
-          "opponent": "Servette",
-          "teamGoals": 2,
-          "opponentGoals": 4,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044204/uefa-conference-league/fc-twente-vs-fc-thun/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -6754,13 +7000,19 @@
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/sui.1/teams/3024/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": true,
+        "supplementalSource": "https://sokascore.com/team/thun/results/",
+        "supplementalDataGrade": "secondary club results; not independent official verification"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cro.1/teams/489/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
-        "recordsStored": 5
+        "recordsStored": 5,
+        "verifiedRecentPostOct15": false,
+        "supplementalSource": null,
+        "supplementalDataGrade": null
       }
     }
   ],
@@ -6780,46 +7032,78 @@
     ]
   },
   "formVerification": {
-    "totalTeams": 72,
-    "formsWithFive": 72,
-    "lateDomesticVerifiedTeams": 38,
-    "unverifiedRecentDomesticTeams": [
-      "1:home",
-      "2:home",
-      "2:away",
-      "4:home",
-      "5:home",
-      "8:home",
-      "8:away",
-      "12:home",
-      "12:away",
-      "14:home",
-      "15:away",
-      "16:home",
-      "16:away",
-      "18:home",
-      "18:away",
-      "19:home",
-      "20:home",
-      "21:home",
-      "22:away",
-      "23:home",
-      "24:home",
-      "24:away",
-      "25:home",
-      "26:away",
-      "27:home",
-      "27:away",
-      "30:away",
-      "33:home",
-      "33:away",
-      "34:home",
-      "35:away",
-      "36:away",
-      "37:home",
-      "37:away"
+    "teamCount": 72,
+    "completeFiveRowLists": 72,
+    "newDomesticFromESPN": 38,
+    "newDomesticFromSecondary": 21,
+    "missingPostOct15Coverage": [
+      {
+        "row": 2,
+        "side": "away",
+        "club": "Torreense"
+      },
+      {
+        "row": 8,
+        "side": "home",
+        "club": "Union Saint-Gilloise"
+      },
+      {
+        "row": 15,
+        "side": "away",
+        "club": "Sparta Praha"
+      },
+      {
+        "row": 16,
+        "side": "away",
+        "club": "Benfica"
+      },
+      {
+        "row": 18,
+        "side": "home",
+        "club": "Viktoria Plzeň"
+      },
+      {
+        "row": 21,
+        "side": "home",
+        "club": "Jablonec"
+      },
+      {
+        "row": 23,
+        "side": "home",
+        "club": "Iberia Tbilisi"
+      },
+      {
+        "row": 24,
+        "side": "home",
+        "club": "Inter Escaldes"
+      },
+      {
+        "row": 30,
+        "side": "away",
+        "club": "Egnatia"
+      },
+      {
+        "row": 33,
+        "side": "home",
+        "club": "Borac Banja Luka"
+      },
+      {
+        "row": 34,
+        "side": "home",
+        "club": "Lincoln Red Imps"
+      },
+      {
+        "row": 35,
+        "side": "away",
+        "club": "Sint-Truidense"
+      },
+      {
+        "row": 37,
+        "side": "away",
+        "club": "Hajduk Split"
+      }
     ],
-    "note": "Five rows available for all 72 teams; for 29 teams recent domestic after 15 Oct may be missing. Publication QA must confirm."
+    "review": "Sources mixed. Missing newer domestic match does not prove a match occurred. Verify by independent official source before claiming completeness."
   },
   "resultReview": {
     "archiveDate": "2026-10-21",
