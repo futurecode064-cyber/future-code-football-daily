@@ -121,11 +121,13 @@
       "backupRun": 39756965147,
       "recoveryKeyIndependent": true,
       "backupArtifactRetentionDays": 90,
-      "durableOffsite": false,
+      "durableOffsite": true,
       "restoreVerified": true,
       "independentKeyArtifactId": 12415218943,
       "backupKeySeenInChat": true,
-      "secretRotationRequiredBeforeProduction": true
+      "secretRotationRequiredBeforeProduction": true,
+      "durableScope": "encrypted original staging database only; independent owner copy saved 2026-10-22",
+      "durableFilename": "football-staging-db.enc.json"
     },
     "editorialQa": {
       "day": "2026-10-22",
@@ -138,10 +140,32 @@
       "sourceFile": "docs/football/CURATION_QA_2026_10_22.md"
     },
     "ownerPreview": {
-      "status": "implementation-prepared-not-yet-verified",
+      "status": "hosted-owner-real-snapshot-verified",
       "workerName": "future-code-football-owner-preview",
+      "origin": "https://future-code-football-owner-preview.futurecode-dubai-86851bf2.workers.dev",
       "workflow": ".github/workflows/football-engine-owner-qa.yml",
       "triggerLabel": "football-engine-owner-qa",
+      "runId": 39775311571,
+      "sourceCommit": "81ea35c4123f25fa1dea71edd84ae972673eb686",
+      "privateDraftVersion": "f455d5f4-8b8f-42b0-9802-f3e571ddf84e",
+      "sourceResources": 37,
+      "sourceFixtures": 36,
+      "pagesPassed": 20,
+      "realPngDownloadsPassed": 10,
+      "ownerSessionServiceBindingVerified": true,
+      "anonymousDraftDenied": true,
+      "realPublicationPerformed": false,
+      "productionModified": false,
+      "profileStartedAt": "2026-10-22T12:04:41.340Z",
+      "profileEndedAt": "2026-10-22T12:06:03.700Z",
+      "extendedModeQa": "pending"
+    },
+    "releaseAccess": {
+      "runId": 39774079129,
+      "pagesProjectHttpStatus": 403,
+      "pagesProjectReadable": false,
+      "workerAndD1MetricsReadable": true,
+      "subscriptionPlanReadable": false,
       "productionModified": false
     }
   },

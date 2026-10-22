@@ -1,222 +1,99 @@
-# Football engine checkpoint
+# Future Code Football migration checkpoint
 
-Status: PARTIAL — staging, encrypted backup and synthetic live QA verified; production cutover BLOCKED until independent recovery, real data QA and final authorization.
-Date: 2026-10-22 (Asia/Yangon). Branch: football-engine/workers-d1-migration.
-Base/rollback code reference: 02103874457602b36c2c08bc07eb23e917d56d0c.
-Production cutover: not performed. Legacy delivery workflow: not invoked.
-
-## Completed
-- Read both supplied files. Preserved complete V3 reference and infrastructure specification in Git.
-- Root AGENTS.md, persistent runtime registry, reference SHA-256 checks, daily workflow,
-  validation rules, One-Shot prompt, architecture, deployment and QA/handoff documentation.
-- Audited authoritative repo, existing manual production mirror, owner GitHub-backed editor,
-  static JSON loaders, existing authentication, analytics binding, routing and renderers.
-- New separate Worker implementation and additive D1 schema: private immutable drafts,
-  idempotent imports, source manifests, version-pinned resources, ETags, validation evidence,
-  transactional publication pointer/audit, optimistic concurrency, rollback and archives.
-- Evening current-odds-only draft endpoint preserving opening prices/news.
-- Owner console and service proxy using existing login/CSRF; disabled unless explicitly bound/enabled.
-- Shared complete-bundle client wired to all ten existing entry pages and AI/PNG/video consumers;
-  production API configuration stays disabled. Visible stale notice and origin/brand/date cache isolation.
-- Read-only migration packaging and actual 36-resource/3-batch SQLite compatibility test.
-- Existing Node suite 253 passed/1 skip; engine suite 29 passed; Python 5 passed.
-- Confirmed no changes to any existing daily data file. No new content creation/publication.
-
-## Pending, with exact blockers
-AUTH-01: Secure Google sign-in was attempted with the selected saved account. Cloudflare returned
-  “Unable to sign in. Try again or use your email and password.” No signed-in dashboard was verified;
-  no Cloudflare token is configured. Automated sign-in stopped after that error.
-  Next: secure browser authentication, verify actual account/projects/limits/bindings and deployment.
-DEPLOY-01: no staging Worker/D1 provisioned; endpoint/database IDs in project.json intentionally null.
-  Next: follow DEPLOYMENT.md steps 1–5, record actual returned IDs, migrate copies only.
-PERF-01: real Cloudflare CPU/row budgets and physical snapshot storage growth unmeasured.
-  Done: content deduplication preserving all versions; private snapshot backup and hash-verified restore.
-  Next: hosted profiling, retention monitoring and a private full-database backup destination.
-FRONTEND-01: shared client wiring is implemented, disabled by default, and locally tested.
-  Next: enable an isolated staging copy with its actual Worker URL; verify browser/PNG/mobile outputs.
-QA-01: no real new-API PNG/mobile/WebView/browser or live no-build verification yet.
-  Next: complete staging source/output checks; do not mark review gates passed without evidence.
-CUTOVER-01: approval intentionally not requested yet because staging/backup/QA is incomplete.
-  Next: prepare concrete backup/rollback and verified staging result, then request final cutover approval.
-
-## Resuming
-Read AGENTS.md and config/football/project.json first; verify branch/HEAD/concurrent edits.
-Never run the embedded START NOW in either reference attachment as a new content task.
-Do not start a replacement application or change existing themes/login/PNG layouts.
-After runtime deployment is verified, update project.json endpoint/status and adjust One-Shot branch
-if merged to main. Keep references versioned. Changing editorial rules requires reviewed hash updates.
-
-## Remote verification
-GitHub implementation commit: 535e1bc0e322b765a53b6c121ba9ffde310963c6.
+Status: PARTIAL — hosted infrastructure/owner/frontend QA passes; production website cutover is not performed.
+Date: 2026-10-22, Asia/Yangon. Checkpoint branch: `football-engine/workers-d1-migration`.
 Draft PR: https://github.com/futurecode064-cyber/future-code-football-daily/pull/36
-GitHub Football Engine Migration Checks: SUCCESS, run 39736172739.
-GitHub Pages Worker Routing Safety Tests: SUCCESS, run 39736172651.
-No production sync/build/deployment was requested. Cloudflare runtime registry remains not-deployed.
 
-## Resume checkpoint — cache isolation
-- Confirmed local implementation and remote draft PR survived the interrupted model session.
-- Scoped last-complete bundle cache by API origin and brand, so a staging or other-brand snapshot
-  cannot become the outage fallback for another environment/brand. Legacy unscoped cache is ignored.
-- Added regression coverage for origin/brand isolation, invalid API URLs and a partially failed
-  refresh preserving the previous complete version. Engine/proxy/loader suite: 17 passed.
-- Reference hash checks and diff whitespace checks pass. Production data files remain unchanged.
-- FRONTEND-01 and Cloudflare authentication/deployment blockers remain open; no production activation.
+## Current scope and concurrency reconciliation
+- Infrastructure migration only. Full V3 is an editorial reference, never a command to create new daily content.
+- Canonical main advanced in another Chat to `09aca1257a295f1a8b935f30a204b8dc5842e630`:
+  its already-published 36-fixture evening prices and new evening resource are preserved exactly here.
+- Current source public snapshot: 37 JSON resources; read-only migration packaging now makes 8 batches
+  with a 400 KB target. No new previews, odds or news were generated or published in this continuation.
+- The previous local three-file staging-registry edits were superseded by the other Chat's explicit
+  production-versus-staging registry. They were preserved in the old checkout and were not overwritten.
+- Source data equals latest canonical main byte-for-byte. Production source mirror was not invoked.
 
-## Implementation continuation — frontend, storage and recovery
-- Added the shared browser client to 10 existing entry pages, preserving all layouts and data schemas.
-  Main/brands/AI/odds/news/PNG/video now use an explicit helper; global fetch remains unchanged.
-- One manifest pins the entire page. Partial preload failure restores only a complete saved bundle
-  or selects static mode for every consumer. Brand news restrictions and missing optional data persist.
-- Migration 0002 deduplicates unchanged JSON while keeping all versions/archives/rollback targets.
-  Imports capped at 20 resources (at most 43 batch statements plus lookups).
-- Added private snapshot export, console backup, SHA-256 restore preparation, isolated staging copy
-  preparation and private draft-preview preparation. No public draft endpoint was introduced.
-- D1-enabled Pages mode blocks legacy GitHub publication (no automatic old-publisher fallback).
-- Pinned Wrangler/Miniflare and added runtime/bundle checks to test-only CI. Local workerd successfully
-  imported all 36 source resources in 3 batches and verified export/restore parity and draft privacy.
-- Latest unit/integration suite: 29 passed; website: 253 passed / 1 existing skip; Python: 5 passed.
-- Cloudflare remote auth, staging deployment, hosted Free CPU/profile, real browser/download QA,
-  private full-database backup destination and final production cutover remain uncompleted.
-- Last supplied email/password sign-in used the secure browser-auth flow, returned submission_failed,
-  and showed no website credential error. Manual handoff did not produce a verified account session.
-  Do not infer success, retry the rejected browser flow or persist any supplied login secret.
+## Implementation saved in Git
+- Complete V3 and infrastructure requirements, immutable reference hashes, AGENTS.md, persistent registry,
+  Daily Update Workflow, validation rules and Burmese One-Shot prompt. A fresh Work reads the checkpoint
+  branch explicitly; it must verify actual Git heads/runtime status and independently available credentials.
+- Separate lightweight Worker + additive D1 schema, immutable private drafts, source ledger/manifest,
+  stable IDs, idempotency, optimistic concurrency, atomic activation/audit, history, archives and rollback.
+- Full V3 editorial validation for NEW content; initial unchanged migration has an explicit preservation
+  review mode. Known legacy friendly-form warnings are documented in CURATION_QA_2026_10_22.md;
+  no existing football facts were silently rewritten or newly certified as researched.
+- All ten existing report/odds pages and AI/news/PNG/video consumers use one complete pinned bundle.
+  Partial failure uses a complete saved publication or whole-page legacy fallback with a visible notice.
+- Owner admin: source/PDF hash + private ledger, fixture/odds/previews/forms/special/results/AI/news sections,
+  search/league filters, row editing, exact coverage, before/after comparison, bounded draft imports,
+  validation, history, usage, backup and rollback. PDF extraction remains in Work/browser, not edge CPU.
+- Current-price editing preserves opening prices and aligns report/table fields. Existing owner session
+  and CSRF guard protect the service proxy. Enabling D1 mode blocks legacy GitHub publishers.
+- Owner-only `?fcDraft=VERSION` previews use all five existing renderers, never persistent browser cache.
+  An anonymous/failed draft request fails closed; it never quietly displays another public/static version.
+- Immutable published API resources use edge + browser caches. Manifest and owner endpoints remain no-store.
+- Free CPU optimizations: smaller imports, no recursive canonical copy for new requests (legacy retry
+  hashes still accepted), streamed raw owner snapshots, cached server structural checks per content digest,
+  and current-report/odds-only loads for editorial validation and current-odds updates.
+  Migration 0003 is additive; missing structural receipts block validation until safe reimport.
 
-## Remote integration checkpoint
-Implementation continuation saved at 3b6185c3927766f062cc575d8ba1abd76731e2f8 (same Draft PR #36).
-The repository's existing Cloudflare test-app build integration ran automatically and failed:
-`Workers Builds: future-code-football-test`, build 7e9cde9d-a327-4525-b9b9-a5391cc07541.
-Only the Dashboard link is exposed; its error log/configuration requires account access.
-Do not repurpose this unknown existing test app or point it at production/analytics databases.
-An additional reader compatibility test covers Android WebView without Response.json.
+## Verified remote resources
+Original staging: `future-code-football-engine-staging` / `future-code-football-db-staging`.
+D1 ID: `a4ddc00f-411b-4ee5-ab4a-dfe13486c334`.
+Origin: https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev
+Run 39746102616 deployed/imported 36 original resources privately; generation 0, no active publication.
+Read-only verification run 39750290153: private endpoints reject anonymous access, physical D1 2,596,864 bytes.
 
-## Owner-browser authentication alternative
-Prepared a read-only Cloudflare API access check through GitHub Secrets, avoiding Cloud Browser.
-See CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md. The owner creates a migration-scoped user API token
-in their working browser and saves it directly as FOOTBALL_STAGING_CF_API_TOKEN in repository secrets.
-After the owner confirms saving (never supplies the token in chat), add label
-football-cloudflare-access-check to same-repository Draft PR #36. The label-triggered workflow
-performs only GET metadata requests and saves a minimal non-secret result. No main merge is needed.
-The two new authentication-bridge tests pass. Real API access has NOT been tested and is NOT assumed.
-This is access verification, not a deployment/publication workflow or a daily content build path.
+Isolated QA backend: `future-code-football-engine-qa-smoke` / `future-code-football-db-qa-smoke`.
+D1 ID: `86a9ed8a-deb4-46a1-80c5-e744d2b47aa5`.
+Synthetic-only full import/validate/publish/evening/rollback/no-build proof: run 39754490298.
+Synthetic real video container download: run 39755484428.
+No synthetic fixture was written to the production website or original staging snapshot.
 
-## Cloudflare API access verified
-Owner saved FOOTBALL_STAGING_CF_API_TOKEN directly in GitHub. Read-only workflow run 39745156542
-succeeded at 2026-10-22T08:05:32.512Z (14:35 Myanmar). Workers and D1 metadata access both succeeded.
-Neither intended staging resource exists. No credentials were exposed and no resources were changed.
-The Cloud Browser session remains unverified; API access is now available independently.
-Prepared label-triggered isolated staging workflow: football-engine-stage on PR #36. It creates
-only fixed staging names, refuses unowned name conflicts, migrates existing source JSON into private
-drafts, checks deployment IDs remain unchanged during imports, and verifies a temporary full D1 export.
-Random staging admin credentials remain in the runner and staging Worker secret store. No production
-secrets/routes/bindings change, no daily content activation, and no paid-plan operations are included.
+Hosted owner frontend: `future-code-football-owner-preview`, using the existing Pages handler as a
+TEST static-assets Worker only. The production frontend remains the existing Cloudflare Pages app.
+Run https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39775311571 — SUCCESS.
+Candidate commit `81ea35c4123f25fa1dea71edd84ae972673eb686`:
+- Additive migrations and current backend code deployed only in disposable QA.
+- 37 unchanged public JSON resources imported into private draft `f455d5f4-8b8f-42b0-9802-f3e571ddf84e`.
+- Owner login -> service binding -> D1, CSRF rejection, legacy publisher block: PASS.
+- 20/20 report/odds pages (5 brands × 2 page types × desktop/mobile viewport): PASS, exact pinned source.
+- 10/10 actual downloaded PNGs (5 preview + 5 odds) have valid signatures/dimensions; representative outputs
+  visually inspected for Burmese article text, branding, logos and separate opening/current prices.
+- Anonymous/private API draft access: rejected. No real snapshot publication or production change.
+- Deployment IDs unchanged during imports and browser reads.
+- Extended all-frame/split/filter/real-video/photo QA is prepared; consult current registry for actual result.
+- This mobile viewport test is not an installed physical Android APK/WebView test.
 
-## Verified remote staging deployment — 2026-10-22 14:43 Myanmar
-- Read-only Cloudflare access succeeded earlier in run 39745156542.
-- Isolated staging workflow run 39746102616 **SUCCESS**, job 119714820014, at 2026-10-22T08:13:43Z.
-- Managed Worker: future-code-football-engine-staging; D1: future-code-football-db-staging.
-- Public staging origin: https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev
-- Staging D1 ID (not a credential): a4ddc00f-411b-4ee5-ab4a-dfe13486c334.
-- Migrations applied; Worker deployed; health verified. 36 existing JSON resources imported into
-  **private**, unpublished drafts in 3 batches, all JSON values equal.
-- Unauthorized owner API blocked; unpublished draft hidden. Admin export matches the imported snapshot.
-- During data-only imports Worker deployment IDs unchanged.
-- Staging runner exported a full D1 SQL snapshot and verified its SHA-256, but the SQL file was
-  **not retained** after the temporary runner ended. Durable private backup remains pending.
-- Recorded JSON payload bytes 2,439,913; physical D1 size and hosted CPU still unverified.
-- Production modified: false. No content activated, no production cutover.
-- This checkpoint supersedes earlier AUTH-01 and DEPLOY-01 blockers for **staging only**.
-- Remaining: live read-only smoke, secure persistent backup target, validated staging publication
-  with real QA evidence, isolated five-brand browser/PNG/video/mobile testing, measured CPU/rows,
-  stable private owner access, and production cutover only after approval.
-- Staging credentials were ephemeral. Do NOT attempt an authenticated admin call with a guessed
-  token or rerun the provisioning workflow merely to rotate credentials.
+## Backup and recovery
+Run 39756965147 — encrypted full original staging SQL backup with independent GitHub recovery secret:
+SQL 2,476,646 bytes; SHA-256 d0bbb0fec1ea4aa1cf1539bc53626f53804ff119f8ab2d72d281181e35582f7d.
+AES-256-GCM/HKDF encryption occurs before public-repo artifact upload; SQL restore and tamper tests pass.
+An encrypted owner copy `football-staging-db.enc.json` is saved independently of the 90-day Actions artifact.
+No password, raw token, recovery key or decrypted SQL was copied to Git or owner file storage.
+The other Chat previously displayed the chosen recovery key; replace it privately before production use.
+Retain older keys privately until older backups are no longer needed. Never publish their values.
 
-## Read-only remote live staging validation — 2026-10-22 15:16 Myanmar
-- GitHub Actions live-read check run 39750290153 succeeded, with saved non-secret artifact 12412359781.
-- Worker health: staging=true, generation=0; live manifest matches active publication pointer.
-- All tested private endpoints deny unauthenticated requests; CORS rejects foreign origins.
-- Import remains unpublished and private. Read-only checks did not change deployment IDs.
-- D1 metadata API reports 2,596,864 bytes physical file size and 8 tables (not a daily D1 row-usage figure).
-- Production is **still** not enabled. Production API fields in project.json must stay null; staging
-  endpoint/DB ID are recorded only under deployment.stagingSetupWorkflow. The previously written
-  status key conflated staging with production and tripped intentional CI safety checks; corrected.
-- Browser/PNG/video staging QA, sustainable confidential backup and hosted CPU measurements remain open.
+## Actual access and runtime findings
+Read-only run 39774079129: active GitHub token; Workers and D1 analytics readable.
+Target Pages project GET: HTTP 403. Only one account visible to this credential; no readable matching project.
+Token policy details and subscription/plan metadata: HTTP 403. This does not dispute the owner's prior
+Pages Edit configuration; it describes the exact credential currently usable by this execution path.
+Existing source -> AI-Recap-GitHub -> Pages Git sync is working, but it cannot set the required service
+binding and Pages secret/environment values by itself. Do not request another password or retry failed login.
+Historical mixed-workload CPU sample had a high tail; candidate-specific profiling after optimization is
+pending. Raw values must not be presented as wall time, paid-plan status or a passing Free-limit gate.
 
-## Current acceptance checkpoint — 2026-10-22, staging only
+## Remaining release gates
+| ID | Remaining action |
+|---|---|
+| ACCESS-PAGES | Make the already-authorized Pages project/binding configuration accessible through the existing secret or owner account; verify actual current configuration before additive writes. |
+| PERF-FREE | Record candidate-specific CPU, request/row/storage metrics; optimize further if needed. Account billing metadata is not readable; no paid upgrade/card operation is authorized. |
+| QA-MODES | Finish all existing PNG frame/split/filter/video/photo checks on the unchanged real private snapshot. Physical APK/WebView remains separately untested. |
+| RECOVERY-KEY | Rotate the previously chat-displayed recovery key privately; restore-test and save a fresh encrypted backup before activation. |
+| CUTOVER | Follow CUTOVER_PLAN.md after the above technical evidence exists and the owner's final approval. No main merge/mirror/binding switch/data activation has occurred. |
 
-Production main, cloudflare Pages and 5 brands are UNCHANGED. No merge, mirror, production D1 setup,
-real content publication or cutover has occurred. Original staging Worker keeps the 36 copied
-resources as an **unpublished private draft**, generation 0.
-
-### Encrypted STAGING database backup
-- Run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39753369330
-- Complete SQL exported and restored in the runner, then encrypted with AES-256-GCM/HKDF-SHA256
-  *before* GitHub artifact upload. Source SQL is not uploaded. Encryption tests include wrong-key
-  and tamper rejection. Artifact: football-staging-encrypted-sql; retention set to 90 days.
-- This is a TEMPORARY backup: until FOOTBALL_BACKUP_RECOVERY_KEY is set in GitHub Actions repository
-  secrets, the Cloudflare migration token secret is the key-derivation input. Recovery will
-  fail if that token value is lost/rotated. Never publish the key or decrypted SQL.
-- Requirement before production: owner saves a separate high-entropy recovery secret directly
-  at GitHub > repository Settings > Secrets and variables > Actions. Re-run the encrypted
-  backup workflow and verify its report says keySource=FOOTBALL_BACKUP_RECOVERY_KEY. Copy an encrypted
-  backup to an independently controlled durable storage destination; GitHub artifact retention is
-  90 days, NOT permanent disaster recovery.
-
-### Separate synthetic QA Worker and D1, NOT production data
-- QA Worker: future-code-football-engine-qa-smoke
-- QA database: future-code-football-db-qa-smoke (86a9ed8a-deb4-46a1-80c5-e744d2b47aa5).
-- E2E run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39754490298
-- Engine import/validate/publish -> evening current odds (opening unchanged) -> rollback all PASS.
-  Deployment IDs unchanged during the data-only sequence. Unauthorized admin API rejected.
-- Synthetic QA fixture explicitly has no bearing on real football editorial quality. The test
-  review object is a synthetic engineering fixture, not verified PDF/photo/owner approval.
-
-### Live frontend, real PNG and video outputs (synthetic data)
-- Browser run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39754839590
-- 20/20 homepage/odds desktop/mobile page checks PASS with a published API version; 5/5 PNGs actually
-  downloaded and signature/dimensions verified (main plus four brands, including Goal Zone).
-- That browser workflow is overall marked FAILED solely because its video preview check targeted a
-  hidden tab while the page defaulted to the 'today' tab. It does NOT indicate failed API/PNG.
-- Dedicated Video Studio QA: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39755484428
-  PASS: selected Video tab, rendered 720x1280 canvas, captured and downloaded actual MP4/WebM
-  synthetic odds sample, verified nonempty video container header.
-- Browser-size mobile simulation is not an installed Android APK WebView test.
-
-### Production release gates still OPEN
-1. Real published PDF source + editorial QA required, not synthetic review. Existing copied 2026-10-22
-   data has an example 'Friendlies Clubs' result in a last-five form even though V3 excludes friendlies;
-   must reconcile entire 36-match data against the original PDF and verify competitive-only form.
-   Existing legacy-font glyphs were not independently decoded. No fabricated research facts/reviews.
-2. Stable owner-only authenticated Pages -> Worker binding and production secret management untested
-   on a live hosted preview. Do not use ephemeral QA token or expose admin bearer in frontend.
-3. Production-ready INDEPENDENT recovery key and recoverable durable encrypted full D1 backup missing;
-   staging artifact alone is insufficient.
-4. Hosted CPU/row budget under full real-data validation and pinned API consumption unmeasured.
-5. All existing PNG frame/filter/multi-match modes, long Burmese names, actual news photos, video modes,
-   phone APK WebView and 36-match real-data rendering require release QA (synthetic tests cover only 1).
-6. Final production cutover must be explicitly approved after gates have evidence and rollback tested.
-
-Next action: complete the 6 gates on isolated staging. Then stage a cutover plan for explicit approval.
-Do not merge draft PR, change Cloudflare Pages bindings, run legacy mirror workflow, or publish real data
-merely because synthetic and encrypted staging checks pass.
-
-## Independent-key encrypted staging backup — 2026-10-22 (09:38Z)
-- User confirmed saving FOOTBALL_BACKUP_RECOVERY_KEY to GitHub repository Secrets.
-- Verified GitHub Action: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39756965147 — SUCCESS.
-- Actual runner log confirms backupKeySource=FOOTBALL_BACKUP_RECOVERY_KEY, encrypted=true,
-  restoreVerified=true, SQL bytes=2,476,646; productionModified=false.
-- Artifact football-staging-encrypted-sql (ID 12415218943), retention=90 days.
-- **Security remaining:** The chosen key value was previously displayed in this chat.
-  It should be ROTATED to a key generated privately inside a password manager, without posting it
-  to ChatGPT/GitHub code/logs, before production. Re-run backup and retain new encrypted artifact.
-  Backup also needs durable independent storage (Actions artifacts expire); production remains blocked.
-
-## Editorial source QA read-only audit — 2026-10-22
-- Compared published 2026-10-22 report/odds GitHub JSON: 36 report fixtures, 36 odds fixtures,
-  36 unique matching IDs, no index/order odds-mapping mismatch detected in this narrow check.
-- User's V3 policy says last five must exclude friendly matches. Found six 'Friendlies Clubs'
-  entries across four fixtures (#1 Ararat-Armenia HOME; #4 Lech Poznan HOME;
-  #12 Jagiellonia HOME twice and Anderlecht AWAY once; #27 Riga AWAY once).
-- New editorial validation rejects these entries. Original public JSON and D1 private draft were
-  **NOT silently changed**. Replacement competitive results require independent source verification.
-- See docs/football/CURATION_QA_2026_10_22.md for affected entries and source links.
+Supplied requirements §14 says: “Major Production Cutover ကို ကျွန်တော့် Final Approval ရယူပြီးမှ ဆောင်ရွက်ပါ။”
+Development, testing and non-destructive preparation remain authorized. Final approval is for the
+concrete production switch; do not ask prematurely or infer it from a generic request to continue.

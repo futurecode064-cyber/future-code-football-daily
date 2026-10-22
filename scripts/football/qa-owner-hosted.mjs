@@ -1,6 +1,7 @@
 // Hosted owner-session + service-binding acceptance on isolated QA resources only.
 // Imports the CURRENT unchanged public snapshot as PRIVATE drafts; never publishes it.
 import {chromium} from 'playwright';
+import {checkDownloadModes} from './qa-download-modes.mjs';
 import {readFileSync,writeFileSync,mkdtempSync,cpSync,rmSync,readdirSync,mkdirSync} from 'node:fs';
 import {resolve,join} from 'node:path';import {tmpdir} from 'node:os';
 import {execFileSync} from 'node:child_process';import {randomBytes,createHmac} from 'node:crypto';
@@ -87,6 +88,8 @@ try{
    }
   }
  }
+ report.downloadModes=await checkDownloadModes(page,{origin:report.origin,version,expected,out});
+ report.checks.allExistingDownloadModes=report.downloadModes.success;
  report.checks.realSnapshotPages=report.pages.length===20;report.checks.realPngDownloads=report.png.length===10;
  // A logged-out browser must never see the private real snapshot via the new draft preview.
  const anon=await browser.newContext();const ap=await anon.newPage();await ap.goto(report.origin+'/?fcDraft='+version);

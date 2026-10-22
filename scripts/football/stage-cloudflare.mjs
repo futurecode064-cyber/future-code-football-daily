@@ -1,15 +1,18 @@
 // One-off infrastructure setup. Fixed STAGING resources only. No content activation or production writes.
 import {mkdtempSync,readFileSync,readdirSync,writeFileSync,rmSync} from 'node:fs';
 import {resolve,dirname} from 'node:path';import {fileURLToPath} from 'node:url';import {tmpdir} from 'node:os';
-import {execFileSync} from 'node:child_process';import {randomBytes,createHash} from 'node:crypto';import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';import {DatabaseSync} from 'node:sqlite';import {encryptBackup,decryptBackup} from './backup-crypto.mjs';import {randomBytes,createHash} from 'node:crypto';import assert from 'node:assert/strict';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'../..');
-const owner='futurecode064-cyber/future-code-football-daily',workerName='future-code-football-engine-staging',dbName='future-code-football-db-staging';
+const target=process.env.FOOTBALL_ENGINE_SETUP_TARGET||'staging';
+if(!['staging','production-private'].includes(target))throw Error('Unsupported fixed setup target');
+const productionPrivate=target==='production-private';
+const owner='futurecode064-cyber/future-code-football-daily',workerName=productionPrivate?'future-code-football-engine':'future-code-football-engine-staging',dbName=productionPrivate?'future-code-football-db':'future-code-football-db-staging';
 const token=process.env.FOOTBALL_STAGING_CF_API_TOKEN,accountId=process.env.FOOTBALL_STAGING_CF_ACCOUNT_ID;
 const adminToken=randomBytes(32).toString('hex'),scratch=mkdtempSync(tmpdir()+'/football-staging-');
-const report={schemaVersion:1,environment:'staging',workerName,databaseName:dbName,startedAt:new Date().toISOString(),productionModified:false,contentActivated:false};
+const report={schemaVersion:1,environment:target,workerName,databaseName:dbName,startedAt:new Date().toISOString(),productionModified:false,contentActivated:false,productionWebsiteModified:false,productionNamespaceProvisioned:productionPrivate};
 const out=resolve(process.argv[2]||'football-staging-report.json');
 const save=()=>writeFileSync(out,JSON.stringify(report,null,2)+'\n',{mode:0o600});
-function redact(text){return String(text).replaceAll(token||'__absent__','[redacted]').replaceAll(adminToken,'[redacted]');}
+function redact(text){return String(text).replaceAll(token||'__absent__','[redacted]').replaceAll(adminToken,'[redacted]').replaceAll(process.env.FOOTBALL_BACKUP_RECOVERY_KEY||'__no_recovery__','[redacted]');}
 async function api(path,options={}){
  const r=await fetch('https://api.cloudflare.com/client/v4'+path,{method:options.method||'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:options.body===undefined?undefined:JSON.stringify(options.body),redirect:'error',signal:AbortSignal.timeout(30000)});
  const data=await r.json().catch(()=>null);
@@ -26,6 +29,7 @@ async function engine(path,body,key){
 }
 const prefix='/accounts/'+accountId;
 try{
+ if(productionPrivate&&(!process.env.FOOTBALL_BACKUP_RECOVERY_KEY||process.env.FOOTBALL_BACKUP_RECOVERY_KEY.length<32))throw Error('Independent GitHub recovery secret required before private production setup');
  if(!token||token.length<20||!/^[a-f0-9]{32}$/.test(accountId||''))throw Error('Migration-scoped GitHub secret/account configuration required');
  const state=JSON.parse(readFileSync(resolve(root,'config/football/project.json'),'utf8'));
  assert.equal(state.deployment.productionCutoverCompleted,false);assert.equal(state.currentTask,'infrastructure-migration-only');
@@ -41,6 +45,8 @@ try{
  if(database){
   const checked=await api(prefix+'/d1/database/'+database.uuid+'/query',{method:'POST',body:{sql:'SELECT owner FROM football_engine_installation WHERE singleton=1'}});
   if(checked[0]?.results?.[0]?.owner!==owner)throw Error('Existing staging D1 is not owned by this migration; refusing adoption');
+  const table=await api(prefix+'/d1/database/'+database.uuid+'/query',{method:'POST',body:{sql:"SELECT name FROM sqlite_master WHERE type='table' AND name='active_publication'"}});
+  if(table[0]?.results?.length){const a=await api(prefix+'/d1/database/'+database.uuid+'/query',{method:'POST',body:{sql:'SELECT version_id,generation FROM active_publication WHERE singleton=1'}});if(a[0]?.results?.[0]?.version_id!==null||a[0]?.results?.[0]?.generation!==0)throw Error('Active publication exists; refusing Worker deployment or secret rotation');}
  }else{
   database=await api(prefix+'/d1/database',{method:'POST',body:{name:dbName,primary_location_hint:'apac'}});
   report.databaseCreated=true;report.databaseId=database.uuid;save();
@@ -53,7 +59,7 @@ try{
  if(!/^[a-z0-9-]+$/.test(accountSubdomain.subdomain||''))throw Error('Account workers.dev subdomain is not available');
  report.apiOrigin='https://'+workerName+'.'+accountSubdomain.subdomain+'.workers.dev';
  const config=JSON.parse(readFileSync(resolve(root,'services/football-engine/wrangler.jsonc.example'),'utf8'));
- config.main=resolve(root,'services/football-engine/src/worker.mjs');config.account_id=accountId;
+ config.name=workerName;config.main=resolve(root,'services/football-engine/src/worker.mjs');config.account_id=accountId;config.vars.ENVIRONMENT=productionPrivate?'production':'staging';config.d1_databases[0].database_name=dbName;
  config.d1_databases[0].database_id=database.uuid;config.d1_databases[0].migrations_dir=resolve(root,'services/football-engine/migrations');
  config.vars.FOOTBALL_ENGINE_MANAGED_BY=owner;
  config.vars.ALLOWED_ORIGINS=[state.sites.main.replace(/\/$/,''),'http://localhost:8788'].join(',');
@@ -66,7 +72,7 @@ try{
  await api(prefix+'/workers/scripts/'+workerName+'/subdomain',{method:'POST',body:{enabled:true,previews_enabled:false}});
  let healthy=false;
  for(let attempt=0;attempt<6;attempt++){
-  try{const health=await engine('/api/football/health');if(health.ok&&health.environment==='staging'){healthy=true;break;}}catch{}
+  try{const health=await engine('/api/football/health');if(health.ok&&health.environment===(productionPrivate?'production':'staging')){healthy=true;break;}}catch{}
   await new Promise(r=>setTimeout(r,3000));
  }
  if(!healthy)throw Error('Staging health did not become ready');report.healthVerified=true;
@@ -90,6 +96,12 @@ try{
  report.storage=await engine('/api/admin/usage');
  const sqlFile=scratch+'/staging-backup.sql';wrangler(['d1','export','DB','--remote','--config',configPath,'--output',sqlFile]);
  const backup=readFileSync(sqlFile);report.fullDatabaseExport={verified:true,bytes:backup.length,sha256:createHash('sha256').update(backup).digest('hex'),retained:false,note:'Verified in ephemeral runner only; private durable backup destination still pending'};
+ if(productionPrivate){
+  const recovery=process.env.FOOTBALL_BACKUP_RECOVERY_KEY;
+  const check=new DatabaseSync(':memory:');try{check.exec(backup.toString('utf8'));const a=check.prepare('SELECT version_id,generation FROM active_publication WHERE singleton=1').get();assert.equal(a.version_id,null);assert.equal(a.generation,0);assert.ok(check.prepare('SELECT count(*) n FROM resource_blobs').get().n>=Object.keys(expected).length);}finally{check.close();}
+  const encrypted=encryptBackup(backup,recovery,{keySource:'FOOTBALL_BACKUP_RECOVERY_KEY',source:dbName});assert.deepEqual(decryptBackup(encrypted,recovery),backup);
+  const encryptedPath=resolve(process.argv[3]||'football-production-private-db.enc.json');writeFileSync(encryptedPath,JSON.stringify(encrypted)+'\n',{mode:0o600});report.fullDatabaseExport={...report.fullDatabaseExport,retained:true,encrypted:true,restoreVerified:true,keySource:'FOOTBALL_BACKUP_RECOVERY_KEY',note:'Encrypted private production preparation only. Key rotation and durable owner copy required before activation.'};
+ }
  report.completedAt=new Date().toISOString();report.success=true;save();console.log(JSON.stringify(report));
 }catch(error){report.success=false;report.error=redact(error.message);save();console.error(report.error);process.exitCode=1;}
 finally{rmSync(scratch,{recursive:true,force:true});}

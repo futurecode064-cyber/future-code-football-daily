@@ -1,0 +1,54 @@
+name: Football Engine Unconnected Production Preparation
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  staging:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-production-prepare'
+    concurrency:
+      group: football-engine-production-private-prepare
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+        working-directory: services/football-engine
+      - run: node scripts/football/check-config.mjs
+      - run: node --test services/football-engine/tests/*.test.mjs
+      - run: npm run check:bundle
+        working-directory: services/football-engine
+      - name: Prepare unconnected production Worker and D1 with unchanged private snapshot
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_BACKUP_RECOVERY_KEY: ${{ secrets.FOOTBALL_BACKUP_RECOVERY_KEY }}
+          FOOTBALL_ENGINE_SETUP_TARGET: production-private
+          FOOTBALL_STAGING_CF_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+        run: node scripts/football/stage-cloudflare.mjs football-production-private-report.json football-production-private-db.enc.json
+      - name: Save encrypted SQL and non-secret preparation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-production-private-report
+          path: |
+            football-production-private-report.json
+            football-production-private-db.enc.json
+          retention-days: 14
+          if-no-files-found: warn
+# Only fixed, owned, unconnected production namespace resources; active publications cause refusal.
+# No production Pages binding,
+# analytics DB, daily content activation, production mirror, schedule or paid-plan operation.

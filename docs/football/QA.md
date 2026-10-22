@@ -1,50 +1,30 @@
-# QA checkpoint — 2026-10-22, Asia/Yangon
+# Verified acceptance evidence — 2026-10-22
 
-Source base: 02103874457602b36c2c08bc07eb23e917d56d0c. No daily content generated/published.
+Infrastructure scope only. Existing published content is preserved, not newly researched or published.
+Current source/rollback: canonical main `09aca1257a295f1a8b935f30a204b8dc5842e630`.
 
-| Check | Actual result |
+| Check | Actual evidence / result |
 |---|---|
-| Existing website Node suite | 254 total: 253 passed, 1 existing skip, 0 failed |
-| Engine/client/owner proxy/backup suite | 29 passed, 0 failed |
-| Python live-checker tests | 5 passed |
-| Owner/login/routing regression after proxy change | 13 passed |
-| Persistent reference hashes | verified by scripts/football/check-config.mjs |
-| Existing public JSON migration | 36 resources, 3 batches; JSON-value parity after SQLite and actual local workerd/D1 import + export/restore |
-| Current report/odds/files | git diff --exit-code football-daily/data clean |
-| Draft visibility | unpublished snapshots rejected by public API |
-| Atomic activation & concurrency | conditional version/generation + SQL audit trigger verified locally |
-| Duplicate/retry imports | same key/body reuses draft; conflicting body rejected |
-| Evening prices | opening and news unchanged; absent current prices blank |
-| API outage | complete saved bundle or existing static UI; mixed-version response rejected |
-| Owner/CSRF/secret handling | existing session required; secret forwarded only in service binding |
-| Server validation | existing owner editorial rules retained; explicit source/download QA evidence required |
-| Free CPU/D1/edge usage | NOT measured in Cloudflare |
-| Worker/D1 deployment | Remote engine not deployed; local migrations/package/runtime verified. Secure Google failed; email/password secure submission did not complete |
-| Five-site live API integration | Client wiring implemented and unit-tested; remote staging/production activation pending |
-| Actual downloaded PNG/mobile/APK WebView with new API | NOT tested |
-| Live no-build publication/history verification | NOT tested |
-| Private snapshot backup/restore | Export + SHA-256 restore tools and local 36-resource recovery verified |
-| Production full-DB backup destination & retention monitoring | NOT configured |
-| Android WebView compatibility | Reader works without static Response.json; actual APK/device QA pending |
-| Official package/schema checks | Wrangler dry-run bundle and both local D1 migrations pass |
+| Full references and daily rules | Hash-verified V3 + infrastructure specification + workflow + validation registry in Git |
+| Existing website suite | 254 total: 253 pass, 1 existing skip; Python 5 pass |
+| Engine/client/admin/security/backup | Latest local 48 tests; consult final run rather than historical counts |
+| Runtime compatibility | Official workerd + local D1; 37 current JSON resources, 8 bounded batches; import/export/restore exact parity; anonymous access denied; private draft hidden |
+| Remote synthetic lifecycle | Run 39754490298: import/validate/publish/current odds/rollback; deployment IDs unchanged |
+| Hosted real private snapshot | Run 39775311571: 37 resources, 36 fixtures, 20/20 pages, exact JSON parity |
+| Owner session -> service binding | Hosted PASS; CSRF rejected, secret stays server-side, legacy publisher blocked |
+| Private preview | Hosted anonymous access rejected; no localStorage persistence; failure does not use public/static data |
+| Real PNG downloads | Hosted 10/10 files, correct signature/dimensions; representative images inspected visually |
+| Synthetic video download | Run 39755484428, actual MP4/WebM container verified |
+| Complete real frame/filter/video/photo modes | Extended hosted check prepared; actual outcome tracked in project.json |
+| Mobile | Chromium viewport PASS; installed Android APK/WebView not tested |
+| Edge caching | Regression verifies immutable public cache hits avoid D1; drafts/manifests/brand-restricted news stay protected |
+| Structural receipts | Regression blocks corrupt/unreviewed inherited archives; only server-created digest receipts accepted |
+| Active-production guard | Provisioning refuses an existing active owned database before any deploy or secret rotation |
+| Production availability | Five public home URLs returned HTML HTTP 200 after reconciliation; production API path still returns old HTML, so API is NOT live |
+| SQL backup | Full original staging SQL restored then encrypted; independent owner copy retained; old recovery key rotation required |
+| Current API permission | Read-only run 39774079129: Pages project HTTP 403, Worker/D1 analytics available |
+| Free CPU budget | Historical mixed sample shows a high tail; optimized candidate measurement required before a passing claim |
+| Production cutover/no-build proof | Not performed; isolated data-only no-build test is not production proof |
 
-The initial SQLite migration is a read-only-source compatibility test, not verification that
-existing football facts are correct. Legacy pending editorial flags were preserved unchanged.
-The new code does not fix or republish the existing daily report.
-The API has no GitHub/network publisher calls. This establishes separation in implementation;
-it does not prove real production deployment history until staging/account tests run.
-
-Remote CI on implementation commit 535e1bc0e322b765a53b6c121ba9ffde310963c6:
-- Football Engine Migration Checks: success, https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39736172739
-- Pages Worker Routing Safety Tests: success, https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39736172651
-
-Continuation checkpoint: frontend wiring, deduplication, private backup/restore and local-runtime
-coverage are saved in the migration branch. Production data, source reference bytes and existing
-site themes remain unchanged. The new API config remains disabled.
-
-GitHub commit 3b6185c3927766f062cc575d8ba1abd76731e2f8 triggered the repository's existing
-Cloudflare integration check `Workers Builds: future-code-football-test`; that external build failed.
-Its check exposes only a Dashboard build link, not the underlying error log. No new engine deployment
-is inferred from it, and the unknown Cloudflare build configuration has not been overwritten.
-The separate GitHub engine and routing checks for that commit are tracked in runs 39741650327
-and 39741650297; consult their actual latest status rather than assuming success.
+See PROGRESS.md for runtime IDs, boundaries and remaining gates; CUTOVER_PLAN.md for exact switch/rollback.
+No paid plan/card operation, source mirror, main merge or production D1 activation occurred in this continuation.

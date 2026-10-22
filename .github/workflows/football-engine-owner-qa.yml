@@ -4,10 +4,6 @@ on:
     types: [labeled]
 permissions:
   contents: read
-  actions: write
-concurrency:
-  group: football-owner-preview-qa
-  cancel-in-progress: true
 jobs:
   owner-preview:
     if: >-
@@ -16,6 +12,9 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
       github.event.label.name == 'football-engine-owner-qa'
+    concurrency:
+      group: football-owner-preview-qa
+      cancel-in-progress: true
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -27,10 +26,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Stop superseded owner preview QA before touching shared test credentials
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: node scripts/football/cancel-superseded-owner-qa.mjs
       - run: npm ci
         working-directory: services/football-engine
       - timeout-minutes: 5

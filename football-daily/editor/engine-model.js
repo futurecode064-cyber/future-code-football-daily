@@ -25,6 +25,25 @@
   if(original.fixtureId&&value.fixtureId!==original.fixtureId)throw Error('Stable fixtureId မပြောင်းရ');
   draft.resources[row.path][row.key][row.index]=copy(value);
  }
+ const editable={
+  fixtures:['pdfRow','home','away','homeDisplay','awayDisplay','league','leagueDisplay','kickoffUtc','kickoffYangon','kickoffCalendarDate','nightEditorialDate','homeCrestUrl','awayCrestUrl','fixtureSourceUrl'],
+  opening:['home','away','canonicalHome','canonicalAway','league','pdfRow','upperTeam','bodyOdds','goalTotalOdds','pdfLastColumn'],
+  current:['currentBodyOdds','currentGoalTotalOdds'],previews:['dailyPreviewText','previewJournalist','researchSources'],
+  forms:['homeLastFive','awayLastFive','homeStanding','awayStanding','standingsSourceUrl','homeOdds','drawOdds','awayOdds','oddsProvider','oddsSourceUrl','oddsVerifiedDate','formDefinition','formCheckedAt','homeFormVerification','awayFormVerification'],
+  special:['specialChoice','specialChoiceRank','specialAnalysisParagraphs'],
+  results:['status','finalScore','resultSourceUrl','resultVerifiedDate','kickoffCalendarDate'],
+  ai:['homeOdds','drawOdds','awayOdds','oddsProvider','oddsSourceUrl','oddsVerificationStatus','oddsVerifiedDate']
+ };
+ function sectionValue(row,section){const fields=editable[section];return fields?Object.fromEntries(fields.filter(k=>row.value[k]!==undefined||section==='current').map(k=>[k,row.value[k]??''])):copy(row.value);}
+ function updateSection(draft,row,section,value){
+  const fields=editable[section];if(fields&&Object.keys(value).some(k=>!fields.includes(k)))throw Error('ဤ section တွင် ခွင့်ပြုထားသော field မဟုတ်ပါ');
+  if(!value||typeof value!=='object'||Array.isArray(value))throw Error('JSON object လိုအပ်သည်');
+  update(draft,row,{...row.value,...value});
+  if(['current','opening'].includes(section)){
+   const id=row.value.fixtureId,m=draft.resources['data/today.json']?.matches?.find(x=>x.fixtureId===id);
+   if(m){m.myanmarOdds={...m.myanmarOdds};for(const k of section==='current'?editable.current:['upperTeam','bodyOdds','goalTotalOdds'])if(Object.prototype.hasOwnProperty.call(value,k))m.myanmarOdds[k]=value[k];}
+  }
+ }
  function changes(before,after){return [...new Set([...Object.keys(before.resources),...Object.keys(after.resources)])].filter(p=>!equal(before.resources[p],after.resources[p])).map(path=>({path,before:before.resources[path],after:after.resources[path]}));}
  function summary(draft){
   const report=draft.resources['data/today.json'],odds=draft.resources['data/odds/'+draft.editorialDate+'.json'];
@@ -43,5 +62,5 @@
   }
   if(Object.keys(resources).length)result.push(body(resources));return result;
  }
- return {sections,copy,normalize,rows,update,changes,summary,batches};
+ return {sections,copy,normalize,rows,update,sectionValue,updateSection,changes,summary,batches};
 });
