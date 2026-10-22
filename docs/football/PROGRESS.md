@@ -1,6 +1,6 @@
 # Football engine checkpoint
 
-Status: PARTIAL — implementation checkpoint; Cloudflare authentication blocks staging setup.
+Status: PARTIAL — staging, encrypted backup and synthetic live QA verified; production cutover BLOCKED until independent recovery, real data QA and final authorization.
 Date: 2026-10-22 (Asia/Yangon). Branch: football-engine/workers-d1-migration.
 Base/rollback code reference: 02103874457602b36c2c08bc07eb23e917d56d0c.
 Production cutover: not performed. Legacy delivery workflow: not invoked.
@@ -141,3 +141,61 @@ secrets/routes/bindings change, no daily content activation, and no paid-plan op
   endpoint/DB ID are recorded only under deployment.stagingSetupWorkflow. The previously written
   status key conflated staging with production and tripped intentional CI safety checks; corrected.
 - Browser/PNG/video staging QA, sustainable confidential backup and hosted CPU measurements remain open.
+
+## Current acceptance checkpoint — 2026-10-22, staging only
+
+Production main, cloudflare Pages and 5 brands are UNCHANGED. No merge, mirror, production D1 setup,
+real content publication or cutover has occurred. Original staging Worker keeps the 36 copied
+resources as an **unpublished private draft**, generation 0.
+
+### Encrypted STAGING database backup
+- Run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39753369330
+- Complete SQL exported and restored in the runner, then encrypted with AES-256-GCM/HKDF-SHA256
+  *before* GitHub artifact upload. Source SQL is not uploaded. Encryption tests include wrong-key
+  and tamper rejection. Artifact: football-staging-encrypted-sql; retention set to 90 days.
+- This is a TEMPORARY backup: until FOOTBALL_BACKUP_RECOVERY_KEY is set in GitHub Actions repository
+  secrets, the Cloudflare migration token secret is the key-derivation input. Recovery will
+  fail if that token value is lost/rotated. Never publish the key or decrypted SQL.
+- Requirement before production: owner saves a separate high-entropy recovery secret directly
+  at GitHub > repository Settings > Secrets and variables > Actions. Re-run the encrypted
+  backup workflow and verify its report says keySource=FOOTBALL_BACKUP_RECOVERY_KEY. Copy an encrypted
+  backup to an independently controlled durable storage destination; GitHub artifact retention is
+  90 days, NOT permanent disaster recovery.
+
+### Separate synthetic QA Worker and D1, NOT production data
+- QA Worker: future-code-football-engine-qa-smoke
+- QA database: future-code-football-db-qa-smoke (86a9ed8a-deb4-46a1-80c5-e744d2b47aa5).
+- E2E run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39754490298
+- Engine import/validate/publish -> evening current odds (opening unchanged) -> rollback all PASS.
+  Deployment IDs unchanged during the data-only sequence. Unauthorized admin API rejected.
+- Synthetic QA fixture explicitly has no bearing on real football editorial quality. The test
+  review object is a synthetic engineering fixture, not verified PDF/photo/owner approval.
+
+### Live frontend, real PNG and video outputs (synthetic data)
+- Browser run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39754839590
+- 20/20 homepage/odds desktop/mobile page checks PASS with a published API version; 5/5 PNGs actually
+  downloaded and signature/dimensions verified (main plus four brands, including Goal Zone).
+- That browser workflow is overall marked FAILED solely because its video preview check targeted a
+  hidden tab while the page defaulted to the 'today' tab. It does NOT indicate failed API/PNG.
+- Dedicated Video Studio QA: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/39755484428
+  PASS: selected Video tab, rendered 720x1280 canvas, captured and downloaded actual MP4/WebM
+  synthetic odds sample, verified nonempty video container header.
+- Browser-size mobile simulation is not an installed Android APK WebView test.
+
+### Production release gates still OPEN
+1. Real published PDF source + editorial QA required, not synthetic review. Existing copied 2026-10-22
+   data has an example 'Friendlies Clubs' result in a last-five form even though V3 excludes friendlies;
+   must reconcile entire 36-match data against the original PDF and verify competitive-only form.
+   Existing legacy-font glyphs were not independently decoded. No fabricated research facts/reviews.
+2. Stable owner-only authenticated Pages -> Worker binding and production secret management untested
+   on a live hosted preview. Do not use ephemeral QA token or expose admin bearer in frontend.
+3. Production-ready INDEPENDENT recovery key and recoverable durable encrypted full D1 backup missing;
+   staging artifact alone is insufficient.
+4. Hosted CPU/row budget under full real-data validation and pinned API consumption unmeasured.
+5. All existing PNG frame/filter/multi-match modes, long Burmese names, actual news photos, video modes,
+   phone APK WebView and 36-match real-data rendering require release QA (synthetic tests cover only 1).
+6. Final production cutover must be explicitly approved after gates have evidence and rollback tested.
+
+Next action: complete the 6 gates on isolated staging. Then stage a cutover plan for explicit approval.
+Do not merge draft PR, change Cloudflare Pages bindings, run legacy mirror workflow, or publish real data
+merely because synthetic and encrypted staging checks pass.

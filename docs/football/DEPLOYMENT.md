@@ -10,7 +10,7 @@ Documentation says project future-code-football-daily uses that delivery branch,
 static build exit 0. This account configuration has NOT been verified in the Dashboard this session.
 Never rely on older README claims of a 30-minute scheduled mirror.
 
-## Deployment blocker
+## Historical authentication blocker (superseded by scoped GitHub-secret access)
 Cloudflare Dashboard showed the sign-in screen. No Cloudflare token/account ID is configured in
 this execution environment. No Cloudflare plugin was available in discovery. Do not invent D1 IDs,
 Worker hostnames, metric values, deployments or authentication status. A secure Google sign-in attempt returned “Unable to sign in. Try again or use your email and password.”
@@ -88,3 +88,25 @@ The owner console also downloads a selected snapshot and its SHA-256 sidecar. Ke
 Restore preparation: `node scripts/football/prepare-restore.mjs BACKUP_JSON NEW_PRIVATE_DIRECTORY GENERATION`.
 Import the generated batches in order with baseDraft links; review/validate/publish separately.
 This snapshot backup supplements, and does not replace, a full remote D1 export before cutover.
+
+## Current staging completion and safe release criteria (supersedes old blocker)
+Scoped Cloudflare API access was verified through GitHub Secret. Staging Worker/D1 are provisioned,
+36 public JSON resources preserved privately, no publication. Additional dedicated QA Worker/D1
+demonstrated a full synthetic-only import/publish/evening/rollback and no build during data updates.
+See PROGRESS.md for exact passing Action run URLs. Production config remains disabled and unbound.
+
+The staging SQL encrypted backup is in an Actions artifact with 90-day retention. It uses
+FOOTBALL_STAGING_CF_API_TOKEN-derived encryption *only until* the owner sets the independent
+FOOTBALL_BACKUP_RECOVERY_KEY via GitHub repository Settings > Secrets and variables > Actions.
+Never put that secret into chat. Rerun the backup workflow manually via its exact PR label
+(football-engine-encrypted-backup), and confirm a restore check and independent keySource.
+Retention and independent backup destination must be addressed before any live cutover.
+
+DO NOT treat the synthetic publication evidence as V3 editorial QA, real PNG frame fidelity on all
+36 fixtures, or final capacity analysis. Audit supplied 22.pdf and source ledger first;
+the current copied data includes a non-competitive friendly in one last-five form.
+Any source fix must be reviewed separately without silently changing existing published data.
+
+For production change, require real-source QA, fully backed-up database, secure owner proxy,
+live API/browser/PNG/video/WebView QA, CPU and D1 usage budget and explicit final cutover authorization.
+Only then should production code/config change in one controlled release with a tested rollback.

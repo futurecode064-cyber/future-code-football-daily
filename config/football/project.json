@@ -104,7 +104,25 @@
       "liveReadCheck": "passed",
       "d1FileSizeBytes": 2596864,
       "numberOfTables": 8
+    },
+    "qaSynthetic": {
+      "status": "passed",
+      "workerName": "future-code-football-engine-qa-smoke",
+      "databaseName": "future-code-football-db-qa-smoke",
+      "databaseId": "86a9ed8a-deb4-46a1-80c5-e744d2b47aa5",
+      "e2eRun": 39754490298,
+      "livePagesPassed": 20,
+      "livePngDownloadsPassed": 5,
+      "videoRun": 39755484428,
+      "realFootballDataVerified": false
+    },
+    "backup": {
+      "stagingEncrypted": true,
+      "backupRun": 39753369330,
+      "recoveryKeyIndependent": false,
+      "backupArtifactRetentionDays": 90,
+      "durableOffsite": false
     }
   },
-  "next": "Staging is provisioned with 36 private draft JSON resources; run non-mutating live smoke, then secure and perform actual five-brand staged QA, private backup, CPU/row profiling and approved cutover."
+  "next": "Keep production disabled; owner must install independent recovery secret, then full real 36-row PDF/editorial, authenticated owner, hosted quota, PNG/frame/video/WebView QA and explicit cutover approval."
 }
