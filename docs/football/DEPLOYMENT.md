@@ -110,3 +110,34 @@ Any source fix must be reviewed separately without silently changing existing pu
 For production change, require real-source QA, fully backed-up database, secure owner proxy,
 live API/browser/PNG/video/WebView QA, CPU and D1 usage budget and explicit final cutover authorization.
 Only then should production code/config change in one controlled release with a tested rollback.
+
+## Existing GitHub-based Pages deployment — do not request a new Pages token by default
+- The production website is already delivered via `futurecode064-cyber/AI-Recap-GitHub` 
+  branch `football-daily-render`, with existing manual workflow
+  `.github/workflows/football-standalone-sync.yml` (workflow name:
+  `Mirror Verified Football Site to Cloudflare Production`).
+- That workflow reads standalone source repo `futurecode064-cyber/future-code-football-daily`
+  `main`, verifies full football tree parity and sync-state guard, and pushes updated
+  `football-daily/` into `football-daily-render`. Git integration can then trigger
+  a Pages build. It DOES NOT use a Cloudflare Pages REST API token.
+- GitHub `AI-Recap-GitHub` `.github/football-sync-state.json` on production branch recorded
+  source commit `09aca1257a295f1a8b935f30a204b8dc5842e630`, target tree
+  `3cd510bc0dcc4eee372e9e7dbccf457915757385`,
+  sync time `2026-10-22T09:54:43.697Z` at the time of this read.
+- The migration-specific `FOOTBALL_STAGING_CF_API_TOKEN` succeeded for Workers and D1.
+  Its HTTP 403 response on Cloudflare Pages project API only proves that **particular**
+  token cannot read that particular Pages API endpoint/account; it does not prove that
+  the owner has failed to create Pages Edit permission or that the existing Git sync
+  workflow is blocked. Do not ask the owner to recreate the token or repeat access setup.
+- Before final cutover, run the read-only `football-engine-existing-delivery-check` label
+  against PR #36, then confirm exact branch trees and guarded workflow status.
+- The migration's initial frontend code change can use the **existing** GitHub production
+  sync after source main is merged and all release gates and owner cutover approval pass.
+  This first cutover will require one code build, not zero.
+- However, the Pages Worker `FOOTBALL_ENGINE` service binding, `FCD_ENGINE_ENABLED`,
+  `FCD_ENGINE_TOKEN` and any needed admin session secrets still require **one-time
+  Production environment setup**, which Git-based source sync alone does not configure.
+  Prefer existing authorized Cloudflare account/browser or verified separate scoped API
+  access; do not claim this part is done without checking.
+- Normal subsequent validated D1 content updates should not push GitHub commits or
+  trigger Pages/Workers Builds; prove only after real production smoke tests.
