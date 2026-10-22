@@ -1,5 +1,9 @@
 // Derived from the existing owner editor validation contract; keep stricter checks during migration.
 import {dateValid} from './validation.mjs';
+// Never count friendly/exhibition/pre-season games in competitive last-five form.
+export function isNonCompetitiveFormMatch(competition){
+ return /\\b(?:friendlies|friendly|exhibition|testimonial|pre[\\s-]?season)\\b|ခြေစမ်း/iu.test(String(competition||''));
+}
 const EDITOR_LEAGUE_SIZES = {'Premier League':20,Championship:24,'League One':24,'La Liga':20,'La Liga 2':22,'Serie A':20,'Serie B':20,Bundesliga:18,'2. Bundesliga':18,'Ligue 1':18,'Ligue 2':18};
 
 export function validateEditorial(bundle,day){
@@ -31,6 +35,11 @@ function editorErrors(bundle){
    if(m[side+'CrestUrl']&&!editorUrl(m[side+'CrestUrl']))e(side+' Logo HTTPS URL မမှန်ပါ');
    const form=m[side+'LastFive'];
    if(!Array.isArray(form)||form.length!==5||form.some(x=>!x||(!/^[WDL]$/.test(x.result||'')&&!(Number.isInteger(x.teamGoals)&&x.teamGoals>=0&&Number.isInteger(x.opponentGoals)&&x.opponentGoals>=0))||!editorUrl(x.sourceUrl)))e(side+' နောက်ဆုံး ၅ ပွဲနှင့် ရင်းမြစ် စစ်ပါ');
+   if(Array.isArray(form)){
+    form.forEach((entry,j)=>{
+     if(isNonCompetitiveFormMatch(entry?.competition))e(side+' နောက်ဆုံး ၅ ပွဲ #'+(j+1)+' သည် Friendly/Exhibition ဖြစ်သည်');
+    });
+   }
    if(EDITOR_LEAGUE_SIZES[m.league]){
     const r=m[side+'Standing'];if(!r||['played','wins','draws','losses','points','position'].some(k=>!Number.isInteger(r[k])||r[k]<0)||r.played!==r.wins+r.draws+r.losses||r.position<1||r.position>EDITOR_LEAGUE_SIZES[m.league])e(side+' standings (ကစားပြီး = နိုင်+သရေ+ရှုံး၊ အဆင့်၊ ရမှတ်) စစ်ပါ');
    }
