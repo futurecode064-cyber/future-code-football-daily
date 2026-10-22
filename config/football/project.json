@@ -32,11 +32,11 @@
     "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
   },
   "api": {
-    "status": "staging-deployed-private-draft",
-    "publicBaseUrl": "https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev",
+    "status": "not-deployed",
+    "publicBaseUrl": null,
     "adminBaseUrl": null,
-    "workerName": "future-code-football-engine-staging",
-    "databaseId": "a4ddc00f-411b-4ee5-ab4a-dfe13486c334",
+    "workerName": null,
+    "databaseId": null,
     "intendedPublicPath": "/api/football",
     "intendedOwnerProxyPath": "/api/editor/engine/",
     "intendedPrivatePath": "/api/admin",
@@ -96,7 +96,14 @@
       "runId": 39746102616,
       "workerHealthVerified": true,
       "resourcesImported": 36,
-      "productionModified": false
+      "productionModified": false,
+      "apiOrigin": "https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev",
+      "databaseId": "a4ddc00f-411b-4ee5-ab4a-dfe13486c334",
+      "workerName": "future-code-football-engine-staging",
+      "liveReadCheckRun": 39750290153,
+      "liveReadCheck": "passed",
+      "d1FileSizeBytes": 2596864,
+      "numberOfTables": 8
     }
   },
   "next": "Staging is provisioned with 36 private draft JSON resources; run non-mutating live smoke, then secure and perform actual five-brand staged QA, private backup, CPU/row profiling and approved cutover."

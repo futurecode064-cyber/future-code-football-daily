@@ -130,3 +130,14 @@ secrets/routes/bindings change, no daily content activation, and no paid-plan op
   stable private owner access, and production cutover only after approval.
 - Staging credentials were ephemeral. Do NOT attempt an authenticated admin call with a guessed
   token or rerun the provisioning workflow merely to rotate credentials.
+
+## Read-only remote live staging validation — 2026-10-22 15:16 Myanmar
+- GitHub Actions live-read check run 39750290153 succeeded, with saved non-secret artifact 12412359781.
+- Worker health: staging=true, generation=0; live manifest matches active publication pointer.
+- All tested private endpoints deny unauthenticated requests; CORS rejects foreign origins.
+- Import remains unpublished and private. Read-only checks did not change deployment IDs.
+- D1 metadata API reports 2,596,864 bytes physical file size and 8 tables (not a daily D1 row-usage figure).
+- Production is **still** not enabled. Production API fields in project.json must stay null; staging
+  endpoint/DB ID are recorded only under deployment.stagingSetupWorkflow. The previously written
+  status key conflated staging with production and tripped intentional CI safety checks; corrected.
+- Browser/PNG/video staging QA, sustainable confidential backup and hosted CPU measurements remain open.
