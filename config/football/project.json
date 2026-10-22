@@ -17,7 +17,7 @@
     },
     {
       "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
-      "sha256": "54b6dcc25ac6684444486e61bc399f93bcaf8e2e8f72b886316d580cea2d040e"
+      "sha256": "bf2a87c5c687373f2e3b3ab62df154d754fab0950b2ff0237555e8653c8bf371"
     },
     {
       "path": "config/football/validation-rules.json",
@@ -32,7 +32,7 @@
     "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
   },
   "api": {
-    "status": "not-deployed",
+    "status": "private-provisioned",
     "publicBaseUrl": null,
     "adminBaseUrl": null,
     "workerName": null,
@@ -47,7 +47,8 @@
         "draft",
         "export",
         "history",
-        "usage"
+        "usage",
+        "resource"
       ],
       "POST": [
         "import",
@@ -56,6 +57,19 @@
         "rollback",
         "update-odds"
       ]
+    },
+    "candidate": {
+      "workerName": "future-code-football-engine",
+      "databaseName": "future-code-football-db",
+      "databaseId": "d2cc165f-5957-4b94-b2b1-9c79e79adbb1",
+      "origin": "https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev",
+      "runId": 39776885571,
+      "privateDraftVersion": "fd3e1a02-adca-4417-a757-57d9716157f2",
+      "activeVersion": null,
+      "frontendConnected": false,
+      "sourceResources": 37,
+      "contentActivated": false,
+      "productionWebsiteModified": false
     }
   },
   "deployment": {
@@ -158,7 +172,8 @@
       "productionModified": false,
       "profileStartedAt": "2026-10-22T12:04:41.340Z",
       "profileEndedAt": "2026-10-22T12:06:03.700Z",
-      "extendedModeQa": "pending"
+      "extendedModeQa": "retry-after-owner-read-rate-and-resource-chunk-fix",
+      "lastExtendedAttemptRun": 39776877152
     },
     "releaseAccess": {
       "runId": 39774079129,
@@ -167,6 +182,16 @@
       "workerAndD1MetricsReadable": true,
       "subscriptionPlanReadable": false,
       "productionModified": false
+    },
+    "runtimeProfile": {
+      "runId": 39776881454,
+      "candidateCommit": "81ea35c4123f25fa1dea71edd84ae972673eb686",
+      "cpuTimeP50Raw": 28003,
+      "cpuTimeP99Raw": 46829,
+      "requests": 36,
+      "errors": 0,
+      "passedFreeBudget": false,
+      "next": "Reprofile after replacing complete owner draft responses with small pinned private resource reads."
     }
   },
   "next": "Verify isolated hosted owner proxy and unchanged latest public snapshot browser/download parity; complete quota, durable encrypted backup and concrete cutover plan. Production remains disabled pending final approval and actual Pages binding access."

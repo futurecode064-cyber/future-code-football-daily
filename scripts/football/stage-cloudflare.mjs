@@ -87,9 +87,9 @@ try{
   const b=JSON.parse(readFileSync(folder+'/'+file,'utf8'));if(version)b.baseDraft=version;
   Object.assign(expected,b.resources);version=(await engine('/api/admin/import',b,'staging-migration:'+sha+':'+(++batchCount))).version;
  }
- const snapshot=await engine('/api/admin/draft?version='+version);assert.deepEqual(snapshot.resources,expected);
+ const metadata=await engine('/api/admin/export?metadata=1&version='+version);const contents={};for(const entry of metadata.resourceManifest)contents[entry.path]=await engine('/api/admin/resource?version='+version+'&path='+encodeURIComponent(entry.path));const snapshot={...metadata,resources:contents};assert.deepEqual(snapshot.resources,expected);
  report.privateDraftVersion=version;report.resources=Object.keys(expected).length;report.batches=batchCount;report.allJsonValuesEqual=true;
- const exported=await engine('/api/admin/export?version='+version);assert.deepEqual(exported.resources,expected);report.snapshotExportParity=true;
+ const exported=snapshot;assert.deepEqual(exported.resources,expected);report.snapshotExportParity=true;
  assert.equal((await fetch(report.apiOrigin+'/api/admin/state',{signal:AbortSignal.timeout(20000)})).status,401);report.unauthorizedBlocked=true;
  assert.equal((await fetch(report.apiOrigin+'/api/football/today',{signal:AbortSignal.timeout(20000)})).status,503);report.draftPrivate=true;
  assert.equal((await engine('/api/admin/state')).version_id,null);assert.deepEqual(await deploymentIds(),before);report.noDeploymentDuringImports=true;

@@ -89,3 +89,10 @@ test('server structural receipts block bad inherited archives without re-parsing
  e.DB.sql.prepare('UPDATE resource_blobs SET structural_revision=0 WHERE digest IN (SELECT digest FROM resource_refs WHERE version_id=? AND path=?)').run(good,'data/archive/2026-10-21.json');
  const next=await draft(e,bundle(1),'next-receipt');const missing=await call(e,'/api/admin/validate',{body:{version:next,review}});assert.equal(missing.status,422);assert.match((await missing.json()).errors.join(' '),/Reimport resource/);
 });
+
+test('small private metadata/resource exports retain exact immutable bytes and reject anonymous requests',async()=>{
+ const e=env(),id=await draft(e);const path='/api/admin/resource?version='+id+'&path=data/today.json';assert.equal((await call(e,path,{auth:false})).status,401);
+ const meta=await (await call(e,'/api/admin/export?version='+id+'&metadata=1')).json();assert.equal(meta.resources,undefined);assert.equal(meta.resourceManifest.length,3);
+ const r=await call(e,path);assert.equal(r.status,200);assert.equal(r.headers.get('X-Football-Version'),id);assert.equal(r.headers.get('Cache-Control'),'no-store');assert.deepEqual(await r.json(),resources()['data/today.json']);
+ assert.equal((await call(e,'/api/admin/resource?version='+id+'&path=data/research/private.json')).status,400);
+});

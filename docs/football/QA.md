@@ -7,7 +7,7 @@ Current source/rollback: canonical main `09aca1257a295f1a8b935f30a204b8dc5842e63
 |---|---|
 | Full references and daily rules | Hash-verified V3 + infrastructure specification + workflow + validation registry in Git |
 | Existing website suite | 254 total: 253 pass, 1 existing skip; Python 5 pass |
-| Engine/client/admin/security/backup | Latest local 48 tests; consult final run rather than historical counts |
+| Engine/client/admin/security/backup | Latest local 50 tests; consult final run rather than historical counts |
 | Runtime compatibility | Official workerd + local D1; 37 current JSON resources, 8 bounded batches; import/export/restore exact parity; anonymous access denied; private draft hidden |
 | Remote synthetic lifecycle | Run 39754490298: import/validate/publish/current odds/rollback; deployment IDs unchanged |
 | Hosted real private snapshot | Run 39775311571: 37 resources, 36 fixtures, 20/20 pages, exact JSON parity |

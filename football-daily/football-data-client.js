@@ -62,11 +62,14 @@
    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeoutMs||10000);
    try{
     if(!/^[a-f0-9-]{36}$/.test(draft))throw Error('Invalid draft version');
-    const url=new URL('api/editor/engine/draft',base);url.searchParams.set('version',draft);
-    const r=await fetcher(url,{credentials:'same-origin',cache:'no-store',signal:controller.signal});
-    if(!r.ok)throw Error('Owner draft unavailable');const b=await r.json();
-    if(b.version?.id!==draft||!b.resources?.['data/today.json'])throw Error('Incomplete draft');
-    const resources={...b.resources};if(!['main','goal-zone'].includes(brand))for(const p of Object.keys(resources))if(p.includes('/news/'))delete resources[p];
+    const paths=['data/today.json',...optionalPaths];
+    const values=await Promise.all(paths.map(async path=>{
+     const url=new URL('api/editor/engine/resource',base);url.searchParams.set('version',draft);url.searchParams.set('path',path);
+     const r=await fetcher(url,{credentials:'same-origin',cache:'no-store',signal:controller.signal});
+     if(r.status===404&&path!=='data/today.json')return [path,null];
+     if(!r.ok||r.headers.get('X-Football-Version')!==draft)throw Error('Owner draft unavailable');return [path,await r.json()];
+    }));
+    const resources=Object.fromEntries(values.filter(([,value])=>value!==null));
     return {draft:true,version:draft,resources,stale:false};
    }catch{return {draft:true,stale:true,error:'Owner draft unavailable',resources:{}};}finally{clearTimeout(timer);controller.abort();}
   }

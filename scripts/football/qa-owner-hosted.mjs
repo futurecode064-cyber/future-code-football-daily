@@ -44,7 +44,7 @@ try{
  execFileSync(process.execPath,[root+'/scripts/football/prepare-migration.mjs',root+'/football-daily',folder],{stdio:'pipe'});
  let version,expected={},batch=0;const commit=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim();
  for(const f of readdirSync(folder).filter(n=>n.startsWith('batch-')).sort()){const b=JSON.parse(readFileSync(folder+'/'+f));b.expectedGeneration=state.generation;if(version)b.baseDraft=version;Object.assign(expected,b.resources);version=(await engine('import',b,'owner-real-parity:'+commit+':'+(++batch))).version;}
- assert.deepEqual((await engine('draft?version='+version)).resources,expected);assert.deepEqual(await engine('state'),state);
+ const actual={};for(const path of Object.keys(expected))actual[path]=await engine('resource?version='+version+'&path='+encodeURIComponent(path));assert.deepEqual(actual,expected);assert.deepEqual(await engine('state'),state);
  report.draftVersion=version;report.sourceCommit=commit;report.sourceResources=Object.keys(expected).length;report.sourceFixtures=expected['data/today.json'].matches.length;report.checks.allJsonValuesEqual=true;
  const privateRead=await fetch(report.backendOrigin+'/api/football/resource?path=data/today.json&version='+version);assert.equal(privateRead.status,404);report.checks.privateDraftNotPublic=true;
  const assets=scratch+'/site';cpSync(root+'/football-daily',assets,{recursive:true});

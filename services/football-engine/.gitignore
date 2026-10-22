@@ -1,4 +1,4 @@
 .dev.vars
 .wrangler/
-node_modules/
+node_modules
 wrangler.jsonc

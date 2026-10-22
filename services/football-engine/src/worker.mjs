@@ -16,7 +16,8 @@ async function bodyJson(request){
 async function authorize(request,env){
  const token=env.ADMIN_TOKEN;if(!token||token.length<32)fail(503,'Owner credential not configured');
  if(!env.ADMIN_RATE_LIMITER)fail(503,'Admin rate limiter not configured');
- const limited=await env.ADMIN_RATE_LIMITER.limit({key:request.headers.get('CF-Connecting-IP')||'service'});if(!limited.success)fail(429,'Rate limited');
+ const limiter=request.method==='GET'&&env.ADMIN_READ_RATE_LIMITER?env.ADMIN_READ_RATE_LIMITER:env.ADMIN_RATE_LIMITER;
+ const limited=await limiter.limit({key:request.headers.get('CF-Connecting-IP')||'service'});if(!limited.success)fail(429,'Rate limited');
  const actual=await sha(request.headers.get('Authorization')||''),expected=await sha('Bearer '+token);
  let diff=0;for(let i=0;i<actual.length;i++)diff|=actual.charCodeAt(i)^expected.charCodeAt(i);if(diff)fail(401,'Unauthorized');
 }
@@ -140,11 +141,17 @@ export default {async fetch(request,env,ctx){
   else if(url.pathname.startsWith('/api/admin/')){
    await authorize(request,env);const name=url.pathname.slice('/api/admin/'.length);
    if(request.method==='GET'&&name==='state')response=json(await active(env.DB));
-   else if(request.method==='GET'&&name==='draft'){const v=await versionFor(env.DB,url.searchParams.get('version'));response=await snapshotResponse(env.DB,v.id,{version:v});}
+   else if(request.method==='GET'&&name==='resource'){
+    const id=url.searchParams.get('version'),path=url.searchParams.get('path');if(!resourceAllowed(path))fail(400,'Disallowed resource');
+    await versionFor(env.DB,id);const row=await statement(env.DB,'SELECT body FROM resources WHERE version_id=? AND path=?',id,path).first();if(!row)fail(404,'Resource absent from draft');
+    response=new Response(row.body,{headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Football-Version':id,'X-Content-Type-Options':'nosniff'}});
+   }
+   else if(request.method==='GET'&&name==='draft'){const v=await versionFor(env.DB,url.searchParams.get('version'));response=url.searchParams.get('metadata')==='1'?json({version:v,resourceManifest:(await statement(env.DB,'SELECT path,digest FROM resource_refs WHERE version_id=?',v.id).all()).results}):await snapshotResponse(env.DB,v.id,{version:v});}
    else if(request.method==='GET'&&name==='export'){
     const a=await active(env.DB),id=url.searchParams.get('version')||a.version_id;if(!id)fail(409,'No publication to export');
     const v=await versionFor(env.DB,id),review=await statement(env.DB,'SELECT evidence,reviewed_at FROM validation_reviews WHERE version_id=?',id).first();
-    response=await snapshotResponse(env.DB,id,{schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review});
+    const metadata={schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review};
+    response=url.searchParams.get('metadata')==='1'?json({...metadata,resourceManifest:(await statement(env.DB,'SELECT path,digest FROM resource_refs WHERE version_id=?',id).all()).results}):await snapshotResponse(env.DB,id,metadata);
    }
    else if(request.method==='GET'&&name==='history')response=json((await env.DB.prepare('SELECT id,editorial_date,created_at,validated_at,ever_published FROM publication_versions ORDER BY created_at DESC LIMIT 50').all()).results);
    else if(request.method==='GET'&&name==='usage'){

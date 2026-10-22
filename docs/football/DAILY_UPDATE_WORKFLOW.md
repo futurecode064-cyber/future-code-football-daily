@@ -1,7 +1,8 @@
 # Persistent daily workflow
 
 ## Current operational state
-An isolated staging Worker/D1 API exists; production is NOT connected to the five sites.
+Isolated staging and an unconnected production Worker/D1 namespace exist; the production frontend
+still reads legacy static data. No active real D1 publication exists.
 Staging endpoints and successful run IDs are under deployment in project.json.
 Until `config/football/project.json` says `live-verified`, do not attempt a new API
 publication, invent an endpoint, or silently fall back to the legacy GitHub publisher.
@@ -20,15 +21,16 @@ instead of the actual registry, API manifest, account dashboard and live sites.
 1. Read current user overrides: date, scope, source PDF, keep/refresh news, Special Choice count.
 2. Compute original input SHA-256. Extract every PDF page in Work/browser, not in the Worker.
    Persist the private source ledger with row order, printed names, odds and source hashes.
-3. Read `/api/admin/state` and record generation. Read the active draft/export for comparison.
+3. Read `/api/admin/state` and record generation. Use metadata=1 and pinned private resource reads for comparison; the export helper assembles them locally.
    Read the published manifest and previous editorial night's results. Never invent unavailable facts.
 4. Prepare structured resources in the EXISTING JSON schema. Preserve unknown fields, existing
    archive results and news unless explicitly changing them. Use canonical fixture IDs and PDF row IDs.
 5. POST `/api/admin/import` with `expectedGeneration`, `editorialDate`, `sourceManifest`,
    `resources`, and a stable `Idempotency-Key`. This creates an immutable private version.
    Omitted resources inherit the active snapshot. Import retries must reuse the same key and body.
+   Keep request payloads below the normal 400 KB target (at most 20 resources).
    Multiple source batches use `baseDraft` from the previous response; final version inherits all batches.
-6. Fetch `/api/admin/draft?version=...` and private `/api/admin/export?version=...`. Use
+6. Fetch `/api/admin/draft?version=...&metadata=1` and assemble private resources with the export helper. Use
    `backup-publication.mjs` then `prepare-draft-preview.mjs` to render an isolated copy of the selected
    snapshot with the existing five-brand renderers. Keep the preview local or verified owner-only;
    never host a private draft publicly. Compare all five brands, actual PNG/video downloads and mobile.

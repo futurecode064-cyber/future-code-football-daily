@@ -680,7 +680,7 @@ async function engineProxy(request, env, path) {
  if (env.FCD_ENGINE_ENABLED !== 'true' || !env.FOOTBALL_ENGINE?.fetch || !env.FCD_ENGINE_TOKEN)
   return gzJson({error:'D1 engine is not enabled; existing editor remains available'},503);
  const url = new URL(request.url), name = path.slice('/api/editor/engine/'.length);
- const get = ['state','draft','export','history','usage'], post = ['import','validate','publish','rollback','update-odds'];
+ const get = ['state','draft','export','resource','history','usage'], post = ['import','validate','publish','rollback','update-odds'];
  if (!(request.method === 'GET' && get.includes(name)) && !(request.method === 'POST' && post.includes(name)))
   return gzJson({error:'Unsupported engine operation'},405);
  if (request.method === 'POST' && (request.headers.get('Origin') !== url.origin || request.headers.get('X-Football-Editor') !== '1' || request.headers.get('Sec-Fetch-Site') === 'cross-site'))

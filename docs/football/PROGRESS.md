@@ -63,7 +63,9 @@ Candidate commit `81ea35c4123f25fa1dea71edd84ae972673eb686`:
   visually inspected for Burmese article text, branding, logos and separate opening/current prices.
 - Anonymous/private API draft access: rejected. No real snapshot publication or production change.
 - Deployment IDs unchanged during imports and browser reads.
-- Extended all-frame/split/filter/real-video/photo QA is prepared; consult current registry for actual result.
+- A later extended attempt stopped at page 20 because the owner read limiter shared the write budget.
+  Dedicated bounded owner-read rate limits and small pinned private resources now replace repeated
+  full-history draft responses; re-run extended all-frame/split/filter/real-video/photo checks.
 - This mobile viewport test is not an installed physical Android APK/WebView test.
 
 ## Backup and recovery
@@ -83,7 +85,9 @@ Pages Edit configuration; it describes the exact credential currently usable by 
 Existing source -> AI-Recap-GitHub -> Pages Git sync is working, but it cannot set the required service
 binding and Pages secret/environment values by itself. Do not request another password or retry failed login.
 Historical mixed-workload CPU sample had a high tail; candidate-specific profiling after optimization is
-pending. Raw values must not be presented as wall time, paid-plan status or a passing Free-limit gate.
+pending. Candidate 81ea35 had raw CPU quantiles 28003/46829 over 36 requests; this is NOT a passing Free-limit
+gate. Normal owner clients now use small pinned raw resources instead of complete historical responses;
+reprofile the new implementation. Never present CPU as wall time or infer a paid-plan subscription.
 
 ## Remaining release gates
 | ID | Remaining action |
@@ -97,3 +101,13 @@ pending. Raw values must not be presented as wall time, paid-plan status or a pa
 Supplied requirements §14 says: “Major Production Cutover ကို ကျွန်တော့် Final Approval ရယူပြီးမှ ဆောင်ရွက်ပါ။”
 Development, testing and non-destructive preparation remain authorized. Final approval is for the
 concrete production switch; do not ask prematurely or infer it from a generic request to continue.
+
+## Unconnected production namespace prepared
+Run 39776885571 — SUCCESS. Worker `future-code-football-engine`, D1 `future-code-football-db`
+(ID `d2cc165f-5957-4b94-b2b1-9c79e79adbb1`). Origin:
+https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev
+37 unchanged resources in 8 private batches; draft fd3e1a02-adca-4417-a757-57d9716157f2.
+Generation 0, no active publication, public data denied, no Pages binding/client switch.
+Full SQL 2,531,786 bytes, restored then encrypted before artifact upload.
+This is non-destructive preparation, NOT production website cutover.
+Refresh this unconnected namespace to the final tested code before any approved activation.

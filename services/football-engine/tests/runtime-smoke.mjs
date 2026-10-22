@@ -4,7 +4,7 @@ import {mkdtempSync,writeFileSync,readFileSync,readdirSync,rmSync} from 'node:fs
 import {tmpdir} from 'node:os';
 import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {execFileSync} from 'node:child_process';
+import {execFileSync,execFile} from 'node:child_process';import {promisify} from 'node:util';
 import {randomBytes,createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..'),scratch=mkdtempSync(tmpdir()+'/football-workerd-');
@@ -37,6 +37,7 @@ try{
   Object.assign(expected,b.resources);draft=(await call('/api/admin/import',b,'runtime-batch-'+(++batches))).version;
  }
  const loaded=await call('/api/admin/draft?version='+draft);assert.deepEqual(loaded.resources,expected);
+ const origin=new URL(await mf.ready);origin.hostname='localhost';await promisify(execFile)(process.execPath,[resolve(root,'../../scripts/football/backup-publication.mjs'),origin.origin,scratch+'/small-backup.json',draft],{env:{...process.env,FOOTBALL_ENGINE_ADMIN_TOKEN:token}});assert.deepEqual(JSON.parse(readFileSync(scratch+'/small-backup.json')).resources,expected);
  const exported=await call('/api/admin/export?version='+draft),text=JSON.stringify(exported);
  writeFileSync(scratch+'/backup.json',text,{mode:0o600});writeFileSync(scratch+'/backup.json.sha256',createHash('sha256').update(text).digest('hex'),{mode:0o600});
  execFileSync(process.execPath,[resolve(root,'../../scripts/football/prepare-restore.mjs'),scratch+'/backup.json',scratch+'/restore','0'],{stdio:'pipe'});
@@ -48,7 +49,7 @@ try{
  assert.deepEqual((await call('/api/admin/draft?version='+restored)).resources,expected);
  assert.equal((await call('/api/admin/state')).version_id,null);
  assert.equal((await mf.dispatchFetch('https://local.test/api/football/today')).status,503);
- console.log(JSON.stringify({runtime:'workerd + local D1',resources:Object.keys(expected).length,batches,draftParity:true,backupRestoreParity:true,unauthorizedBlocked:true,publicDraftHidden:true,productionRequests:0}));
+ console.log(JSON.stringify({runtime:'workerd + local D1',resources:Object.keys(expected).length,batches,draftParity:true,backupRestoreParity:true,smallPrivateResourceBackupParity:true,unauthorizedBlocked:true,publicDraftHidden:true,productionRequests:0}));
 }finally{
  if(mf)await mf.dispose();
  rmSync(scratch,{recursive:true,force:true});
