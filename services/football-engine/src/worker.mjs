@@ -28,7 +28,7 @@ async function importDraft(request,env,b){
  const db=env.DB,a=await active(db);
  if(!Number.isInteger(b.expectedGeneration))fail(400,'expectedGeneration required');
  if(!dateValid(b.editorialDate)||!b.resources||typeof b.resources!=='object'||Array.isArray(b.resources))fail(400,'Date/resources required');
- const entries=Object.entries(b.resources);if(entries.length<1||entries.length>30)fail(400,'Import 1–30 resources per request');
+ const entries=Object.entries(b.resources);if(entries.length<1||entries.length>20)fail(400,'Import 1–20 resources per request');
  if(!b.sourceManifest||typeof b.sourceManifest!=='object'||!Array.isArray(b.sourceManifest.files)||!b.sourceManifest.files.length||b.sourceManifest.files.some(f=>!f.name||!/^[a-f0-9]{64}$/.test(f.sha256||'')))fail(400,'Source filenames and SHA-256 hashes required');
  const key=request.headers.get('Idempotency-Key');if(!key||key.length>160)fail(400,'Idempotency-Key required');
  const inputHash=await sha(JSON.stringify(canonical(b)));
@@ -41,8 +41,8 @@ async function importDraft(request,env,b){
  // Inherit omitted archives/news/opening odds. Drafts are immutable after creation.
  const id=crypto.randomUUID(),now=new Date().toISOString();
  const ops=[statement(db,'INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',id,a.version_id,b.editorialDate,key,inputHash,JSON.stringify(b.sourceManifest),now)];
- if(inherit)ops.push(statement(db,'INSERT INTO resources(version_id,path,body,digest) SELECT ?,path,body,digest FROM resources WHERE version_id=?',id,inherit));
- for(const [p,v] of entries){const text=JSON.stringify(v);ops.push(statement(db,'INSERT INTO resources(version_id,path,body,digest) VALUES(?,?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET body=excluded.body,digest=excluded.digest',id,p,text,await sha(text)));}
+ if(inherit)ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',id,inherit));
+ for(const [p,v] of entries){const text=JSON.stringify(v);const digest=await sha(text);ops.push(statement(db,'INSERT INTO resource_blobs(digest,body) VALUES(?,?) ON CONFLICT(digest) DO NOTHING',digest,text));ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET digest=excluded.digest',id,p,digest));}
  ops.push(statement(db,'INSERT INTO audit_logs(action,version_id,created_at,detail) VALUES(?,?,?,?)','import',id,now,JSON.stringify({sourceHash:inputHash})));
  try{await db.batch(ops);}catch(e){const race=await statement(db,'SELECT id,input_hash FROM publication_versions WHERE idempotency_key=?',key).first();if(race?.input_hash===inputHash)return json({version:race.id,reused:true});throw e;}
  return json({version:id,parent:a.version_id,generation:a.generation},201);
@@ -119,8 +119,16 @@ export default {async fetch(request,env){
    await authorize(request,env);const name=url.pathname.slice('/api/admin/'.length);
    if(request.method==='GET'&&name==='state')response=json(await active(env.DB));
    else if(request.method==='GET'&&name==='draft'){const v=await versionFor(env.DB,url.searchParams.get('version'));response=json({version:v,resources:await resourcesFor(env.DB,v.id)});}
+   else if(request.method==='GET'&&name==='export'){
+    const a=await active(env.DB),id=url.searchParams.get('version')||a.version_id;if(!id)fail(409,'No publication to export');
+    const v=await versionFor(env.DB,id),review=await statement(env.DB,'SELECT evidence,reviewed_at FROM validation_reviews WHERE version_id=?',id).first();
+    response=json({schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review,resources:await resourcesFor(env.DB,id)});
+   }
    else if(request.method==='GET'&&name==='history')response=json((await env.DB.prepare('SELECT id,editorial_date,created_at,validated_at,ever_published FROM publication_versions ORDER BY created_at DESC LIMIT 50').all()).results);
-   else if(request.method==='GET'&&name==='usage')response=json({cloudflareMetrics:null,reason:'Account analytics require separate Cloudflare authorization',dashboard:'https://dash.cloudflare.com/'});
+   else if(request.method==='GET'&&name==='usage'){
+    const storage=await env.DB.prepare('SELECT (SELECT count(*) FROM publication_versions) AS versions,(SELECT count(*) FROM resource_refs) AS resourceReferences,(SELECT count(*) FROM resource_blobs) AS uniqueResources,(SELECT coalesce(sum(length(CAST(body AS BLOB))),0) FROM resource_blobs) AS uniqueJsonBytes').first();
+    response=json({storage,storageNote:'JSON payload bytes only; physical D1 size, CPU and row quotas require account analytics',cloudflareMetrics:null,reason:'Account analytics require separate Cloudflare authorization',dashboard:'https://dash.cloudflare.com/'});
+   }
    else if(request.method==='POST'&&['import','validate','publish','rollback','update-odds'].includes(name)){
     const b=await bodyJson(request);response=name==='import'?await importDraft(request,env,b):name==='update-odds'?await updateOdds(request,env,b):name==='validate'?await validateDraft(env,b):await activate(env,b,name==='rollback');
    }else fail(405,'Unsupported admin endpoint/method');

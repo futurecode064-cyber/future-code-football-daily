@@ -21,7 +21,7 @@ Automated sign-in stopped after the generic failure. Authentication remains unre
    by name only. Record last production deployment/commit, download configuration and export existing
    databases if any relevant ones exist. Do not touch GOALZONE_ANALYTICS_DB or existing owner secrets.
 2. Check that `future-code-football-db-staging` / `future-code-football-engine-staging` do not conflict.
-   Create only free staging resources. Install/pin an official Wrangler release; copy
+   Create only free staging resources. Wrangler 4.151.3 is pinned with a lockfile; run npm ci, then copy
    services/football-engine/wrangler.jsonc.example to ignored wrangler.jsonc with actual database ID.
    The example's placeholder must never be used in a real deployment.
 3. Run Wrangler d1 migrations apply <actual-staging-db> --remote. Configure ADMIN_TOKEN through the
@@ -36,14 +36,17 @@ Automated sign-in stopped after the generic failure. Authentication remains unre
    private source-ledger/archive backup. Never silently “fix” existing editorial content during migration.
 5. Run full security, concurrent update, rollback, archive and failure simulations on staging. Profile
    Worker CPU and D1 rows with real snapshots; offload/chunk validation if 10ms Free CPU is exceeded.
-   Add snapshot retention/deduplication and verified private exports before enabling daily production.
+   Deduplication migration 0002 and private export/restore tooling are implemented. Verify physical
+   storage growth and choose an authorized private full-database backup destination before production.
 6. Prepare a separate Pages staging preview of the existing frontend. Bind FOOTBALL_ENGINE service,
    FCD_ENGINE_TOKEN (same as Worker ADMIN_TOKEN), and FCD_ENGINE_ENABLED=true ONLY in staging.
    Existing owner login remains; /editor/engine.html is the new owner console.
-7. Wire every loader (main, odds, supplemental evening, news, AI, all brands, preview/PNG/video studios)
-   to a COMPLETE version-pinned bundle before rendering. Use the tested adapter rather than converting
-   layouts or changing schemas. API/static fallback must be consistent across the entire page and
-   show saved-data time. The current branch intentionally does not wire these loaders yet.
+7. Loader wiring is prepared for main, odds, evening, news, AI and PNG/video consumers on all brands.
+   Run `node scripts/football/prepare-staging.mjs football-daily NEW_EXTERNAL_DIRECTORY ACTUAL_API_ORIGIN`
+   to create an isolated enabled copy. Production source remains disabled. Verify complete page-level
+   version pinning, saved-data notice/time, optional-resource absence and origin CORS on real staging.
+   For private draft layout/download QA, use backup-publication.mjs + prepare-draft-preview.mjs;
+   never publish a private draft preview on an unprotected public URL.
 8. Staging QA: all five routes, owner login, every existing PNG/frame/filter/video mode, mobile and APK
    WebView, long Burmese names/articles, odd match counts, real downloaded PNG inspection.
 9. Test import -> validate -> publish -> evening -> rollback while watching deployment history.
@@ -69,3 +72,19 @@ https://developers.cloudflare.com/pages/platform/limits/
 Free Worker CPU is 10 ms/request, requests 100,000/day. D1 Free limits include 500 MB/database,
 5 GB/account and 50 queries per invocation. These are limits, not observed account usage.
 Do not represent Workers CI build minutes as runtime CPU or ChatGPT research duration.
+
+## Reproducible local verification (completed 2026-10-22)
+From services/football-engine: npm ci; npm run db:local; npm run check:bundle; npm run test:runtime.
+The local-only configuration has an all-zero local D1 ID and must never be deployed remotely.
+Both schema migrations applied with official Wrangler. The production bundle builds successfully.
+The workerd/Miniflare test imported 36 existing resources in 3 batches, compared every JSON value,
+exported and restored that snapshot into new private drafts, checked authentication and draft privacy.
+No remote account, Pages deployment or production database was used. Local runtime timing does NOT
+establish the hosted Free CPU budget. Full live staging acceptance is still required.
+
+Private snapshot backup: supply FOOTBALL_ENGINE_ADMIN_TOKEN through a secure environment and run
+`node scripts/football/backup-publication.mjs ACTUAL_API_ORIGIN PRIVATE_OUTPUT_JSON [VERSION]`.
+The owner console also downloads a selected snapshot and its SHA-256 sidecar. Keep both private.
+Restore preparation: `node scripts/football/prepare-restore.mjs BACKUP_JSON NEW_PRIVATE_DIRECTORY GENERATION`.
+Import the generated batches in order with baseDraft links; review/validate/publish separately.
+This snapshot backup supplements, and does not replace, a full remote D1 export before cutover.

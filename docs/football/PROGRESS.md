@@ -16,9 +16,10 @@ Production cutover: not performed. Legacy delivery workflow: not invoked.
   transactional publication pointer/audit, optimistic concurrency, rollback and archives.
 - Evening current-odds-only draft endpoint preserving opening prices/news.
 - Owner console and service proxy using existing login/CSRF; disabled unless explicitly bound/enabled.
-- Complete-bundle/fallback adapter prepared but NOT wired into renderers.
+- Shared complete-bundle client wired to all ten existing entry pages and AI/PNG/video consumers;
+  production API configuration stays disabled. Visible stale notice and origin/brand/date cache isolation.
 - Read-only migration packaging and actual 36-resource/3-batch SQLite compatibility test.
-- Existing Node suite 253 passed/1 skip; engine suite 17 passed; Python 5 passed.
+- Existing Node suite 253 passed/1 skip; engine suite 28 passed; Python 5 passed.
 - Confirmed no changes to any existing daily data file. No new content creation/publication.
 
 ## Pending, with exact blockers
@@ -28,10 +29,11 @@ AUTH-01: Secure Google sign-in was attempted with the selected saved account. Cl
   Next: secure browser authentication, verify actual account/projects/limits/bindings and deployment.
 DEPLOY-01: no staging Worker/D1 provisioned; endpoint/database IDs in project.json intentionally null.
   Next: follow DEPLOYMENT.md steps 1–5, record actual returned IDs, migrate copies only.
-PERF-01: real Cloudflare CPU/row budgets and snapshot storage growth unmeasured.
-  Next: real-payload profiling, retention/deduplication and a private automated backup destination.
-FRONTEND-01: renderers still use existing static loaders; bundle adapter has not been integrated.
-  Next: wire every main/brand/odds/news/AI/PNG/video consumer on separate staging Pages preview.
+PERF-01: real Cloudflare CPU/row budgets and physical snapshot storage growth unmeasured.
+  Done: content deduplication preserving all versions; private snapshot backup and hash-verified restore.
+  Next: hosted profiling, retention monitoring and a private full-database backup destination.
+FRONTEND-01: shared client wiring is implemented, disabled by default, and locally tested.
+  Next: enable an isolated staging copy with its actual Worker URL; verify browser/PNG/mobile outputs.
 QA-01: no real new-API PNG/mobile/WebView/browser or live no-build verification yet.
   Next: complete staging source/output checks; do not mark review gates passed without evidence.
 CUTOVER-01: approval intentionally not requested yet because staging/backup/QA is incomplete.
@@ -59,3 +61,22 @@ No production sync/build/deployment was requested. Cloudflare runtime registry r
   refresh preserving the previous complete version. Engine/proxy/loader suite: 17 passed.
 - Reference hash checks and diff whitespace checks pass. Production data files remain unchanged.
 - FRONTEND-01 and Cloudflare authentication/deployment blockers remain open; no production activation.
+
+## Implementation continuation — frontend, storage and recovery
+- Added the shared browser client to 10 existing entry pages, preserving all layouts and data schemas.
+  Main/brands/AI/odds/news/PNG/video now use an explicit helper; global fetch remains unchanged.
+- One manifest pins the entire page. Partial preload failure restores only a complete saved bundle
+  or selects static mode for every consumer. Brand news restrictions and missing optional data persist.
+- Migration 0002 deduplicates unchanged JSON while keeping all versions/archives/rollback targets.
+  Imports capped at 20 resources (at most 43 batch statements plus lookups).
+- Added private snapshot export, console backup, SHA-256 restore preparation, isolated staging copy
+  preparation and private draft-preview preparation. No public draft endpoint was introduced.
+- D1-enabled Pages mode blocks legacy GitHub publication (no automatic old-publisher fallback).
+- Pinned Wrangler/Miniflare and added runtime/bundle checks to test-only CI. Local workerd successfully
+  imported all 36 source resources in 3 batches and verified export/restore parity and draft privacy.
+- Latest unit/integration suite: 28 passed; website: 253 passed / 1 existing skip; Python: 5 passed.
+- Cloudflare remote auth, staging deployment, hosted Free CPU/profile, real browser/download QA,
+  private full-database backup destination and final production cutover remain uncompleted.
+- Last supplied email/password sign-in used the secure browser-auth flow, returned submission_failed,
+  and showed no website credential error. Manual handoff did not produce a verified account session.
+  Do not infer success, retry the rejected browser flow or persist any supplied login secret.

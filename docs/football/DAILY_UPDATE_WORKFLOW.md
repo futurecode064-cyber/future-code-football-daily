@@ -27,9 +27,11 @@ instead of the actual registry, API manifest, account dashboard and live sites.
    `resources`, and a stable `Idempotency-Key`. This creates an immutable private version.
    Omitted resources inherit the active snapshot. Import retries must reuse the same key and body.
    Multiple source batches use `baseDraft` from the previous response; final version inherits all batches.
-6. Fetch `/api/admin/draft?version=...`, render the DRAFT through a staging preview adapter, and
-   compare source-to-rendered output for all five brands, actual PNG/video downloads and mobile.
-   This staging preview wiring is still pending; a raw JSON response is not download QA.
+6. Fetch `/api/admin/draft?version=...` and private `/api/admin/export?version=...`. Use
+   `backup-publication.mjs` then `prepare-draft-preview.mjs` to render an isolated copy of the selected
+   snapshot with the existing five-brand renderers. Keep the preview local or verified owner-only;
+   never host a private draft publicly. Compare all five brands, actual PNG/video downloads and mobile.
+   Live staging/browser/download QA is still pending; local JSON parity is not download QA.
 7. POST `/api/admin/validate` with version and evidence for every required review gate.
    Structural/editorial server validation and human/source evidence are complementary.
    Never fill passed flags until that review actually happened. Migration mode is for an unchanged

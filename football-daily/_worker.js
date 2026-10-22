@@ -356,6 +356,11 @@ export default {
 async function handleRequest(request, env) {
     const path = new URL(request.url).pathname;
     if (path.startsWith("/api/editor/engine/")) return engineProxy(request, env, path);
+    // Once the D1 publisher is enabled, never silently publish through the legacy GitHub path.
+    if (env.FCD_ENGINE_ENABLED === 'true' && path.startsWith('/api/editor/')) {
+      if (!ready(env) || !await hasSession(request, env)) return gzJson({error:'Owner login required'},401);
+      return gzJson({error:'D1 publication is enabled. Use /editor/engine.html; legacy GitHub publication is disabled.'},409);
+    }
     if (path === "/api/editor/news" || path.startsWith("/api/editor/news/")) return newsApi(request, env, path);
     if (path.startsWith("/api/editor/")) return editorApi(request, env, path);
     if (path === "/editor" || path.startsWith("/editor/")) {
@@ -675,7 +680,7 @@ async function engineProxy(request, env, path) {
  if (env.FCD_ENGINE_ENABLED !== 'true' || !env.FOOTBALL_ENGINE?.fetch || !env.FCD_ENGINE_TOKEN)
   return gzJson({error:'D1 engine is not enabled; existing editor remains available'},503);
  const url = new URL(request.url), name = path.slice('/api/editor/engine/'.length);
- const get = ['state','draft','history','usage'], post = ['import','validate','publish','rollback','update-odds'];
+ const get = ['state','draft','export','history','usage'], post = ['import','validate','publish','rollback','update-odds'];
  if (!(request.method === 'GET' && get.includes(name)) && !(request.method === 'POST' && post.includes(name)))
   return gzJson({error:'Unsupported engine operation'},405);
  if (request.method === 'POST' && (request.headers.get('Origin') !== url.origin || request.headers.get('X-Football-Editor') !== '1' || request.headers.get('Sec-Fetch-Site') === 'cross-site'))

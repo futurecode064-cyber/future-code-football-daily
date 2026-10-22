@@ -8,3 +8,10 @@ async function login(w,e){const r=await w.fetch(request('/login'),e),text=await 
 test('new engine endpoints enforce existing owner session and stay disabled without bindings',async()=>{const {default:w}=await module(),e=create();assert.equal((await w.fetch(request('/api/editor/engine/state'),e)).status,401);const Cookie=await login(w,e);assert.equal((await w.fetch(request('/api/editor/engine/state',{headers:{Cookie}}),e)).status,503);assert.equal((await w.fetch(request('/bw-sport/'),e)).status,200);});
 test('owner proxy enforces CSRF and forwards secret only through service binding',async()=>{const {default:w}=await module(),e=create(),Cookie=await login(w,e);let captured;e.FCD_ENGINE_ENABLED='true';e.FCD_ENGINE_TOKEN='test-internal-token';e.FOOTBALL_ENGINE={fetch:async r=>{captured=r;return Response.json({version:'test-draft'});}};
 const opts={method:'POST',headers:{Cookie,Origin:'https://evil.test','Content-Type':'application/json','X-Football-Editor':'1'},body:'{}'};assert.equal((await w.fetch(request('/api/editor/engine/import',opts),e)).status,403);opts.headers.Origin=origin;opts.headers.Authorization='Bearer attacker-value';const r=await w.fetch(request('/api/editor/engine/import',opts),e);assert.equal(r.status,200);assert.equal(captured.headers.get('Authorization'),'Bearer test-internal-token');assert.equal(captured.headers.get('Cookie'),null);assert.equal(captured.url,'https://football-engine.internal/api/admin/import');assert.ok(!(await r.text()).includes(e.FCD_ENGINE_TOKEN));assert.match(r.headers.get('Cache-Control'),/no-store/);});
+test('enabled D1 mode blocks legacy GitHub publication instead of falling back',async()=>{
+ const {default:w}=await module(),e=create(),Cookie=await login(w,e);e.FCD_ENGINE_ENABLED='true';
+ for(const path of ['/api/editor/save','/api/editor/news/publish']){
+  assert.equal((await w.fetch(request(path,{method:'POST',headers:{Cookie,Origin:origin},body:'{}'}),e)).status,409);
+ }
+ assert.equal((await w.fetch(request('/api/editor/save'),e)).status,401);
+});

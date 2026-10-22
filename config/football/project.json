@@ -17,7 +17,7 @@
     },
     {
       "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
-      "sha256": "577e60decb1f96903bdc2c25a4c4c3cf29012114d96c2ef0ed0b83fdc472725c"
+      "sha256": "e1728e1794838bf278c2076bdb295a15e44d4e82a7c08c92e906709a43854332"
     },
     {
       "path": "config/football/validation-rules.json",
@@ -40,7 +40,23 @@
     "intendedPublicPath": "/api/football",
     "intendedOwnerProxyPath": "/api/editor/engine/",
     "intendedPrivatePath": "/api/admin",
-    "authentication": "existing Pages owner session through service binding; automation bearer secret in secure environment only"
+    "authentication": "existing Pages owner session through service binding; automation bearer secret in secure environment only",
+    "implementedAdminOperations": {
+      "GET": [
+        "state",
+        "draft",
+        "export",
+        "history",
+        "usage"
+      ],
+      "POST": [
+        "import",
+        "validate",
+        "publish",
+        "rollback",
+        "update-odds"
+      ]
+    }
   },
   "deployment": {
     "productionCutoverCompleted": false,
@@ -53,11 +69,13 @@
     "existingAuthenticationChanged": false,
     "dailyContentCreatedOrPublished": false,
     "lastAuthenticationAttempt": {
-      "method": "Google",
-      "result": "failed",
-      "message": "Unable to sign in. Try again or use your email and password.",
+      "method": "email/password via secure browser auth",
+      "result": "submission_failed",
+      "websiteCredentialErrorObserved": false,
       "dashboardSessionVerified": false
-    }
+    },
+    "frontendIntegrationPrepared": true,
+    "localWorkerdParityVerified": true
   },
-  "next": "Secure Cloudflare authentication, account audit, staging setup, real-payload CPU/storage checks, frontend integration and full staging QA before production cutover approval"
+  "next": "Secure Cloudflare account access; deploy isolated free staging Worker/D1, profile hosted CPU/storage, verify all five sites and actual downloads, configure private full-database backup, then prepare production cutover approval"
 }

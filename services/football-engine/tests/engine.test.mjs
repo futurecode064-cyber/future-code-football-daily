@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
-import {readFileSync} from 'node:fs';
+import {readFileSync,readdirSync} from 'node:fs';
 import worker from '../src/worker.mjs';
 import {validateResources,yangonDate} from '../src/validation.mjs';
 class D1 {
- constructor(){this.sql=new DatabaseSync(':memory:');this.sql.exec(readFileSync(new URL('../migrations/0001_snapshots.sql',import.meta.url),'utf8'));}
+ constructor(){this.sql=new DatabaseSync(':memory:');for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')).sort())this.sql.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));}
  prepare(query){const db=this;return {args:[],bind(...args){this.args=args;return this;},async first(){return db.sql.prepare(query).get(...this.args)||null;},async all(){return {results:db.sql.prepare(query).all(...this.args)};},async run(){const result=db.sql.prepare(query).run(...this.args);return {meta:{changes:Number(result.changes)}};}};}
  async batch(ops){this.sql.exec('BEGIN');try{const result=[];for(const op of ops)result.push(await op.run());this.sql.exec('COMMIT');return result;}catch(e){this.sql.exec('ROLLBACK');throw e;}}
 }
@@ -31,3 +31,35 @@ test('transaction rolls back pointer AND audit on trigger failure',async()=>{con
 test('Yangon midnight conversion, malformed JSON and oversized bodies',async()=>{assert.equal(yangonDate(new Date('2026-10-21T17:29:59Z')),'2026-10-21');assert.equal(yangonDate(new Date('2026-10-21T17:30:00Z')),'2026-10-22');const e=env();assert.equal((await call(e,'/api/admin/import',{body:{padding:'x'.repeat(1500001)}})).status,413);const response=await worker.fetch(new Request('https://engine.example/api/admin/import',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:'broken json'}),e);assert.equal(response.status,400);});
 test('evening update cannot change opening odds or news; missing current price remains blank',async()=>{const e=env(),id=await draft(e);await validate(e,id);await publish(e,id);const b={expectedGeneration:1,sourceManifest:bundle().sourceManifest,updates:[{fixtureId:'match-1',currentBodyOdds:'1-30'}]};const response=await call(e,'/api/admin/update-odds',{body:b,key:'evening'});assert.equal(response.status,201,await response.clone().text());const next=(await response.json()).version;const state=await (await call(e,'/api/admin/draft?version='+next)).json(),o=state.resources[`data/odds/${day}.json`].matches[0];assert.equal(o.bodyOdds,'1-40');assert.equal(o.goalTotalOdds,'3=');assert.equal(o.currentBodyOdds,'1-30');assert.equal(o.currentGoalTotalOdds,'');assert.deepEqual(state.resources['data/news/latest.json'],resources()['data/news/latest.json']);b.updates[0].bodyOdds='WRONG';assert.equal((await call(e,'/api/admin/update-odds',{body:b,key:'bad-odds'})).status,400);});
 test('existing repository data migrates across batches without changing any JSON value or exposing a draft',async()=>{const {mkdtempSync,readdirSync,rmSync}=await import('node:fs');const {tmpdir}=await import('node:os');const {execFileSync}=await import('node:child_process');const {resolve}=await import('node:path');const root=resolve(new URL('../../../',import.meta.url).pathname),folder=mkdtempSync(tmpdir()+'/fc-migration-');try{execFileSync(process.execPath,[root+'/scripts/football/prepare-migration.mjs',root+'/football-daily',folder]);const e=env();let version,count=0;const expected={};for(const file of readdirSync(folder).filter(x=>x.startsWith('batch-')).sort()){const b=JSON.parse(readFileSync(folder+'/'+file,'utf8'));if(version)b.baseDraft=version;Object.assign(expected,b.resources);version=await draft(e,b,'real-batch-'+(++count));}const loaded=await (await call(e,'/api/admin/draft?version='+version)).json();assert.deepEqual(loaded.resources,expected);assert.ok(Object.keys(expected).length>=30);assert.deepEqual(validateResources(loaded.resources,loaded.version.editorial_date,{migration:true}),[]);assert.equal((await call(e,'/api/football/today',{auth:false})).status,503);assert.equal((await e.DB.prepare('SELECT version_id FROM active_publication').first()).version_id,null);}finally{rmSync(folder,{recursive:true,force:true});}});
+
+test('unchanged archives and reports share content blobs across immutable versions',async()=>{
+ const e=env(),a=await draft(e);await validate(e,a);await publish(e,a);
+ const before=e.DB.sql.prepare('SELECT count(*) n FROM resource_blobs').get().n;
+ const b=await draft(e,bundle(1),'same-resources');
+ assert.equal(e.DB.sql.prepare('SELECT count(*) n FROM resource_blobs').get().n,before);
+ const loaded=await (await call(e,'/api/admin/draft?version='+b)).json();
+ assert.deepEqual(loaded.resources,resources());
+ const update={expectedGeneration:1,sourceManifest:bundle().sourceManifest,updates:[{fixtureId:'match-1',currentBodyOdds:'1-20'}]};
+ assert.equal((await call(e,'/api/admin/update-odds',{body:update,key:'dedup-update'})).status,201);
+ assert.equal(e.DB.sql.prepare('SELECT count(*) n FROM resource_blobs').get().n,before+3);
+ assert.deepEqual(await (await call(e,'/api/football/today?version='+a)).json(),resources()['data/today.json']);
+});
+test('private backup export retains source and review, and never becomes a public endpoint',async()=>{
+ const e=env(),id=await draft(e);await validate(e,id);await publish(e,id);
+ assert.equal((await call(e,'/api/admin/export',{auth:false})).status,401);
+ assert.equal((await call(e,'/api/football/export',{auth:false})).status,404);
+ const r=await call(e,'/api/admin/export'),b=await r.json();
+ assert.match(r.headers.get('Cache-Control'),/no-store/);assert.equal(b.kind,'football-publication-backup');
+ assert.equal(b.version.id,id);assert.equal(b.active.generation,1);assert.deepEqual(b.resources,resources());
+ assert.deepEqual(JSON.parse(b.version.source_manifest),bundle().sourceManifest);
+ assert.deepEqual(JSON.parse(b.review.evidence),review);
+});
+test('deduplication migration preserves a populated legacy database and resource bytes',()=>{
+ const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0001_snapshots.sql',import.meta.url),'utf8'));
+ db.prepare('INSERT INTO publication_versions(id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?)').run('old',day,'old-key','hash','{}','date');
+ const body='{"matches": [], "reportDate": "2026-10-22"}';
+ db.prepare('INSERT INTO resources(version_id,path,body,digest) VALUES(?,?,?,?)').run('old','data/today.json',body,'same-digest');
+ db.exec(readFileSync(new URL('../migrations/0002_deduplicate_resources.sql',import.meta.url),'utf8'));
+ assert.equal(db.prepare('SELECT body FROM resources WHERE version_id=?').get('old').body,body);
+ assert.equal(db.prepare('SELECT count(*) n FROM resource_refs').get().n,1);db.close();
+});

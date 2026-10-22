@@ -495,7 +495,7 @@ async function load(){
   const todayUrl=new URL(document.documentElement.dataset.footballDataUrl||"./data/today.json",document.baseURI);
   const url=offset===0?todayUrl:new URL("archive/"+target+".json",todayUrl);
   url.searchParams.set("t",Date.now());
-  const response=await fetch(url.toString(),{cache:"no-store",signal:controller.signal});
+  const response=await (window.FootballData?window.FootballData.fetch:fetch)(url.toString(),{cache:"no-store",signal:controller.signal});
   if(!isCurrent())return;
   if(response.status!==404&&!response.ok)throw new Error("HTTP "+response.status);
   const json=response.ok?await response.json():null;
@@ -510,7 +510,7 @@ async function load(){
     try{
       const fixtureUrl=new URL("fixtures/"+target+".json",todayUrl);
       fixtureUrl.searchParams.set("t",Date.now());
-      const fixtureResponse=await fetch(fixtureUrl.toString(),{cache:"no-store",signal:controller.signal});
+      const fixtureResponse=await (window.FootballData?window.FootballData.fetch:fetch)(fixtureUrl.toString(),{cache:"no-store",signal:controller.signal});
       if(fixtureResponse.ok){
         const candidate=await fixtureResponse.json();
         if(candidate?.reportDate===target&&candidate.fixtureSnapshot===true&&Array.isArray(candidate.matches)
@@ -549,7 +549,7 @@ function init(){
      report={matches:[],published:false};load();
    });
  }
- $("reloadBtn").addEventListener("click",load);
+ $("reloadBtn").addEventListener("click",()=>{if(window.FC_FOOTBALL_ENGINE?.enabled===true)location.reload();else load();});
 
  load();
 }
