@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "currentTask": "infrastructure-migration-only",
+  "repository": "futurecode064-cyber/future-code-football-daily",
+  "checkpointBranch": "football-engine/workers-d1-migration",
+  "auditedSourceCommit": "02103874457602b36c2c08bc07eb23e917d56d0c",
+  "timezone": "Asia/Yangon",
+  "editorialReferenceOnly": true,
+  "references": [
+    {
+      "path": "config/football/FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt",
+      "sha256": "0f05e61e8ff950b3f22f4acb1f107dbdd0314bad56d4b6beb85964e26f7016ad"
+    },
+    {
+      "path": "docs/football/SHARED_ENGINE_REQUIREMENTS.txt",
+      "sha256": "4bf3c6c5e4a13963906649e8b753abe123600a06bcfac3b8f6271e86ac2fda96"
+    },
+    {
+      "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
+      "sha256": "577e60decb1f96903bdc2c25a4c4c3cf29012114d96c2ef0ed0b83fdc472725c"
+    },
+    {
+      "path": "config/football/validation-rules.json",
+      "sha256": "365882ae8ce062648e3d098ed1b4e956e756e2f1e218db4977aa0330330e4041"
+    }
+  ],
+  "sites": {
+    "main": "https://future-code-football-daily.pages.dev/",
+    "goal-zone": "https://future-code-football-daily.pages.dev/future-code-journal/",
+    "bw-sport": "https://future-code-football-daily.pages.dev/bw-sport/",
+    "ykz": "https://future-code-football-daily.pages.dev/ykz-family/",
+    "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
+  },
+  "api": {
+    "status": "not-deployed",
+    "publicBaseUrl": null,
+    "adminBaseUrl": null,
+    "workerName": null,
+    "databaseId": null,
+    "intendedPublicPath": "/api/football",
+    "intendedOwnerProxyPath": "/api/editor/engine/",
+    "intendedPrivatePath": "/api/admin",
+    "authentication": "existing Pages owner session through service binding; automation bearer secret in secure environment only"
+  },
+  "deployment": {
+    "productionCutoverCompleted": false,
+    "frontendIntegrationEnabled": false,
+    "cloudflareDashboardVerified": false,
+    "legacyDeliveryRepository": "futurecode064-cyber/AI-Recap-GitHub",
+    "legacyWorkflow": "football-standalone-sync.yml",
+    "legacyDeliveryBranch": "football-daily-render",
+    "pagesOutputDirectory": "football-daily",
+    "existingAuthenticationChanged": false,
+    "dailyContentCreatedOrPublished": false
+  },
+  "next": "Secure Cloudflare authentication, account audit, staging setup, real-payload CPU/storage checks, frontend integration and full staging QA before production cutover approval"
+}

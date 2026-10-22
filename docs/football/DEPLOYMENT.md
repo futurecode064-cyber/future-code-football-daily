@@ -1,0 +1,70 @@
+# Staging deployment and production acceptance
+
+## Verified source state
+Authoritative code: futurecode064-cyber/future-code-football-daily, main,
+base commit 02103874457602b36c2c08bc07eb23e917d56d0c.
+Delivery workflow read directly: AI-Recap-GitHub main /.github/workflows/football-standalone-sync.yml.
+It is manual only (no cron/push). It checks production tree hashes, runs tests, mirrors football-daily/
+to football-daily-render and triggers the existing Pages Git deployment. Keep it unchanged.
+Documentation says project future-code-football-daily uses that delivery branch, output football-daily,
+static build exit 0. This account configuration has NOT been verified in the Dashboard this session.
+Never rely on older README claims of a 30-minute scheduled mirror.
+
+## Deployment blocker
+Cloudflare Dashboard showed the sign-in screen. No Cloudflare token/account ID is configured in
+this execution environment. No Cloudflare plugin was available in discovery. Do not invent D1 IDs,
+Worker hostnames, metric values, deployments or authentication status. Complete secure sign-in first.
+
+## Exact next steps after authentication
+1. Inspect account plan/usage and existing Pages project, production branch/source, bindings and secrets
+   by name only. Record last production deployment/commit, download configuration and export existing
+   databases if any relevant ones exist. Do not touch GOALZONE_ANALYTICS_DB or existing owner secrets.
+2. Check that `future-code-football-db-staging` / `future-code-football-engine-staging` do not conflict.
+   Create only free staging resources. Install/pin an official Wrangler release; copy
+   services/football-engine/wrangler.jsonc.example to ignored wrangler.jsonc with actual database ID.
+   The example's placeholder must never be used in a real deployment.
+3. Run Wrangler d1 migrations apply <actual-staging-db> --remote. Configure ADMIN_TOKEN through the
+   secret store (32+ random characters, never in Git/chat), ALLOWED_ORIGINS and rate-limit binding.
+   Deploy the staging Worker once. Record actual Worker URL and D1 ID in the runtime registry.
+4. Use scripts/football/prepare-migration.mjs to package the current source without modifying it.
+   It produced 36 existing public JSON resources in 3 batches locally. Regenerate against freshest
+   production/source snapshot after any concurrent update. It intentionally excludes source ledgers,
+   images, credentials and private research: those stay in their current locations/private backup.
+   Import each batch without publishing; expectedGeneration=0, unique retry key per exact batch;
+   set baseDraft to previous response version for batches 2+. Verify parity for all 36 resources and
+   private source-ledger/archive backup. Never silently “fix” existing editorial content during migration.
+5. Run full security, concurrent update, rollback, archive and failure simulations on staging. Profile
+   Worker CPU and D1 rows with real snapshots; offload/chunk validation if 10ms Free CPU is exceeded.
+   Add snapshot retention/deduplication and verified private exports before enabling daily production.
+6. Prepare a separate Pages staging preview of the existing frontend. Bind FOOTBALL_ENGINE service,
+   FCD_ENGINE_TOKEN (same as Worker ADMIN_TOKEN), and FCD_ENGINE_ENABLED=true ONLY in staging.
+   Existing owner login remains; /editor/engine.html is the new owner console.
+7. Wire every loader (main, odds, supplemental evening, news, AI, all brands, preview/PNG/video studios)
+   to a COMPLETE version-pinned bundle before rendering. Use the tested adapter rather than converting
+   layouts or changing schemas. API/static fallback must be consistent across the entire page and
+   show saved-data time. The current branch intentionally does not wire these loaders yet.
+8. Staging QA: all five routes, owner login, every existing PNG/frame/filter/video mode, mobile and APK
+   WebView, long Burmese names/articles, odd match counts, real downloaded PNG inspection.
+9. Test import -> validate -> publish -> evening -> rollback while watching deployment history.
+   Require unchanged Pages and Workers deployment IDs for the data-only sequence. Current local tests
+   do not establish that live claim. Save a complete backup/restore and final cutover rollback plan.
+10. Request final approval ONLY for the concrete production cutover, with QA/backup evidence available.
+    Then do one batched frontend release and binding switch, live verify, record registry status.
+    A source PR is not a live deployment. Never call the legacy production mirror as a data operation.
+
+## Rollback plan before live cutover
+Unbind/disable the engine frontend configuration and restore exact prior Pages deployment/commit;
+static JSON remains intact. Do not drop/rename databases, delete archive data, replace login secrets,
+or repurpose the analytics DB. Data rollback uses an audited prior validated publication; code rollback
+uses the saved known-good deployment. Exercise both on staging before final approval.
+
+## Official technical references checked 2026-10-22
+https://developers.cloudflare.com/d1/worker-api/d1-database/
+https://developers.cloudflare.com/d1/platform/limits/
+https://developers.cloudflare.com/d1/platform/pricing/
+https://developers.cloudflare.com/workers/platform/limits/
+https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/
+https://developers.cloudflare.com/pages/platform/limits/
+Free Worker CPU is 10 ms/request, requests 100,000/day. D1 Free limits include 500 MB/database,
+5 GB/account and 50 queries per invocation. These are limits, not observed account usage.
+Do not represent Workers CI build minutes as runtime CPU or ChatGPT research duration.

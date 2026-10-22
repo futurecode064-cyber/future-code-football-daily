@@ -355,6 +355,7 @@ export default {
 };
 async function handleRequest(request, env) {
     const path = new URL(request.url).pathname;
+    if (path.startsWith("/api/editor/engine/")) return engineProxy(request, env, path);
     if (path === "/api/editor/news" || path.startsWith("/api/editor/news/")) return newsApi(request, env, path);
     if (path.startsWith("/api/editor/")) return editorApi(request, env, path);
     if (path === "/editor" || path.startsWith("/editor/")) {
@@ -666,4 +667,25 @@ async function newsApi(request,env,path){
   }catch(e){
     return gzJson({error:e instanceof SyntaxError?'JSON data မမှန်ပါ':e.message||'News editor အမှား'},e.status===409||e.status===422?409:502);
   }
+}
+
+// Staged D1 engine: disabled unless the explicit flag, service binding and secret exist.
+async function engineProxy(request, env, path) {
+ if (!ready(env) || !await hasSession(request, env)) return gzJson({error:'Owner login required'},401);
+ if (env.FCD_ENGINE_ENABLED !== 'true' || !env.FOOTBALL_ENGINE?.fetch || !env.FCD_ENGINE_TOKEN)
+  return gzJson({error:'D1 engine is not enabled; existing editor remains available'},503);
+ const url = new URL(request.url), name = path.slice('/api/editor/engine/'.length);
+ const get = ['state','draft','history','usage'], post = ['import','validate','publish','rollback','update-odds'];
+ if (!(request.method === 'GET' && get.includes(name)) && !(request.method === 'POST' && post.includes(name)))
+  return gzJson({error:'Unsupported engine operation'},405);
+ if (request.method === 'POST' && (request.headers.get('Origin') !== url.origin || request.headers.get('X-Football-Editor') !== '1' || request.headers.get('Sec-Fetch-Site') === 'cross-site'))
+  return gzJson({error:'Same-origin owner editor required'},403);
+ const target = new URL('https://football-engine.internal/api/admin/'+name);target.search=url.search;
+ const headers = new Headers({'Authorization':'Bearer '+env.FCD_ENGINE_TOKEN});
+ for (const key of ['Content-Type','Idempotency-Key','CF-Connecting-IP']) if(request.headers.has(key))headers.set(key,request.headers.get(key));
+ try {
+  const response = await env.FOOTBALL_ENGINE.fetch(new Request(target,{method:request.method,headers,body:request.method==='POST'?request.body:undefined,duplex:'half'}));
+  const safe = new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
+  return new Response(response.body,{status:response.status,headers:safe});
+ } catch {return gzJson({error:'D1 engine unavailable; no GitHub publication was attempted'},503);}
 }

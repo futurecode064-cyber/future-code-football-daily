@@ -1,0 +1,16 @@
+ဒီ PDF ကို နေ့စဉ် update အတွက် သုံးပါ။ GitHub repository
+futurecode064-cyber/future-code-football-daily ၏
+football-engine/workers-d1-migration branch မှ AGENTS.md နှင့် config/football/project.json ကို အရင်ဖတ်ပါ။
+ထို့နောက် docs/football/PROGRESS.md၊ DAILY_UPDATE_WORKFLOW.md၊ validation-rules.json နှင့်
+FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt တို့ကို ဖတ်ပြီး လက်ရှိ deployment status ကို စစ်ပါ။
+
+စနစ်က live-verified မဖြစ်သေးလျှင် နေ့စဉ် content အသစ် မရေးမထုတ်ဝေပါနှင့်။
+သိမ်းထားသော checkpoint မှ infrastructure migration ကျန်အဆင့်များကိုသာ ဆက်လုပ်ပါ။
+API URL၊ Admin Endpoint၊ credential access နှင့် QA ရလဒ်များကို မတီထွင်ပါနှင့်။
+
+live-verified ဖြစ်ပြီးမှ PDF source ledger → research → full previews → Special Choice →
+AI → yesterday results → news/photos (ယနေ့ညွှန်ကြားချက်အတိုင်း) → draft import → validation →
+publish → site/download verify ကို stored rules အတိုင်း အဆုံးထိ လုပ်ပါ။
+မူလကြေး/ယခုကြေး မရောရ။ သတင်းက Main + Goal Zone တွင်သာ ပေါ်ရမည်။
+နေ့စဉ် data update အတွက် GitHub commit သို့မဟုတ် Cloudflare build မလုပ်ပါနှင့်။
+ယနေ့ သီးခြားညွှန်ကြားချက်များရှိလျှင် ထိုညွှန်ကြားချက်ကို ဦးစားပေးပါ။
