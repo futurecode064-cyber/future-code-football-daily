@@ -1,0 +1,35 @@
+name: 22 Oct PREVIEW QA (no deployment)
+on:
+  push:
+    branches:
+      - daily-2026-10-22-complete-qa
+    paths:
+      - 'football-daily/**'
+      - '.github/workflows/football-qa-preview-20261022.yml'
+permissions:
+  contents: read
+jobs:
+  qa-only:
+    name: Test data, code, forms and PNG export without publishing
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check JS syntax
+        run: |
+          node --check football-daily/app.js
+          node --check football-daily/odds.js
+          node --check football-daily/daily-image-export.js
+          node --check football-daily/brand-export-data.js
+      - name: All football frontend and PNG export regression tests
+        run: node --test football-daily/tests/*.test.cjs
+      - name: Publication schema gate (checks report but does not publish)
+        run: python3 football-daily/scripts/daily_guard.py audit
+      - name: Python verification regression
+        run: python3 -m unittest discover -s football-daily/tests -p 'test_verify_live.py'
