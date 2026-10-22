@@ -19,7 +19,7 @@ Production cutover: not performed. Legacy delivery workflow: not invoked.
 - Shared complete-bundle client wired to all ten existing entry pages and AI/PNG/video consumers;
   production API configuration stays disabled. Visible stale notice and origin/brand/date cache isolation.
 - Read-only migration packaging and actual 36-resource/3-batch SQLite compatibility test.
-- Existing Node suite 253 passed/1 skip; engine suite 28 passed; Python 5 passed.
+- Existing Node suite 253 passed/1 skip; engine suite 29 passed; Python 5 passed.
 - Confirmed no changes to any existing daily data file. No new content creation/publication.
 
 ## Pending, with exact blockers
@@ -74,9 +74,17 @@ No production sync/build/deployment was requested. Cloudflare runtime registry r
 - D1-enabled Pages mode blocks legacy GitHub publication (no automatic old-publisher fallback).
 - Pinned Wrangler/Miniflare and added runtime/bundle checks to test-only CI. Local workerd successfully
   imported all 36 source resources in 3 batches and verified export/restore parity and draft privacy.
-- Latest unit/integration suite: 28 passed; website: 253 passed / 1 existing skip; Python: 5 passed.
+- Latest unit/integration suite: 29 passed; website: 253 passed / 1 existing skip; Python: 5 passed.
 - Cloudflare remote auth, staging deployment, hosted Free CPU/profile, real browser/download QA,
   private full-database backup destination and final production cutover remain uncompleted.
 - Last supplied email/password sign-in used the secure browser-auth flow, returned submission_failed,
   and showed no website credential error. Manual handoff did not produce a verified account session.
   Do not infer success, retry the rejected browser flow or persist any supplied login secret.
+
+## Remote integration checkpoint
+Implementation continuation saved at 3b6185c3927766f062cc575d8ba1abd76731e2f8 (same Draft PR #36).
+The repository's existing Cloudflare test-app build integration ran automatically and failed:
+`Workers Builds: future-code-football-test`, build 7e9cde9d-a327-4525-b9b9-a5391cc07541.
+Only the Dashboard link is exposed; its error log/configuration requires account access.
+Do not repurpose this unknown existing test app or point it at production/analytics databases.
+An additional reader compatibility test covers Android WebView without Response.json.

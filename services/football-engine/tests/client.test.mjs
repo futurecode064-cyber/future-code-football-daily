@@ -61,3 +61,19 @@ test('ten existing pages load disabled config then client before their renderers
  }
  assert.match(readFileSync(new URL('../../../football-daily/football-engine-config.js',import.meta.url),'utf8'),/enabled:false/);
 });
+
+test('older Android WebView without static Response.json can read pinned publications',async()=>{
+ const NativeResponse=globalThis.Response;
+ try{
+  globalThis.Response=class extends NativeResponse {static json=undefined;};
+  const fetcher=async input=>{
+   const u=new URL(input);
+   if(u.pathname.endsWith('/manifest'))return NativeResponse.json({version:'webview-version'});
+   if(u.searchParams.get('path')!=='data/today.json')return new NativeResponse(null,{status:404});
+   return NativeResponse.json({reportDate:'2026-10-22',matches:[]},{headers:{'X-Football-Version':'webview-version'}});
+  };
+  const c=createClient({...args,fetcher});
+  assert.equal((await c.fetch(new URL('data/today.json',args.assetRoot))).headers.get('X-Football-Version'),'webview-version');
+  assert.equal((await c.fetch(new URL('data/odds/evening/2026-10-22.json',args.assetRoot))).status,404);
+ }finally{globalThis.Response=NativeResponse;}
+});

@@ -24,6 +24,7 @@
 })(typeof window==='undefined'?null:window,function(){
  'use strict';
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+ const jsonResponse=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8',...headers}});
  function dayKey(now=new Date(),offset=0){const d=new Date(now.getTime()+390*60000);d.setUTCDate(d.getUTCDate()+offset);return d.toISOString().slice(0,10);}
  async function loadPublishedBundle({apiBase,paths,optionalPaths=[],brand='main',fetcher=fetch,storage=null,timeoutMs=10000}){
   let key;const optional=new Set(optionalPaths),all=[...new Set([...paths,...optionalPaths])].sort();
@@ -66,13 +67,13 @@
    loadPublishedBundle({apiBase:config.apiBase,paths:['data/today.json'],optionalPaths,brand,fetcher,storage,timeoutMs:config.timeoutMs||10000}):
    Promise.resolve({fallback:'static',stale:false})).then(state=>{onState(state);return state;}));
   return {ready,async fetch(input,init){
-   const url=new URL(input instanceof Request?input.url:String(input),page);
+   const url=new URL(typeof Request!=='undefined'&&input instanceof Request?input.url:String(input),page);
    const path=url.pathname.startsWith(base.pathname)?url.pathname.slice(base.pathname.length):'';
    if(url.origin!==base.origin||!/^data\/(?:today\.json|(?:archive|fixtures|odds|odds\/evening)\/\d{4}-\d{2}-\d{2}\.json|news\/latest\.json)$/.test(path))return fetcher(input,init);
    const state=await ready();if(state.fallback)return fetcher(input,init);
    if(init?.signal?.aborted)throw new DOMException('Aborted','AbortError');
-   if(!own(state.resources,path))return Response.json({error:'Resource absent from page publication'},{status:404});
-   return Response.json(state.resources[path],{headers:{'X-Football-Version':state.version,'Cache-Control':'no-store'}});
+   if(!own(state.resources,path))return jsonResponse({error:'Resource absent from page publication'},404);
+   return jsonResponse(state.resources[path],200,{'X-Football-Version':state.version,'Cache-Control':'no-store'});
   }};
  }
  return {loadPublishedBundle,createClient,dayKey};
