@@ -2837,6 +2837,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Baník Ostrava",
+          "teamGoals": 0,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "D",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://sparta.cz/en/zapasy/1-muzi-a/2026-2027/vysledky",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "Lillestrøm",
@@ -2877,18 +2889,6 @@
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044765/uefa-europa-league/sparta-prague-vs-lillestrom/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-16",
-          "competition": "UEFA Europa League",
-          "opponent": "Ararat-Armenia",
-          "teamGoals": 4,
-          "opponentGoals": 1,
-          "venueSide": "away",
-          "result": "W",
-          "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
-          "sourceVerification": "UEFA_FT_2026_10_22"
         }
       ],
       "homeStanding": null,
@@ -2944,9 +2944,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/433/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://sparta.cz/en/zapasy/1-muzi-a/2026-2027/vysledky",
+        "followupVerifiedDate": "2026-10-22"
       }
     },
     {
@@ -3367,6 +3369,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/490.png",
       "homeLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Jablonec",
+          "teamGoals": 3,
+          "opponentGoals": 2,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.fotbal.cz/souteze/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Europa League",
           "opponent": "Ferencváros",
@@ -3409,16 +3423,6 @@
           "status": "STATUS_FULL_TIME",
           "sourceUrl": "https://www.uefa.com/uefaeuropaleague/news/02a8-2177782493b9-69ba3288701d-1000--europa-league-league-phase-fixtures-and-results-by-team/",
           "sourceVerification": "UEFA_FT_2026_10_22"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "Sigma Olomouc",
-          "teamGoals": 2,
-          "opponentGoals": 3,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/1067/13044720/uefa-europa-league/ferencvarosi-tc-vs-viktoria-plzen/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
         }
       ],
       "awayLastFive": [
@@ -3523,9 +3527,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/11706/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.fotbal.cz/souteze/",
+        "followupVerifiedDate": "2026-10-22"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
@@ -3938,6 +3944,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
       "homeLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Viktoria Plzeň",
+          "teamGoals": 2,
+          "opponentGoals": 3,
+          "venueSide": "home",
+          "result": "L",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.fotbal.cz/souteze/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Freiburg",
@@ -3975,16 +3993,6 @@
           "teamGoals": 1,
           "opponentGoals": 1,
           "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-12",
-          "opponent": "Sparta Prague",
-          "teamGoals": 0,
-          "opponentGoals": 2,
-          "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13045012/uefa-conference-league/sc-freiburg-vs-fk-jablonec/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -4103,9 +4111,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cze.1/teams/7922/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.fotbal.cz/souteze/",
+        "followupVerifiedDate": "2026-10-22"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
@@ -4331,6 +4341,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20301.png",
       "homeLastFive": [
         {
+          "date": "2026-10-19",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Dila Gori",
+          "teamGoals": 2,
+          "opponentGoals": 0,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.uefa.com/uefaconferenceleague/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Sint-Truidense",
@@ -4368,16 +4390,6 @@
           "teamGoals": 2,
           "opponentGoals": 0,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-17",
-          "opponent": "Dila Gori",
-          "teamGoals": 2,
-          "opponentGoals": 1,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -4487,9 +4499,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/geo.1/teams/20025/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.uefa.com/uefaconferenceleague/",
+        "followupVerifiedDate": "2026-10-22"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
@@ -4518,6 +4532,18 @@
       "homeCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/20703.png",
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/8089.png",
       "homeLastFive": [
+        {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Atlètic Club d'Escaldes",
+          "teamGoals": 4,
+          "opponentGoals": 2,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.faf.ad/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
         {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
@@ -4553,16 +4579,6 @@
         {
           "date": "2026-09-20",
           "opponent": "FC Rangers",
-          "teamGoals": 3,
-          "opponentGoals": 0,
-          "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13043531/uefa-conference-league/mjallby-aif-vs-inter-club-descaldes/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-13",
-          "opponent": "CE Carroi",
           "teamGoals": 3,
           "opponentGoals": 0,
           "venueSide": "home",
@@ -4671,9 +4687,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/and.1/teams/20703/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.faf.ad/",
+        "followupVerifiedDate": "2026-10-22"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": false,
@@ -5541,6 +5559,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Vllaznia Shkodër",
+          "teamGoals": 3,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://fshf.org/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Midtjylland",
@@ -5578,16 +5608,6 @@
           "teamGoals": 1,
           "opponentGoals": 2,
           "venueSide": "away",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-04",
-          "opponent": "Skenderbeu Korce",
-          "teamGoals": 2,
-          "opponentGoals": 1,
-          "venueSide": "home",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044855/uefa-conference-league/fk-egnatia-vs-midtjylland/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -5646,9 +5666,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/alb.1/teams/21943/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://fshf.org/",
+        "followupVerifiedDate": "2026-10-22"
       }
     },
     {
@@ -6256,6 +6278,18 @@
       "awayCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/152.png",
       "homeLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Lynx",
+          "teamGoals": 2,
+          "opponentGoals": 1,
+          "venueSide": "away",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://lincolnredimpsfc.co.uk/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Brann",
@@ -6293,16 +6327,6 @@
           "teamGoals": 4,
           "opponentGoals": 0,
           "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-08-30",
-          "opponent": "Glacis United FC",
-          "teamGoals": 2,
-          "opponentGoals": 0,
-          "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044831/uefa-conference-league/sk-brann-vs-lincoln-red-imps-fc/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -6415,9 +6439,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/gib.1/teams/17856/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://lincolnredimpsfc.co.uk/",
+        "followupVerifiedDate": "2026-10-22"
       },
       "awayFormVerification": {
         "verifiedDomesticPost2026_10_15": true,
@@ -6510,6 +6536,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Lommel",
+          "teamGoals": 4,
+          "opponentGoals": 1,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://www.sokascore.com/team/st-truiden/results/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Iberia Tbilisi",
@@ -6556,19 +6594,6 @@
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044475/uefa-conference-league/sint-truidense-vs-fc-iberia-1999/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-12",
-          "competition": "Regular Season",
-          "opponent": "Waasland-Beveren",
-          "opponentCrestUrl": "https://a.espncdn.com/i/teamlogos/soccer/500/13450.png",
-          "teamGoals": 0,
-          "opponentGoals": 2,
-          "venueSide": "away",
-          "result": "L",
-          "status": "STATUS_FULL_TIME",
-          "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878995",
-          "sourceVerification": "ESPN_FT_2026_10_22"
         }
       ],
       "homeStanding": null,
@@ -6624,9 +6649,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/bel.1/teams/936/schedule?season=2026",
         "latestDomesticVerification": "ESPN_VERIFIED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://www.sokascore.com/team/st-truiden/results/",
+        "followupVerifiedDate": "2026-10-22"
       }
     },
     {
@@ -6905,6 +6932,18 @@
       ],
       "awayLastFive": [
         {
+          "date": "2026-10-18",
+          "competition": "2026-27 domestic competition",
+          "opponent": "Varaždin",
+          "teamGoals": 1,
+          "opponentGoals": 0,
+          "venueSide": "home",
+          "result": "W",
+          "status": "STATUS_FULL_TIME",
+          "sourceUrl": "https://hajduk.hr/",
+          "sourceVerification": "2026-10-22 followup source crosscheck"
+        },
+        {
           "date": "2026-10-15",
           "competition": "UEFA Conference League",
           "opponent": "Ajax",
@@ -6942,16 +6981,6 @@
           "teamGoals": 1,
           "opponentGoals": 0,
           "venueSide": "home",
-          "opponentCrestUrl": null,
-          "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/",
-          "sourceVerification": "ARCHIVED_PREVIOUS_QA"
-        },
-        {
-          "date": "2026-09-08",
-          "opponent": "NK Vardarac",
-          "teamGoals": 2,
-          "opponentGoals": 0,
-          "venueSide": "away",
           "opponentCrestUrl": null,
           "sourceUrl": "https://oddsrun.com/match/football/eu/34541/13044416/uefa-conference-league/hajduk-split-vs-ajax/",
           "sourceVerification": "ARCHIVED_PREVIOUS_QA"
@@ -7010,9 +7039,11 @@
         "domesticScheduleSource": "https://site.api.espn.com/apis/site/v2/sports/soccer/cro.1/teams/489/schedule?season=2026",
         "latestDomesticVerification": "UNAVAILABLE_API_ARCHIVED_REUSED",
         "recordsStored": 5,
-        "verifiedRecentPostOct15": false,
+        "verifiedRecentPostOct15": true,
         "supplementalSource": null,
-        "supplementalDataGrade": null
+        "supplementalDataGrade": null,
+        "followupSource": "https://hajduk.hr/",
+        "followupVerifiedDate": "2026-10-22"
       }
     }
   ],
@@ -7103,7 +7134,25 @@
         "club": "Hajduk Split"
       }
     ],
-    "review": "Sources mixed. Missing newer domestic match does not prove a match occurred. Verify by independent official source before claiming completeness."
+    "review": "Sources mixed. Missing newer domestic match does not prove a match occurred. Verify by independent official source before claiming completeness.",
+    "verifiedFollowupRows": [
+      "15:away",
+      "18:home",
+      "21:home",
+      "23:home",
+      "24:home",
+      "30:away",
+      "34:home",
+      "35:away",
+      "37:away"
+    ],
+    "remainingPostOct15Unconfirmed": [
+      "2:away",
+      "8:home",
+      "16:away",
+      "33:home"
+    ],
+    "sourceLimitations": "Some clubs lack post-15 October domestic match; older data retained as last known official competitive records."
   },
   "resultReview": {
     "archiveDate": "2026-10-21",
