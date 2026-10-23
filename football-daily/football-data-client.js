@@ -56,8 +56,10 @@
   }finally{clearTimeout(timer);controller.abort();}
  }
  function createClient({config={},assetRoot,pageUrl,brand='main',fetcher=fetch,storage=null,onState=()=>{},now=new Date()}){
-  const base=new URL(assetRoot),page=new URL(pageUrl),today=dayKey(now),yesterday=dayKey(now,-1);
+  const base=new URL(assetRoot),page=new URL(pageUrl);
   const draft=page.searchParams.get('fcDraft');
+  const previewDate=page.searchParams.get('date'),clock=draft&&/^\d{4}-\d{2}-\d{2}$/.test(previewDate||'')?new Date(previewDate+'T06:00:00Z'):now;
+  const today=dayKey(clock),yesterday=dayKey(clock,-1);
   async function privateDraft(){
    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeoutMs||10000);
    try{

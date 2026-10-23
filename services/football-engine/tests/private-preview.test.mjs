@@ -15,3 +15,10 @@ test('one wrong version in a private preview prevents a mixed draft',async()=>{
  const c=createClient({assetRoot:root,pageUrl:root+'?fcDraft='+version,fetcher:async()=>Response.json({matches:[]},{headers:{'X-Football-Version':'wrong'}})});
  assert.equal((await c.fetch(root+'data/today.json')).status,503);
 });
+test('dated owner preview keeps its snapshot day and previous-night resources after midnight',async()=>{
+ const paths=[];const c=createClient({assetRoot:root,pageUrl:root+'?fcDraft='+version+'&date=2026-10-22',now:new Date('2026-10-23T12:00:00Z'),fetcher:async url=>{
+  const path=new URL(url).searchParams.get('path');paths.push(path);
+  return path==='data/today.json'?Response.json({reportDate:'2026-10-22',matches:[]},{headers:{'X-Football-Version':version}}):new Response(null,{status:404});
+ }});
+ assert.equal((await c.ready()).version,version);assert.ok(paths.includes('data/archive/2026-10-21.json'));assert.ok(paths.includes('data/odds/2026-10-22.json'));assert.ok(!paths.includes('data/fixtures/2026-10-23.json'));
+});

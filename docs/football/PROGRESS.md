@@ -125,3 +125,9 @@ Refresh this unconnected namespace to the final tested code before any approved 
   copy: football-production-private-db.enc.json. No plaintext SQL or recovery key was saved.
 - Owner was given the direct GitHub Secrets path and the existing supported alternate secret name
   FOOTBALL_PAGES_CF_API_TOKEN. Do not request password/login retries or repeat all prior setup.
+- Hosted fixed-header candidate 39880604568 now passes the pinned resource checks, then times out
+  waiting for the old source day's page count after the calendar changed to 23 October. Owner draft
+  previews now anchor the shared report renderer and resource bundle to their explicit draft date;
+  public date behavior stays unchanged. A midnight regression test covers previous-night resources.
+- Full existing frontend suite after the header fix: 255 tests, 254 pass, one existing skip, zero failures.
+  Local workerd/D1 parity, private resource backup/restore and unauthorized access checks also pass.
