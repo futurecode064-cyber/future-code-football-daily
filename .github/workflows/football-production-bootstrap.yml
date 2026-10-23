@@ -1,0 +1,39 @@
+name: Football Owner-Authorized One-Time Production Bootstrap
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+concurrency:
+  group: football-production-cutover
+  cancel-in-progress: false
+jobs:
+  bootstrap:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-owner-approved-bootstrap'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with: { node-version: '24' }
+      - name: Verify no newer canonical source, initial D1 and existing Pages config; securely activate unchanged source and add only new bindings
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+        run: node scripts/football/production-bootstrap.mjs football-production-bootstrap-report.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-production-one-time-bootstrap-evidence
+          path: football-production-bootstrap-report.json
+          retention-days: 14
+          if-no-files-found: warn
