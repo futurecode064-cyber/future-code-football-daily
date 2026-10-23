@@ -29,6 +29,21 @@ jobs:
           FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
           FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
         run: node scripts/football/publish-evening-odds-d1.mjs
+      - name: Install Chrome driver for public read-only brand QA
+        run: |
+          npm install --no-save --no-package-lock playwright@1.64.1
+          command -v google-chrome
+      - name: Verify all five brands, mobile/desktop, and actual odds PNG downloads
+        env:
+          FOOTBALL_QA_CHROME: /usr/bin/google-chrome
+        run: node scripts/football/verify-evening-public-brands.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-evening-five-brand-qa
+          path: football-evening-5brand-qa/
+          retention-days: 14
+          if-no-files-found: warn
       - if: always()
         uses: actions/upload-artifact@v4
         with:
