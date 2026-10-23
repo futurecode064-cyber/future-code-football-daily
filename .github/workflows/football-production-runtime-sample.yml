@@ -1,0 +1,27 @@
+name: Football Live Production Worker CPU Read-Only Sample
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/football-runtime-sample-request.json'
+permissions:
+  contents: read
+jobs:
+  measure:
+    if: github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24' }
+      - name: Read exact production QA window Worker CPU time without any write
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+        run: node scripts/football/sample-production-cpu.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-production-runtime-sample
+          path: football-production-runtime-sample.json
+          retention-days: 14
+          if-no-files-found: warn
