@@ -1,0 +1,40 @@
+name: Football Evening Frame D1 Data-Only Repair
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: read
+  issues: read
+concurrency:
+  group: football-evening-d1-only
+  cancel-in-progress: false
+jobs:
+  repair:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.label.name == 'football-evening-render-repair' &&
+      github.event.issue.number == 37 &&
+      github.event.issue.user.login == 'futurecode064-cyber' &&
+      github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify 13 live odds and repair only missing evening kickoff metadata via immutable D1 version
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+        run: node scripts/football/repair-evening-display-d1.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: football-evening-render-repair
+          path: football-evening-render-repair-result.json
+          retention-days: 30
+          if-no-files-found: warn
+# Never builds Pages or redeploys Worker. Other published resources unchanged.
