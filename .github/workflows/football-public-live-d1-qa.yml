@@ -1,0 +1,39 @@
+name: Football Live Public Workers D1 Production QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/football-live-qa-request.json'
+permissions:
+  contents: read
+concurrency:
+  group: football-live-public-d1-browser-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: { node-version: '24' }
+      - name: Install isolated browser checker
+        run: |
+          npm install --no-save --no-package-lock playwright@1.64.1
+          command -v google-chrome
+      - name: Verify public D1, five website brands, 20 pages and 10 actual PNG downloads
+        env:
+          FOOTBALL_QA_CHROME: /usr/bin/google-chrome
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+        run: node scripts/football/qa-public-live-api.mjs football-live-api-qa
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: football-public-live-d1-qa
+          path: football-live-api-qa/
+          retention-days: 14
+          if-no-files-found: warn
+# READ ONLY. No D1 writes, no Pages update, no GitHub source deployment.
