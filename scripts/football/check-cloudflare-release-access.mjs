@@ -1,8 +1,9 @@
 // Read-only account/project scope diagnosis and real runtime metrics. Never prints API bodies or keys.
 import {writeFileSync,readFileSync} from 'node:fs';
-const token=process.env.FOOTBALL_STAGING_CF_API_TOKEN,expected='86851bf21d81d8f0972052aff8162149';
+const token=process.env.FOOTBALL_STAGING_CF_API_TOKEN,pagesToken=process.env.FOOTBALL_PAGES_CF_API_TOKEN||token,expected='86851bf21d81d8f0972052aff8162149';
 const report={kind:'read-only-football-release-preflight',productionModified:false,checkedAt:new Date().toISOString(),pages:{},tokenPolicy:{},metrics:{},subscriptions:{}};
 async function get(path){try{const r=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000),redirect:'error'});return {status:r.status,body:await r.json()};}catch{return {status:null,body:{}};}}
+async function getPages(path){try{const r=await fetch('https://api.cloudflare.com/client/v4'+path,{headers:{Authorization:'Bearer '+pagesToken},signal:AbortSignal.timeout(20000),redirect:'error'});return {status:r.status,body:await r.json()};}catch{return {status:null,body:{}};}}
 async function gql(query,variables){try{const r=await fetch('https://api.cloudflare.com/client/v4/graphql',{method:'POST',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({query,variables}),signal:AbortSignal.timeout(20000),redirect:'error'});const b=await r.json();return {httpStatus:r.status,available:r.ok&&!b.errors,data:!b.errors?b.data:null,errorCodes:b.errors?.map(e=>e.extensions?.code||'unavailable')};}catch{return {available:false,httpStatus:null};}}
 try{
  if(!token||token.length<32)throw Error('GitHub scoped token required');
@@ -10,7 +11,7 @@ try{
  if(v.body.result?.id){const d=await get('/user/tokens/'+encodeURIComponent(v.body.result.id));report.tokenPolicy.detailsHttpStatus=d.status;if(d.body.success)report.tokenPolicy.permissionNames=[...new Set((d.body.result.policies||[]).filter(p=>p.effect==='allow').flatMap(p=>(p.permission_groups||[]).map(g=>g.name)))];}
  const accounts=await get('/accounts?per_page=50');const ids=[...new Set([expected,...(accounts.body.success?accounts.body.result||[]:[]).map(a=>a.id)])].slice(0,10);
  report.pages.visibleAccountsChecked=ids.length;report.pages.matches=[];
- for(const id of ids){const r=await get('/accounts/'+id+'/pages/projects/future-code-football-daily');if(id===expected)report.pages.expectedAccountHttpStatus=r.status;
+ for(const id of ids){const r=await getPages('/accounts/'+id+'/pages/projects/future-code-football-daily');if(id===expected)report.pages.expectedAccountHttpStatus=r.status;
   if(r.body.success&&r.body.result?.name==='future-code-football-daily'){const p=r.body.result;report.pages.matches.push({accountId:id,project:p.name,productionBranch:p.production_branch,sourceOwner:p.source?.config?.owner,sourceRepo:p.source?.config?.repo_name,outputDirectory:p.build_config?.destination_dir,deploymentId:p.latest_deployment?.id,environmentBindings:Object.fromEntries(Object.entries(p.deployment_configs||{}).map(([name,c])=>[name,{envNames:Object.keys(c.env_vars||{}),serviceBindings:Object.keys(c.services||{}),d1Bindings:Object.keys(c.d1_databases||{})}]))});}}
  report.pages.readable=report.pages.matches.length>0;
  const sub=await get('/accounts/'+expected+'/subscriptions');report.subscriptions.httpStatus=sub.status;report.subscriptions.available=Boolean(sub.body.success);if(sub.body.success)report.subscriptions.planNames=(sub.body.result||[]).map(s=>s.rate_plan?.public_name||s.rate_plan?.id).filter(Boolean);
