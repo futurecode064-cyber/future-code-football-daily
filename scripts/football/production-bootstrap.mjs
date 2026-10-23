@@ -73,7 +73,11 @@ try{
  const token=randomBytes(32).toString('hex');
  // Only an owned, still-inactive production worker receives this secret; no value is logged.
  await cf(workerEndpoint+'/secrets',workerToken,'PUT',{name:'ADMIN_TOKEN',text:token,type:'secret_text'});
- const state=await admin('state',token);
+ let state;
+ for(let attempt=0;attempt<12;attempt++){
+  try{state=await admin('state',token);break;}
+  catch(error){if(attempt===11)throw error;await new Promise(done=>setTimeout(done,2500));}
+ }
  assert.equal(state.version_id,null);assert.equal(state.generation,0);
  const version=config.api.candidate.privateDraftVersion;
  const fetched={};
