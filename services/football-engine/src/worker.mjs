@@ -72,7 +72,7 @@ async function updateOdds(request,env,b){
    m.myanmarOdds={...m.myanmarOdds,[key]:row[key]};
   }
  }
- const evening={reportDate:day,matches:sheet.matches.map((o,i)=>({row:o.pdfRow||i+1,fixtureId:o.fixtureId,league:o.league,home:o.home,away:o.away,upperTeam:o.upperTeam,morningBodyOdds:o.bodyOdds,morningGoalTotalOdds:o.goalTotalOdds,eveningBodyOdds:o.currentBodyOdds||'',eveningGoalTotalOdds:o.currentGoalTotalOdds||''}))};
+ const evening={reportDate:day,matches:sheet.matches.map((o,i)=>({row:o.pdfRow||i+1,fixtureId:o.fixtureId,league:o.league,home:o.home,away:o.away,upperTeam:o.upperTeam,kickoffDisplay:o.kickoffDisplay,morningBodyOdds:o.bodyOdds,morningGoalTotalOdds:o.goalTotalOdds,eveningBodyOdds:o.currentBodyOdds||'',eveningGoalTotalOdds:o.currentGoalTotalOdds||''}))};
  return importDraft(request,env,{editorialDate:day,expectedGeneration:b.expectedGeneration,sourceManifest:b.sourceManifest,resources:{'data/today.json':report,[`data/odds/${day}.json`]:sheet,[`data/odds/evening/${day}.json`]:evening}});
 }
 async function validateDraft(env,b){
