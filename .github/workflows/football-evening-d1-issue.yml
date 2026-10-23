@@ -1,0 +1,39 @@
+name: Football Evening Odds D1 No-Build Publisher
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: read
+  issues: read
+concurrency:
+  group: football-evening-d1-only
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.label.name == 'football-evening-d1-publish' &&
+      github.event.issue.user.login == 'futurecode064-cyber' &&
+      github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify owner PDF and atomically publish D1 only
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+        run: node scripts/football/publish-evening-odds-d1.mjs
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-evening-d1-result
+          path: football-evening-d1-result.json
+          retention-days: 30
+          if-no-files-found: warn
+# No Cloudflare Pages builds or Git data publication commits for this update.
