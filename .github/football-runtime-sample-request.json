@@ -1,0 +1,6 @@
+{
+  "requestedAt": "2026-10-23",
+  "window": "2026-10-23T04:39:45.688Z to 04:40:20.178Z",
+  "purpose": "Inspect real live Workers CPU under Cloudflare Free without Pages build",
+  "readOnly": true
+}
