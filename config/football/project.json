@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "currentTask": "infrastructure-migration-only",
+  "currentTask": "daily-no-build-data-operations",
   "repository": "futurecode064-cyber/future-code-football-daily",
   "checkpointBranch": "football-engine/workers-d1-migration",
   "auditedSourceCommit": "d9300545ba685690984769b3acb53f050f6f929b",
   "timezone": "Asia/Yangon",
-  "editorialReferenceOnly": true,
+  "editorialReferenceOnly": false,
   "references": [
     {
       "path": "config/football/FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt",
@@ -32,11 +32,11 @@
     "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
   },
   "api": {
-    "status": "private-provisioned",
-    "publicBaseUrl": null,
-    "adminBaseUrl": null,
-    "workerName": null,
-    "databaseId": null,
+    "status": "live-verified",
+    "publicBaseUrl": "https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev",
+    "adminBaseUrl": "https://future-code-football-daily.pages.dev/api/editor/engine",
+    "workerName": "future-code-football-engine",
+    "databaseId": "d2cc165f-5957-4b94-b2b1-9c79e79adbb1",
     "intendedPublicPath": "/api/football",
     "intendedOwnerProxyPath": "/api/editor/engine/",
     "intendedPrivatePath": "/api/admin",
@@ -65,19 +65,20 @@
       "origin": "https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev",
       "runId": 39898312293,
       "privateDraftVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
-      "activeVersion": null,
-      "frontendConnected": false,
+      "activeVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
+      "frontendConnected": true,
       "sourceResources": 39,
-      "contentActivated": false,
-      "productionWebsiteModified": false,
+      "contentActivated": true,
+      "productionWebsiteModified": true,
       "initialPrivateSourceDate": "2026-10-23",
-      "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7"
+      "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+      "productionPublishedGeneration": 1
     }
   },
   "deployment": {
-    "productionCutoverCompleted": false,
-    "frontendIntegrationEnabled": false,
-    "cloudflareDashboardVerified": false,
+    "productionCutoverCompleted": true,
+    "frontendIntegrationEnabled": true,
+    "cloudflareDashboardVerified": true,
     "legacyDeliveryRepository": "futurecode064-cyber/AI-Recap-GitHub",
     "legacyWorkflow": "football-standalone-sync.yml",
     "legacyDeliveryBranch": "football-daily-render",
@@ -217,18 +218,23 @@
       "workerAndD1MetricsReadable": true,
       "subscriptionPlanReadable": false,
       "productionModified": false,
-      "writePermissionVerified": false,
-      "currentPagesDeploymentId": "dcac042c-bc41-4804-859f-4c9ddc3559ff",
+      "writePermissionVerified": true,
+      "currentPagesDeploymentId": "f7d25cba-315a-42b2-ad59-b2fcdc89396d",
       "productionEnvironment": {
         "envNames": [
+          "FCD_ENGINE_ENABLED",
+          "FCD_ENGINE_TOKEN",
           "FCD_MAIN_PASSWORD",
           "FCD_SESSION_SECRET"
         ],
-        "serviceBindings": [],
+        "serviceBindings": [
+          "FOOTBALL_ENGINE"
+        ],
         "d1Bindings": [
           "GOALZONE_ANALYTICS_DB"
         ]
-      }
+      },
+      "pagesWriteProbeRun": 39899974463
     },
     "runtimeProfile": {
       "runId": 39887011613,
@@ -238,9 +244,35 @@
       "requests": 230,
       "errors": 0,
       "passedFreeBudget": false,
-      "next": "Cloudflare GraphQL Read-only runtime preflight must use exact 2026-10-23T04:01:49.949Z–04:04:10.332Z hosted QA window. Free 10ms/request not yet certified.",
+      "next": "Workload is live; October 23 isolated-QA p99 18.747ms included private imports. Continue observing real public steady-state 10ms/request Free CPU ceiling; monitor errors and usage instead of claiming guaranteed compliance.",
       "profileRunId": 39898090157
+    },
+    "initialExistingContentReactivated": true,
+    "cutoverApproval": {
+      "source": "explicit-owner-approval",
+      "reference": "User instruction in this ChatGPT conversation: 2026-10-23T04:19:46Z — complete the entire system with all required access.",
+      "approvedAt": "2026-10-23T04:19:46Z"
+    },
+    "cutover": {
+      "initialApiBootstrapRun": 39900706061,
+      "initialMirroredPagesRun": 39901059325,
+      "livePublicQaRun": 39901492024,
+      "sourceCodeCommit": "96af1073ba922b4826252fed8d0ce8416eaa75b7",
+      "productionMirrorCommit": "9d8bc9dbf1e92fcfb84322b0ed7ce2e750587ccb",
+      "liveDeploymentId": "f7d25cba-315a-42b2-ad59-b2fcdc89396d",
+      "priorPagesDeploymentId": "0d029017-186c-4942-8cbe-7d363279de35",
+      "publishedDataVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
+      "publishedGeneration": 1,
+      "sourceResources": 39,
+      "sourceDate": "2026-10-23",
+      "verifiedAt": "2026-10-23T04:40:20Z",
+      "pagesPassed": 20,
+      "actualPngDownloadsPassed": 10,
+      "deployIdUnchangedDuringLiveQa": true,
+      "serviceBinding": "FOOTBALL_ENGINE",
+      "preservedOriginalLoginSecrets": true,
+      "preservedAnalyticsD1": true
     }
   },
-  "next": "Oct 23 main reconciled; 39-resource private D1 parity/restore backup and 20-page/10-PNG hosted QA passed. Next verify Free runtime quota, Pages WRITE credentials, additive service binding/secrets, one initial guarded build and atomic D1 activation, then 5 live sites and zero builds on daily data changes. No active publication yet."
+  "next": "Daily use: user supplies verified PDF/odds/results. Prepare complete private source ledger and JSON, import to Workers/D1 via authenticated same-origin /editor/engine.html admin or private secure API; validate source and five-brand/download QA; atomically publish; verify public manifest/version, all brands, 10 PNG; do not commit GitHub, run legacy Pages mirror, deploy Worker or spend Pages build for routine updates. Preserve prior publications and backups. Free-tier monitoring remains ongoing."
 }
