@@ -1,0 +1,41 @@
+name: Football Cloudflare Access Check
+on:
+  # A label provides an explicit manual trigger while this workflow stays on the draft branch.
+  # No default-branch merge, push trigger, schedule or Cloud Browser login is needed.
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  verify-access:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-cloudflare-access-check'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify Cloudflare API access without changing resources
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          # Observed in the existing Cloudflare test-app check URL; not a credential.
+          FOOTBALL_STAGING_CF_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+        run: node scripts/football/verify-cloudflare-access.mjs cloudflare-access-report.json
+      - name: Save non-secret access result
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-cloudflare-access
+          path: cloudflare-access-report.json
+          retention-days: 7
+          if-no-files-found: error
+# This workflow only performs GET requests. It cannot create/deploy/publish/delete anything.
+# The token must never be printed, uploaded as an artifact or placed in source code.

@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "currentTask": "infrastructure-migration-only",
+  "repository": "futurecode064-cyber/future-code-football-daily",
+  "checkpointBranch": "football-engine/workers-d1-migration",
+  "auditedSourceCommit": "d9300545ba685690984769b3acb53f050f6f929b",
+  "timezone": "Asia/Yangon",
+  "editorialReferenceOnly": true,
+  "references": [
+    {
+      "path": "config/football/FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt",
+      "sha256": "0f05e61e8ff950b3f22f4acb1f107dbdd0314bad56d4b6beb85964e26f7016ad"
+    },
+    {
+      "path": "docs/football/SHARED_ENGINE_REQUIREMENTS.txt",
+      "sha256": "4bf3c6c5e4a13963906649e8b753abe123600a06bcfac3b8f6271e86ac2fda96"
+    },
+    {
+      "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
+      "sha256": "bf2a87c5c687373f2e3b3ab62df154d754fab0950b2ff0237555e8653c8bf371"
+    },
+    {
+      "path": "config/football/validation-rules.json",
+      "sha256": "365882ae8ce062648e3d098ed1b4e956e756e2f1e218db4977aa0330330e4041"
+    }
+  ],
+  "sites": {
+    "main": "https://future-code-football-daily.pages.dev/",
+    "goal-zone": "https://future-code-football-daily.pages.dev/future-code-journal/",
+    "bw-sport": "https://future-code-football-daily.pages.dev/bw-sport/",
+    "ykz": "https://future-code-football-daily.pages.dev/ykz-family/",
+    "ko-thet": "https://future-code-football-daily.pages.dev/ko-thet-family/"
+  },
+  "api": {
+    "status": "private-provisioned",
+    "publicBaseUrl": null,
+    "adminBaseUrl": null,
+    "workerName": null,
+    "databaseId": null,
+    "intendedPublicPath": "/api/football",
+    "intendedOwnerProxyPath": "/api/editor/engine/",
+    "intendedPrivatePath": "/api/admin",
+    "authentication": "existing Pages owner session through service binding; automation bearer secret in secure environment only",
+    "implementedAdminOperations": {
+      "GET": [
+        "state",
+        "draft",
+        "export",
+        "history",
+        "usage",
+        "resource"
+      ],
+      "POST": [
+        "import",
+        "validate",
+        "publish",
+        "rollback",
+        "update-odds"
+      ]
+    },
+    "candidate": {
+      "workerName": "future-code-football-engine",
+      "databaseName": "future-code-football-db",
+      "databaseId": "d2cc165f-5957-4b94-b2b1-9c79e79adbb1",
+      "origin": "https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev",
+      "runId": 39898312293,
+      "privateDraftVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
+      "activeVersion": null,
+      "frontendConnected": false,
+      "sourceResources": 39,
+      "contentActivated": false,
+      "productionWebsiteModified": false,
+      "initialPrivateSourceDate": "2026-10-23",
+      "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7"
+    }
+  },
+  "deployment": {
+    "productionCutoverCompleted": false,
+    "frontendIntegrationEnabled": false,
+    "cloudflareDashboardVerified": false,
+    "legacyDeliveryRepository": "futurecode064-cyber/AI-Recap-GitHub",
+    "legacyWorkflow": "football-standalone-sync.yml",
+    "legacyDeliveryBranch": "football-daily-render",
+    "pagesOutputDirectory": "football-daily",
+    "existingAuthenticationChanged": false,
+    "dailyContentCreatedOrPublished": false,
+    "lastAuthenticationAttempt": {
+      "method": "email/password via secure browser auth",
+      "result": "submission_failed",
+      "websiteCredentialErrorObserved": false,
+      "dashboardSessionVerified": false
+    },
+    "frontendIntegrationPrepared": true,
+    "localWorkerdParityVerified": true,
+    "alternativeAuthentication": {
+      "status": "api-read-verified",
+      "method": "Cloudflare user API token stored directly in GitHub repository secret by owner",
+      "secretName": "FOOTBALL_STAGING_CF_API_TOKEN",
+      "workflow": ".github/workflows/football-cloudflare-access.yml",
+      "triggerLabel": "football-cloudflare-access-check",
+      "pullRequest": 36,
+      "instructions": "docs/football/CLOUDFLARE_ACCESS_WITHOUT_CLOUD_BROWSER.md",
+      "verificationRun": 39745156542,
+      "verifiedAt": "2026-10-22T08:05:32.512Z",
+      "workersReadable": true,
+      "d1Readable": true
+    },
+    "stagingSetupWorkflow": {
+      "path": ".github/workflows/football-engine-staging.yml",
+      "triggerLabel": "football-engine-stage",
+      "status": "success-private-draft",
+      "runId": 39746102616,
+      "workerHealthVerified": true,
+      "resourcesImported": 36,
+      "productionModified": false,
+      "apiOrigin": "https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev",
+      "databaseId": "a4ddc00f-411b-4ee5-ab4a-dfe13486c334",
+      "workerName": "future-code-football-engine-staging",
+      "liveReadCheckRun": 39750290153,
+      "liveReadCheck": "passed",
+      "d1FileSizeBytes": 2596864,
+      "numberOfTables": 8
+    },
+    "qaSynthetic": {
+      "status": "passed",
+      "workerName": "future-code-football-engine-qa-smoke",
+      "databaseName": "future-code-football-db-qa-smoke",
+      "databaseId": "86a9ed8a-deb4-46a1-80c5-e744d2b47aa5",
+      "e2eRun": 39754490298,
+      "livePagesPassed": 20,
+      "livePngDownloadsPassed": 5,
+      "videoRun": 39755484428,
+      "realFootballDataVerified": false
+    },
+    "backup": {
+      "stagingEncrypted": true,
+      "backupRun": 39756965147,
+      "recoveryKeyIndependent": true,
+      "backupArtifactRetentionDays": 90,
+      "durableOffsite": true,
+      "restoreVerified": true,
+      "independentKeyArtifactId": 12415218943,
+      "backupKeySeenInChat": true,
+      "secretRotationRequiredBeforeProduction": true,
+      "durableScope": "encrypted original staging database only; independent owner copy saved 2026-10-22",
+      "durableFilename": "football-staging-db.enc.json",
+      "productionPrivateDurableOffsite": true,
+      "productionPrivateArtifactId": 12424692706,
+      "productionPrivateDurableFilename": "football-production-private-db.enc.json",
+      "productionPrivateLatest": {
+        "runId": 39898312293,
+        "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+        "createdAt": "2026-10-23T04:05:14Z",
+        "artifactId": 12477578130,
+        "artifactExpiry": "2026-11-06T04:05:14Z",
+        "encrypted": true,
+        "restoreVerified": true,
+        "fullSqlBytes": 3087690,
+        "sha256": "3c3ee71bb835f30500fb46997f6d700dd24399597a4c4ff284bc0c0add4fd655",
+        "libraryPath": "/Future Code Football Backups/football-production-private-backup-2026-10-23.zip",
+        "independentRecoveryKey": "GitHub Secret FOOTBALL_BACKUP_RECOVERY_KEY; not included in backup"
+      }
+    },
+    "editorialQa": {
+      "day": "2026-10-22",
+      "reportFixtures": 36,
+      "oddsFixtures": 36,
+      "fixtureIdsMatch": true,
+      "excludedFriendlyResults": 6,
+      "affectedFixtureCount": 4,
+      "realEditorialQaComplete": false,
+      "sourceFile": "docs/football/CURATION_QA_2026_10_22.md"
+    },
+    "ownerPreview": {
+      "status": "hosted-owner-real-snapshot-verified",
+      "workerName": "future-code-football-owner-preview",
+      "origin": "https://future-code-football-owner-preview.futurecode-dubai-86851bf2.workers.dev",
+      "workflow": ".github/workflows/football-engine-owner-qa.yml",
+      "triggerLabel": "football-engine-owner-qa",
+      "runId": 39775311571,
+      "sourceCommit": "81ea35c4123f25fa1dea71edd84ae972673eb686",
+      "privateDraftVersion": "f455d5f4-8b8f-42b0-9802-f3e571ddf84e",
+      "sourceResources": 39,
+      "sourceFixtures": 13,
+      "pagesPassed": 20,
+      "realPngDownloadsPassed": 10,
+      "ownerSessionServiceBindingVerified": true,
+      "anonymousDraftDenied": true,
+      "realPublicationPerformed": false,
+      "productionModified": false,
+      "profileStartedAt": "2026-10-23T04:01:49.949Z",
+      "profileEndedAt": "2026-10-23T04:04:10.332Z",
+      "extendedModeQa": "private-resource-parity-and-owner-session-pass; pinned-version-header-fix-under-test",
+      "lastExtendedAttemptRun": 39778405187,
+      "latestHostedQa": {
+        "runId": 39898090157,
+        "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+        "pagesPassed": 20,
+        "realPngDownloadsPassed": 10,
+        "allExistingDownloadModes": true,
+        "ownerSessionServiceBindingVerified": true,
+        "sourceResources": 39,
+        "productionModified": false,
+        "sourceDate": "2026-10-23",
+        "privateDraftOnly": true,
+        "draftVersion": "7dbd4fab-905d-4ab7-9b54-1f723d5718e4",
+        "profileStartedAt": "2026-10-23T04:01:49.949Z",
+        "profileEndedAt": "2026-10-23T04:04:10.332Z"
+      },
+      "profileCandidateCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+      "profileRunId": 39898090157
+    },
+    "releaseAccess": {
+      "runId": 39887011613,
+      "pagesProjectHttpStatus": 200,
+      "pagesProjectReadable": true,
+      "workerAndD1MetricsReadable": true,
+      "subscriptionPlanReadable": false,
+      "productionModified": false,
+      "writePermissionVerified": false,
+      "currentPagesDeploymentId": "dcac042c-bc41-4804-859f-4c9ddc3559ff",
+      "productionEnvironment": {
+        "envNames": [
+          "FCD_MAIN_PASSWORD",
+          "FCD_SESSION_SECRET"
+        ],
+        "serviceBindings": [],
+        "d1Bindings": [
+          "GOALZONE_ANALYTICS_DB"
+        ]
+      }
+    },
+    "runtimeProfile": {
+      "runId": 39887011613,
+      "candidateCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+      "cpuTimeP50Raw": 2032,
+      "cpuTimeP99Raw": 25171,
+      "requests": 230,
+      "errors": 0,
+      "passedFreeBudget": false,
+      "next": "Cloudflare GraphQL Read-only runtime preflight must use exact 2026-10-23T04:01:49.949Z–04:04:10.332Z hosted QA window. Free 10ms/request not yet certified.",
+      "profileRunId": 39898090157
+    }
+  },
+  "next": "Oct 23 main reconciled; 39-resource private D1 parity/restore backup and 20-page/10-PNG hosted QA passed. Next verify Free runtime quota, Pages WRITE credentials, additive service binding/secrets, one initial guarded build and atomic D1 activation, then 5 live sites and zero builds on daily data changes. No active publication yet."
+}

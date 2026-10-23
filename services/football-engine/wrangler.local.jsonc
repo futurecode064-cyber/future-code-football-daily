@@ -1,0 +1,6 @@
+{
+ "name":"future-code-football-engine-local","main":"src/worker.mjs","compatibility_date":"2026-10-22",
+ "vars":{"ENVIRONMENT":"local","ALLOWED_ORIGINS":"http://localhost:8788"},
+ "d1_databases":[{"binding":"DB","database_name":"football-engine-local-only","database_id":"00000000-0000-0000-0000-000000000000","migrations_dir":"migrations"}],
+ "ratelimits":[{"name":"ADMIN_RATE_LIMITER","namespace_id":"782104","simple":{"limit":30,"period":60}}]
+}

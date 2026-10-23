@@ -1,0 +1,49 @@
+name: Football Engine Isolated Staging
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+concurrency:
+  group: football-engine-isolated-staging
+  cancel-in-progress: false
+jobs:
+  staging:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-stage'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+        working-directory: services/football-engine
+      - run: node scripts/football/check-config.mjs
+      - run: node --test services/football-engine/tests/*.test.mjs
+      - run: npm run check:bundle
+        working-directory: services/football-engine
+      - name: Create managed staging resources and verify unchanged private migration
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_STAGING_CF_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+        run: node scripts/football/stage-cloudflare.mjs football-staging-report.json
+      - name: Save non-secret deployment and parity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-staging-report
+          path: football-staging-report.json
+          retention-days: 14
+          if-no-files-found: warn
+# Only fixed managed staging Worker/D1 names are mutated. No production Pages binding,
+# analytics DB, daily content activation, production mirror, schedule or paid-plan operation.

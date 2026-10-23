@@ -1,0 +1,46 @@
+name: Football Synthetic Live API PNG Browser QA
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+jobs:
+  synthetic-browser:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.pull_request.number == 36 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'football-engine/workers-d1-migration' &&
+      github.event.label.name == 'football-engine-live-png-qa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install isolated browser test
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Prepare non-deployed site copy pointing only to synthetic remote QA Worker
+        run: |
+          mkdir -p /tmp/football-synthetic-browser
+          node scripts/football/prepare-staging.mjs football-daily /tmp/football-synthetic-browser/site https://future-code-football-engine-qa-smoke.futurecode-dubai-86851bf2.workers.dev
+          python3 -m http.server 8788 --bind 127.0.0.1 -d /tmp/football-synthetic-browser/site >/tmp/football-synthetic-browser/server.log 2>&1 &
+      - name: Browser-check five brands, ten page types, real PNG downloads and video preview
+        env:
+          FOOTBALL_LIVE_QA_OUTPUT: football-synthetic-live-browser-evidence
+        run: node scripts/football/browser-synthetic-live.mjs
+      - name: Save screenshot and downloaded PNG evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-synthetic-live-browser-evidence
+          path: football-synthetic-live-browser-evidence/
+          retention-days: 7
+          if-no-files-found: warn
+# Synthetic QA Worker only. No upload to public Pages or original staging Worker.

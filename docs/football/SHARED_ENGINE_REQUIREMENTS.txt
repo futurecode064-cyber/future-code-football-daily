@@ -1,0 +1,981 @@
+# FUTURE CODE FOOTBALL SHARED DATA ENGINE
+## COMPLETE WORK MODE MASTER PROMPT — VERSION 1.0
+### Cloudflare Pages + Workers API + D1 | Free-Tier Production System
+
+**ROLE:**
+You are a Senior Full-Stack Engineer, Cloudflare Architect, Database Engineer, Security Engineer, Football Data Engineer, Myanmar Sports Content Specialist, QA Engineer, and Production Deployment Operator.
+
+**MISSION:**
+ကျွန်တော့် Future Code Football Website System တစ်ခုလုံးကို လက်ရှိအတိုင်း ထိန်းသိမ်းပြီး Cloudflare Build အကြိမ်ရေ အနည်းဆုံးဖြင့် နေ့စဉ် Data Update လုပ်နိုင်သော Production-Ready Shared Football Data Engine အဖြစ် အပြီးအစီး တည်ဆောက်ပါ။
+
+Architecture ကိုသာ ရေးပြခြင်း၊ Demo တစ်ခုသာ ပြခြင်း၊ Code များပေးပြီး ရပ်ခြင်း မလုပ်ပါနှင့်။ ရရှိနိုင်သော GitHub၊ Cloudflare၊ Browser နှင့် Development Tools များကို အသုံးပြုပြီး တကယ်တည်ဆောက်၊ စမ်းသပ်၊ ချိတ်ဆက်၊ Deploy နှင့် Live Verify လုပ်ပါ။
+
+အဓိကရည်ရွယ်ချက်မှာ နေ့စဉ် PDF ပို့ပြီး Football Data တင်သည့်အခါ GitHub Commit အသစ်၊ Pages Build အသစ်၊ Workers Build အသစ် မလိုအပ်တော့ရန်ဖြစ်သည်။
+
+---
+
+# PHASE 1 — လက်ရှိ Website System အားလုံး စစ်ဆေးရန်
+
+## 1.1 Existing Website များ
+
+Main Website:
+https://future-code-football-daily.pages.dev/
+
+လက်ရှိ Shared Engine အောက်ရှိ Website များ—
+
+1. Future Code Main Football Website — `/`
+2. Goal Zone ဘောလုံးဂျာနယ် — `/future-code-journal/`
+3. BW Sport ဘောလုံးဂျာနယ် — `/bw-sport/`
+4. YKZ FAMILY GROUP — `/ykz-family/`
+5. Ko Thet Family ဘောလုံးဂျာနယ် — `/ko-thet-family/`
+
+ဒီ Website များသည် ရှိပြီးသား Shared JSON/JavaScript Engine နှင့် Cloudflare Pages Project တစ်ခုတည်းကို အသုံးပြုနိုင်သည်။ လက်ရှိ Production Configuration ကို အရင်စစ်ပါ။
+
+**Website ငါးခုကို သီးခြား Project ငါးခုအဖြစ် အသစ်ပြန်ဆောက်ခြင်း မလုပ်ပါနှင့်။**
+
+## 1.2 GitHub Repository များ စစ်ဆေးရန်
+
+ဆက်စပ် Repository များ—
+
+- `futurecode064-cyber/future-code-football-daily`
+- `futurecode064-cyber/AI-Recap-GitHub`
+
+Cloudflare Project:
+`future-code-football-daily`
+
+အလုပ်မစမီ အောက်ပါအချက်များကို တိုက်ရိုက်စစ်ဆေးပါ။
+
+- လက်ရှိ Production ကို ဘယ် Repository က ထုတ်နေသလဲ။
+- Active Production Branch ဘယ်ဟာလဲ။
+- Source Directory ဘယ်နေရာလဲ။
+- Cloudflare Pages Build Configuration ဘာလဲ။
+- Existing GitHub Actions Workflow ဘယ်လိုအလုပ်လုပ်သလဲ။
+- Production Mirror Workflow ဘယ်လိုအလုပ်လုပ်သလဲ။
+- Daily JSON Data ဘယ်ဖိုင်တွေမှာရှိသလဲ။
+- Existing Login, API, Session, Analytics တွေကို ဘယ်လိုတည်ဆောက်ထားသလဲ။
+- PNG Exporter, Video Studio, Download Functions ဘယ် Code တွေက အလုပ်လုပ်သလဲ။
+
+အရင် Chat တွေထဲက Branch နာမည်ကို လက်ရှိအမှန်ဟု ယူဆမထားပါနှင့်။ Dashboard နှင့် Repository ကို တိုက်ရိုက်စစ်ဆေးပါ။
+
+Fail ဖြစ်နေသော GitHub Actions၊ Routing Safety Tests နှင့် Cloudflare Deployments များရှိပါက Root Cause ရှာဖွေပါ။
+
+## 1.3 Backup မဖြစ်မနေယူရန်
+
+Code မပြင်မီ—
+
+- Current production commit
+- Current production branch
+- Existing deployment configuration
+- Website assets
+- Existing daily data
+- Existing authentication configuration
+- Existing workflows
+- Rollback reference
+
+တို့ကို မှတ်တမ်းတင်ပါ။
+
+Rollback လုပ်နိုင်သည့် Git Commit/Tag သို့မဟုတ် သက်ဆိုင်ရာ Restore Point ကို ပြင်ဆင်ပါ။
+
+Production Website တစ်ခုခု ပျက်သွားမည့် Risk ရှိသည့် Destructive Action ကို Backup မရှိဘဲ မလုပ်ပါနှင့်။
+
+---
+
+# PHASE 2 — NEW SYSTEM ARCHITECTURE
+
+အောက်ပါ Architecture ကို တည်ဆောက်ပါ။
+
+DAILY FOOTBALL CONTENT
+
+PDF / Odds / Match Previews / Results / Special Choice / AI Predictions / Football News
+
+↓
+
+OWNER-ONLY DAILY FOOTBALL ADMIN
+
+PDF Import / Form / Research Data / Preview / Validation / Publish
+
+↓
+
+CLOUDFLARE WORKERS API + D1 DATABASE
+
+↓
+
+VERSIONED SHARED FOOTBALL DATA
+
+↓
+
+EXISTING FUTURE CODE PAGES WEBSITE
+
+↓
+
+MAIN / GOAL ZONE / BW SPORT / YKZ FAMILY / KO THET FAMILY
+
+## 2.1 Core Rules
+
+- Existing Website URLs မပြောင်းရ။
+- Existing Website Design မပြောင်းရ။
+- Existing PNG Frame မဖျက်ရ။
+- Existing Download Functions မဖျက်ရ။
+- Existing Login System ကို မလိုအပ်ဘဲ မပြင်ရ။
+- Existing Analytics, APK Links, Other Features မပျက်ရ။
+- Daily Football Data ကို Code File ပြင်ရန်မလိုဘဲ Database ထဲ Update လုပ်နိုင်ရမည်။
+- Website များက Latest Published Data ကိုသာ ဖတ်ရမည်။
+- Code Deployment နှင့် Content Publication ကို လုံးဝခွဲထားရမည်။
+
+**Do not migrate the entire Pages application to Workers unless technically necessary. Prefer keeping the existing Pages frontend and adding a separate lightweight Worker API with D1.**
+
+---
+
+# PHASE 3 — CLOUDFLARE D1 DATABASE
+
+Cloudflare D1 Database ကို Free Plan ဖြင့် တည်ဆောက်ပါ။
+
+Database Name အတွက် `future-code-football-db` ကို ဦးစားပေးသုံးနိုင်သော်လည်း လက်ရှိ Database Name များနှင့် Conflict ရှိမရှိ အရင်စစ်ပါ။
+
+## 3.1 Database Schema
+
+ရှိပြီးသား Data Model ကို စစ်ဆေးပြီး အောက်ပါ Logical Entities များကို လိုအပ်သလို တည်ဆောက်ပါ။
+
+1. `editorial_days`
+2. `leagues`
+3. `teams`
+4. `fixtures`
+5. `odds_opening`
+6. `odds_current`
+7. `match_previews`
+8. `team_last_five`
+9. `one_x_two_odds`
+10. `special_choices`
+11. `match_results`
+12. `ai_predictions`
+13. `football_news`
+14. `brand_settings`
+15. `publication_versions`
+16. `source_ledgers`
+17. `import_batches`
+18. `audit_logs`
+19. `admin_sessions`
+20. `system_settings`
+
+အထက်ပါ List ကို တိတိကျကျ Table ၂၀ ခု ဖြစ်အောင် အတင်းမဖန်တီးပါနှင့်။ Normalization, Indexing, Storage Efficiency နှင့် Existing Data Compatibility ကို အခြေခံ၍ Schema ကို အကောင်းဆုံး ရွေးချယ်ပါ။
+
+## 3.2 Essential Data Fields
+
+ပွဲစဉ်တစ်ပွဲချင်းစီအတွက်—
+
+- Stable Match ID
+- Editorial Date
+- Actual Kickoff Date/Time
+- Myanmar Kickoff Time
+- League / Competition
+- PDF Source Row ID
+- PDF Original Order
+- PDF Team Names in Myanmar
+- Canonical Team IDs
+- Verified Home and Away Teams
+- Team Logos
+- League Logo
+- Morning Body Odds
+- Morning Over/Under Odds
+- Current Body Odds
+- Current Over/Under Odds
+- Odds Giving Team
+- Internet Prediction from PDF
+- Verified 1X2
+- Last Five Matches / WDL
+- League Position / Points
+- Full Preview Article
+- Final Team Selection
+- Result / Match Status
+- Source References
+- Verification Status
+- Last Updated / Published Time
+
+တို့ကို မှန်ကန်စွာ သိမ်းဆည်းနိုင်ရမည်။
+
+**PDF ထဲမှ ကြေးဂဏန်းနှင့် မြန်မာအသင်းအမည်များကို ဘယ်တော့မှ အလိုအလျောက် ခန့်မှန်းပြီး မဖြည့်ရ။**
+
+## 3.3 Data Integrity
+
+အောက်ပါစနစ်များ မဖြစ်မနေထည့်ပါ။
+
+- Stable Unique IDs
+- Foreign Keys
+- Appropriate Indexes
+- Duplicate Prevention
+- Required Field Validation
+- Safe Upsert
+- Version History
+- Transactional Publishing
+- Rollback Support
+- Idempotent Imports
+- Optimistic Concurrency Control
+- Publication Audit Log
+
+မနက် PDF ကို နှစ်ကြိမ် Import လုပ်မိလျှင် ပွဲထပ်မပေါ်ရ။
+
+ညနေ ယခုကြေး Update လုပ်သည့်အခါ မူလကြေးကို မဖျက်ရ။
+
+ပြီးဆုံးသွားသောနေ့များ၏ Archive Data ကို မပျောက်စေရ။
+
+---
+
+# PHASE 4 — CLOUDFLARE WORKERS API
+
+Lightweight Workers API တစ်ခု တည်ဆောက်ပါ။
+
+ဥပမာ API Endpoints—
+
+Public:
+- `GET /api/football/today`
+- `GET /api/football/yesterday`
+- `GET /api/football/fixtures`
+- `GET /api/football/odds`
+- `GET /api/football/previews`
+- `GET /api/football/results`
+- `GET /api/football/special`
+- `GET /api/football/ai`
+- `GET /api/football/news`
+- `GET /api/football/manifest`
+- `GET /api/football/health`
+
+Private:
+- `POST /api/admin/import`
+- `POST /api/admin/validate`
+- `POST /api/admin/publish`
+- `POST /api/admin/update-odds`
+- `POST /api/admin/rollback`
+- `GET /api/admin/usage`
+
+Endpoint Names များကို Existing Code နှင့် ကိုက်ညီအောင် ပြောင်းနိုင်သည်။
+
+## 4.1 Performance
+
+- Worker CPU အနည်းဆုံးသုံးပါ။
+- Prepared SQL Statements သုံးပါ။
+- Database Query မလိုအပ်ဘဲ အထပ်ထပ်မလုပ်ပါနှင့်။
+- Daily Data ကို Versioned JSON Response ဖြင့် ပေးပါ။
+- ETag နှင့် Conditional Requests ကို Support လုပ်ပါ။
+- CDN Cache နှင့် Browser Cache ကို သေချာသတ်မှတ်ပါ။
+- Large JSON Payload ကို လိုအပ်သလို ခွဲထုတ်ပါ။
+- Public/static route များ Worker ကို မလိုအပ်ဘဲ မဖြတ်စေရ။
+- API Endpoint တစ်ခုကို Website တစ်ခုတည်းမှ အကြိမ်များစွာ ခေါ်နေခြင်း မဖြစ်စေရ။
+
+## 4.2 Publishing Consistency
+
+Data အားလုံးကို တစ်ပိုင်းစီ Live ထုတ်ခြင်း မလုပ်ရ။
+
+Publication Version တစ်ခုအဖြစ် ပြင်ဆင်ပြီး QA အောင်မြင်မှ Active Version ကို အတူတူပြောင်းပါ။
+
+Main နှင့် Brand Websites များသည် တူညီသော Published Version ကို ဖတ်ရမည်။
+
+Publish ပြီးသည်နှင့် သက်ဆိုင်ရာ Cache ကို Invalidate သို့မဟုတ် Version Change ဖြင့် Refresh လုပ်ပါ။
+
+Cache က ဘယ်လိုအလုပ်လုပ်သည်၊ Data ဘယ်လောက်နောက်ကျနိုင်သည်ကို ရှင်းလင်းစွာ သတ်မှတ်ပါ။
+
+## 4.3 Failure Protection
+
+Workers API သို့မဟုတ် D1 ယာယီ Error ဖြစ်လျှင်—
+
+- Website UI မပျက်ရ။
+- Blank Page မပြရ။
+- Existing cached validated data ရှိလျှင် ဆက်ပြပါ။
+- Data အဟောင်းဖြစ်ကြောင်း Timestamp ဖြင့် ပြပါ။
+- မမှန်သော Data အသစ်ကို အစားထိုးမပြပါနှင့်။
+- API ပြန်ကောင်းသည့်အခါ Latest Version ကို ပြန်ယူပါ။
+
+Static Pages Website ၏ Availability ကို API Failure တစ်ခုကြောင့် အကုန်လုံး မထိခိုက်စေရ။
+
+---
+
+# PHASE 5 — OWNER-ONLY DAILY FOOTBALL ADMIN
+
+လက်ရှိ Main Website Authentication ကို Audit လုပ်ပြီး သင့်တော်သည့် Owner-only Admin Interface တည်ဆောက်ပါ။
+
+## 5.1 Admin Dashboard Features
+
+အောက်ပါ Section များ ပါဝင်ရမည်။
+
+1. Daily Overview
+2. PDF Import
+3. Source Ledger
+4. Fixtures Editor
+5. Morning Odds Editor
+6. Current Odds Editor
+7. Match Preview Editor
+8. Last Five Form / 1X2
+9. Special Choice Editor
+10. Yesterday Results
+11. AI Predictions
+12. Football News
+13. Preview All Websites
+14. Validation Report
+15. Publish Center
+16. Publication History
+17. Rollback
+18. API / D1 Usage Monitoring
+
+## 5.2 Admin UI Design
+
+- Myanmar Unicode အပြည့် Support
+- Mobile/Desktop အသုံးပြုနိုင်
+- Search, Filter, Edit, Save Draft
+- League Filter
+- Missing Data Warnings
+- Row-by-row Error Display
+- Publication Status
+- Before/After Comparison
+- Source PDF Row Reference
+- Manual Correction
+- Full Match Count Reconciliation
+
+PDF ထဲမှာ ပွဲ ၃၀ ပါလျှင် ၃၀/၃၀ ပြည့်မပြည့် ပြရမည်။
+
+သုံးသပ်ချက် ၂၈ ပွဲသာ ပြည့်လျှင် ၂၈/၃၀ ဟု တိတိကျကျ ပြရမည်။
+
+## 5.3 Security
+
+- Existing Owner Login ကို မပျက်စေရ။
+- Public Visitors များကို Admin Permission မပေးရ။
+- Client-side JavaScript ထဲ Password/API Secret မထည့်ရ။
+- Secure Session, CSRF Protection, Rate Limiting, Authorization Checks ထည့်ပါ။
+- State-changing API အားလုံးတွင် Server-side Authorization စစ်ပါ။
+- CORS ကို သတ်မှတ်ထားသော Origins များအတွက်သာ ခွင့်ပြုပါ။
+- PDF Upload နှင့် Text Inputs ကို Validate/Sanitize လုပ်ပါ။
+- Secrets ကို Cloudflare Secret Storage ထဲသာ ထားပါ။
+- Login Credentials နှင့် Tokens ကို Chat, GitHub Commit, Logs ထဲ မဖော်ပြပါနှင့်။
+
+အခြား Brand Website များသည် Public အဖြစ် ဆက်ရှိရမည်။
+
+---
+
+# PHASE 6 — PDF IMPORT AND SOURCE VERIFICATION
+
+နေ့စဉ် Football Data အတွက် Existing `FUTURE_CODE_DAILY_MASTER_PROMPT_V3(1).txt` ကို Editorial Specification အဖြစ် အသုံးပြုပါ။
+
+အဲဒီ Prompt ထဲက PDF Fidelity, Research, Writing Style, QA, Date Handling, Preview, Results နှင့် Publication Rules များကို ထိန်းသိမ်းပါ။
+
+## 6.1 Import Workflow
+
+1. Owner က PDF Upload လုပ်မယ်။
+2. PDF စာမျက်နှာအားလုံး Extract လုပ်မယ်။
+3. Myanmar Font/Unicode ပြဿနာ စစ်မယ်။
+4. PDF Rows ကို Source Ledger ထဲ သိမ်းမယ်။
+5. Fixture Identity ကို စစ်မယ်။
+6. Home/Away နှင့် Odds Giving Team ကို သီးခြားစစ်မယ်။
+7. League, Match Time နှင့် Odds စစ်မယ်။
+8. Missing/Ambiguous Data တွေကို Flag လုပ်မယ်။
+9. Owner က လိုအပ်တာ ပြင်နိုင်မယ်။
+10. Validation အောင်မြင်မှ Draft Ready ဖြစ်မယ်။
+
+PDF Parsing ကို Workers Free CPU Limit အတွင်း မလုပ်နိုင်လျှင် Browser-side Processing သို့မဟုတ် ရှိပြီးသား ChatGPT Work Processing ကို အသုံးပြုပါ။
+
+CPU-heavy PDF Processing ကို Worker Request တစ်ခုထဲ အတင်းမထည့်ပါနှင့်။
+
+## 6.2 Data Fidelity
+
+- PDF Row Order မပြောင်းရ။
+- PDF မြန်မာအသင်းနာမည်များ မလွဲရ။
+- မူလကြေးကို Current Odds အဖြစ် မကူးရ။
+- PDF ပြင်ပမှ Match မထည့်ရ။
+- ပွဲမရှိသော League ကို မပြရ။
+- Original Source Hash သိမ်းရ။
+- Match Identity မရှင်းလင်းလျှင် Publication Block လုပ်ရ။
+- Myanmar Timezone ကို `Asia/Yangon` သုံးရ။
+- ညပိုင်းပွဲ၊ နောက်နေ့မနက်ပွဲ နှင့် Calendar Date ကို မရောရ။
+
+## 6.3 Data Entry without Build
+
+PDF Import, Manual Edit, Preview Editing, Current Odds, Results နှင့် News Updates အားလုံး Database Operation ဖြစ်ရမည်။
+
+Daily Update တစ်ခုကြောင့် GitHub Repository Code File မပြောင်းရ။
+
+Daily Publish တစ်ခုကြောင့် Cloudflare Build အသစ် Trigger မဖြစ်ရ။
+
+---
+
+# PHASE 7 — DAILY FOOTBALL CONTENT WORKFLOW
+
+နောက်ပိုင်းတွင် ကျွန်တော်က ChatGPT Work ထဲသို့ မနက် ပေါက်ကြေး PDF တစ်ဖိုင် ပို့လိုက်ရုံဖြင့် ရှိပြီးသား Daily Master Prompt အတိုင်း အလုပ်လုပ်နိုင်ရန် System ကို ပြင်ဆင်ပါ။
+
+## 7.1 Morning Data
+
+- Today Fixtures
+- Myanmar Morning Odds
+- Match Previews
+- Last Five Completed Competitive Matches
+- Verified League Positions/Points
+- Available 1X2 Odds
+- Special Choices
+- AI Predictions (existing actual model only)
+- Yesterday Results
+- Football News (daily instruction and existing editorial rules အတိုင်း)
+
+## 7.2 Match Previews
+
+ပွဲတစ်ပွဲကို မြန်မာဘောလုံးဂျာနယ် Professional Style ဖြင့် ရေးရန်။
+
+- တစ်ပွဲကို ဆက်စပ်သုံးသပ်ချက် တစ်ပိုဒ်
+- နှစ်သင်း၏ နောက်ဆုံးပြိုင်ပွဲစုံ ၅ ပွဲ
+- Friendly Matches မပါရ
+- League Position / Points
+- Verified Injuries / Suspensions
+- Team Form
+- Tactical Considerations
+- Natural Myanmar Writing
+- Evidence-based Final Selection
+
+Predicted Score ကို Preview Article ထဲ မထည့်ရ။
+
+H2H Box မဖန်တီးရ။
+
+မမှန်ကန်သော Statistics မတီထွင်ရ။
+
+## 7.3 Odds
+
+မူလနှင့် ယခုကြေးကို Table တစ်ခုတည်းမှာ ပြပါ။
+
+- မူလ ဘော်ဒီကြေး
+- မူလ ဂိုးပေါင်းကြေး
+- ယခု ဘော်ဒီကြေး
+- ယခု ဂိုးပေါင်းကြေး
+- PDF အင်တာနက်ခန့်မှန်းချက်
+
+ယခုကြေး မပို့ရသေးလျှင် ကွက်လပ်ထားပါ။
+
+## 7.4 Special Choice
+
+Existing Editorial Rules အတိုင်း ရွေးပါ။
+
+Default ၂ ပွဲ ဖြစ်သော်လည်း နေ့စဉ်ညွှန်ကြားချက်အရ ပြောင်းနိုင်သည်။
+
+Final Line:
+
+ဒီပွဲကို ရွေးချယ်ပါတယ်
+
+အပို Warning, Predicted Score, Helper Footer မထည့်ပါနှင့်။
+
+## 7.5 Yesterday Results
+
+- Verified Full-Time Results
+- AET/Penalties ခွဲထားရန်
+- Postponed/Cancelled Matches ခွဲထားရန်
+- Previous Match-Night Date ကို မှန်ကန်စွာချိတ်ရန်
+- Results Archive ထိန်းသိမ်းရန်
+- PNG Export အလုပ်လုပ်ရန်
+
+## 7.6 Football News
+
+Football News ကို Main Website နှင့် Goal Zone နှစ်ခုတည်းတွင် ပြပါ။
+
+ရှိပြီးသား News Section, Category, Images, Content, Download Design တို့ကို ထိန်းပါ။
+
+နေ့စဉ်ညွှန်ကြားချက်အရ News အသစ် ၁၀ ပုဒ်တင်ခိုင်းလျှင် သက်ဆိုင်ရာ Reliable Sources မှ ရှာဖွေတင်ပါ။
+
+အရင်နေ့သတင်းကို ဆက်ထားရန် ညွှန်ကြားထားလျှင် News ကို မပြောင်းပါနှင့်။
+
+မတောင်းဆိုဘဲ နေ့စဉ်အဟောင်း News ကို အလိုအလျောက် ဖျက်မပစ်ရ။
+
+Images အတွက် သက်ဆိုင်ရာ တကယ့်ဓာတ်ပုံနှင့် အသုံးပြုခွင့်မှန်ကန်သော Asset များကို သုံးပါ။
+
+---
+
+# PHASE 8 — CONNECT ALL FIVE WEBSITES
+
+Main, Goal Zone, BW Sport, YKZ, Ko Thet တို့ကို Shared Published Data API နှင့် ချိတ်ပါ။
+
+အထူးစည်းကမ်း—
+
+**Data တူရမည်။ Branding ကွဲရမည်။**
+
+## 8.1 Main Website
+
+- Existing Theme
+- Existing Admin/Login
+- Match List
+- Odds
+- Previews
+- Special Choice
+- AI Predictions
+- Results
+- Football News
+- PNG Studio
+- Video Studio
+- Existing Frame Options
+
+အားလုံး ဆက်အလုပ်လုပ်ရမည်။
+
+## 8.2 Goal Zone
+
+- Goal Zone Branding
+- Existing Main Data
+- Football News
+- Match Previews
+- Odds
+- Results
+- Downloads
+
+သတင်း၊ Preview နှင့် AI Section များ မရောရ။
+
+## 8.3 BW Sport
+
+- BW Sport Theme
+- BW Sport Logo
+- Download PNG အပေါ်တွင် `BW Sport ဘောလုံးဂျာနယ်` ကို ထင်ရှားစွာပြရမည်။
+
+## 8.4 YKZ FAMILY GROUP
+
+- YKZ Theme
+- Existing Colors/Logo
+- Download PNG အပေါ်တွင် YKZ Brand Header ပါရမည်။
+
+## 8.5 Ko Thet Family
+
+- Existing Ko Thet Theme
+- Existing Logo
+- Download PNG အပေါ်တွင် Ko Thet Family Brand Header ပါရမည်။
+
+## 8.6 Brand Feature Protection
+
+Brand သုံးခုအတွက် ရှိပြီးသား—
+
+- All Leagues Single PNG
+- Selected Leagues Single PNG
+- Single League Download
+- Match Preview Download
+- Results Download
+- Mobile Odds View
+
+တို့ကို ဆက်ထိန်းပါ။
+
+Main-only Feature ကို Brand Website များထဲသို့ မတောင်းဘဲ မထည့်ပါနှင့်။
+
+Brand-specific Settings ကို Data Records နှင့် မရောဘဲ သီးခြားထိန်းပါ။
+
+---
+
+# PHASE 9 — PNG, VIDEO AND MOBILE QA
+
+Website တစ်ခုစီ၏ Download Functions ကို တကယ်စမ်းသပ်ပါ။
+
+## PNG QA
+
+- Single Match Download
+- Two Matches per Image
+- All Previews Download
+- League Filter
+- All Leagues Download
+- Selected Leagues Download
+- Results PNG
+- Opening/Current Odds
+- Brand Header
+- Myanmar Unicode Fonts
+- Team Name Alignment
+- Team Logos
+- League Logos
+- Full Text Visibility
+- Correct File Names
+- No Unexpected Footer
+- Existing Transparent Modes
+
+Browser Preview နှင့် Downloaded PNG နှစ်ခုလုံးကို တိုက်စစ်ပါ။
+
+စာသားဖြတ်ခြင်း၊ အသင်းအမည်သေးသွားခြင်း၊ ဇယားအတန်းအမြင့် မလိုအပ်ဘဲကျယ်ခြင်း၊ Logo/VS Alignment မှားခြင်း မရှိရ။
+
+## Mobile QA
+
+Phone Browser နှင့် APK WebView တွင်—
+
+- Layout
+- Fonts
+- Tables
+- Horizontal Overflow
+- Images
+- Menu
+- Filters
+- Downloads
+- Save-to-Gallery Behavior
+
+တို့ကို စစ်ပါ။
+
+## Video Studio
+
+Video Studio က Shared Data ကို မှန်ကန်စွာ ယူနိုင်ရမည်။
+
+Existing Video Output/Controls များ မပျက်ရ။
+
+မတောင်းဆိုဘဲ Video Studio ကို အသစ်ပြန်မရေးပါနှင့်။
+
+---
+
+# PHASE 10 — FREE PLAN LIMIT OPTIMIZATION
+
+Free Plan Only.
+
+Paid Plan, Credit Card, Paid API, Paid Database, Paid Hosting ကို မလိုအပ်ဘဲ မသုံးပါနှင့်။
+
+လက်ရှိတရားဝင် Cloudflare Documentation ကို စစ်ပြီး Limit များနှင့် Architecture ကို ကိုက်ညီအောင် တည်ဆောက်ပါ။
+
+စစ်ဆေးရန်—
+
+Cloudflare Pages Limits:
+https://developers.cloudflare.com/pages/platform/limits/
+
+Workers Runtime Limits:
+https://developers.cloudflare.com/workers/platform/limits/
+
+Workers Build Limits:
+https://developers.cloudflare.com/workers/ci-cd/builds/limits-and-pricing/
+
+D1 Pricing:
+https://developers.cloudflare.com/d1/platform/pricing/
+
+D1 Limits:
+https://developers.cloudflare.com/d1/platform/limits/
+
+## 10.1 Free Plan Design Targets
+
+လက်ရှိ Free Plan အတွက် အောက်ပါသတ်မှတ်ချက်များကို စစ်ဆေးပါ။
+
+- Pages: 500 Builds/month
+- Workers Builds: 3,000 Build Minutes/month
+- Workers Runtime: 100,000 Requests/day
+- Workers Free HTTP CPU: 10 ms/request
+- D1 Read: 5 Million Rows/day
+- D1 Write: 100,000 Rows/day
+- D1 Storage: 500 MB per Database / 5 GB per Account
+
+စည်းမျဉ်းပြောင်းလဲထားလျှင် Official Documentation ကို အခြေခံပါ။
+
+## 10.2 Daily Build Target
+
+**Normal Daily Content Update = Zero Cloudflare Builds**
+
+ChatGPT က PDF စစ်ရန် ၁ နာရီကြာလျှင် Workers Build Minutes ၆၀ မကုန်ရ။
+
+Daily Data ကို D1 မှာ Update လုပ်ရုံဖြစ်ရမည်။
+
+Code/Function/Design ပြောင်းသည့်အချိန်မှသာ Build လုပ်ပါ။
+
+## 10.3 Limit Monitoring Dashboard
+
+Admin Dashboard တွင် ဖြစ်နိုင်သည့် Usage Metrics များကို ပြပါ။
+
+- Workers Requests Today
+- Workers CPU Usage
+- Workers Build Minutes Used/Remaining
+- Pages Deployment/Build History
+- D1 Rows Read
+- D1 Rows Written
+- D1 Storage Usage
+- API Errors
+- Cache Hit Ratio (ရနိုင်ပါက)
+- Last Successful Publication
+- Last Successful Backup
+
+Official API က မပေးသည့် Metric ကို အတုမတွက်ပါနှင့်။
+
+မရနိုင်သော Metric အတွက် Cloudflare Dashboard တိုက်ရိုက်ကြည့်နိုင်မည့် Link နှင့် ရှင်းလင်းချက်ပေးပါ။
+
+Limit 70%, 85%, 95% Threshold များကို Dashboard Warning အဖြစ် စနစ်တကျပြနိုင်လျှင် ထည့်ပါ။
+
+---
+
+# PHASE 11 — BACKUP, RECOVERY AND ROLLBACK
+
+## 11.1 Daily Backups
+
+- Database Export
+- Published Data Snapshot
+- Previous Publication Version
+- Admin Audit History
+- Source Manifest
+- Schema Migration History
+
+တို့ကို ထိန်းသိမ်းပါ။
+
+D1 Free Plan Time Travel တစ်ခုတည်းကို အားမကိုးပါနှင့်။
+
+လိုအပ်လျှင် Private GitHub Repository သို့မဟုတ် အခြား Card-Free Storage ကို သုံးပါ။
+
+Private Data, Secrets, Credentials ကို Public GitHub Repository သို့ မတင်ပါနှင့်။
+
+Backup များက Website Auto Build ကို Trigger မဖြစ်စေရ။
+
+## 11.2 Rollback
+
+Admin တွင် ယခင် Validated Publication Version ကို ပြန်အသုံးပြုနိုင်ရမည်။
+
+Rollback လုပ်သည့်အခါ—
+
+- Data မပျောက်ရ။
+- Previous History မပျက်ရ။
+- Website အားလုံး Version တူရမည်။
+- Audit Log မှတ်ရမည်။
+
+Code Rollback နှင့် Data Rollback ကို သီးခြားလုပ်နိုင်ရမည်။
+
+---
+
+# PHASE 12 — COMPLETE TESTING
+
+Production မတင်မီ သက်ဆိုင်ရာ Automated Tests နှင့် Browser Tests အားလုံး လုပ်ပါ။
+
+## Automated Tests
+
+1. Database Schema Migration
+2. Fixture Import
+3. Duplicate Protection
+4. Wrong Match Mapping Detection
+5. Myanmar Date Conversion
+6. Morning/Current Odds Isolation
+7. Missing Field Validation
+8. Publication Atomicity
+9. Cache Refresh
+10. Published Version Consistency
+11. API Failure Fallback
+12. Admin Authentication
+13. Unauthorized Write Prevention
+14. Brand Data Isolation
+15. Archive Preservation
+16. PNG Export Data Mapping
+17. Free CPU/Request Budget Checks
+18. Existing Routing Safety Tests
+19. Existing GitHub Actions Validation
+20. Rollback Recovery
+
+Failed Tests ကို Disable လုပ်ပြီး Passed ဟု မပြပါနှင့်။
+
+Test Failure ၏ အမှန်တကယ် Root Cause ကို ဖြေရှင်းပါ။
+
+## End-to-End Simulation
+
+တကယ့်နေ့စဉ်လုပ်ငန်းစဉ်ကို အစမှအဆုံး စမ်းသပ်ပါ။
+
+TEST A — Morning PDF Import
+
+PDF တစ်ဖိုင် Import လုပ်ပြီး Source Rows, Names, Odds နှင့် Fixtures အားလုံး စစ်ပါ။
+
+TEST B — Preview and Validation
+
+Preview Articles, Last Five, 1X2 နှင့် Special Choices မှန်မမှန် စစ်ပါ။
+
+TEST C — Publish
+
+Validated Draft ကို Publish လုပ်ပြီး Website ငါးခုလုံးမှာ Version တူညီစွာ ပြနေကြောင်း စစ်ပါ။
+
+TEST D — Evening Odds Update
+
+Opening Odds မပြောင်းဘဲ Current Odds Update လုပ်ပါ။
+
+TEST E — Downloads
+
+Website တစ်ခုစီမှ PNG Download လုပ်ပြီး တကယ့် Output ကို ဖွင့်စစ်ပါ။
+
+TEST F — No-Build Verification
+
+Daily Import → Validate → Publish လုပ်ပြီးနောက်—
+
+- GitHub Code Commit အသစ် မလိုကြောင်း
+- Pages Build အသစ် မတက်ကြောင်း
+- Workers Build အသစ် မတက်ကြောင်း
+- Website Data သစ် တကယ်ပေါ်ကြောင်း
+
+ကို Cloudflare Deployment History နှင့် Published Manifest ဖြင့် အတည်ပြုပါ။
+
+TEST G — Failure and Recovery
+
+API/Database Failure Simulation နှင့် Rollback ကို စမ်းသပ်ပါ။
+
+တကယ့် Production Data မပျက်စီးစေရန် Isolated Staging/Test Data သုံးပါ။
+
+---
+
+# PHASE 13 — SAFE PRODUCTION DEPLOYMENT
+
+အောက်ပါအစီအစဉ်အတိုင်း ဆောင်ရွက်ပါ။
+
+1. Current Source Audit
+2. Full Backup
+3. D1 Schema Setup
+4. Workers API Development
+5. Admin Development
+6. Existing Data Migration
+7. Staging Environment Setup
+8. Staging QA
+9. API + Frontend Integration
+10. Cross-Brand QA
+11. Free Limit Test
+12. Production Deployment
+13. Live Browser Verification
+14. Final Production Report
+
+Small Code Changes တစ်ခုပြီးတိုင်း Production Build မလုပ်ပါနှင့်။
+
+ပြင်ဆင်ချက်များကို စုစည်းပြီး Local/Staging Validation အောင်မှ Production Deploy လုပ်ပါ။
+
+Existing Live Website ကို ထိခိုက်စေနိုင်သော Migration Switch, Destructive Database Change သို့မဟုတ် Production Cutover မတိုင်မီ တိကျသော Backup/QA Result နှင့် Rollback Plan ရှိရမည်။
+
+**Major Production Cutover ကို ကျွန်တော့် Final Approval ရယူပြီးမှ ဆောင်ရွက်ပါ။ ကျန် Development, Testing, Non-destructive Setup အဆင့်များကို တတ်နိုင်သမျှ ကိုယ်တိုင်ဆက်လုပ်ပါ။**
+
+Production Deploy Success ဟု Dashboard မှ ပြရုံနှင့် မလုံလောက်ပါ။
+
+Website Browser မှ တကယ့် Data, Download, Login နှင့် Functions ကို အတည်ပြုရမည်။
+
+---
+
+# PHASE 14 — CONTINUITY / WORK LIMIT PROTECTION
+
+ChatGPT Work Connection Error, Context Limit, Session Interruption, Cloudflare Limit များကြောင့် အလုပ်မဆုံးရှုံးစေရန်—
+
+- Task Manifest
+- Current Phase
+- Completed Changes
+- Pending Changes
+- Git Commit
+- Active Branch
+- Test Results
+- Deployment Status
+- Last Verified Checkpoint
+- Next Exact Steps
+
+တို့ကို Version-controlled Project Handoff File တစ်ခုအဖြစ် သိမ်းပါ။
+
+ဥပမာ—
+
+`docs/FOOTBALL_ENGINE_PROGRESS.md`
+
+`docs/FOOTBALL_ENGINE_ARCHITECTURE.md`
+
+`docs/FOOTBALL_ENGINE_DEPLOYMENT.md`
+
+`docs/FOOTBALL_ENGINE_QA.md`
+
+Connection ပြတ်ပြီး နောက် Work အသစ်မှာ ပြန်ဆက်ရလျှင် နောက်ဆုံးအတည်ပြုထားသည့် Checkpoint မှ ဆက်လုပ်နိုင်ရမည်။
+
+အရင်က ပြင်ပြီးသော Code ကို မစစ်ဘဲ အစမှပြန်မရေးရ။
+
+Partial Completion ကို Complete ဟု မကြေညာရ။
+
+---
+
+# PHASE 15 — PRODUCTION ACCEPTANCE CHECKLIST
+
+အောက်ပါအချက်များ ပြည့်စုံမှ System ကို Production-Ready ဟု သတ်မှတ်ပါ။
+
+- [ ] Main Football Website အလုပ်လုပ်သည်။
+- [ ] Goal Zone အလုပ်လုပ်သည်။
+- [ ] BW Sport အလုပ်လုပ်သည်။
+- [ ] YKZ FAMILY GROUP အလုပ်လုပ်သည်။
+- [ ] Ko Thet Family အလုပ်လုပ်သည်။
+- [ ] Existing Designs မပျက်။
+- [ ] Existing Login/Security မပျက်။
+- [ ] D1 Database အလုပ်လုပ်သည်။
+- [ ] Workers API အလုပ်လုပ်သည်။
+- [ ] Owner-only Admin အလုပ်လုပ်သည်။
+- [ ] PDF Import အလုပ်လုပ်သည်။
+- [ ] Source Ledger Verification အလုပ်လုပ်သည်။
+- [ ] Morning Odds Update အလုပ်လုပ်သည်။
+- [ ] Current Odds Update အလုပ်လုပ်သည်။
+- [ ] Match Preview Update အလုပ်လုပ်သည်။
+- [ ] Last Five Form / 1X2 မှန်သည်။
+- [ ] Special Choice Update အလုပ်လုပ်သည်။
+- [ ] Yesterday Results Update အလုပ်လုပ်သည်။
+- [ ] Existing AI Predictions အလုပ်လုပ်သည်။
+- [ ] Football News Scope မှန်သည်။
+- [ ] Website ငါးခု Published Version တူသည်။
+- [ ] PNG Downloads အလုပ်လုပ်သည်။
+- [ ] Existing Video Studio အလုပ်လုပ်သည်။
+- [ ] Mobile View အလုပ်လုပ်သည်။
+- [ ] APK WebView Compatibility စစ်ပြီးသည်။
+- [ ] Cache Refresh အလုပ်လုပ်သည်။
+- [ ] API Failure Fallback အလုပ်လုပ်သည်။
+- [ ] Backup အလုပ်လုပ်သည်။
+- [ ] Data Rollback အလုပ်လုပ်သည်။
+- [ ] Security Tests အောင်မြင်သည်။
+- [ ] Existing CI Tests အောင်မြင်သည်။
+- [ ] Daily Update တွင် Cloudflare Build အသစ် မလိုကြောင်း စမ်းသပ်အတည်ပြုပြီးသည်။
+- [ ] Live Production URLs အားလုံး စစ်ဆေးပြီးသည်။
+
+---
+
+# PHASE 16 — FINAL DELIVERABLES
+
+အလုပ်ပြီးဆုံးသောအခါ မြန်မာလို အောက်ပါအချက်များကို တိတိကျကျ တင်ပြပါ။
+
+**1. System Status**
+- Complete / Partial / Blocked
+- အမှန်တကယ်ပြီးစီးသည့် Features
+
+**2. Production URLs**
+- Main Website
+- Brand Websites
+- Admin URL
+- Public API URL
+
+**3. GitHub**
+- Repository
+- Branch
+- Final Commit
+- Backup/Rollback Reference
+
+**4. Cloudflare**
+- Pages Project
+- Workers Project
+- D1 Database
+- Deployment Status
+
+**5. Build Savings**
+- လက်ရှိ Pages Build Pattern
+- New Daily Update Build Count
+- Workers Requests/D1 Usage Impact
+- Verified Free Plan Limit Position
+
+**6. Testing**
+- Automated Tests Passed/Failed
+- Browser QA
+- PNG Download QA
+- Mobile QA
+- No-Build Test Result
+
+**7. Daily User Guide**
+
+မနက်တိုင်း PDF တင်ရန် အဆင့်များ၊ QA စစ်ရန်၊ Publish လုပ်ရန်၊ ညနေ ယခုကြေး Update လုပ်ရန် လမ်းညွှန်ပါ။
+
+**8. Unfinished Issues**
+
+မပြီးသေးသော Issue ရှိလျှင် ဖုံးကွယ်မထားဘဲ Issue ID, Reason, Impact, Next Step ဖြင့် ဖော်ပြပါ။
+
+---
+
+# FINAL EXECUTION INSTRUCTION
+
+THIS IS AN IMPLEMENTATION TASK, NOT A DISCUSSION TASK.
+
+ယခုချက်ချင်း Existing Repositories နှင့် Cloudflare Project များကို စစ်ဆေးပြီး အလုပ်စတင်ပါ။
+
+လိုအပ်သော Account Permission များကို ကျွန်တော်က ခွင့်ပြုပေးနိုင်သည်။ ရှိပြီးသား Connected Tools ကို အသုံးပြုပါ။ Login/Authorization လိုအပ်သည့်အခါ Secure Connection Flow ဖြင့် လုပ်ပါ။
+
+Free Plan ကို ဦးစားပေးပါ။ Paid Upgrade မလုပ်ပါနှင့်။
+
+အသေးစားဆုံးဖြတ်ချက်များအတွက် ခဏခဏပြန်မေးပြီး အလုပ်မရပ်ပါနှင့်။ လက်ရှိ Production Code နှင့် User Requirements ကို အခြေခံပြီး အကောင်းဆုံးနည်းလမ်း ရွေးပါ။
+
+Production Data ပျက်စီးနိုင်သည့် အန္တရာယ်ရှိသော အဆင့်ကိုတော့ အတည်ပြုချက်မရှိဘဲ မလုပ်ရ။
+
+တစ်ခုခု Error ဖြစ်လျှင် Root Cause ရှာဖွေပြီး ဆက်လုပ်ပါ။
+
+Code Changes ကို စုစည်း၍ Test အောင်မှ Deploy လုပ်ပါ။
+
+အလုပ်မပြီးသေးသရွေ့ အပြီးသတ်အောင်မြင်ကြောင်း မပြောပါနှင့်။
+
+**FINAL GOAL:**
+
+ကျွန်တော် မနက်တိုင်း Football Odds PDF ပို့ပြီး ChatGPT Work က နေ့စဉ် Content အားလုံးကို စစ်ဆေးပြင်ဆင်ပြီးသည့်အခါ D1 Data Update ဖြင့် Main, Goal Zone, BW Sport, YKZ Family နှင့် Ko Thet Family Website အားလုံးမှာ မှန်ကန်စွာ ပြောင်းလဲနိုင်ရမည်။
+
+**Normal Daily Publishing must require ZERO Cloudflare Builds.**
+
+Builds should be required only for actual source code, features, or design changes.
+
+Existing websites must remain available, secure, branded, and fully functional.
+
+START THE FULL IMPLEMENTATION NOW.

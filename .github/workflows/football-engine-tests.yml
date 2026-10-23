@@ -1,0 +1,28 @@
+name: Football Engine Migration Checks
+on:
+  pull_request:
+    paths: ['services/football-engine/**', 'config/football/**', 'scripts/football/**', 'football-daily/**', 'AGENTS.md', '.github/workflows/football-engine-tests.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+        working-directory: services/football-engine
+      - run: node scripts/football/check-config.mjs
+      - run: node --check football-daily/_worker.js
+      - run: node --check football-daily/editor/engine.js
+      - run: node --test services/football-engine/tests/*.test.mjs
+      - run: npm run check:bundle
+        working-directory: services/football-engine
+      - run: npm run test:runtime
+        working-directory: services/football-engine
+      - run: node --test football-daily/tests/*.test.cjs
+      - run: python3 -m unittest discover -s football-daily/tests -p test_verify_live.py
+# Tests only: no account secrets, remote deployments, schedule, content generation or production sync.
