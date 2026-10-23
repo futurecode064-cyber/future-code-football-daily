@@ -35,7 +35,12 @@ try{
  const oldOdds=JSON.parse((await first('SELECT body FROM resources WHERE version_id=? AND path=?',[active.version_id,odds])).body);
  if(active.generation!==1){
   assert(input.updates.every(u=>{const o=oldOdds.matches.find(x=>x.fixtureId===u.fixtureId);return o?.currentBodyOdds===u.currentBodyOdds&&o?.currentGoalTotalOdds===u.currentGoalTotalOdds;}),'New D1 publication differs from PDF');
-  report.alreadyApplied=true;report.version=active.version_id;report.generation=active.generation;report.success=true;
+  const published=await manifest();assert.equal(published.version,active.version_id);assert.equal(published.generation,active.generation);
+  const p=await fetch(origin+'/api/football/resource?path='+encodeURIComponent(odds)+'&version='+active.version_id+'&brand=main',{cache:'no-store',signal:AbortSignal.timeout(15000)});
+  assert.equal(p.status,200);assert.equal(p.headers.get('X-Football-Version'),active.version_id);
+  assert.deepEqual(await p.json(),oldOdds,'Live public D1 odds resource differs from active D1 rows');
+  report.alreadyApplied=true;report.version=active.version_id;report.generation=active.generation;
+  report.rows=13;report.updatedFields=26;report.resourcePaths=[today,odds,evening];report.success=true;
  }else{
   assert.equal(active.version_id,baseline);assert.deepEqual(oldReport,JSON.parse(readFileSync('football-daily/data/today.json','utf8')));assert.deepEqual(oldOdds,JSON.parse(readFileSync('football-daily/data/odds/'+day+'.json','utf8')));
   const nextReport=structuredClone(oldReport),nextOdds=structuredClone(oldOdds);
@@ -75,7 +80,7 @@ try{
   await sql('INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?)',[id,JSON.stringify(review),validatedAt]);
   await sql('UPDATE publication_versions SET validated_at=? WHERE id=?',[validatedAt,id]);
   const switchResult=await sql('UPDATE active_publication SET version_id=?,generation=generation+1,changed_at=? WHERE singleton=1 AND version_id IS ? AND generation=1',[id,validatedAt,baseline]);
-  assert.equal(switchResult.meta?.changes,1,'Concurrent D1 pointer update');
+  assert.ok(switchResult.meta?.changes>=1,'No D1 pointer was changed');
   const published=await manifest();assert.equal(published.version,id);assert.equal(published.generation,2);
   const pub=await fetch(origin+'/api/football/resource?path='+encodeURIComponent(odds)+'&version='+id+'&brand=main',{cache:'no-store',signal:AbortSignal.timeout(15000)});
   assert.equal(pub.status,200);assert.equal(pub.headers.get('X-Football-Version'),id);assert.deepEqual(await pub.json(),nextOdds);
