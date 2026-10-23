@@ -1,0 +1,43 @@
+name: Football Evening Visible Cell and Frame QA
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: read
+  issues: read
+concurrency:
+  group: football-evening-visible-qa
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.label.name == 'football-evening-visual-verify' &&
+      github.event.issue.number == 37 &&
+      github.event.issue.user.login == 'futurecode064-cyber' &&
+      github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser QA driver
+        run: |
+          npm install --no-save --no-package-lock playwright@1.64.1
+          command -v google-chrome
+      - name: Check every visible original and evening odds price on five published brands and create real Main frame PNG
+        env:
+          FOOTBALL_QA_CHROME: /usr/bin/google-chrome
+        run: node scripts/football/verify-evening-visible-frame.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: football-evening-visible-cell-and-frame-qa
+          path: football-evening-visible-qa/
+          retention-days: 14
+          if-no-files-found: warn
+# Read-only 5-brand visual check; no D1, Pages or Git content publication.
