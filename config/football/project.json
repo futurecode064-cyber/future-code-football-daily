@@ -78,7 +78,7 @@
   "deployment": {
     "productionCutoverCompleted": true,
     "frontendIntegrationEnabled": true,
-    "cloudflareDashboardVerified": true,
+    "cloudflareDashboardVerified": false,
     "legacyDeliveryRepository": "futurecode064-cyber/AI-Recap-GitHub",
     "legacyWorkflow": "football-standalone-sync.yml",
     "legacyDeliveryBranch": "football-daily-render",
@@ -244,8 +244,20 @@
       "requests": 230,
       "errors": 0,
       "passedFreeBudget": false,
-      "next": "Workload is live; October 23 isolated-QA p99 18.747ms included private imports. Continue observing real public steady-state 10ms/request Free CPU ceiling; monitor errors and usage instead of claiming guaranteed compliance.",
-      "profileRunId": 39898090157
+      "next": "Live public-only read-only QA window measured 98 successful Worker requests, 0 errors, CPU p50=2.231ms and p99=7.269ms (<10ms Free CPU per request). This is a good measured sample, not a long-term guarantee; monitor requests, future imports and usage.",
+      "profileRunId": 39898090157,
+      "publicProductionSample": {
+        "runId": 39902022163,
+        "start": "2026-10-23T04:39:45.688Z",
+        "end": "2026-10-23T04:40:20.178Z",
+        "requests": 98,
+        "errors": 0,
+        "p50CpuMs": 2.231,
+        "p99CpuMs": 7.269,
+        "freeCpuLimitMs": 10,
+        "passedMeasuredWindow": true,
+        "longTermFreePlanCapacityGuaranteed": false
+      }
     },
     "initialExistingContentReactivated": true,
     "cutoverApproval": {
@@ -271,8 +283,10 @@
       "deployIdUnchangedDuringLiveQa": true,
       "serviceBinding": "FOOTBALL_ENGINE",
       "preservedOriginalLoginSecrets": true,
-      "preservedAnalyticsD1": true
-    }
+      "preservedAnalyticsD1": true,
+      "qaEvidenceLibraryPath": "/Future Code Football Backups/football-live-production-qa-2026-10-23.zip"
+    },
+    "cloudflarePagesApiVerified": true
   },
   "next": "Daily use: user supplies verified PDF/odds/results. Prepare complete private source ledger and JSON, import to Workers/D1 via authenticated same-origin /editor/engine.html admin or private secure API; validate source and five-brand/download QA; atomically publish; verify public manifest/version, all brands, 10 PNG; do not commit GitHub, run legacy Pages mirror, deploy Worker or spend Pages build for routine updates. Preserve prior publications and backups. Free-tier monitoring remains ongoing."
 }
