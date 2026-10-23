@@ -1,3 +1,2 @@
-/* Code-release configuration only. Never put tokens or owner credentials here.
- * Enable on an isolated staging copy after recording the actual API URL. */
-window.FC_FOOTBALL_ENGINE=Object.freeze({enabled:false,apiBase:'',timeoutMs:10000});
+/* Production cutover: public data only. No tokens or owner secrets in browser. */
+window.FC_FOOTBALL_ENGINE=Object.freeze({enabled:true,apiBase:'https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev',timeoutMs:10000});
