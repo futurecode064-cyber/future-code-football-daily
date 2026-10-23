@@ -8,7 +8,7 @@ const [sourceRootArg,outArg]=process.argv.slice(2);
 if(!sourceRootArg||!outArg)throw Error('Usage: node scripts/football/curate-reviewed-form-draft.mjs SOURCE_ROOT OUTPUT_DIR');
 const root=resolve(sourceRootArg),out=resolve(outArg);
 if(out===root||out.startsWith(root+'/'))throw Error('Review output must be outside source directory');
-const src=JSON.parse(readFileSync(root+'/data/today.json','utf8'));
+const src=JSON.parse(readFileSync(root+'/data/archive/2026-10-22.json','utf8'));
 const odds=JSON.parse(readFileSync(root+'/data/odds/2026-10-22.json','utf8'));
 assert.equal(src.reportDate,'2026-10-22');assert.equal(src.matches.length,36);
 assert.equal(odds.matches.length,36);
