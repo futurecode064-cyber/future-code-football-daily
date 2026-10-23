@@ -1,0 +1,10 @@
+{
+  "requestedAt": "2026-10-23",
+  "purpose": "Production read-only verification after one initial Pages build",
+  "expectedVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
+  "expectedMatches": 13,
+  "expectedBrands": 5,
+  "expectedRealPngDownloads": 10,
+  "mayPublish": false,
+  "noPagesBuild": true
+}
