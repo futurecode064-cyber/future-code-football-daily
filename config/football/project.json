@@ -3,7 +3,7 @@
   "currentTask": "infrastructure-migration-only",
   "repository": "futurecode064-cyber/future-code-football-daily",
   "checkpointBranch": "football-engine/workers-d1-migration",
-  "auditedSourceCommit": "09aca1257a295f1a8b935f30a204b8dc5842e630",
+  "auditedSourceCommit": "d9300545ba685690984769b3acb53f050f6f929b",
   "timezone": "Asia/Yangon",
   "editorialReferenceOnly": true,
   "references": [
@@ -63,13 +63,15 @@
       "databaseName": "future-code-football-db",
       "databaseId": "d2cc165f-5957-4b94-b2b1-9c79e79adbb1",
       "origin": "https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev",
-      "runId": 39776885571,
-      "privateDraftVersion": "fd3e1a02-adca-4417-a757-57d9716157f2",
+      "runId": 39898312293,
+      "privateDraftVersion": "4d6398bc-8e52-452f-b956-4516d75831be",
       "activeVersion": null,
       "frontendConnected": false,
-      "sourceResources": 37,
+      "sourceResources": 39,
       "contentActivated": false,
-      "productionWebsiteModified": false
+      "productionWebsiteModified": false,
+      "initialPrivateSourceDate": "2026-10-23",
+      "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7"
     }
   },
   "deployment": {
@@ -144,7 +146,20 @@
       "durableFilename": "football-staging-db.enc.json",
       "productionPrivateDurableOffsite": true,
       "productionPrivateArtifactId": 12424692706,
-      "productionPrivateDurableFilename": "football-production-private-db.enc.json"
+      "productionPrivateDurableFilename": "football-production-private-db.enc.json",
+      "productionPrivateLatest": {
+        "runId": 39898312293,
+        "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+        "createdAt": "2026-10-23T04:05:14Z",
+        "artifactId": 12477578130,
+        "artifactExpiry": "2026-11-06T04:05:14Z",
+        "encrypted": true,
+        "restoreVerified": true,
+        "fullSqlBytes": 3087690,
+        "sha256": "3c3ee71bb835f30500fb46997f6d700dd24399597a4c4ff284bc0c0add4fd655",
+        "libraryPath": "/Future Code Football Backups/football-production-private-backup-2026-10-23.zip",
+        "independentRecoveryKey": "GitHub Secret FOOTBALL_BACKUP_RECOVERY_KEY; not included in backup"
+      }
     },
     "editorialQa": {
       "day": "2026-10-22",
@@ -165,8 +180,8 @@
       "runId": 39775311571,
       "sourceCommit": "81ea35c4123f25fa1dea71edd84ae972673eb686",
       "privateDraftVersion": "f455d5f4-8b8f-42b0-9802-f3e571ddf84e",
-      "sourceResources": 37,
-      "sourceFixtures": 36,
+      "sourceResources": 39,
+      "sourceFixtures": 13,
       "pagesPassed": 20,
       "realPngDownloadsPassed": 10,
       "ownerSessionServiceBindingVerified": true,
@@ -178,14 +193,16 @@
       "extendedModeQa": "private-resource-parity-and-owner-session-pass; pinned-version-header-fix-under-test",
       "lastExtendedAttemptRun": 39778405187,
       "latestHostedQa": {
-        "runId": 39884977183,
-        "sourceCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
+        "runId": 39898090157,
+        "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
         "pagesPassed": 20,
         "realPngDownloadsPassed": 10,
         "allExistingDownloadModes": true,
         "ownerSessionServiceBindingVerified": true,
+        "sourceResources": 39,
         "productionModified": false,
-        "privateDraftVersion": "63fbbec2-2c96-4d7e-8626-979eadb40874"
+        "sourceDate": "2026-10-23",
+        "privateDraftOnly": true
       },
       "profileCandidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
       "profileRunId": 39884977183
@@ -221,5 +238,5 @@
       "next": "Use exact profileStartedAt/profileEndedAt from hosted artifact, not the earlier workflow-step start; distinguish cold-start/deployment activity before accepting Free CPU budget."
     }
   },
-  "next": "Pages project GET now authorized by existing FOOTBALL_PAGES_CF_API_TOKEN (read-only check 39886506800). Hosted exact candidate 87c51ce passed 20 pages, 10 PNG downloads and all existing download modes. Finish current candidate runtime metrics and exact Pages binding metadata, fresh privately keyed backup and concrete approval before production cutover. Production remains disabled."
+  "next": "Oct 23 main reconciled; 39-resource private D1 parity/restore backup and 20-page/10-PNG hosted QA passed. Next verify Free runtime quota, Pages WRITE credentials, additive service binding/secrets, one initial guarded build and atomic D1 activation, then 5 live sites and zero builds on daily data changes. No active publication yet."
 }

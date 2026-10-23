@@ -1,3 +1,11 @@
+## 2026-10-23 verified reconciliation checkpoint (not live production)
+
+- Canonical main d9300545ba685690984769b3acb53f050f6f929b (23 October report and odds, 22 October archived results, PNG team crests) was merged without source data loss; source QA now targets the 22 October archive. Candidate b8bdc7fba53ef3eea80029214324af08b133cfb7.
+- Hosted owner/private snapshot QA run 39898090157 SUCCESS: 39 exact resources, 20/20 pages, 10/10 actual downloaded PNGs, all download modes, owner login, service proxy, CSRF, draft privacy, and no deployment on imported source data.
+- Unconnected production-private D1 preparation run 39898312293 SUCCESS: 39-resource private draft 4d6398bc-8e52-452f-b956-4516d75831be, generation 0, no active publication, 8 batches. Complete 3,087,690-byte encrypted SQL exported and restore-tested. GitHub artifact 12477578130 expires 2026-11-06. Private independent copy: ChatGPT Library /Future Code Football Backups/football-production-private-backup-2026-10-23.zip. Decryption key stored only in FOOTBALL_BACKUP_RECOVERY_KEY GitHub Secret.
+- Exact source tests passed: Actions 39897820124 and 39897820141. No canonical main or Pages production build was triggered by this migration branch.
+- RELEASE BLOCKERS: Pages production FOOTBALL_ENGINE binding/FCD_ENGINE_ENABLED/FCD_ENGINE_TOKEN absent; Pages Write not verified (read GET 200 only); Free-tier runtime capacity not fully verified; no main/Pages cutover or real D1 publication. Do not merge draft PR or run legacy production mirror before the final cutover gates. Initial code release needs one guarded build; routine daily data updates use D1 only.
+
 # Future Code Football migration checkpoint
 
 Status: PARTIAL — hosted infrastructure/owner/frontend QA passes; production website cutover is not performed.
