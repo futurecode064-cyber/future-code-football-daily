@@ -173,8 +173,8 @@
       "anonymousDraftDenied": true,
       "realPublicationPerformed": false,
       "productionModified": false,
-      "profileStartedAt": "2026-10-23T01:36:56.384Z",
-      "profileEndedAt": "2026-10-23T01:38:55.344Z",
+      "profileStartedAt": "2026-10-23T01:37:04.573Z",
+      "profileEndedAt": "2026-10-23T01:38:55.150Z",
       "extendedModeQa": "private-resource-parity-and-owner-session-pass; pinned-version-header-fix-under-test",
       "lastExtendedAttemptRun": 39778405187,
       "latestHostedQa": {
@@ -184,29 +184,41 @@
         "realPngDownloadsPassed": 10,
         "allExistingDownloadModes": true,
         "ownerSessionServiceBindingVerified": true,
-        "productionModified": false
+        "productionModified": false,
+        "privateDraftVersion": "63fbbec2-2c96-4d7e-8626-979eadb40874"
       },
       "profileCandidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
       "profileRunId": 39884977183
     },
     "releaseAccess": {
-      "runId": 39886506800,
+      "runId": 39887011613,
       "pagesProjectHttpStatus": 200,
       "pagesProjectReadable": true,
       "workerAndD1MetricsReadable": true,
       "subscriptionPlanReadable": false,
       "productionModified": false,
-      "writePermissionVerified": false
+      "writePermissionVerified": false,
+      "currentPagesDeploymentId": "dcac042c-bc41-4804-859f-4c9ddc3559ff",
+      "productionEnvironment": {
+        "envNames": [
+          "FCD_MAIN_PASSWORD",
+          "FCD_SESSION_SECRET"
+        ],
+        "serviceBindings": [],
+        "d1Bindings": [
+          "GOALZONE_ANALYTICS_DB"
+        ]
+      }
     },
     "runtimeProfile": {
-      "runId": 39776881454,
-      "candidateCommit": "81ea35c4123f25fa1dea71edd84ae972673eb686",
-      "cpuTimeP50Raw": 28003,
-      "cpuTimeP99Raw": 46829,
-      "requests": 36,
+      "runId": 39887011613,
+      "candidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
+      "cpuTimeP50Raw": 2032,
+      "cpuTimeP99Raw": 25171,
+      "requests": 230,
       "errors": 0,
       "passedFreeBudget": false,
-      "next": "Reprofile after replacing complete owner draft responses with small pinned private resource reads."
+      "next": "Use exact profileStartedAt/profileEndedAt from hosted artifact, not the earlier workflow-step start; distinguish cold-start/deployment activity before accepting Free CPU budget."
     }
   },
   "next": "Pages project GET now authorized by existing FOOTBALL_PAGES_CF_API_TOKEN (read-only check 39886506800). Hosted exact candidate 87c51ce passed 20 pages, 10 PNG downloads and all existing download modes. Finish current candidate runtime metrics and exact Pages binding metadata, fresh privately keyed backup and concrete approval before production cutover. Production remains disabled."

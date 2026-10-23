@@ -12,7 +12,9 @@ test('encrypted D1 backups restore exactly and never contain plaintext SQL',()=>
 test('wrong secret and tampering are rejected',()=>{
  const encrypted=encryptBackup(data,password);
  assert.throws(()=>decryptBackup(encrypted,'another-incorrect-recovery-key-00000000000'));
- const corrupt={...encrypted,ciphertext:'A'+encrypted.ciphertext.slice(1)};
+ const ciphertext=Buffer.from(encrypted.ciphertext,'base64');
+ ciphertext[0]^=1;
+ const corrupt={...encrypted,ciphertext:ciphertext.toString('base64')};
  assert.throws(()=>decryptBackup(corrupt,password));
 });
 test('weak or malformed key/format is rejected',()=>{
