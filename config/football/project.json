@@ -173,18 +173,30 @@
       "anonymousDraftDenied": true,
       "realPublicationPerformed": false,
       "productionModified": false,
-      "profileStartedAt": "2026-10-22T12:04:41.340Z",
-      "profileEndedAt": "2026-10-22T12:06:03.700Z",
+      "profileStartedAt": "2026-10-23T01:36:56.384Z",
+      "profileEndedAt": "2026-10-23T01:38:55.344Z",
       "extendedModeQa": "private-resource-parity-and-owner-session-pass; pinned-version-header-fix-under-test",
-      "lastExtendedAttemptRun": 39778405187
+      "lastExtendedAttemptRun": 39778405187,
+      "latestHostedQa": {
+        "runId": 39884977183,
+        "sourceCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
+        "pagesPassed": 20,
+        "realPngDownloadsPassed": 10,
+        "allExistingDownloadModes": true,
+        "ownerSessionServiceBindingVerified": true,
+        "productionModified": false
+      },
+      "profileCandidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
+      "profileRunId": 39884977183
     },
     "releaseAccess": {
-      "runId": 39880247811,
-      "pagesProjectHttpStatus": 403,
-      "pagesProjectReadable": false,
+      "runId": 39886506800,
+      "pagesProjectHttpStatus": 200,
+      "pagesProjectReadable": true,
       "workerAndD1MetricsReadable": true,
       "subscriptionPlanReadable": false,
-      "productionModified": false
+      "productionModified": false,
+      "writePermissionVerified": false
     },
     "runtimeProfile": {
       "runId": 39776881454,
@@ -197,5 +209,5 @@
       "next": "Reprofile after replacing complete owner draft responses with small pinned private resource reads."
     }
   },
-  "next": "Verify isolated hosted owner proxy and unchanged latest public snapshot browser/download parity; complete quota, durable encrypted backup and concrete cutover plan. Production remains disabled pending final approval and actual Pages binding access."
+  "next": "Pages project GET now authorized by existing FOOTBALL_PAGES_CF_API_TOKEN (read-only check 39886506800). Hosted exact candidate 87c51ce passed 20 pages, 10 PNG downloads and all existing download modes. Finish current candidate runtime metrics and exact Pages binding metadata, fresh privately keyed backup and concrete approval before production cutover. Production remains disabled."
 }

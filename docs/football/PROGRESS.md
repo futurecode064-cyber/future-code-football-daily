@@ -131,3 +131,10 @@ Refresh this unconnected namespace to the final tested code before any approved 
   public date behavior stays unchanged. A midnight regression test covers previous-night resources.
 - Full existing frontend suite after the header fix: 255 tests, 254 pass, one existing skip, zero failures.
   Local workerd/D1 parity, private resource backup/restore and unauthorized access checks also pass.
+
+## Verified continuation after owner login — 23 October
+- Existing Pages owner session is signed in; legacy editor state fetch separately reports unsupported redirect mode. No credentials were read or persisted.
+- Fresh secret capability check 39886506800: existing FOOTBALL_PAGES_CF_API_TOKEN is configured, target Pages GET HTTP 200. This removes the prior read-access blocker; it does not prove write permission. No token recreation requested.
+- Hosted exact candidate 87c51ce6057499ce636cc87569dfc5a8c9e51c01, run 39884977183: SUCCESS; 51 engine tests, 20 five-brand report/odds pages, 10 PNG downloads, all existing download modes, private resource parity, owner session/service binding, CSRF and legacy-publisher blocking. Production unchanged; no real publication.
+- Runtime preflight now targets that run's exact 01:36:56.384Z–01:38:55.344Z window rather than the historical baseline. Actual candidate CPU/row results remain pending until the new read-only preflight returns.
+- Today's attached 23(1).pdf contains 13 rows. Daily preparation is requested by the current owner, but no unconnected API activation or legacy publish is inferred from that request. Keep source names/opening odds and leave current prices blank.
