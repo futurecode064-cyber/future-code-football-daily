@@ -188,8 +188,8 @@
       "anonymousDraftDenied": true,
       "realPublicationPerformed": false,
       "productionModified": false,
-      "profileStartedAt": "2026-10-23T01:37:04.573Z",
-      "profileEndedAt": "2026-10-23T01:38:55.150Z",
+      "profileStartedAt": "2026-10-23T04:01:49.949Z",
+      "profileEndedAt": "2026-10-23T04:04:10.332Z",
       "extendedModeQa": "private-resource-parity-and-owner-session-pass; pinned-version-header-fix-under-test",
       "lastExtendedAttemptRun": 39778405187,
       "latestHostedQa": {
@@ -202,10 +202,13 @@
         "sourceResources": 39,
         "productionModified": false,
         "sourceDate": "2026-10-23",
-        "privateDraftOnly": true
+        "privateDraftOnly": true,
+        "draftVersion": "7dbd4fab-905d-4ab7-9b54-1f723d5718e4",
+        "profileStartedAt": "2026-10-23T04:01:49.949Z",
+        "profileEndedAt": "2026-10-23T04:04:10.332Z"
       },
-      "profileCandidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
-      "profileRunId": 39884977183
+      "profileCandidateCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
+      "profileRunId": 39898090157
     },
     "releaseAccess": {
       "runId": 39887011613,
@@ -229,13 +232,14 @@
     },
     "runtimeProfile": {
       "runId": 39887011613,
-      "candidateCommit": "87c51ce6057499ce636cc87569dfc5a8c9e51c01",
+      "candidateCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
       "cpuTimeP50Raw": 2032,
       "cpuTimeP99Raw": 25171,
       "requests": 230,
       "errors": 0,
       "passedFreeBudget": false,
-      "next": "Use exact profileStartedAt/profileEndedAt from hosted artifact, not the earlier workflow-step start; distinguish cold-start/deployment activity before accepting Free CPU budget."
+      "next": "Cloudflare GraphQL Read-only runtime preflight must use exact 2026-10-23T04:01:49.949Z–04:04:10.332Z hosted QA window. Free 10ms/request not yet certified.",
+      "profileRunId": 39898090157
     }
   },
   "next": "Oct 23 main reconciled; 39-resource private D1 parity/restore backup and 20-page/10-PNG hosted QA passed. Next verify Free runtime quota, Pages WRITE credentials, additive service binding/secrets, one initial guarded build and atomic D1 activation, then 5 live sites and zero builds on daily data changes. No active publication yet."
