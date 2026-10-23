@@ -84,7 +84,7 @@
   const ready=()=>pending||(pending=(draft?privateDraft():config.enabled===true?
    loadPublishedBundle({apiBase:config.apiBase,paths:['data/today.json'],optionalPaths,brand,fetcher,storage,timeoutMs:config.timeoutMs||10000}):
    Promise.resolve({fallback:'static',stale:false})).then(state=>{onState(state);return state;}));
-  return {ready,async fetch(input,init){
+  return {draftDate:draft&&/^\d{4}-\d{2}-\d{2}$/.test(previewDate||'')?previewDate:null,ready,async fetch(input,init){
    const url=new URL(typeof Request!=='undefined'&&input instanceof Request?input.url:String(input),page);
    const path=url.pathname.startsWith(base.pathname)?url.pathname.slice(base.pathname.length):'';
    if(url.origin!==base.origin||!/^data\/(?:today\.json|(?:archive|fixtures|odds|odds\/evening)\/\d{4}-\d{2}-\d{2}\.json|news\/latest\.json)$/.test(path))return fetcher(input,init);
