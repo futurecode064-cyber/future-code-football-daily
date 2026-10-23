@@ -111,3 +111,17 @@ Generation 0, no active publication, public data denied, no Pages binding/client
 Full SQL 2,531,786 bytes, restored then encrypted before artifact upload.
 This is non-destructive preparation, NOT production website cutover.
 Refresh this unconnected namespace to the final tested code before any approved activation.
+
+## 23 October continuation
+- Existing secret capability check 39880247811 again confirms Pages HTTP 403; no alternate Pages
+  secret is configured. Owner authorization is present, but does not itself change the remote token.
+- Hosted attempt 2 of 39778405187 passes all 37 private resource values, draft privacy, owner session,
+  CSRF, blocked legacy publisher and real admin rows. Browser draft then fails because the Pages
+  proxy stripped X-Football-Version. The proxy now forwards that header only; regression coverage
+  verifies JSON/version preservation and forbids upstream cookie forwarding. Eleven focused tests pass.
+- The earlier resource 405 disappeared on retry; deployment/secret propagation remains a readiness
+  concern. No production release or data activation occurred.
+- Encrypted inactive production SQL backup artifact 12424692706 now also has an independent owner
+  copy: football-production-private-db.enc.json. No plaintext SQL or recovery key was saved.
+- Owner was given the direct GitHub Secrets path and the existing supported alternate secret name
+  FOOTBALL_PAGES_CF_API_TOKEN. Do not request password/login retries or repeat all prior setup.

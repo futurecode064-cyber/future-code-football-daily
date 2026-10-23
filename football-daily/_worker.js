@@ -691,6 +691,8 @@ async function engineProxy(request, env, path) {
  try {
   const response = await env.FOOTBALL_ENGINE.fetch(new Request(target,{method:request.method,headers,body:request.method==='POST'?request.body:undefined,duplex:'half'}));
   const safe = new Headers({'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
+  const version = response.headers.get('X-Football-Version');
+  if (version) safe.set('X-Football-Version', version);
   return new Response(response.body,{status:response.status,headers:safe});
  } catch {return gzJson({error:'D1 engine unavailable; no GitHub publication was attempted'},503);}
 }
