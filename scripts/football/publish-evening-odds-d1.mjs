@@ -51,7 +51,7 @@ try{
    assert.equal(m.fixtureId,u.fixtureId);assert.equal(o.currentBodyOdds||'','');assert.equal(o.currentGoalTotalOdds||'','');
    for(const k of ['currentBodyOdds','currentGoalTotalOdds']){assert.equal(typeof u[k],'string');assert.match(u[k],/^(?:-\d+|\d+[+-]\d+|\d+=)$/);o[k]=u[k];m.myanmarOdds[k]=u[k];}
   }
-  const eveningSheet={reportDate:day,matches:nextOdds.matches.map((o,i)=>({row:i+1,fixtureId:o.fixtureId,league:o.league,home:o.home,away:o.away,upperTeam:o.upperTeam,morningBodyOdds:o.bodyOdds,morningGoalTotalOdds:o.goalTotalOdds,eveningBodyOdds:o.currentBodyOdds,eveningGoalTotalOdds:o.currentGoalTotalOdds}))};
+  const eveningSheet={reportDate:day,matches:nextOdds.matches.map((o,i)=>({row:i+1,fixtureId:o.fixtureId,league:o.league,home:o.home,away:o.away,upperTeam:o.upperTeam,kickoffDisplay:o.kickoffDisplay,morningBodyOdds:o.bodyOdds,morningGoalTotalOdds:o.goalTotalOdds,eveningBodyOdds:o.currentBodyOdds,eveningGoalTotalOdds:o.currentGoalTotalOdds}))};
   const changed={[today]:nextReport,[odds]:nextOdds,[evening]:eveningSheet};
   const errors=[...validateResources({[today]:nextReport,[odds]:nextOdds},day),...validateResource(evening,eveningSheet),...validateEditorial({report:nextReport,odds:nextOdds},day)];assert.equal(errors.length,0,'Editorial QA '+errors.slice(0,7).join('|'));
   for(let i=0;i<13;i++){
