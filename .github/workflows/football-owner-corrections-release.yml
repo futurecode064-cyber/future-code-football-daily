@@ -1,0 +1,45 @@
+name: Release Owner Correction Editor (code only)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-owner-corrections-release.yml']
+permissions:
+  contents: read
+concurrency:
+  group: football-owner-corrections-code-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check correction merge, publication, auth, rollback and editor syntax
+        run: |
+          node scripts/football/check-config.mjs
+          node --check services/football-engine/src/worker.mjs
+          node --check football-daily/editor/engine.js
+          node --check football-daily/editor/engine-model.js
+          node --test --test-name-pattern='owner correction|owner corrections|corrections cannot|schema, immutable|two drafts|unauthorized, CSRF|transaction rolls' services/football-engine/tests/engine.test.mjs
+      - run: npm ci --prefix services/football-engine --ignore-scripts
+      - name: Preserve production bindings and release owner correction support
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          FOOTBALL_BACKUP_RECOVERY_KEY: ${{ secrets.FOOTBALL_BACKUP_RECOVERY_KEY }}
+        run: node scripts/football/release-owner-corrections.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: football-owner-corrections-release
+          path: |
+            football-owner-corrections-release.json
+            football-owner-edit-code-backup.enc.json
+          retention-days: 30
+          if-no-files-found: warn

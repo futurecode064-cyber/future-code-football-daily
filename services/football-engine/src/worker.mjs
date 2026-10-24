@@ -1,5 +1,6 @@
 import {resourceAllowed,dateValid,yangonDate,validateResource,validateResources,reviewErrors} from './validation.mjs';
 import {validateEditorial} from './editorial-validation.mjs';
+import {mergeCorrection,newlyIntroduced} from './corrections.mjs';
 const enc=new TextEncoder(), MAX_BODY=1500000;
 const sha=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode(s))),b=>b.toString(16).padStart(2,'0')).join('');
 class ApiError extends Error{constructor(status,message){super(message);this.status=status;}}
@@ -37,19 +38,39 @@ async function importDraft(request,env,b){
  const db=env.DB,a=await active(db);
  if(!Number.isInteger(b.expectedGeneration))fail(400,'expectedGeneration required');
  if(!dateValid(b.editorialDate)||!b.resources||typeof b.resources!=='object'||Array.isArray(b.resources))fail(400,'Date/resources required');
- const entries=Object.entries(b.resources);if(entries.length<1||entries.length>20)fail(400,'Import 1–20 resources per request');
- if(!b.sourceManifest||typeof b.sourceManifest!=='object'||!Array.isArray(b.sourceManifest.files)||!b.sourceManifest.files.length||b.sourceManifest.files.some(f=>!f.name||!/^[a-f0-9]{64}$/.test(f.sha256||'')))fail(400,'Source filenames and SHA-256 hashes required');
+ let entries=Object.entries(b.resources);if(entries.length<1||entries.length>20)fail(400,'Import 1–20 resources per request');
+ if(!b.correction&&(!b.sourceManifest||typeof b.sourceManifest!=='object'||!Array.isArray(b.sourceManifest.files)||!b.sourceManifest.files.length||b.sourceManifest.files.some(f=>!f.name||!/^[a-f0-9]{64}$/.test(f.sha256||''))))fail(400,'Source filenames and SHA-256 hashes required');
  const key=request.headers.get('Idempotency-Key');if(!key||key.length>160)fail(400,'Idempotency-Key required');
  const inputHash='json-v2:'+await sha(JSON.stringify(b));
  const prior=await statement(db,'SELECT id,input_hash FROM publication_versions WHERE idempotency_key=?',key).first();
- if(prior){if(prior.input_hash!==inputHash&&prior.input_hash!==await sha(JSON.stringify(canonical(b))))fail(409,'Idempotency key reused with different input');return json({version:prior.id,reused:true});}
- if(b.expectedGeneration!==a.generation)fail(409,'Publication changed; reload before importing');
+ if(prior){if(prior.input_hash!==inputHash&&prior.input_hash!==await sha(JSON.stringify(canonical(b))))fail(409,'Idempotency key reused with different input');return json({version:prior.id,generation:a.generation,reused:true});}
+ let sourceManifest=b.sourceManifest;
+ if(b.correction){
+  if(b.baseDraft)fail(400,'Corrections cannot inherit a draft; edit the published base instead');
+  const c=b.correction;
+  if(!a.version_id||typeof c.baseVersion!=='string'||typeof c.reason!=='string'||!c.reason.trim()||c.reason.length>1000)fail(400,'Correction baseVersion and reason required');
+  const base=await versionFor(db,c.baseVersion),current=await versionFor(db,a.version_id);
+  if(!base.ever_published||base.editorial_date!==current.editorial_date||b.editorialDate!==current.editorial_date)fail(409,'Correction must target the same published editorial date');
+  const paths=entries.map(([p])=>p);
+  if(paths.some(p=>!resourceAllowed(p)))fail(400,'Disallowed correction resource');
+  const old=await resourcesFor(db,base.id,paths),live=await resourcesFor(db,current.id,paths),changes=[];
+  try{entries=entries.map(([p,value])=>{
+   if(!old[p]||!live[p])fail(400,'Corrections edit existing resources only: '+p);
+   const merged=mergeCorrection(old[p],value,live[p],p,changes);
+   return [p,merged];
+  }).filter(([p,value])=>JSON.stringify(value)!==JSON.stringify(live[p]));}catch(e){if(e instanceof ApiError)throw e;fail(409,e.message);}
+  if(!entries.length)fail(400,'No changes to publish');
+  sourceManifest={files:[{name:'owner-correction.json',sha256:await sha(JSON.stringify(entries))}],ownerEditV1:{baseVersion:base.id,parentVersion:current.id,reason:c.reason.trim(),changes,originalSourceFiles:JSON.parse(base.source_manifest).files||[]}};
+ }else{
+  if(sourceManifest?.ownerEditV1)fail(400,'Reserved correction metadata');
+  if(b.expectedGeneration!==a.generation)fail(409,'Publication changed; reload before importing');
+ }
  let inherit=a.version_id;
  if(b.baseDraft){const base=await versionFor(db,b.baseDraft);if(base.parent_id!==a.version_id||base.ever_published||base.validated_at)fail(409,'Base draft is no longer editable');inherit=base.id;}
  for(const [p,v] of entries){if(!resourceAllowed(p))fail(400,'Disallowed resource: '+p);if(!v||typeof v!=='object'||Array.isArray(v))fail(400,'Resource must be JSON object');}
  // Inherit omitted archives/news/opening odds. Drafts are immutable after creation.
  const id=crypto.randomUUID(),now=new Date().toISOString();
- const ops=[statement(db,'INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',id,a.version_id,b.editorialDate,key,inputHash,JSON.stringify(b.sourceManifest),now)];
+ const ops=[statement(db,'INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',id,a.version_id,b.editorialDate,key,inputHash,JSON.stringify(sourceManifest),now)];
  if(inherit)ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',id,inherit));
  for(const [p,v] of entries){const text=JSON.stringify(v);const digest=await sha(text);ops.push(statement(db,'INSERT INTO resource_blobs(digest,body,structural_errors,structural_revision) VALUES(?,?,?,1) ON CONFLICT(digest) DO UPDATE SET structural_errors=excluded.structural_errors,structural_revision=1 WHERE resource_blobs.structural_revision<1',digest,text,JSON.stringify(validateResource(p,v))));ops.push(statement(db,'INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET digest=excluded.digest',id,p,digest));}
  ops.push(statement(db,'INSERT INTO audit_logs(action,version_id,created_at,detail) VALUES(?,?,?,?)','import',id,now,JSON.stringify({sourceHash:inputHash})));
@@ -112,7 +133,29 @@ export async function runScheduledPublication(env,now=new Date()){
   now.toISOString(),JSON.stringify({mode:'automatic',generation:row.expected_generation+1}),date,version.id).run();
  return {date,status:'published',version:version.id,generation:row.expected_generation+1};
 }
+async function validateCorrection(env,v,edit){
+ if(edit.parentVersion!==v.parent_id)fail(400,'Invalid correction parent');
+ const changed=await statement(env.DB,'SELECT n.path FROM resource_refs n LEFT JOIN resource_refs p ON p.version_id=? AND p.path=n.path WHERE n.version_id=? AND (p.digest IS NULL OR p.digest<>n.digest)',v.parent_id,v.id).all();
+ const paths=changed.results.map(x=>x.path),needed=[...new Set([...paths,'data/today.json',`data/odds/${v.editorial_date}.json`])];
+ const before=await resourcesFor(env.DB,v.parent_id,needed),after=await resourcesFor(env.DB,v.id,needed),errors=[];
+ for(const path of paths){
+  if(!before[path])errors.push('Correction cannot add a resource: '+path);
+  errors.push(...validateResource(path,after[path]));
+  for(const row of after[path]?.matches||[])if(Object.hasOwn(row,'dailyPreviewText')&&(typeof row.dailyPreviewText!=='string'||!row.dailyPreviewText.trim()||row.dailyPreviewText.length>20000))errors.push(path+': preview text must contain 1–20000 characters');
+ }
+ const check=r=>[...validateResources({'data/today.json':r['data/today.json'],[`data/odds/${v.editorial_date}.json`]:r[`data/odds/${v.editorial_date}.json`]},v.editorial_date),...validateEditorial({report:r['data/today.json'],odds:r[`data/odds/${v.editorial_date}.json`]},v.editorial_date,{correction:true})];
+ errors.push(...newlyIntroduced(check(before),check(after)));
+ if(!paths.length)errors.push('Correction is empty');
+ if(errors.length)return json({valid:false,mode:'correction',errors},422);
+ const evidence={mode:'owner-correction',reason:edit.reason,baseVersion:edit.baseVersion,parentVersion:v.parent_id,changedPaths:paths,changedFields:edit.changes,checks:'Changed resource structure and newly introduced report/odds errors checked. Unchanged inherited data preserved; this is not a new independent source-fact review.'};
+ const now=new Date().toISOString();await env.DB.batch([
+ statement(env.DB,'INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?) ON CONFLICT(version_id) DO UPDATE SET evidence=excluded.evidence,reviewed_at=excluded.reviewed_at',v.id,JSON.stringify(evidence),now),
+ statement(env.DB,'UPDATE publication_versions SET validated_at=? WHERE id=?',now,v.id)
+ ]);return json({valid:true,mode:'correction',version:v.id,changedPaths:paths,changedFields:edit.changes});
+}
 async function validateDraft(env,b){
+ const candidate=await versionFor(env.DB,b.version),edit=JSON.parse(candidate.source_manifest).ownerEditV1;
+ if(edit)return validateCorrection(env,candidate,edit);
  const v=await versionFor(env.DB,b.version),r=await resourcesFor(env.DB,v.id,['data/today.json',`data/odds/${v.editorial_date}.json`]);
  const receipts=await statement(env.DB,'SELECT rr.path,rb.structural_errors,rb.structural_revision FROM resource_refs rr JOIN resource_blobs rb ON rb.digest=rr.digest WHERE rr.version_id=?',v.id).all();
  const errors=validateResources(r,v.editorial_date,{migration:b.mode==='migration'});
@@ -129,7 +172,7 @@ async function validateDraft(env,b){
  ]);const scheduled=await autoSchedule(env,v);return json({valid:true,version:v.id,scheduled});
 }
 async function activate(env,b,rollback=false){
- const v=await versionFor(env.DB,b.version);if(!v.validated_at)fail(422,'Version has not passed validation');
+ let v=await versionFor(env.DB,b.version);const state=await active(env.DB);if(!rollback&&v.id===state.version_id)return json({version:v.id,generation:state.generation,reused:true});if(!v.validated_at&&JSON.parse(v.source_manifest).ownerEditV1&&!rollback){const checked=await validateDraft(env,{version:v.id});if(!checked.ok)return checked;v=await versionFor(env.DB,v.id);}if(!v.validated_at)fail(422,'Version has not passed validation');
  if(rollback&&!v.ever_published)fail(422,'Rollback target must have been published');
  if(!Number.isInteger(b.expectedGeneration))fail(400,'expectedGeneration required');
  // Monotonic generation prevents lost writes and ABA races after rollbacks.
@@ -139,7 +182,7 @@ async function activate(env,b,rollback=false){
 }
 async function publicGet(request,env,url,ctx){
  const path=url.pathname;
- if(path==='/api/football/health'){const a=await active(env.DB);return json({ok:true,environment:env.ENVIRONMENT||'unset',...a});}
+ if(path==='/api/football/health'){const a=await active(env.DB);return json({ok:true,capabilities:['owner-corrections-v1'],environment:env.ENVIRONMENT||'unset',...a});}
  if(path==='/api/football/manifest'){const a=await active(env.DB);return json({schemaVersion:1,version:a.version_id,generation:a.generation,publishedAt:a.changed_at,timezone:'Asia/Yangon',cacheMaxAgeSeconds:0});}
  let resource=url.searchParams.get('path');
  const day=url.searchParams.get('date')||yangonDate();if(!dateValid(day))fail(400,'Invalid date');

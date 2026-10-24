@@ -1,3 +1,15 @@
+## Owner corrections — 24 October 2026 code release
+
+The current owner instruction authorizes editing already-published resources independently of a new daily import. Open `/editor/engine.html`, edit a section/row, save a correction draft, then press the explicit Live publish button. Previews use a plain text field and retain the exact supplied Unicode text; presentation bold markers are not required in the stored article.
+
+The existing authenticated `POST /api/admin/import` (same-origin proxy `/api/editor/engine/import`) accepts a correction with `editorialDate`, `expectedGeneration`, `correction: {baseVersion, reason}`, and only edited `resources`. The base must be a previously published version of the active editorial date. The server computes the three-way field difference, merges unrelated live changes, and rejects a conflict on an edited field. Drafts inherit all other resources from the current publication. Normal imports cannot forge the server-owned correction marker.
+
+Correction validation checks changed resource structure and newly introduced report/odds consistency errors. It records a truthful scoped audit; it does not claim that all nine unrelated daily research/download reviews were repeated. Owner-supplied article text must be nonempty and at most 20,000 characters. The publish operation automatically performs these correction checks when needed, then retains the authenticated, generation-protected, atomic pointer switch and existing rollback/history. Normal new daily imports keep the full validation workflow below.
+
+The editor can copy only preview text from a private draft of the same date, matched by fixture ID, home/away and league. Current live odds, news, results, logos and other fields remain inherited. The same-day report archive preview is updated when that matching archive exists.
+
+Routine corrections consume no Pages/Worker build or GitHub workflow. Installing this support is a separate one-time code release. Do not state it is live until its release receipt and production health capability `owner-corrections-v1` are verified.
+
 ## LIVE PRODUCTION — verified 2026-10-23 (Asia/Yangon)
 
 **Cutover completed.** Project registry `config/football/project.json` has live-verified status. The five original Pages report/odds brands now fetch one pinned D1 publication via the dedicated Workers API. Source snapshot date 2026-10-23, 13 fixtures, 39 public JSON resources, D1 generation 1, version `4d6398bc-8e52-452f-b956-4516d75831be`.

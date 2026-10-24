@@ -9,19 +9,19 @@
   "references": [
     {
       "path": "config/football/FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt",
-      "sha256": "0f05e61e8ff950b3f22f4acb1f107dbdd0314bad56d4b6beb85964e26f7016ad"
+      "sha256": "d94295e4886ca002d14b1e7e279dc0cd3029d52aa89bff743c7953fa9f16d967"
     },
     {
       "path": "docs/football/SHARED_ENGINE_REQUIREMENTS.txt",
-      "sha256": "4bf3c6c5e4a13963906649e8b753abe123600a06bcfac3b8f6271e86ac2fda96"
+      "sha256": "ec165561d26b6c70588f7d519f3f4380cb20f1e3cfcd23ba79eb6062b34ede45"
     },
     {
       "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
-      "sha256": "bf2a87c5c687373f2e3b3ab62df154d754fab0950b2ff0237555e8653c8bf371"
+      "sha256": "648f763c2c865ab9df01d13e0b5d0d33f549fecbcb260e740f1d0770fae81b40"
     },
     {
       "path": "config/football/validation-rules.json",
-      "sha256": "365882ae8ce062648e3d098ed1b4e956e756e2f1e218db4977aa0330330e4041"
+      "sha256": "89d940a1f13b58a3245359f929e70e5ad6166902cbdc0f2eb51bc13e833f82a0"
     }
   ],
   "sites": {
@@ -73,6 +73,14 @@
       "initialPrivateSourceDate": "2026-10-23",
       "sourceCommit": "b8bdc7fba53ef3eea80029214324af08b133cfb7",
       "productionPublishedGeneration": 1
+    },
+    "ownerCorrections": {
+      "status": "code-prepared-not-yet-live",
+      "mode": "correction",
+      "importEndpoint": "/api/editor/engine/import",
+      "baseVersion": "previously published same editorial date",
+      "merge": "changed fields only with conflicts rejected",
+      "normalPublishGuardPreserved": true
     }
   },
   "deployment": {

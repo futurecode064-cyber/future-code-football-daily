@@ -39,6 +39,11 @@
   const fields=editable[section];if(fields&&Object.keys(value).some(k=>!fields.includes(k)))throw Error('ဤ section တွင် ခွင့်ပြုထားသော field မဟုတ်ပါ');
   if(!value||typeof value!=='object'||Array.isArray(value))throw Error('JSON object လိုအပ်သည်');
   update(draft,row,{...row.value,...value});
+  if(section==='previews'&&Object.hasOwn(value,'dailyPreviewText')){
+   const archive=draft.resources['data/archive/'+draft.editorialDate+'.json'];
+   const match=archive?.matches?.find(m=>m.fixtureId===row.value.fixtureId);
+   if(archive?.reportDate===draft.editorialDate&&match)match.dailyPreviewText=value.dailyPreviewText;
+  }
   if(['current','opening'].includes(section)){
    const id=row.value.fixtureId,m=draft.resources['data/today.json']?.matches?.find(x=>x.fixtureId===id);
    if(m){m.myanmarOdds={...m.myanmarOdds};for(const k of section==='current'?editable.current:['upperTeam','bodyOdds','goalTotalOdds'])if(Object.prototype.hasOwnProperty.call(value,k))m.myanmarOdds[k]=value[k];}

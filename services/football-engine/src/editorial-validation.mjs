@@ -10,7 +10,7 @@ function validSpecialEnding(raw){
 }
 const EDITOR_LEAGUE_SIZES = {'Premier League':20,Championship:24,'League One':24,'La Liga':20,'La Liga 2':22,'Serie A':20,'Serie B':20,Bundesliga:18,'2. Bundesliga':18,'Ligue 1':18,'Ligue 2':18};
 
-export function validateEditorial(bundle,day){
+export function validateEditorial(bundle,day,{correction=false}={}){
  const editorDate=dateValid;
  const editorDay=(offset=0)=>new Date(Date.parse(day+'T00:00:00Z')+offset*86400000).toISOString().slice(0,10);
  const editorUrl=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password;}catch{return false;}};
@@ -31,7 +31,7 @@ function editorErrors(bundle){
   const identity=[m.league,m.home,m.away].join('|');if(seen.has(identity))e('ပွဲထပ်နေသည်');seen.add(identity);
   if(!editorDate(m.kickoffCalendarDate)||![report.reportDate,editorDay(1)].includes(m.kickoffCalendarDate)||m.nightEditorialDate!==report.reportDate)e('ကန်မည့်ရက် / ညစာရင်းရက် စစ်ပါ');
   const preview=m.dailyPreviewText;
-  if(typeof preview!=='string'||preview.trim().length<300||preview.length>20000||/\n/.test(preview)||!preview.endsWith('။**'))e('ပွဲကြိုစာမူ စာလုံး ၃၀၀ အထက်၊ စာပိုဒ်တစ်ခုနှင့် bold ရွေးချယ်စာသားအဆုံးသတ် လိုအပ်သည်');
+  if(typeof preview!=='string'||preview.trim().length<(correction?1:300)||preview.length>20000||(!correction&&/\n/.test(preview)))e('ပွဲကြိုစာမူ စာလုံး ၃၀၀ အထက်၊ စာပိုဒ်တစ်ခု လိုအပ်သည်');
   if(/ခန့်မှန်း\s*ဂိုးရလဒ်/.test(preview||''))e('ပုံမှန်ပွဲကြိုတွင် ခန့်မှန်းဂိုး မထည့်ပါနှင့်');
   if(m.previewJournalist?.status!=='owner_approved_published')e('ပိုင်ရှင်အတည်ပြုစာမူ metadata လိုအပ်သည်');
   if(!editorUrl(m.fixtureSourceUrl||m.previewV2?.fixtureSourceUrl||m.researchSources?.[0]))e('ပွဲအချက်အလက်ရင်းမြစ် HTTPS URL ဖြည့်ပါ');

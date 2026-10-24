@@ -96,3 +96,37 @@ test('small private metadata/resource exports retain exact immutable bytes and r
  const r=await call(e,path);assert.equal(r.status,200);assert.equal(r.headers.get('X-Football-Version'),id);assert.equal(r.headers.get('Cache-Control'),'no-store');assert.deepEqual(await r.json(),resources()['data/today.json']);
  assert.equal((await call(e,'/api/admin/resource?version='+id+'&path=data/research/private.json')).status,400);
 });
+
+test('owner correction keeps exact plain prose and every other live field; retries reuse immutable draft',async()=>{
+ const e=env(),base=await draft(e);await validate(e,base);await publish(e,base);
+ const edited=resources()['data/today.json'];const exact='ပိုင်ရှင်ပေးသော စာသားအတိုင်း။';edited.matches[0].dailyPreviewText=exact;
+ const b={editorialDate:day,expectedGeneration:1,correction:{baseVersion:base,reason:'Owner supplied verbatim preview'},resources:{'data/today.json':edited}};
+ const saved=await call(e,'/api/admin/import',{body:b,key:'correction'});assert.equal(saved.status,201,await saved.clone().text());const id=(await saved.json()).version;
+ assert.equal((await call(e,'/api/football/today?version='+id,{auth:false})).status,404);
+ assert.equal((await (await call(e,'/api/admin/import',{body:b,key:'correction'})).json()).version,id);
+ const activated=await publish(e,id,1);assert.equal(activated.status,200,await activated.clone().text());
+ const live=await (await call(e,'/api/football/today')).json();assert.deepEqual(live,edited);assert.equal(live.matches[0].dailyPreviewText,exact);
+ assert.deepEqual(await (await call(e,'/api/football/news')).json(),resources()['data/news/latest.json']);
+ const evidence=JSON.parse(e.DB.sql.prepare('SELECT evidence FROM validation_reviews WHERE version_id=?').get(id).evidence);assert.equal(evidence.mode,'owner-correction');assert.deepEqual(evidence.changedFields,['data/today.json/matches/0/dailyPreviewText']);
+ assert.equal((await call(e,'/api/admin/rollback',{body:{version:base,expectedGeneration:2}})).status,200);
+ assert.deepEqual(await (await call(e,'/api/football/today')).json(),resources()['data/today.json']);
+});
+test('owner corrections merge unrelated concurrent changes and reject edits to the same live field',async()=>{
+ const e=env(),base=await draft(e);await validate(e,base);await publish(e,base);
+ const later=bundle(1);later.resources['data/today.json'].matches[0].kickoffYangon='ည ၈ နာရီ';later.resources['data/news/latest.json'].date='2026-10-22';const newer=await draft(e,later,'newer');await validate(e,newer);await publish(e,newer,1);
+ const edited=resources()['data/today.json'];edited.matches[0].dailyPreviewText='မူရင်းစာအတိုင်း ပြန်ပြင်ထားသည်။';
+ const b={editorialDate:day,expectedGeneration:1,correction:{baseVersion:base,reason:'Preview only'},resources:{'data/today.json':edited}};
+ const response=await call(e,'/api/admin/import',{body:b,key:'merge'});assert.equal(response.status,201,await response.clone().text());const saved=await response.json();assert.equal(saved.generation,2);assert.equal((await publish(e,saved.version,2)).status,200);
+ const live=await (await call(e,'/api/football/today')).json();assert.equal(live.matches[0].dailyPreviewText,edited.matches[0].dailyPreviewText);assert.equal(live.matches[0].kickoffYangon,'ည ၈ နာရီ');assert.equal((await (await call(e,'/api/football/news')).json()).date,'2026-10-22');
+ edited.matches[0].dailyPreviewText='ဒုတိယ ပြိုင်တူ ပြင်ဆင်ချက်';assert.equal((await call(e,'/api/admin/import',{body:b,key:'conflict'})).status,409);
+});
+test('corrections cannot forge approval, publish empty prose, change date or overwrite a newer pointer',async()=>{
+ const e=env(),base=await draft(e);await validate(e,base);await publish(e,base);
+ const fake=bundle(1);fake.sourceManifest.ownerEditV1={reason:'fake'};assert.equal((await call(e,'/api/admin/import',{body:fake,key:'fake'})).status,400);
+ const edited=resources()['data/today.json'];edited.matches[0].dailyPreviewText=' ';
+ const b={editorialDate:day,expectedGeneration:1,correction:{baseVersion:base,reason:'Bad edit'},resources:{'data/today.json':edited}};
+ const saved=await (await call(e,'/api/admin/import',{body:b,key:'empty'})).json();assert.equal((await publish(e,saved.version,1)).status,422);
+ b.editorialDate='2026-10-23';assert.equal((await call(e,'/api/admin/import',{body:b,key:'wrong-day'})).status,409);
+ assert.equal((await call(e,'/api/admin/import',{body:b,auth:false,key:'unauthorized'})).status,401);
+ b.editorialDate=day;edited.matches[0].dailyPreviewText='မှန်ကန်သော ပြင်ဆင်ချက်';const pending=await (await call(e,'/api/admin/import',{body:b,key:'pending'})).json();const concurrent=await draft(e,bundle(1),'concurrent');await validate(e,concurrent);await publish(e,concurrent,1);assert.equal((await publish(e,pending.version,1)).status,409);
+});

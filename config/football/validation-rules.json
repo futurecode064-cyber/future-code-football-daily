@@ -1,14 +1,76 @@
 {
-  "version": 1,
+  "version": 2,
   "timezone": "Asia/Yangon",
-  "serverImplementations": ["services/football-engine/src/validation.mjs", "services/football-engine/src/editorial-validation.mjs"],
-  "reviewGates": ["pdfFidelity", "fixtureIdentity", "editorial", "formsAndOdds", "results", "newsScopeAndImages", "allBrands", "downloads", "mobile"],
+  "serverImplementations": [
+    "services/football-engine/src/validation.mjs",
+    "services/football-engine/src/editorial-validation.mjs"
+  ],
+  "reviewGates": [
+    "pdfFidelity",
+    "fixtureIdentity",
+    "editorial",
+    "formsAndOdds",
+    "results",
+    "newsScopeAndImages",
+    "allBrands",
+    "downloads",
+    "mobile"
+  ],
   "reviewEvidenceRequired": true,
-  "pdf": {"verbatimNamesAndPrices": true, "stableFixtureIds": true, "preserveOrder": true, "noInventedMissingValues": true, "sourceHashRequired": true},
-  "odds": {"openingAndCurrentSeparate": true, "missingCurrentValue": "", "givingTeamSeparateFromHomeAway": true},
-  "previews": {"fullText": true, "lastFiveRequired": true, "noPredictedScore": true, "noH2HBox": true},
-  "news": {"brands": ["main", "goal-zone"], "preserveUnlessRequested": true, "newDailyDefaultCountWhenRequested": 10, "realRelatedImagesAndEvidence": true},
-  "specialChoice": {"defaultWhenRequested": 2, "finalLineReference": "ဒီပွဲကို ရွေးချယ်ပါတယ်", "neverInventToFillQuota": true},
-  "publication": {"allGatesRequired": true, "atomicVersionSwitch": true, "optimisticConcurrency": true, "idempotencyKeyRequired": true, "dailyBuildCountTarget": 0},
-  "limitations": ["PDF fidelity and actual downloads need independent review evidence", "local tests do not verify football facts", "production cutover and live QA are pending"]
+  "pdf": {
+    "verbatimNamesAndPrices": true,
+    "stableFixtureIds": true,
+    "preserveOrder": true,
+    "noInventedMissingValues": true,
+    "sourceHashRequired": true
+  },
+  "odds": {
+    "openingAndCurrentSeparate": true,
+    "missingCurrentValue": "",
+    "givingTeamSeparateFromHomeAway": true
+  },
+  "previews": {
+    "fullText": true,
+    "lastFiveRequired": true,
+    "noPredictedScore": true,
+    "noH2HBox": true
+  },
+  "news": {
+    "brands": [
+      "main",
+      "goal-zone"
+    ],
+    "preserveUnlessRequested": true,
+    "newDailyDefaultCountWhenRequested": 10,
+    "realRelatedImagesAndEvidence": true
+  },
+  "specialChoice": {
+    "defaultWhenRequested": 2,
+    "finalLineReference": "ဒီပွဲကို ရွေးချယ်ပါတယ်",
+    "neverInventToFillQuota": true
+  },
+  "publication": {
+    "allGatesRequired": true,
+    "atomicVersionSwitch": true,
+    "optimisticConcurrency": true,
+    "idempotencyKeyRequired": true,
+    "dailyBuildCountTarget": 0
+  },
+  "limitations": [
+    "PDF fidelity and actual downloads need independent review evidence",
+    "local tests do not verify football facts",
+    "production cutover and live QA are pending"
+  ],
+  "corrections": {
+    "enabled": true,
+    "publishedBaseRequired": true,
+    "sameEditorialDate": true,
+    "threeWayMerge": true,
+    "conflictingFields": "reject",
+    "previewText": "owner-verbatim nonempty 1-20000 characters; no mandatory markdown suffix",
+    "validation": "changed resource structure and new report/odds errors only",
+    "reviewEvidence": "server-generated correction diff and owner reason; no invented daily QA receipts",
+    "atomicVersionSwitch": true,
+    "rollback": true
+  }
 }

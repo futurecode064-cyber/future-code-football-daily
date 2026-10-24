@@ -1,3 +1,7 @@
+## 2026-10-24 owner correction support
+
+Prepared the authenticated correction import mode, three-way field merge, scoped server checks, correction audit, automatic correction validation on publish, exact plain preview editor and private-draft preview-only copy. Local focused publication/auth/rollback/correction tests pass (7). Deployment not claimed by this source entry: verify `football-owner-corrections-release.json` and production health capability. The code-only release preserves existing bindings/credentials and uses the current canonical Pages source commit, replacing only three editor assets; it records encrypted code rollback material and does not change the D1 publication pointer. Daily edits thereafter use only the existing authenticated API.
+
 ## 2026-10-23 verified reconciliation checkpoint (not live production)
 
 - Canonical main d9300545ba685690984769b3acb53f050f6f929b (23 October report and odds, 22 October archived results, PNG team crests) was merged without source data loss; source QA now targets the 22 October archive. Candidate b8bdc7fba53ef3eea80029214324af08b133cfb7.
