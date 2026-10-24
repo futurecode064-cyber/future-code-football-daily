@@ -7,16 +7,16 @@ import assert from 'node:assert/strict';
 const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8'));
 const request=JSON.parse(event.issue.body);
 const host='https://future-code-football-daily.pages.dev';
-const expected='710b0d54-d5ec-4c2d-a298-3db2660e2461';
+let expected=null;
 const routes=[['Main','/'],['Goal Zone','/future-code-journal/'],['BW Sport','/bw-sport/'],['YKZ','/ykz-family/'],['Ko Thet','/ko-thet-family/']];
 const dir='football-evening-5brand-qa';mkdirSync(dir,{recursive:true});
 const report={sourceDate:request.date,version:expected,pages:[],png:[],readOnly:true,noPagesBuild:true};
 let browser;
 try{
- assert.equal(request.updates.length,13);assert.equal(request.date,'2026-10-23');
+ assert.equal(request.date,'2026-10-24');assert.equal(request.updates.length,30);
  const engine=await fetch('https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev/api/football/manifest',{cache:'no-store'});
  assert.equal(engine.status,200);const current=await engine.json();
- assert.equal(current.version,expected);assert.equal(current.generation,2);
+ assert(current.version&&current.generation>=1);expected=current.version;report.version=expected;report.generation=current.generation;
  browser=await chromium.launch({headless:true,executablePath:process.env.FOOTBALL_QA_CHROME||undefined,args:['--no-sandbox']});
  const ctx=await browser.newContext({acceptDownloads:true,viewport:{width:1366,height:900}});
  const page=await ctx.newPage();
@@ -26,20 +26,20 @@ try{
    const uri=host+path+(kind==='odds'?'odds.html':'')+'?evening-qa='+Date.now();
    const resp=await page.goto(uri,{waitUntil:'domcontentloaded',timeout:60000});assert.equal(resp.status(),200,brand+' HTTP');
    await page.waitForFunction(()=>window.FC_FOOTBALL_ENGINE?.enabled===true&&Boolean(window.FootballData),{timeout:25000});
-   const data=await page.evaluate(async()=>{
+   const data=await page.evaluate(async(date)=>{
     const root=new URL('.',document.querySelector('script[src*="football-data-client.js"]').src);
     const ready=await window.FootballData.ready();
     const [today,odds]=await Promise.all([
       window.FootballData.fetch(new URL('data/today.json',root)),
-      window.FootballData.fetch(new URL('data/odds/2026-10-23.json',root))]);
+      window.FootballData.fetch(new URL('data/odds/'+date+'.json',root))]);
     return {ready:{version:ready.version,fallback:ready.fallback,stale:ready.stale},todayStatus:today.status,oddsStatus:odds.status,
       report:await today.json(),sheet:await odds.json()};
-   });
+   },request.date);
    assert.equal(data.ready.version,expected,brand+' D1 version');
    assert(!data.ready.fallback&&!data.ready.stale,brand+' static fallback');
    assert.equal(data.todayStatus,200);assert.equal(data.oddsStatus,200);
-   assert.equal(data.report.matches.length,13);assert.equal(data.sheet.matches.length,13);
-   for(let i=0;i<13;i++){
+   assert.equal(data.report.matches.length,request.updates.length);assert.equal(data.sheet.matches.length,request.updates.length);
+   for(let i=0;i<request.updates.length;i++){
     const m=data.report.matches[i],o=data.sheet.matches[i],u=request.updates[i];
     assert.equal(m.fixtureId,u.fixtureId);assert.equal(o.fixtureId,u.fixtureId);
     assert.equal(o.bodyOdds,u.openingBodyOdds);assert.equal(o.goalTotalOdds,u.openingGoalTotalOdds);
@@ -48,8 +48,8 @@ try{
     assert.equal(m.myanmarOdds.currentGoalTotalOdds,u.currentGoalTotalOdds);
    }
    const selector=kind==='odds'?'#oddsCount':'#matchCount';
-   await page.waitForFunction((s)=>document.querySelector(s)?.textContent?.trim()==='13',selector,{timeout:35000});
-   report.pages.push({brand,kind,viewport:size.name,version:expected,rows:13,passed:true});
+   await page.waitForFunction(([s,n])=>document.querySelector(s)?.textContent?.trim()===String(n),[selector,request.updates.length],{timeout:35000});
+   report.pages.push({brand,kind,viewport:size.name,version:expected,rows:request.updates.length,passed:true});
    if(size.name==='desktop'&&kind==='odds'){
     const [download]=await Promise.all([page.waitForEvent('download',{timeout:100000}),page.locator('#oddsPngPages button').first().click()]);
     const filename=join(dir,brand.toLowerCase().replaceAll(' ','-')+'-evening.png');
