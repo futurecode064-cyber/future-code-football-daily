@@ -103,3 +103,9 @@ test("main results frame league filter reads the same pinned published archive a
   const main=fs.readFileSync(path.join(ROOT,"index.html"),"utf8");
   assert.match(main,/main-results-frame-studio\.js\?v=results-league-d1-20261024/);
 });
+
+test("main results frame waits for the active editorial publication before selecting yesterday",()=>{
+  assert.match(script,/if\(window\.FootballData\?\.ready\)await window\.FootballData\.ready\(\)/);
+  assert.match(script,/const target=yesterdayYangon\(\)/);
+  assert.ok(script.indexOf('await window.FootballData.ready()')<script.indexOf('const target=yesterdayYangon()'));
+});

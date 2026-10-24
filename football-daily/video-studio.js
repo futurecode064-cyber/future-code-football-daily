@@ -323,6 +323,7 @@
   }finally{clearTimeout(timer)}
  }
  async function readData(mode){
+  if(window.FootballData?.ready)await window.FootballData.ready();
   const key=dateKey();
   if(mode==="results"){
    const yesterday=dateKey(-1),r=await fetchJson("./data/archive/"+yesterday+".json");

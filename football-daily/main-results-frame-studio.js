@@ -233,9 +233,13 @@
     }
     async function refresh(){
       const mySequence=++sequence;
-      const target=yesterdayYangon();
       status("မနေ့က အတည်ပြုဂိုးရလဒ်များ ရယူနေသည်…");
       try{
+        // The archive date is relative to the active published D1 day,
+        // including midnight-to-06:00 when Yangon wall time is already tomorrow.
+        if(window.FootballData?.ready)await window.FootballData.ready();
+        if(mySequence!==sequence)return;
+        const target=yesterdayYangon();
         // Match the main report's pinned Worker/D1 publication (including owner previews).
         // A direct browser fetch would read only the stale/missing Pages static archive.
         const url=new URL("./data/archive/"+target+".json",document.baseURI);
