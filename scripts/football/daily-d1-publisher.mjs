@@ -71,8 +71,22 @@ async function publish(){
  const now=await manifest();check(now.version===result.version&&now.generation===result.generation,'No live D1 activation');
  for(const [k,v] of paths)assert.deepEqual(await read(result.version,k),v,'Read-back failed '+k);
  const news=await read(result.version,'data/news/latest.json','goal-zone');check(news.date===m.date,'Goal Zone feed stale');result.newsCount=news.items?.length;
- for(const u of ['https://future-code-football-daily.pages.dev/','https://future-code-football-daily.pages.dev/future-code-journal/']){const res=await fetch(u,{redirect:'error',signal:AbortSignal.timeout(20000)});check(res.ok&&/football/i.test(await res.text()),'Site not responsive '+u)}
- result.sites=['Main','Goal Zone'];result.pagesAfter=await pages();check(result.pagesBefore===result.pagesAfter,'Pages deploy unexpectedly changed');result.success=true;
+ const base='https://future-code-football-daily.pages.dev';
+ const sitePages=[
+  ['Main',base+'/','odds.html'],
+  ['YKZ FAMILY',base+'/ykz-family/','ykz-family/odds.html'],
+  ['BW Sport',base+'/bw-sport/','bw-sport/odds.html'],
+  ['Ko Thet Family',base+'/ko-thet-family/','ko-thet-family/odds.html'],
+  ['Goal Zone',base+'/future-code-journal/','future-code-journal/odds.html']
+ ];
+ result.pagesChecked=[];
+ for(const [name,home,oddsPath] of sitePages)for(const u of [home,base+'/'+oddsPath]){
+  const res=await fetch(u,{redirect:'error',signal:AbortSignal.timeout(20000)});
+  const html=await res.text();
+  check(res.ok&&/<html[\\s>]/i.test(html)&&/football|ဘောလုံး/i.test(html),'Site page not responsive '+name+' '+u);
+  result.pagesChecked.push(u);
+ }
+ result.sites=sitePages.map(x=>x[0]);result.pagesAfter=await pages();check(result.pagesBefore===result.pagesAfter,'Pages deploy unexpectedly changed');result.success=true;
 }
 try{await publish()}catch(e){result.error=String(e?.message||e).slice(0,1400)}
 finally{result.finishedAt=new Date().toISOString();writeFileSync('football-d1-daily-result.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));if(!result.success)process.exitCode=1}
