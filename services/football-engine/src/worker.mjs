@@ -75,6 +75,43 @@ async function updateOdds(request,env,b){
  const evening={reportDate:day,matches:sheet.matches.map((o,i)=>({row:o.pdfRow||i+1,fixtureId:o.fixtureId,league:o.league,home:o.home,away:o.away,upperTeam:o.upperTeam,kickoffDisplay:o.kickoffDisplay,morningBodyOdds:o.bodyOdds,morningGoalTotalOdds:o.goalTotalOdds,eveningBodyOdds:o.currentBodyOdds||'',eveningGoalTotalOdds:o.currentGoalTotalOdds||''}))};
  return importDraft(request,env,{editorialDate:day,expectedGeneration:b.expectedGeneration,sourceManifest:b.sourceManifest,resources:{'data/today.json':report,[`data/odds/${day}.json`]:sheet,[`data/odds/evening/${day}.json`]:evening}});
 }
+
+async function autoSchedule(env,v){
+ const target=yangonDate(new Date(),1);
+ if(v.editorial_date!==target||v.ever_published)return null;
+ const a=await active(env.DB);
+ if(v.parent_id!==a.version_id)return {status:'blocked',reason:'stale-parent'};
+ await statement(env.DB,`INSERT INTO scheduled_publications (target_date,version_id,expected_generation,status,created_at,detail)
+ VALUES(?,?,?,'ready',?,'{}')
+ ON CONFLICT(target_date) DO UPDATE SET version_id=excluded.version_id,expected_generation=excluded.expected_generation,
+ status='ready',created_at=excluded.created_at,processed_at=NULL,detail='{}'
+ WHERE scheduled_publications.status IN ('ready','blocked','cancelled')`,
+ target,v.id,a.generation,new Date().toISOString()).run();
+ const row=await statement(env.DB,'SELECT target_date,version_id,expected_generation,status FROM scheduled_publications WHERE target_date=?',target).first();
+ return row?.version_id===v.id?row:{status:'blocked',reason:'already-published'};
+}
+export async function runScheduledPublication(env,now=new Date()){
+ const date=yangonDate(now),row=await statement(env.DB,'SELECT * FROM scheduled_publications WHERE target_date=?',date).first();
+ if(!row||row.status!=='ready')return {date,status:row?.status||'not-ready'};
+ const current=await active(env.DB),version=await versionFor(env.DB,row.version_id);
+ const report=(await resourcesFor(env.DB,version.id,['data/today.json']))['data/today.json'];
+ const safe=version.validated_at&&version.editorial_date===date&&!version.ever_published&&
+  version.parent_id===current.version_id&&current.generation===row.expected_generation&&
+  report?.published===true&&report.reportDate===date;
+ if(!safe){
+  await statement(env.DB,"UPDATE scheduled_publications SET status='blocked',processed_at=?,detail=? WHERE target_date=? AND status='ready'",
+   now.toISOString(),JSON.stringify({reason:'stale-or-unvalidated'}),date).run();
+  return {date,status:'blocked',reason:'stale-or-unvalidated'};
+ }
+ const changed=await statement(env.DB,`UPDATE active_publication SET version_id=?,generation=generation+1,changed_at=?
+ WHERE singleton=1 AND generation=? AND version_id IS ? AND EXISTS
+ (SELECT 1 FROM scheduled_publications WHERE target_date=? AND version_id=? AND status='ready' AND expected_generation=?)`,
+ version.id,now.toISOString(),row.expected_generation,version.parent_id,date,version.id,row.expected_generation).run();
+ if(changed.meta?.changes!==1)return {date,status:'conflict'};
+ await statement(env.DB,"UPDATE scheduled_publications SET status='published',processed_at=?,detail=? WHERE target_date=? AND version_id=? AND status='ready'",
+  now.toISOString(),JSON.stringify({mode:'automatic',generation:row.expected_generation+1}),date,version.id).run();
+ return {date,status:'published',version:version.id,generation:row.expected_generation+1};
+}
 async function validateDraft(env,b){
  const v=await versionFor(env.DB,b.version),r=await resourcesFor(env.DB,v.id,['data/today.json',`data/odds/${v.editorial_date}.json`]);
  const receipts=await statement(env.DB,'SELECT rr.path,rb.structural_errors,rb.structural_revision FROM resource_refs rr JOIN resource_blobs rb ON rb.digest=rr.digest WHERE rr.version_id=?',v.id).all();
@@ -89,7 +126,7 @@ async function validateDraft(env,b){
  const now=new Date().toISOString();await env.DB.batch([
  statement(env.DB,'INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?) ON CONFLICT(version_id) DO UPDATE SET evidence=excluded.evidence,reviewed_at=excluded.reviewed_at',v.id,JSON.stringify(b.review),now),
  statement(env.DB,'UPDATE publication_versions SET validated_at=? WHERE id=?',now,v.id)
- ]);return json({valid:true,version:v.id});
+ ]);const scheduled=await autoSchedule(env,v);return json({valid:true,version:v.id,scheduled});
 }
 async function activate(env,b,rollback=false){
  const v=await versionFor(env.DB,b.version);if(!v.validated_at)fail(422,'Version has not passed validation');
@@ -131,7 +168,7 @@ async function publicGet(request,env,url,ctx){
  if(cacheKey&&request.method==='GET'){const save=cache.put(cacheKey,response.clone()).catch(()=>{});if(ctx?.waitUntil)ctx.waitUntil(save);else await save;}
  return response;
 }
-export default {async fetch(request,env,ctx){
+export default {async scheduled(event,env,ctx){const job=runScheduledPublication(env,new Date(event.scheduledTime||Date.now()));if(ctx?.waitUntil)ctx.waitUntil(job);else await job;},async fetch(request,env,ctx){
  const url=new URL(request.url),origin=request.headers.get('Origin');
  const allowed=(env.ALLOWED_ORIGINS||'').split(',').map(s=>s.trim()).filter(Boolean);
  let response;try{
@@ -153,6 +190,7 @@ export default {async fetch(request,env,ctx){
     const metadata={schemaVersion:1,kind:'football-publication-backup',exportedAt:new Date().toISOString(),active:a,version:v,review};
     response=url.searchParams.get('metadata')==='1'?json({...metadata,resourceManifest:(await statement(env.DB,'SELECT path,digest FROM resource_refs WHERE version_id=?',id).all()).results}):await snapshotResponse(env.DB,id,metadata);
    }
+   else if(request.method==='GET'&&name==='schedule')response=json((await env.DB.prepare('SELECT target_date,version_id,expected_generation,status,created_at,processed_at,detail FROM scheduled_publications ORDER BY target_date DESC LIMIT 14').all()).results);
    else if(request.method==='GET'&&name==='history')response=json((await env.DB.prepare('SELECT id,editorial_date,created_at,validated_at,ever_published FROM publication_versions ORDER BY created_at DESC LIMIT 50').all()).results);
    else if(request.method==='GET'&&name==='usage'){
     const storage=await env.DB.prepare('SELECT (SELECT count(*) FROM publication_versions) AS versions,(SELECT count(*) FROM resource_refs) AS resourceReferences,(SELECT count(*) FROM resource_blobs) AS uniqueResources,(SELECT coalesce(sum(length(CAST(body AS BLOB))),0) FROM resource_blobs) AS uniqueJsonBytes').first();
