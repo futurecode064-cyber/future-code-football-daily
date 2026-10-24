@@ -25,9 +25,11 @@ function validateInput(event){
  check(input?.kind==='football-evening-odds'&&dateValid(input.date),'Invalid evening odds issue/date');
  check(/^[a-f0-9]{64}$/.test(input.sourcePdfSha256||''),'Source PDF SHA-256 required');
  check(Array.isArray(input.updates)&&input.updates.length>0,'At least one current-odds row required');
- const seen=new Set();
+ const seen=new Set(),seenRows=new Set();
  for(const [i,u] of input.updates.entries()){
   check(u&&typeof u==='object'&&u.fixtureId&&!seen.has(u.fixtureId),'Missing or duplicate fixture ID at update '+(i+1));seen.add(u.fixtureId);
+  check(Number.isInteger(u.row)&&u.row>0&&!seenRows.has(u.row),'Missing or duplicate source PDF row '+(i+1));seenRows.add(u.row);
+  for(const field of ['home','away','upperTeam','openingBodyOdds','openingGoalTotalOdds'])check(typeof u[field]==='string'&&u[field].length>0,'Missing source PDF field '+field+' at row '+u.row);
   check(typeof u.currentBodyOdds==='string'&&/^(?:-\d+|\d+[+-]\d+|\d+=)$/.test(u.currentBodyOdds),'Invalid current body odds row '+(i+1));
   check(typeof u.currentGoalTotalOdds==='string'&&/^(?:\d+[+-]\d+|\d+=)$/.test(u.currentGoalTotalOdds),'Invalid current total-goals odds row '+(i+1));
  }
