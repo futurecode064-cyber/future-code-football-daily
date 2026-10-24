@@ -40,6 +40,7 @@ async function publish(){
  const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8')),input=validateInput(event),day=input.date;
  result.issue=event.issue.number;result.date=day;result.matchCount=input.updates.length;result.pdfSha256=input.sourcePdfSha256;
  result.pagesBefore=await pages();
+ check(result.pagesBefore!==null,'Cloudflare Pages deployment identity unavailable; cannot verify no-build guarantee');
  check((await first('SELECT owner FROM football_engine_installation WHERE singleton=1'))?.owner===repo,'Wrong D1 installation');
  let active=await first('SELECT version_id,generation FROM active_publication WHERE singleton=1');
  check(active?.version_id,'No active D1 publication');
