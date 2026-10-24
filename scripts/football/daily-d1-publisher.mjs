@@ -56,7 +56,7 @@ async function publish(){
   await sql('INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',[id,state.version_id,m.date,key,m.sha256,JSON.stringify(p.sourceManifest),at]);
   await sql('INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',[id,state.version_id]);
   // Carry only current-day dated odds into the next active snapshot.
-  const oddsPathDate=path=>/^data\/odds\/(?:evening\/)?(\\d{4}-\\d{2}-\\d{2})\\.json$/.exec(path)?.[1]||null;
+  const oddsPathDate=path=>/^data\/odds\/(?:evening\/)?(\d{4}-\d{2}-\d{2})\.json$/.exec(path)?.[1]||null;
   const inherited=(await sql('SELECT path FROM resource_refs WHERE version_id=?',[state.version_id])).results||[];
   const staleOddsCount=inherited.filter(x=>oddsPathDate(x.path)&&oddsPathDate(x.path)!==m.date).length;
   await sql('DELETE FROM resource_refs WHERE version_id=? AND path LIKE ? AND path NOT IN (?,?)',[id,'data/odds/%','data/odds/'+m.date+'.json','data/odds/evening/'+m.date+'.json']);
