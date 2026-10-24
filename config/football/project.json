@@ -75,12 +75,23 @@
       "productionPublishedGeneration": 1
     },
     "ownerCorrections": {
-      "status": "code-prepared-not-yet-live",
+      "status": "live-verified",
       "mode": "correction",
       "importEndpoint": "/api/editor/engine/import",
       "baseVersion": "previously published same editorial date",
       "merge": "changed fields only with conflicts rejected",
-      "normalPublishGuardPreserved": true
+      "normalPublishGuardPreserved": true,
+      "releaseSourceCommit": "b93b6cc31b843f1560b2e89abe2ec5e78bc2ea27",
+      "releaseRunId": 40075175530,
+      "pagesDeploymentId": "5b34a622-2c3d-4d33-89ef-1e708d9200fc",
+      "verifiedCapability": "owner-corrections-v1",
+      "liveEditorialDate": "2026-10-24",
+      "latestCorrectionVersion": "df17d43c-6bde-4f6c-83db-6ab2129c7a9a",
+      "latestCorrectionGeneration": 9,
+      "previewBodyExactCount": 30,
+      "verifiedSites": 5,
+      "specialChoiceCount": 5,
+      "unchangedOtherResources": 43
     }
   },
   "deployment": {
