@@ -10,7 +10,7 @@ body[data-fc-main-view="probabilities"] :is(#fcNewsSection,#fcAiScoreSection,#fc
 .fc-prob-count{padding:7px 11px;background:#dfeafe;color:#0b2654;border-radius:20px;font-weight:800}
 .fc-prob-status{color:#c7daff;font-size:11px;line-height:1.9;overflow-wrap:anywhere}
 .fc-prob-league{overflow:hidden;border:1px solid #4567d3;border-radius:10px;background:#fff;margin:15px 0}
-.fc-prob-league-header{display:grid;grid-template-columns:58px minmax(0,1fr) repeat(4,83px);align-items:center;min-height:56px;background:linear-gradient(110deg,#08129d,#1c36e6 56%,#0a1377);color:white}
+.fc-prob-league-header{display:grid;grid-template-columns:115px minmax(0,1fr) repeat(4,83px);align-items:center;min-height:56px;background:linear-gradient(110deg,#08129d,#1c36e6 56%,#0a1377);color:white}
 .fc-prob-league-logo{display:flex;align-items:center;justify-content:center;width:46px;height:43px;margin:5px;background:#fff;border-radius:8px}
 .fc-prob-league-img{width:38px;height:38px;object-fit:contain}
 .fc-prob-league-name{text-align:center;font-size:15px;line-height:1.5;padding:5px}
