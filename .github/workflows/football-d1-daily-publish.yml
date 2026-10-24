@@ -1,0 +1,68 @@
+name: Football Daily D1 Data-Only Publisher
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/football-d1-daily-publish.yml'
+  issues:
+    types: [labeled]
+permissions:
+  contents: read
+concurrency:
+  group: football-production-d1-daily
+  cancel-in-progress: false
+jobs:
+  install-trigger:
+    if: github.event_name == 'push' && github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate publisher source
+        run: |
+          node --check scripts/football/daily-d1-publisher.mjs
+          node --check scripts/football/prepare-daily-issue.mjs
+      - name: One-time create trusted issue label if absent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/futurecode064-cyber/future-code-football-daily/labels/football-d1-daily-publish >/dev/null 2>&1 || gh api --method POST repos/futurecode064-cyber/future-code-football-daily/labels -f name=football-d1-daily-publish -f color=0E7490 -f description='Owner-reviewed daily D1 data-only publish; no Pages build'
+  publish:
+    if: >-
+      github.event_name == 'issues' &&
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event.label.name == 'football-d1-daily-publish' &&
+      github.event.issue.user.login == 'futurecode064-cyber' &&
+      github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate source-backed package and write D1 only
+        env:
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/football/daily-d1-publisher.mjs
+      - name: Store publication receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-d1-daily-receipt
+          path: football-d1-daily-result.json
+          retention-days: 30
+          if-no-files-found: warn
+# Push installation may require one existing Pages Git build; DAILY labelled Issues never rebuild Pages.

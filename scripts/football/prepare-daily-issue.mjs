@@ -1,0 +1,16 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+import {join} from 'node:path';
+const [file,mode,out]=process.argv.slice(2);
+if(!file||!['daily','news-only'].includes(mode)||!out)throw Error('Usage: JSON daily|news-only output-directory');
+const p=JSON.parse(readFileSync(file,'utf8'));
+if(!p.editorialDate||!p.sourceManifest?.files?.length||!p.resources||!p.review)throw Error('Source manifest, resources and verified review required');
+const raw=Buffer.from(JSON.stringify(p)),sha256=createHash('sha256').update(raw).digest('hex');
+const chunks=gzipSync(raw).toString('base64').match(/.{1,42000}/g)||[];
+if(chunks.length>100)throw Error('Payload too large');
+mkdirSync(out,{recursive:true});
+writeFileSync(join(out,'issue-title.txt'),'Football '+p.editorialDate+' '+mode+' D1-only\n');
+writeFileSync(join(out,'issue-body.json'),JSON.stringify({kind:'future-code-football-d1-daily-v1',date:p.editorialDate,mode,sha256,parts:chunks.length},null,2)+'\n');
+for(let i=0;i<chunks.length;i++)writeFileSync(join(out,'part-'+String(i+1).padStart(3,'0')+'.txt'),'<!-- future-code-d1-part:'+sha256+':'+(i+1)+'/'+chunks.length+' -->\n'+chunks[i]+'\n');
+console.log(JSON.stringify({date:p.editorialDate,sha256,parts:chunks.length,out}));
