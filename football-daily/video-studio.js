@@ -19,6 +19,11 @@
  const labelTeam=(m,part)=>fmt(m[part+"Display"]||m[part]);
  const leagueName=x=>LEAGUES[x]||x||"Football";
  const dateKey=(offset=0)=>{
+  const published=window.FootballData?.currentDate?.();
+  if(/^\d{4}-\d{2}-\d{2}$/.test(published||'')){
+   const d=new Date(published+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+offset);
+   return d.toISOString().slice(0,10);
+  }
   const draftDate=typeof window==='undefined'?null:window.FootballData?.draftDate;
   const parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Yangon",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(draftDate?new Date(draftDate+'T06:00:00Z'):new Date());
   const named=Object.fromEntries(parts.filter(p=>p.type!=="literal").map(p=>[p.type,p.value]));

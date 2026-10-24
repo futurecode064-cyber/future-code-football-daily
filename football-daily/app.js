@@ -71,6 +71,10 @@ const $=id=>document.getElementById(id);
 function dateParts(){
  const preview=typeof location==='undefined'?null:new URLSearchParams(location.search),day=preview?.get('date');
  if(preview?.get('fcDraft')&&/^\d{4}-\d{2}-\d{2}$/.test(day||'')){const [year,month,date]=day.split('-');return {key:day,day:`${date}/${month}/${year}`};}
+ const published=window.FootballData?.currentDate?.();
+ if(/^\d{4}-\d{2}-\d{2}$/.test(published||'')){
+  const [year,month,date]=published.split('-');return {key:published,day:date+'/'+month+'/'+year};
+ }
  const pieces=new Intl.DateTimeFormat("en-GB",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
  const p=Object.fromEntries(pieces.filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
  return {key:`${p.year}-${p.month}-${p.day}`,day:`${p.day}/${p.month}/${p.year}`};
@@ -484,6 +488,8 @@ function refreshDateLabels(){
 }
 async function load(){
  const sequence=++loadSequence;
+ if(window.FootballData?.ready)await window.FootballData.ready();
+ if(sequence!==loadSequence)return;
  const offset=selectedDay,target=selectedDateKey(offset);
  const isCurrent=()=>sequence===loadSequence&&offset===selectedDay&&target===selectedDateKey(offset);
  loading=true;refreshDateLabels();render();

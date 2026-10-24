@@ -1,6 +1,8 @@
 "use strict";
 const tz="Asia/Yangon";
 function dateKey(){
+ const published=window.FootballData?.currentDate?.();
+ if(/^\d{4}-\d{2}-\d{2}$/.test(published||''))return published;
  const p=new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
  const x=Object.fromEntries(p.map(v=>[v.type,v.value]));return x.year+"-"+x.month+"-"+x.day;
 }
@@ -313,6 +315,7 @@ function setupLeagueFilter(data){
 }
 
 async function load(){
+ if(window.FootballData?.ready)await window.FootballData.ready();
  const query=new URLSearchParams(location.search).get("date");
  const day=/^\d{4}-\d{2}-\d{2}$/.test(query||"")?query:dateKey();
  try{

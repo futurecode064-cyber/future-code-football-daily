@@ -21,6 +21,33 @@
    if(root.document.body)show();else root.document.addEventListener('DOMContentLoaded',show,{once:true});
   }});
  root.FootballData=Object.freeze(client);client.ready();
+ // The authoritatively published D1 version is lightweight to poll; no Pages build.
+ if(root.FC_FOOTBALL_ENGINE?.enabled===true&&!new URL(root.location.href).searchParams.has('fcDraft')){
+  let checking=false;
+  const check=async()=>{
+   if(checking||root.document.visibilityState==='hidden'||!client.currentVersion())return;
+   checking=true;
+   try{
+    const u=new URL('/api/football/manifest',root.FC_FOOTBALL_ENGINE.apiBase);
+    const response=await root.fetch(u,{cache:'no-store'});
+    if(response.ok){
+     const manifest=await response.json();
+     if(manifest.version&&manifest.version!==client.currentVersion()){
+      if(root.document.body?.dataset.fcMainView==='video'){
+       let note=root.document.getElementById('footballDataNotice');
+       if(!note){note=root.document.createElement('p');note.id='footballDataNotice';root.document.body.prepend(note);}
+       note.textContent='Data အသစ် ရရှိပါပြီ။ Video Studio ပြီးလျှင် စာမျက်နှာ Refresh လုပ်ပါ။';
+      }else root.location.reload();
+     }
+    }
+   }catch{ /* preserve the saved publication during temporary API failures */ }
+   finally{checking=false;}
+  };
+  root.setInterval(check,45000);
+  root.addEventListener('focus',check);
+  root.document.addEventListener('visibilitychange',()=>{if(root.document.visibilityState==='visible')check();});
+ }
+
 })(typeof window==='undefined'?null:window,function(){
  'use strict';
  const own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
@@ -89,7 +116,7 @@
   const query=page.searchParams.get('date');
   const optionalPathsFor=resources=>{
    const reportDay=resources?.['data/today.json']?.reportDate;
-   const day=/^\\d{4}-\\d{2}-\\d{2}$/.test(reportDay||'')?reportDay:today;
+   const day=/^\d{4}-\d{2}-\d{2}$/.test(reportDay||'')?reportDay:today;
    const previous=dayKey(new Date(day+'T12:00:00Z'),-1);
    const oddsDay=/^\\d{4}-\\d{2}-\\d{2}$/.test(query||'')?query:day;
    const list=[`data/archive/${previous}.json`,`data/fixtures/${day}.json`,`data/fixtures/${previous}.json`,

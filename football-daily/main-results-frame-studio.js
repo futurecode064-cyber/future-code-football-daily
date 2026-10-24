@@ -50,6 +50,12 @@
   const isFinal=m=>m&&m.status==="finished"&&/^\d+\s*[-:]\s*\d+$/.test(String(m.finalScore||""));
   const team=(m,side)=>String(m[side+"Display"]||m[side]||"—").trim();
   function yesterdayYangon(){
+    const published=window.FootballData?.currentDate?.();
+    if(/^\d{4}-\d{2}-\d{2}$/.test(published||'')){
+      const d=new Date(published+'T12:00:00Z');
+      d.setUTCDate(d.getUTCDate()-1);
+      return d.toISOString().slice(0,10);
+    }
     const parts=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Yangon",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
     const p=Object.fromEntries(parts.filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
     const d=new Date(p.year+"-"+p.month+"-"+p.day+"T12:00:00Z");
