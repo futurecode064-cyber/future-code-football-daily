@@ -33,7 +33,7 @@ async function payload(event){
 async function publish(){
  check(process.env.FOOTBALL_STAGING_CF_API_TOKEN?.length>24&&process.env.GITHUB_TOKEN?.length>24,'Missing existing Secrets');
  const event=JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH,'utf8')),{m,p}=await payload(event),paths=Object.entries(p.resources||{});
- result.issue=event.issue.number;result.date=m.date;result.mode=m.mode;result.changedPaths=paths.map(x=>x[0]);
+ result.issue=event.issue.number;result.date=m.date;result.mode=m.mode;result.changedPaths=paths.map(x=>x[0]);result.matchCount=p.resources['data/today.json']?.matches?.length??null;
  check(p.sourceManifest?.files?.length>0&&p.sourceManifest.files.every(x=>x.name&&/^[a-f0-9]{64}$/.test(x.sha256||'')),'Invalid source fingerprint');
  check(paths.length>0&&paths.length<=45&&paths.every(([k,v])=>resourceAllowed(k)&&v&&typeof v==='object'&&JSON.stringify(v).length<500000&&!validateResource(k,v).length),'Invalid D1 resource');
  if(m.mode==='news-only')check(paths.length===1&&paths[0][0]==='data/news/latest.json','News-only isolation failed');else check(p.resources['data/today.json']&&p.resources['data/odds/'+m.date+'.json']&&p.resources['data/news/latest.json'],'Full daily requires today, opening odds and current news');
@@ -55,13 +55,18 @@ async function publish(){
   const id=randomUUID(),at=new Date().toISOString();
   await sql('INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',[id,state.version_id,m.date,key,m.sha256,JSON.stringify(p.sourceManifest),at]);
   await sql('INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',[id,state.version_id]);
+  // Carry only current-day dated odds into the next active snapshot.
+  const oddsPathDate=path=>/^data\/odds\/(?:evening\/)?(\\d{4}-\\d{2}-\\d{2})\\.json$/.exec(path)?.[1]||null;
+  const inherited=(await sql('SELECT path FROM resource_refs WHERE version_id=?',[state.version_id])).results||[];
+  const staleOddsCount=inherited.filter(x=>oddsPathDate(x.path)&&oddsPathDate(x.path)!==m.date).length;
+  await sql('DELETE FROM resource_refs WHERE version_id=? AND path LIKE ? AND path NOT IN (?,?)',[id,'data/odds/%','data/odds/'+m.date+'.json','data/odds/evening/'+m.date+'.json']);
   for(const [path,value] of paths){const body=JSON.stringify(value),digest=hash(body);await sql('INSERT INTO resource_blobs(digest,body,structural_errors,structural_revision) VALUES(?,?,?,1) ON CONFLICT(digest) DO NOTHING',[digest,body,JSON.stringify(validateResource(path,value))]);await sql('INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?) ON CONFLICT(version_id,path) DO UPDATE SET digest=excluded.digest',[id,path,digest]);assert.deepEqual(JSON.parse((await one('SELECT body FROM resources WHERE version_id=? AND path=?',[id,path]))?.body||'null'),value)}
   const oldCount=Number((await one('SELECT count(*) n FROM resource_refs WHERE version_id=?',[state.version_id])).n),newCount=Number((await one('SELECT count(*) n FROM resource_refs WHERE version_id=?',[id])).n);
   let added=0;for(const [path] of paths)if(!(await one('SELECT path FROM resource_refs WHERE version_id=? AND path=?',[state.version_id,path])))added++;
-  check(newCount===oldCount+added,'Missing inherited archive/report/odds');
+  check(newCount===oldCount-staleOddsCount+added,'Daily snapshot retained stale odds or lost inherited data');
   await sql('INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?)',[id,JSON.stringify(p.review),at]);await sql('UPDATE publication_versions SET validated_at=? WHERE id=?',[at,id]);
   const updated=await sql('UPDATE active_publication SET version_id=?,generation=generation+1,changed_at=? WHERE singleton=1 AND version_id IS ? AND generation=?',[id,at,state.version_id,state.generation]);
-  check(updated.meta?.changes===1,'Concurrent publisher blocked');result.version=id;result.generation=state.generation+1;
+  check(Number(updated.meta?.changes)>=1,'Concurrent publisher blocked');const activated=await one('SELECT version_id,generation FROM active_publication WHERE singleton=1');check(activated?.version_id===id&&activated.generation===state.generation+1,'D1 activation read-back failed');result.version=id;result.generation=state.generation+1;
  }
  const now=await manifest();check(now.version===result.version&&now.generation===result.generation,'No live D1 activation');
  for(const [k,v] of paths)assert.deepEqual(await read(result.version,k),v,'Read-back failed '+k);
