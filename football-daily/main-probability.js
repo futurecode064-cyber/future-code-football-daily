@@ -37,7 +37,7 @@
   for(const v of [market,m]){
    if(!v||v.oddsVerifiedDate&&v.oddsVerifiedDate!==day)continue;
    const a=finitePrice(v.overOdds),b=finitePrice(v.underOdds);
-   const line=Number(v.totalGoalsLine??v.goalLine??2.5);
+   const line=Number(v.totalGoalsLine??v.goalLine??NaN);
    if(a&&b&&Number.isFinite(line)&&line===2.5&&v.oddsSourceUrl){
     const p=percentages([1/a,1/b]);
     return {over:p[0],under:p[1],line:"2.5",method:"ဂိုးပေါ်/အောက် ကြေး",source:v.oddsSourceUrl};
