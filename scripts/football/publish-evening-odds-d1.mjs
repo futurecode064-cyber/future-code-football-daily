@@ -57,6 +57,7 @@ async function publish(){
  for(const [i,u] of input.updates.entries()){
   const m=reportMatches.get(u.fixtureId),o=oddsMatches.get(u.fixtureId);
   check(m&&o,'Unknown fixture ID at update '+(i+1));
+  check(u.row<=oldOdds.matches.length&&u.row===(o.pdfRow||oldOdds.matches.indexOf(o)+1),'PDF row order mismatch at row '+u.row);
   if(u.home)check(u.home===m.homeDisplay,'PDF home mismatch at row '+(u.row||i+1));
   if(u.away)check(u.away===m.awayDisplay,'PDF away mismatch at row '+(u.row||i+1));
   if(u.upperTeam)check(u.upperTeam===o.upperTeam,'PDF giving-team mismatch at row '+(u.row||i+1));
