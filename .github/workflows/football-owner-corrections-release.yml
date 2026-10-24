@@ -45,3 +45,5 @@ jobs:
           if-no-files-found: warn
 
 # Release attempt 2: retain byte-exact hashes for unchanged reference attachments.
+
+# Release attempt 3: wait for Worker propagation and use version-based rollback.
