@@ -13,7 +13,7 @@ jobs:
     if: >-
       github.repository == 'futurecode064-cyber/future-code-football-daily' &&
       github.event.label.name == 'football-evening-visual-verify' &&
-      github.event.issue.number == 37 &&
+      github.event.issue.number == 41 &&
       github.event.issue.user.login == 'futurecode064-cyber' &&
       github.event.issue.pull_request == null
     runs-on: ubuntu-latest
@@ -32,12 +32,12 @@ jobs:
       - name: Check every visible original and evening odds price on five published brands and create real Main frame PNG
         env:
           FOOTBALL_QA_CHROME: /usr/bin/google-chrome
-        run: node scripts/football/verify-evening-visible-frame.mjs
+        run: node scripts/football/verify-evening-public-brands.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: football-evening-visible-cell-and-frame-qa
-          path: football-evening-visible-qa/
+          path: football-evening-5brand-qa/
           retention-days: 14
           if-no-files-found: warn
 # Read-only 5-brand visual check; no D1, Pages or Git content publication.
