@@ -40,6 +40,7 @@ async function publish(){
  check(!reviewErrors(p.review).length,'All nine verified QA receipts required');
  if(p.resources['data/news/latest.json'])validateNews(p.resources['data/news/latest.json'],m.date);
  result.pagesBefore=await pages();
+ check(result.pagesBefore!==null,'Cloudflare Pages deployment identity unavailable; cannot verify no-build guarantee');
  const owner=await one('SELECT owner FROM football_engine_installation WHERE singleton=1');check(owner?.owner===repo,'Wrong database');
  const state=await one('SELECT version_id,generation FROM active_publication WHERE singleton=1'),live=await manifest();
  check(state?.version_id===live.version&&state.generation===live.generation,'D1 pointer mismatch');
