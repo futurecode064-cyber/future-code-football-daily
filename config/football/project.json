@@ -9,11 +9,11 @@
   "references": [
     {
       "path": "config/football/FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt",
-      "sha256": "d94295e4886ca002d14b1e7e279dc0cd3029d52aa89bff743c7953fa9f16d967"
+      "sha256": "0f05e61e8ff950b3f22f4acb1f107dbdd0314bad56d4b6beb85964e26f7016ad"
     },
     {
       "path": "docs/football/SHARED_ENGINE_REQUIREMENTS.txt",
-      "sha256": "ec165561d26b6c70588f7d519f3f4380cb20f1e3cfcd23ba79eb6062b34ede45"
+      "sha256": "4bf3c6c5e4a13963906649e8b753abe123600a06bcfac3b8f6271e86ac2fda96"
     },
     {
       "path": "docs/football/DAILY_UPDATE_WORKFLOW.md",
