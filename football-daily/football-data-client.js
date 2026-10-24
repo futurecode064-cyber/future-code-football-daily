@@ -21,32 +21,9 @@
    if(root.document.body)show();else root.document.addEventListener('DOMContentLoaded',show,{once:true});
   }});
  root.FootballData=Object.freeze(client);client.ready();
- // The authoritatively published D1 version is lightweight to poll; no Pages build.
- if(root.FC_FOOTBALL_ENGINE?.enabled===true&&!new URL(root.location.href).searchParams.has('fcDraft')){
-  let checking=false;
-  const check=async()=>{
-   if(checking||root.document.visibilityState==='hidden'||!client.currentVersion())return;
-   checking=true;
-   try{
-    const u=new URL('/api/football/manifest',root.FC_FOOTBALL_ENGINE.apiBase);
-    const response=await root.fetch(u,{cache:'no-store'});
-    if(response.ok){
-     const manifest=await response.json();
-     if(manifest.version&&manifest.version!==client.currentVersion()){
-      if(root.document.body?.dataset.fcMainView==='video'){
-       let note=root.document.getElementById('footballDataNotice');
-       if(!note){note=root.document.createElement('p');note.id='footballDataNotice';root.document.body.prepend(note);}
-       note.textContent='Data အသစ် ရရှိပါပြီ။ Video Studio ပြီးလျှင် စာမျက်နှာ Refresh လုပ်ပါ။';
-      }else root.location.reload();
-     }
-    }
-   }catch{ /* preserve the saved publication during temporary API failures */ }
-   finally{checking=false;}
-  };
-  root.setInterval(check,45000);
-  root.addEventListener('focus',check);
-  root.document.addEventListener('visibilitychange',()=>{if(root.document.visibilityState==='visible')check();});
- }
+ // Owner preference: never poll, including timer/focus/visibility refresh.
+ // On a normal page load we read one pinned published D1 version.
+ // Manual browser refresh is the only way to reload an already open page.
 
 })(typeof window==='undefined'?null:window,function(){
  'use strict';

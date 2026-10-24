@@ -100,3 +100,12 @@ test('editorial rollover follows the active D1 report rather than Yangon midnigh
  assert(!called.includes('data/archive/2026-10-24.json'));
  assert.equal((await c.fetch(new URL('data/archive/2026-10-23.json',args.assetRoot))).status,200);
 });
+
+test('the public client never starts timed, focus or visibility manifest polling',()=>{
+ const clientSource=readFileSync(new URL('../../../football-daily/football-data-client.js',import.meta.url),'utf8');
+ assert.match(clientSource,/root\.FootballData=Object\.freeze\(client\);client\.ready\(\);/);
+ assert.doesNotMatch(clientSource,/setInterval\s*\(/);
+ assert.doesNotMatch(clientSource,/addEventListener\(['"]focus['"]/);
+ assert.doesNotMatch(clientSource,/visibilitychange/);
+ assert.doesNotMatch(clientSource,/45000|600000/);
+});
