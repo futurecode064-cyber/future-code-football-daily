@@ -61,7 +61,7 @@ async function publish(){
   check(newCount===oldCount+added,'Missing inherited archive/report/odds');
   await sql('INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?)',[id,JSON.stringify(p.review),at]);await sql('UPDATE publication_versions SET validated_at=? WHERE id=?',[at,id]);
   const updated=await sql('UPDATE active_publication SET version_id=?,generation=generation+1,changed_at=? WHERE singleton=1 AND version_id IS ? AND generation=?',[id,at,state.version_id,state.generation]);
-  check(updated.meta?.changes===1,'Concurrent publisher blocked');result.version=id;result.generation=state.generation+1;
+  const actual=await one('SELECT version_id,generation FROM active_publication WHERE singleton=1');check(actual?.version_id===id&&Number(actual.generation)===Number(state.generation)+1,'Concurrent publisher blocked');result.version=id;result.generation=Number(actual.generation);
  }
  const now=await manifest();check(now.version===result.version&&now.generation===result.generation,'No live D1 activation');
  for(const [k,v] of paths)assert.deepEqual(await read(result.version,k),v,'Read-back failed '+k);
