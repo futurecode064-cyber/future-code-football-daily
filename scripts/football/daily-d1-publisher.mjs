@@ -82,7 +82,8 @@ async function publish(){
  ];
  result.pagesChecked=[];
  for(const [name,home,oddsPath] of sitePages)for(const u of [home,base+'/'+oddsPath]){
-  const res=await fetch(u,{redirect:'error',signal:AbortSignal.timeout(20000)});
+  const res=await fetch(u,{redirect:'follow',signal:AbortSignal.timeout(20000)});
+  check(new URL(res.url).origin===new URL(base).origin,'Unexpected cross-origin site redirect '+u);
   const html=await res.text();
   check(res.ok&&/<html[\s>]/i.test(html)&&/football|ဘောလုံး/i.test(html),'Site page not responsive '+name+' '+u);
   result.pagesChecked.push(u);
