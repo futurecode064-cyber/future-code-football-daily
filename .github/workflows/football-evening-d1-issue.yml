@@ -1,6 +1,7 @@
-name: Deprecated — Football Evening Odds D1 Publisher (use Daily D1)
+name: Football Evening Odds D1 No-Build Publisher (date and fixture count dynamic)
 on:
-  workflow_dispatch:
+  issues:
+    types: [labeled]
 permissions:
   contents: read
   issues: read
