@@ -127,6 +127,7 @@
     if(!report||!Array.isArray(report.matches)||!/^\d{4}-\d{2}-\d{2}$/.test(report.reportDate||"")){status.textContent="ပွဲစဉ်ဒေတာ မပြည့်စုံပါ";return;}
     day=report.reportDate;
     const odds=state.resources["data/odds/"+day+".json"];
+    if(!Array.isArray(odds?.matches)||!odds.matches.length){status.textContent="ယနေ့ ပေါက်ကြေး မထုတ်ဝေရသေးပါ";return;}
     const oddsById=new Map((Array.isArray(odds?.matches)?odds.matches:[]).filter(m=>m.fixtureId).map(m=>[m.fixtureId,m]));
     entries=report.matches.filter(m=>m&&m.home&&m.away&&m.status!=="cancelled").map(m=>({match:m,prob:analyze(m,oddsById.get(m.fixtureId),day)}));
     const unique=new Map(entries.map(x=>[x.match.league||"Other",x.match.leagueDisplay||x.match.league||"အခြားလိဂ်"]));
