@@ -43,7 +43,7 @@ async function publish(){
  check(active?.version_id,'No active D1 publication');
  const state=await first('SELECT editorial_date,ever_published FROM publication_versions WHERE id=?',[active.version_id]);
  check(state?.editorial_date===day,'Current D1 publication date does not match this odds PDF');
- check(day===yangonDate(new Date()),'PDF date is not today in Asia/Yangon');
+ // Editorial day is bound to the active D1 report, which handles after-midnight fixtures.
  const today='data/today.json',odds='data/odds/'+day+'.json',evening='data/odds/evening/'+day+'.json';
  const oldReport=JSON.parse((await first('SELECT body FROM resources WHERE version_id=? AND path=?',[active.version_id,today]))?.body||'null');
  const oldOdds=JSON.parse((await first('SELECT body FROM resources WHERE version_id=? AND path=?',[active.version_id,odds]))?.body||'null');
@@ -75,7 +75,7 @@ async function publish(){
   const old=structuredClone(oldReport.matches[i]),next=structuredClone(nextReport.matches[i]);
   const changedRow=input.updates.some(x=>x.fixtureId===old.fixtureId);
   if(!changedRow){assert.deepEqual(next,old,'Unsubmitted report row changed');continue}
-  for(const k of ['currentBodyOdds','currentGoalTotalOdds']){delete old.myanmarOdds[k];delete next.myanmarOdds[k]}
+  old.myanmarOdds=old.myanmarOdds||{};next.myanmarOdds=next.myanmarOdds||{};for(const k of ['currentBodyOdds','currentGoalTotalOdds']){delete old.myanmarOdds[k];delete next.myanmarOdds[k]}
   assert.deepEqual(next,old,'Non-odds report field changed');
  }
  for(let i=0;i<oldOdds.matches.length;i++){
