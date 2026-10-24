@@ -77,3 +77,26 @@ test('older Android WebView without static Response.json can read pinned publica
   assert.equal((await c.fetch(new URL('data/odds/evening/2026-10-22.json',args.assetRoot))).status,404);
  }finally{globalThis.Response=NativeResponse;}
 });
+
+test('editorial rollover follows the active D1 report rather than Yangon midnight',async()=>{
+ const called=[];
+ const server=async input=>{
+  const u=new URL(input);
+  if(u.pathname.endsWith('/manifest'))return Response.json({version:'v-midnight'});
+  if(u.pathname.endsWith('/resource')){
+   const path=u.searchParams.get('path');called.push(path);
+   if(path.includes('/fixtures/')||path.includes('/evening/'))return Response.json({error:'missing'},{status:404});
+   return Response.json({reportDate:'2026-10-24',matches:[]},{headers:{'X-Football-Version':'v-midnight'}});
+  }
+  throw Error('Unexpected static request');
+ };
+ const c=createClient({...args,now:new Date('2026-10-24T18:00:00Z'),fetcher:server});
+ assert.equal(c.currentDate(),'2026-10-25');
+ await c.ready();
+ assert.equal(c.currentDate(),'2026-10-24');
+ assert.equal(c.currentVersion(),'v-midnight');
+ assert(called.includes('data/archive/2026-10-23.json'));
+ assert(called.includes('data/odds/2026-10-24.json'));
+ assert(!called.includes('data/archive/2026-10-24.json'));
+ assert.equal((await c.fetch(new URL('data/archive/2026-10-23.json',args.assetRoot))).status,200);
+});

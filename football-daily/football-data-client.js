@@ -27,30 +27,41 @@
  const jsonResponse=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8',...headers}});
  function dayKey(now=new Date(),offset=0){const d=new Date(now.getTime()+390*60000);d.setUTCDate(d.getUTCDate()+offset);return d.toISOString().slice(0,10);}
  async function loadPublishedBundle({apiBase,paths,optionalPaths=[],brand='main',fetcher=fetch,storage=null,timeoutMs=10000}){
-  let key;const optional=new Set(optionalPaths),all=[...new Set([...paths,...optionalPaths])].sort();
+  let key;
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeoutMs);
   try{
    const base=new URL(apiBase);
    if(base.protocol!=='https:'&&!(base.protocol==='http:'&&base.hostname==='localhost'))throw Error('HTTPS API required');
-   key='fc-football-last-complete-bundle-v3:'+JSON.stringify([base.origin,brand,all]);
+   key='fc-football-last-complete-bundle-v4:'+JSON.stringify([base.origin,brand,paths]);
    const mr=await fetcher(new URL('/api/football/manifest',base),{cache:'no-store',signal:controller.signal});
    if(!mr.ok)throw Error('Manifest unavailable');
-   const manifest=await mr.json();if(typeof manifest.version!=='string'||!manifest.version)throw Error('No active version');
-   const values=await Promise.all(all.map(async path=>{
-    const url=new URL('/api/football/resource',base);url.searchParams.set('path',path);url.searchParams.set('version',manifest.version);url.searchParams.set('brand',brand);
-    const r=await fetcher(url,{signal:controller.signal});
-    if(r.status===404&&optional.has(path))return [path,null];
-    if(!r.ok||r.headers.get('X-Football-Version')!==manifest.version)throw Error('Incomplete publication bundle');
-    return [path,await r.json()];
-   }));
+   const manifest=await mr.json();
+   if(typeof manifest.version!=='string'||!manifest.version)throw Error('No active version');
+   const read=async(path,optional=false)=>{
+    const url=new URL('/api/football/resource',base);
+    url.searchParams.set('path',path);url.searchParams.set('version',manifest.version);url.searchParams.set('brand',brand);
+    const res=await fetcher(url,{signal:controller.signal});
+    if(res.status===404&&optional)return [path,null];
+    if(!res.ok||res.headers.get('X-Football-Version')!==manifest.version)throw Error('Incomplete publication bundle');
+    return [path,await res.json()];
+   };
+   // Always load the active report first. After Yangon midnight it can still be
+   // yesterday's editorial publication until the 06:00 scheduled D1 promotion.
+   const required=await Promise.all(paths.map(path=>read(path)));
+   const selected=typeof optionalPaths==='function'?optionalPaths(Object.fromEntries(required)):optionalPaths;
+   if(!Array.isArray(selected))throw Error('Invalid optional resource selection');
+   const wanted=[...new Set(selected)].filter(path=>!paths.includes(path));
+   const extra=await Promise.all(wanted.map(path=>read(path,true)));
+   const rows=[...required,...extra];
    const bundle={version:manifest.version,publishedAt:manifest.publishedAt,fetchedAt:new Date().toISOString(),
-    resources:Object.fromEntries(values.filter(([,v])=>v!==null)),missing:values.filter(([,v])=>v===null).map(([p])=>p),stale:false};
+    resources:Object.fromEntries(rows.filter(([,v])=>v!==null)),missing:extra.filter(([,v])=>v===null).map(([p])=>p),stale:false};
    try{storage?.setItem(key,JSON.stringify(bundle));}catch{}
    return bundle;
   }catch{
-   try{const prior=key?JSON.parse(storage?.getItem(key)||'null'):null;
-    if(prior?.version&&paths.every(p=>own(prior.resources||{},p))&&all.every(p=>own(prior.resources||{},p)||optional.has(p)&&prior.missing?.includes(p)))
-     return {...prior,stale:true,error:'API unavailable; showing saved publication'};
+   try{
+    const old=key?JSON.parse(storage?.getItem(key)||'null'):null;
+    if(old?.version&&paths.every(p=>own(old.resources||{},p)))
+     return {...old,stale:true,error:'API unavailable; showing saved publication'};
    }catch{}
    return {fallback:'static',stale:true,error:'API unavailable; keep existing static data'};
   }finally{clearTimeout(timer);controller.abort();}
@@ -64,7 +75,7 @@
    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),config.timeoutMs||10000);
    try{
     if(!/^[a-f0-9-]{36}$/.test(draft))throw Error('Invalid draft version');
-    const paths=['data/today.json',...optionalPaths];
+    const paths=['data/today.json',...optionalPathsFor({'data/today.json':{reportDate:previewDate||today}})];
     const values=await Promise.all(paths.map(async path=>{
      const url=new URL('api/editor/engine/resource',base);url.searchParams.set('version',draft);url.searchParams.set('path',path);
      const r=await fetcher(url,{credentials:'same-origin',cache:'no-store',signal:controller.signal});
@@ -75,16 +86,25 @@
     return {draft:true,version:draft,resources,stale:false};
    }catch{return {draft:true,stale:true,error:'Owner draft unavailable',resources:{}};}finally{clearTimeout(timer);controller.abort();}
   }
-  const query=page.searchParams.get('date'),oddsDay=/^\d{4}-\d{2}-\d{2}$/.test(query||'')?query:today;
-  const optionalPaths=[`data/archive/${yesterday}.json`,`data/fixtures/${today}.json`,`data/fixtures/${yesterday}.json`,
-   `data/odds/${oddsDay}.json`,`data/odds/evening/${oddsDay}.json`];
-  if(oddsDay!==today)optionalPaths.push(`data/odds/${today}.json`,`data/odds/evening/${today}.json`);
-  if(['main','goal-zone'].includes(brand))optionalPaths.push('data/news/latest.json');
-  let pending;
+  const query=page.searchParams.get('date');
+  const optionalPathsFor=resources=>{
+   const reportDay=resources?.['data/today.json']?.reportDate;
+   const day=/^\\d{4}-\\d{2}-\\d{2}$/.test(reportDay||'')?reportDay:today;
+   const previous=dayKey(new Date(day+'T12:00:00Z'),-1);
+   const oddsDay=/^\\d{4}-\\d{2}-\\d{2}$/.test(query||'')?query:day;
+   const list=[`data/archive/${previous}.json`,`data/fixtures/${day}.json`,`data/fixtures/${previous}.json`,
+    `data/odds/${oddsDay}.json`,`data/odds/evening/${oddsDay}.json`];
+   if(oddsDay!==day)list.push(`data/odds/${day}.json`,`data/odds/evening/${day}.json`);
+   if(['main','goal-zone'].includes(brand))list.push('data/news/latest.json');
+   return list;
+  };
+  let pending,currentState=null;
   const ready=()=>pending||(pending=(draft?privateDraft():config.enabled===true?
-   loadPublishedBundle({apiBase:config.apiBase,paths:['data/today.json'],optionalPaths,brand,fetcher,storage,timeoutMs:config.timeoutMs||10000}):
-   Promise.resolve({fallback:'static',stale:false})).then(state=>{onState(state);return state;}));
-  return {draftDate:draft&&/^\d{4}-\d{2}-\d{2}$/.test(previewDate||'')?previewDate:null,ready,async fetch(input,init){
+   loadPublishedBundle({apiBase:config.apiBase,paths:['data/today.json'],optionalPaths:optionalPathsFor,brand,fetcher,storage,timeoutMs:config.timeoutMs||10000}):
+   Promise.resolve({fallback:'static',stale:false})).then(state=>{currentState=state;onState(state);return state;}));
+  const currentDate=()=>currentState?.resources?.['data/today.json']?.reportDate||today;
+  const currentVersion=()=>currentState?.version||null;
+  return {currentDate,currentVersion,draftDate:draft&&/^\d{4}-\d{2}-\d{2}$/.test(previewDate||'')?previewDate:null,ready,async fetch(input,init){
    const url=new URL(typeof Request!=='undefined'&&input instanceof Request?input.url:String(input),page);
    const path=url.pathname.startsWith(base.pathname)?url.pathname.slice(base.pathname.length):'';
    if(url.origin!==base.origin||!/^data\/(?:today\.json|(?:archive|fixtures|odds|odds\/evening)\/\d{4}-\d{2}-\d{2}\.json|news\/latest\.json)$/.test(path))return fetcher(input,init);
