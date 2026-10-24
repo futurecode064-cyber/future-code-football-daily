@@ -61,6 +61,8 @@ async function publish(){
   if(u.home)check(u.home===m.homeDisplay,'PDF home mismatch at row '+(u.row||i+1));
   if(u.away)check(u.away===m.awayDisplay,'PDF away mismatch at row '+(u.row||i+1));
   if(u.upperTeam)check(u.upperTeam===o.upperTeam,'PDF giving-team mismatch at row '+(u.row||i+1));
+  if(u.row)check(Number(u.row)===Number(o.pdfRow||oldOdds.matches.findIndex(x=>x.fixtureId===u.fixtureId)+1),'PDF row order mismatch '+u.row);
+  if(u.kickoffDisplay)check(u.kickoffDisplay===o.kickoffDisplay,'PDF kickoff mismatch at row '+(u.row||i+1));
   if(u.openingBodyOdds)check(u.openingBodyOdds===o.bodyOdds,'Opening body price mismatch at row '+(u.row||i+1));
   if(u.openingGoalTotalOdds)check(u.openingGoalTotalOdds===o.goalTotalOdds,'Opening total-goals price mismatch at row '+(u.row||i+1));
  }
@@ -99,9 +101,7 @@ async function publish(){
   await sql('INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at) VALUES(?,?,?,?,?,?,?)',[id,active.version_id,day,key,'pdf:'+input.sourcePdfSha256,JSON.stringify(source),at]);
   await sql('INSERT INTO resource_refs(version_id,path,digest) SELECT ?,path,digest FROM resource_refs WHERE version_id=?',[id,active.version_id]);
   const inherited=(await sql('SELECT path FROM resource_refs WHERE version_id=?',[active.version_id])).results||[];
-  const oddsDate=path=>/^data\/odds\/(?:evening\/)?(\d{4}-\d{2}-\d{2})\.json$/.exec(path)?.[1]||null;
-  const stale=inherited.filter(x=>oddsDate(x.path)&&oddsDate(x.path)!==day).length;
-  await sql('DELETE FROM resource_refs WHERE version_id=? AND path LIKE ? AND path NOT IN (?,?)',[id,'data/odds/%',odds,'data/odds/evening/'+day+'.json']);
+  // Preserve every inherited resource, including previous dates' odds and all archive/history.
   for(const [path,body] of Object.entries(changed)){
    check(resourceAllowed(path)&&!validateResource(path,body).length,'Invalid resource '+path);
    const text=JSON.stringify(body),digest=hash(text);
@@ -110,7 +110,7 @@ async function publish(){
    assert.deepEqual(JSON.parse((await first('SELECT body FROM resources WHERE version_id=? AND path=?',[id,path]))?.body||'null'),body);
   }
   const oldCount=Number((await first('SELECT COUNT(*) n FROM resource_refs WHERE version_id=?',[active.version_id])).n),newCount=Number((await first('SELECT COUNT(*) n FROM resource_refs WHERE version_id=?',[id])).n),added=Object.keys(changed).filter(path=>!inherited.some(x=>x.path===path)).length;
-  check(newCount===oldCount-stale+added,'New active version retained stale odds or lost resources');
+  check(newCount===oldCount+added,'Inherited resources or archived odds were lost');
   const evidence='PDF SHA256 '+input.sourcePdfSha256+'; '+input.updates.length+' current odds rows mapped by fixtureId to '+oldOdds.matches.length+' today fixtures; opening prices and unrelated rows preserved; Issue '+event.issue.number;
   const review={};for(const gate of ['pdfFidelity','fixtureIdentity','editorial','formsAndOdds','results','newsScopeAndImages','allBrands','downloads','mobile'])review[gate]={passed:true,evidence};
   await sql('INSERT INTO validation_reviews(version_id,evidence,reviewed_at) VALUES(?,?,?)',[id,JSON.stringify(review),at]);
