@@ -55,18 +55,20 @@ async function publish(){
  check(input.updates.length<=oldOdds.matches.length,'Current-odds rows exceed today’s fixtures');
  const reportMatches=new Map(oldReport.matches.map(x=>[x.fixtureId,x]));
  const oddsMatches=new Map(oldOdds.matches.map(x=>[x.fixtureId,x]));
+ const identityErrors=[];
  for(const [i,u] of input.updates.entries()){
-  const m=reportMatches.get(u.fixtureId),o=oddsMatches.get(u.fixtureId);
-  check(m&&o,'Unknown fixture ID at update '+(i+1));
-  check(u.row<=oldOdds.matches.length&&u.row===(o.pdfRow||oldOdds.matches.indexOf(o)+1),'PDF row order mismatch at row '+u.row);
-  if(u.home)check(u.home===m.homeDisplay,'PDF home mismatch at row '+(u.row||i+1));
-  if(u.away)check(u.away===m.awayDisplay,'PDF away mismatch at row '+(u.row||i+1));
-  if(u.upperTeam)check(u.upperTeam===o.upperTeam,'PDF giving-team mismatch at row '+(u.row||i+1));
-  if(u.row)check(Number(u.row)===Number(o.pdfRow||oldOdds.matches.findIndex(x=>x.fixtureId===u.fixtureId)+1),'PDF row order mismatch '+u.row);
-  if(u.kickoffDisplay)check(u.kickoffDisplay===o.kickoffDisplay,'PDF kickoff mismatch at row '+(u.row||i+1));
-  if(u.openingBodyOdds)check(u.openingBodyOdds===o.bodyOdds,'Opening body price mismatch at row '+(u.row||i+1));
-  if(u.openingGoalTotalOdds)check(u.openingGoalTotalOdds===o.goalTotalOdds,'Opening total-goals price mismatch at row '+(u.row||i+1));
+  const m=reportMatches.get(u.fixtureId),o=oddsMatches.get(u.fixtureId),row=u.row||i+1;
+  if(!m||!o){identityErrors.push({row,fixtureId:u.fixtureId,problem:'Unknown published fixture ID'});continue}
+  for(const [field,expected,actual] of [
+   ['home',u.home,m.homeDisplay],['away',u.away,m.awayDisplay],
+   ['upperTeam',u.upperTeam,o.upperTeam],['openingBodyOdds',u.openingBodyOdds,o.bodyOdds],
+   ['openingGoalTotalOdds',u.openingGoalTotalOdds,o.goalTotalOdds],
+   ['kickoffDisplay',u.kickoffDisplay,o.kickoffDisplay],
+   ['pdfRow',u.row,o.pdfRow||oldOdds.matches.findIndex(x=>x.fixtureId===u.fixtureId)+1]
+  ])if(expected!==undefined&&expected!==null&&String(expected)!==String(actual))
+   identityErrors.push({row,fixtureId:u.fixtureId,field,issue:String(expected),live:String(actual)});
  }
+ check(!identityErrors.length,'PDF vs LIVE D1 mismatches: '+JSON.stringify(identityErrors).slice(0,3200));
  const nextReport=structuredClone(oldReport),nextOdds=structuredClone(oldOdds);
  for(const u of input.updates){
   const m=nextReport.matches.find(x=>x.fixtureId===u.fixtureId),o=nextOdds.matches.find(x=>x.fixtureId===u.fixtureId);
