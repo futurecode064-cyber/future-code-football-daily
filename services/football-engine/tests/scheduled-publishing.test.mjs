@@ -15,7 +15,7 @@ function setup({stale=false,validated=true}={}){
  const add=q.prepare('INSERT INTO publication_versions(id,parent_id,editorial_date,idempotency_key,input_hash,source_manifest,created_at,validated_at,ever_published) VALUES(?,?,?,?,?,?,?,?,?)');
  add.run(old,null,'2026-10-24','old','h','{"files":[]}',now.toISOString(),now.toISOString(),1);
  add.run(next,old,date,'next','h','{"files":[]}',now.toISOString(),validated?now.toISOString():null,0);
- q.prepare('UPDATE active_publication SET version_id=?,generation=? WHERE singleton=1').run(old,stale?2:1);
+ q.prepare('UPDATE active_publication SET version_id=?,generation=?,changed_at=? WHERE singleton=1').run(old,stale?2:1,now.toISOString());
  const body=JSON.stringify({reportDate:date,published:true,matches:[]});
  q.prepare('INSERT INTO resource_blobs(digest,body) VALUES(?,?)').run('a',body);
  q.prepare('INSERT INTO resource_refs(version_id,path,digest) VALUES(?,?,?)').run(next,'data/today.json','a');
