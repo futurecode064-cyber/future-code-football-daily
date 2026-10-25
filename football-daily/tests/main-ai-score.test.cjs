@@ -44,16 +44,17 @@ test("Missing team data, extreme outliers and unverified fixture data cannot cra
 });
 
 
-test("MAIN homepage shows eight navigation tiles and section shortcuts",()=>{
+test("MAIN homepage shows nine navigation tiles including the probability section",()=>{
  const main=read("index.html");
  const style=read("main-ai-score.css");
  const nav=main.match(/<nav class="date-tabs fc-main-five-nav"[^>]*>([\s\S]*?)<\/nav>/);
  assert.ok(nav,"main section menu must exist");
  const itemTags=[...nav[1].matchAll(/<(button|a)\b[^>]*>/g)].map(x=>x[0]);
- assert.equal(itemTags.length,8,"eight visible main navigation tiles, no duplicates");
+ assert.equal(itemTags.length,9,"nine visible main navigation tiles, no duplicates");
  assert.equal(itemTags.filter(x=>x.startsWith("<button")).length,2,"yesterday/today keep original button behavior");
- assert.equal(itemTags.filter(x=>x.startsWith("<a")).length,6,"odds, video, AI, two frame studio and news links");
+ assert.equal(itemTags.filter(x=>x.startsWith("<a")).length,7,"odds, probability, video, AI, two frame studio and news links");
  assert.match(nav[1],/href="\.\/odds\.html"/);
+ assert.match(nav[1],/href="#fcProbSection"/);
  assert.match(nav[1],/href="#fcVideoStudio"/);
  assert.match(nav[1],/href="#fcAiScoreSection"/);
  assert.match(nav[1],/href="#brandPreviewStudio"/);
