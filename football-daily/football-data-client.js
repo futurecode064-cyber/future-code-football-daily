@@ -95,7 +95,7 @@
    const reportDay=resources?.['data/today.json']?.reportDate;
    const day=/^\d{4}-\d{2}-\d{2}$/.test(reportDay||'')?reportDay:today;
    const previous=dayKey(new Date(day+'T12:00:00Z'),-1);
-   const oddsDay=/^\\d{4}-\\d{2}-\\d{2}$/.test(query||'')?query:day;
+   const oddsDay=/^\d{4}-\d{2}-\d{2}$/.test(query||'')?query:day;
    const list=[`data/archive/${previous}.json`,`data/fixtures/${day}.json`,`data/fixtures/${previous}.json`,
     `data/odds/${oddsDay}.json`,`data/odds/evening/${oddsDay}.json`];
    if(oddsDay!==day)list.push(`data/odds/${day}.json`,`data/odds/evening/${day}.json`);
