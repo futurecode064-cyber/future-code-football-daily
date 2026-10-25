@@ -58,3 +58,9 @@ Photo URLs (homeHeroImageUrl, awayHeroImageUrl) are optional for verified team p
 - Every feature shares ../data/today.json, ../data/odds/, root app.js, odds.js, results/archive, Special Choice, full Canvas PNG exporters, the one-fixture-title crest-only hero and the 7–8 AM public homepage notice. No per-brand duplicated data or scheduled publishing.
 - Shared Canvas kit and match-poster exporter choose Ko Thet specific dark-red/gold/silver palette and genuine crest; all previous brands retain existing colors and files.
 - Display source disclaimer on odds footer matches user-approved iBet789 wording. Manual authorization requirement for publication is unchanged.
+
+## KMM Sport Hub · 2026-10-25
+- Branded /kmm-sport-hub/ and /kmm-sport-hub/odds.html on the same shared Pages site; no copied JSON.
+- Separate crimson neon theme, original circular KMM logo, Telegram @kominmin888 and Viber 09400900440 (deep link with country code; may depend on installed Viber/browser).
+- Shared D1 branded reader, previous results, odds, Special Choice, PNG download and filters.
+- Manual single code release; daily publication remains through D1 with no Pages rebuild.
