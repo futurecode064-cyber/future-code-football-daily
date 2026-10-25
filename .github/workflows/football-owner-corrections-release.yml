@@ -1,4 +1,4 @@
-name: Release Owner Correction Editor (code only)
+name: Release Burmese League Labels and Special Choice Endings (code only)
 on:
   push:
     branches: [main]
@@ -47,3 +47,5 @@ jobs:
 # Release attempt 2: retain byte-exact hashes for unchanged reference attachments.
 
 # Release attempt 3: wait for Worker propagation and use version-based rollback.
+
+# Owner-requested 25 Oct fix: Burmese Bundesliga/Ligue 1 labels; allow named-team Special Choice ending.
