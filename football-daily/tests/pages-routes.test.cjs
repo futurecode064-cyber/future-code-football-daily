@@ -60,7 +60,7 @@ test("Public JS, CSS, logos, data and branded sites bypass the Worker", () => {
     "/assets/logo.webp", "/data/today.json", "/data/archive/2026-10-19.json",
     "/data/odds/2026-10-20.json", "/data/news/latest.json",
     "/data/news/images/uploads/2026-10-20/story.webp",
-    "/ykz-family/", "/ykz-family/odds.html", "/bw-sport/",
+    "/ykz-family/", "/ykz-family/odds.html", "/kmm-sport-hub/", "/kmm-sport-hub/odds.html", "/kmm-sport-hub/assets/logo.webp", "/bw-sport/",
     "/bw-sport/odds.html", "/ko-thet-family/",
     "/ko-thet-family/odds.html", "/myanmar-football/",
     "/future-code-journal/brand.js", "/future-code-journal/assets/logo.webp",
