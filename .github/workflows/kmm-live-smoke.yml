@@ -1,0 +1,80 @@
+name: KMM Sport Hub Live Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/kmm-live-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Wait for the existing one-shot Cloudflare Pages deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://future-code-football-daily.pages.dev"
+          ready=0
+          for attempt in $(seq 1 24); do
+            if curl -fsSL --max-time 15 "$BASE/kmm-sport-hub/" -o /tmp/kmm-home.html && grep -Fq 'KMM Sport Hub' /tmp/kmm-home.html; then
+              ready=1
+              echo "KMM homepage live on attempt $attempt"
+              break
+            fi
+            echo "Page not yet ready ($attempt / 24)"
+            sleep 10
+          done
+          test "$ready" -eq 1
+          curl -fsSL --retry 4 --retry-delay 5 "$BASE/kmm-sport-hub/odds.html" -o /tmp/kmm-odds.html
+          curl -fsSL --retry 4 --retry-delay 5 "$BASE/kmm-sport-hub/brand.js" -o /tmp/kmm-brand.js
+          curl -fsSL --retry 4 --retry-delay 5 "$BASE/kmm-sport-hub/brand.css" -o /tmp/kmm-brand.css
+          curl -fsSL --retry 4 --retry-delay 5 "$BASE/kmm-sport-hub/assets/logo.webp" -o /tmp/kmm-logo.webp
+          for page in /tmp/kmm-home.html /tmp/kmm-odds.html; do
+            grep -Fq 'https://t.me/kominmin888' "$page"
+            grep -Fq 'https://msng.link/o?+959400900440=vi' "$page"
+            grep -Fq '09400900440' "$page"
+            grep -Fq '../daily-image-export.js' "$page"
+          done
+          grep -Fq 'data-football-data-url="../data/today.json"' /tmp/kmm-home.html
+          grep -Fq 'data-football-odds-data-url="../data/odds/"' /tmp/kmm-odds.html
+          grep -Fq 'id:"kmm-sport-hub"' /tmp/kmm-brand.js
+          grep -Fq 'kmm-theme' /tmp/kmm-brand.css
+          test "$(head -c 4 /tmp/kmm-logo.webp)" = "RIFF"
+          test "$(dd if=/tmp/kmm-logo.webp bs=1 skip=8 count=4 status=none)" = "WEBP"
+          echo "KMM live home / odds / brand / original logo / contact / PNG hooks: PASS"
+
+      - name: Verify existing original websites are still online
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://future-code-football-daily.pages.dev"
+          for path in "/" "/ykz-family/" "/bw-sport/" "/ko-thet-family/" "/future-code-journal/"; do
+            curl -fsSL --retry 3 --retry-delay 3 --max-time 15 "$BASE$path" -o /tmp/existing-home.html
+            test -s /tmp/existing-home.html
+            echo "Original $path: PASS"
+          done
+
+      - name: Validate live D1 publication for KMM brand without writing data
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          const api='https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev';
+          const manifestResponse=await fetch(api+'/api/football/manifest',{headers:{'Cache-Control':'no-cache'}});
+          if(!manifestResponse.ok)throw Error('D1 manifest '+manifestResponse.status);
+          const manifest=await manifestResponse.json();
+          if(!/^[0-9a-f-]{36}$/.test(manifest.version||''))throw Error('Missing valid publication');
+          const u=new URL('/api/football/resource',api);
+          u.searchParams.set('path','data/today.json');
+          u.searchParams.set('version',manifest.version);
+          u.searchParams.set('brand','kmm');
+          const r=await fetch(u);
+          if(!r.ok||r.headers.get('X-Football-Version')!==manifest.version)throw Error('KMM pinned D1 report fetch failed: '+r.status);
+          const data=await r.json();
+          if(!Array.isArray(data.matches))throw Error('Invalid report schema');
+          console.log('KMM D1 pinned data PASS; version '+manifest.version+'; fixtures '+data.matches.length+'; report date '+data.reportDate);
+          NODE
