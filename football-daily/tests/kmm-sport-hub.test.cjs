@@ -32,7 +32,7 @@ test('KMM original logo is valid rounded 128px WebP',()=>{
  assert.equal(img.readUInt32LE(4)+8,img.length);
  assert.ok(img.length>2000);
 });
-test('KMM dark-neon-red branding and exports stay independent of other sites',()=>{
+test('KMM true-red/gold stadium branding and exports stay independent of other sites',()=>{
  const css=read('kmm-sport-hub/brand.css');
  assert.ok(css.includes('.kmm-theme .match-card'));
  assert.ok(css.includes('.kmm-theme .odds-table'));
@@ -50,4 +50,27 @@ test('KMM dark-neon-red branding and exports stay independent of other sites',()
  for(const page of ['index.html','ykz-family/index.html','bw-sport/index.html','ko-thet-family/index.html']){
   assert.ok(!read(page).includes('kmm-theme'));
  }
+});
+
+test('KMM matchday redesign uses the locally hosted footballer artwork and original logo',()=>{
+ const home=read('kmm-sport-hub/index.html'),odds=read('kmm-sport-hub/odds.html'),css=read('kmm-sport-hub/brand.css');
+ assert.match(home,/class="kmm-stadium-banner"/);
+ assert.match(home,/class="kmm-banner-logo" src="\.\/assets\/logo\.webp"/);
+ assert.match(home,/<h1>KMM <span>အားကစား<\/span><br>ဂျာနယ်<\/h1>/);
+ assert.match(css,/--kmm-red:#df0000/);
+ assert.match(css,/--kmm-gold:#f3c75d/);
+ assert.match(css,/football-gold-stadium\.webp/);
+ assert.ok(fs.existsSync(path.join(root,'future-code-journal/assets/football-gold-stadium.webp')),'local stadium photograph exists');
+ assert.match(css,/\.kmm-theme \.hero::before/);
+ assert.match(css,/\.kmm-theme \.kmm-stadium-banner/);
+ for(const html of [home,odds]){
+  assert.match(html,/class="kmm-theme"/);
+  assert.match(html,/kmm-red-gold-stadium-20261025/);
+  assert.match(html,/content="#b40000"/);
+ }
+ assert.match(read('kmm-sport-hub/brand.js'),/gold:"#f3c65a"/);
+ assert.match(read('brand-download-masthead.js'),/symbol:"KMM"/);
+ assert.match(read('canvas-image-kit.js'),/kmmBranded\?\{bg:"#100705",head:"#980000"/);
+ assert.match(read('daily-image-export.js'),/brand==="kmm-sport-hub".*accent:"#f3c65a"/);
+ assert.match(read('card-export.js'),/isKMM\?"#b20000"/);
 });
