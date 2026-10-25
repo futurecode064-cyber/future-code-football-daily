@@ -21,7 +21,7 @@ function server({failPath='',version='v1'}={}){
 }
 const args={config:{enabled:true,apiBase:'https://engine.example'},assetRoot:'https://site.example/',pageUrl:'https://site.example/',now};
 test('all brands share one complete pinned decision across report, odds, news, AI and exports',async()=>{
- for(const brand of ['main','goal-zone','bw-sport','ykz','ko-thet']){
+ for(const brand of ['main','goal-zone','bw-sport','ykz','ko-thet','kmm']){
   const s=server(),c=createClient({...args,brand,fetcher:s.fetcher});
   const urls=['data/today.json','data/odds/2026-10-22.json','data/today.json?ai=1','data/archive/2026-10-21.json','data/odds/evening/2026-10-22.json'];
   const responses=await Promise.all(urls.map(p=>c.fetch(new URL(p,args.assetRoot))));
@@ -53,13 +53,13 @@ test('Yangon midnight and dated odds in a subdirectory keep correct paths',async
  assert.equal((await c.fetch('../data/odds/2026-10-20.json')).headers.get('X-Football-Version'),'v1');
  assert.ok(s.calls.some(u=>u.searchParams.get('path')==='data/odds/2026-10-20.json'));
 });
-test('ten existing pages load disabled config then client before their renderers',()=>{
- for(const folder of ['', 'future-code-journal/','bw-sport/','ykz-family/','ko-thet-family/'])for(const page of ['index.html','odds.html']){
+test('twelve branded and root pages load published D1 config then client before their renderers',()=>{
+ for(const folder of ['', 'future-code-journal/','bw-sport/','ykz-family/','ko-thet-family/','kmm-sport-hub/'])for(const page of ['index.html','odds.html']){
   const html=readFileSync(new URL('../../../football-daily/'+folder+page,import.meta.url),'utf8');
   const config=html.indexOf('football-engine-config.js'),client=html.indexOf('football-data-client.js');
   assert.ok(config>0&&client>config);assert.ok(client<html.indexOf(page==='odds.html'?'odds.js?':'app.js?'));
  }
- assert.match(readFileSync(new URL('../../../football-daily/football-engine-config.js',import.meta.url),'utf8'),/enabled:false/);
+ assert.match(readFileSync(new URL('../../../football-daily/football-engine-config.js',import.meta.url),'utf8'),/enabled:true/);
 });
 
 test('older Android WebView without static Response.json can read pinned publications',async()=>{
