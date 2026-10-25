@@ -9,6 +9,7 @@ on:
       - 'football-daily/_worker.js'
       - 'football-daily/tests/pages-routes.test.cjs'
       - 'football-daily/tests/kmm-sport-hub.test.cjs'
+      - 'football-daily/tests/main-ai-score.test.cjs'
       - 'football-daily/kmm-sport-hub/**'
       - 'football-daily/tests/main-login.test.cjs'
       - 'football-daily/tests/goal-zone-analytics.test.cjs'
@@ -19,6 +20,7 @@ on:
       - 'football-daily/_worker.js'
       - 'football-daily/tests/pages-routes.test.cjs'
       - 'football-daily/tests/kmm-sport-hub.test.cjs'
+      - 'football-daily/tests/main-ai-score.test.cjs'
       - 'football-daily/kmm-sport-hub/**'
       - '.github/workflows/pages-routing-safety.yml'
   workflow_dispatch:
