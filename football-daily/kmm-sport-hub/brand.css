@@ -138,3 +138,25 @@
 }
 @media(max-width:385px){.kmm-theme .kmm-banner-logo{width:76px;height:76px}.kmm-theme .kmm-banner-copy strong{font-size:31px}.kmm-theme .kmm-banner-copy small{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.kmm-contact-link,.kmm-quick-nav a{transition:none}}
+
+
+/* Published odds sheet deliberately keeps high-contrast white price cells,
+   with KMM-only red league headers and gold accents, including PNG capture. */
+html.kmm-theme{--sheet-brand:#b40000;--sheet-deep:#410500;--sheet-accent:#f4ca61;--sheet-title:#ffe29b;--sheet-ink:#21160e}
+.kmm-theme body .odds-content .odds-group{border-color:#c89c42!important;box-shadow:0 10px 30px #0008}
+.kmm-theme body .odds-content .odds-group h2.odds-league-heading{border-bottom:2px solid #e1b353!important}
+.kmm-theme body .odds-content .odds-table th{background:#a90000!important;color:#fff1c0!important;border-color:#dcae57!important}
+.kmm-theme body .odds-content .odds-table td.upper{background:#fff0cb!important;color:#5b2b09!important}
+.kmm-theme body .odds-content .odds-table .price{font-weight:900!important;color:#18110c!important}
+.kmm-theme .brand-odds-single{background:linear-gradient(120deg,#3b0a04,#130a07);border-color:#bc8c34;color:#ffe6ac}
+.kmm-theme .brand-odds-single button{background:linear-gradient(120deg,#b00000,#750000);border-color:#f5c961;color:#fff1c7}
+.kmm-theme .odds-league-filter{background:#1c0b06;border:1px solid #9d7738;color:#fff0c9}
+@media(max-width:700px){
+ .kmm-theme body main.odds-content #oddsList .odds-group .brand-odds-mobile{background:#330b05!important}
+ .kmm-theme body main.odds-content #oddsList .odds-group .bmo-card{border:1px solid #c99a44;box-shadow:0 3px 15px #22090055}
+ .kmm-theme body main.odds-content .bmo-card .bmo-time{background:#ae0000!important;color:#ffe9b8!important}
+ .kmm-theme body main.odds-content .bmo-card .bmo-market h3{background:#740000!important;color:#fff0c2!important}
+ .kmm-theme body main.odds-content .bmo-card .bmo-vs{color:#b30000!important}
+ .kmm-theme body main.odds-content .bmo-card .bmo-upper{background:#fff0ce!important;color:#67360a!important}
+ .kmm-theme body main.odds-content .bmo-card .bmo-market{border-color:#e0c48c}
+}
