@@ -1,0 +1,64 @@
+name: KMM Sport Hub Browser PNG QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/kmm-browser-download-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install headless browser tooling
+        shell: bash
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Exercise mobile KMM page and real PNG downloads
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFileSync} from 'node:fs';
+          const base='https://future-code-football-daily.pages.dev/kmm-sport-hub/';
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const context=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:1,acceptDownloads:true});
+          const page=await context.newPage();
+          const checkPng=async(download,label)=>{
+            const bytes=readFileSync(await download.path());
+            const hex=bytes.subarray(0,8).toString('hex');
+            if(hex!=='89504e470d0a1a0a'||bytes.length<4000)throw Error(label+' invalid PNG: '+hex+', bytes='+bytes.length);
+            console.log(label+' DOWNLOAD PASS '+bytes.readUInt32BE(16)+'x'+bytes.readUInt32BE(20)+' bytes='+bytes.length);
+          };
+          try{
+            await page.goto(base,{waitUntil:'domcontentloaded',timeout:45000});
+            await page.locator('#matchList .match-card').first().waitFor({timeout:60000});
+            const logo=await page.locator('.kmm-site-logo').first().evaluate(i=>i.complete&&i.naturalWidth>0);
+            if(!logo)throw Error('Original KMM logo did not render');
+            if(!await page.locator('a[href="https://msng.link/o?+959400900440=vi"]').count())throw Error('KMM Viber link missing');
+            if(!await page.locator('a[href="https://t.me/kominmin888"]').count())throw Error('KMM Telegram link missing');
+            console.log('KMM mobile home, match list, circular logo, contacts PASS');
+            const previewBtn=page.locator('.match-download').first();
+            await previewBtn.waitFor({timeout:12000});
+            const [preview]=await Promise.all([page.waitForEvent('download',{timeout:100000}),previewBtn.click()]);
+            await checkPng(preview,'One-match preview');
+            await page.goto(base+'odds.html',{waitUntil:'domcontentloaded',timeout:45000});
+            await page.locator('#oddsLeagueFilter input[type="checkbox"]').first().waitFor({timeout:60000});
+            const cb=page.locator('#oddsLeagueFilter input[type="checkbox"]');
+            const count=await cb.count();
+            if(!count)throw Error('Odds league filter missing');
+            if(count>1){
+              await page.locator('#oddsLeagueFilter .odds-filter-control').nth(1).click();
+              await cb.first().check();
+            }
+            const one=page.locator('#brandSingleSelected');
+            await one.waitFor({timeout:12000});
+            if(!await one.isEnabled())throw Error('Selected-league PNG button disabled');
+            const [odds]=await Promise.all([page.waitForEvent('download',{timeout:100000}),one.click()]);
+            await checkPng(odds,'Selected-league odds');
+            console.log('KMM mobile browser real preview and odds PNG PASS');
+          }finally{await browser.close();}
+          NODE
