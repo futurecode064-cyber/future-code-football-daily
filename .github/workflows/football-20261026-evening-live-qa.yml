@@ -29,7 +29,7 @@ jobs:
             const page=await ctx.newPage();
             try{
              await page.goto('https://future-code-football-daily.pages.dev'+route+'?date=2026-10-26',{waitUntil:'domcontentloaded',timeout:45000});
-             await page.waitForFunction(()=>document.querySelectorAll('.odds-table td.odds-current').length===22,{},{timeout:50000});
+             await page.waitForFunction(()=>{const x=[...document.querySelectorAll('.odds-table td.odds-current')];return x.length===22&&x[0].textContent.trim()==='1+90'&&x[21].textContent.trim()==='3+90';},{},{timeout:50000});
              const actual=await page.locator('.odds-table td.odds-current').allTextContents();
              for(let i=0;i<11;i++){
               if(actual[2*i].trim()!==expected[i][0]||actual[2*i+1].trim()!==expected[i][1])throw Error(name+' row '+(i+1)+' wrong current: '+JSON.stringify(actual.slice(i*2,i*2+2)));
