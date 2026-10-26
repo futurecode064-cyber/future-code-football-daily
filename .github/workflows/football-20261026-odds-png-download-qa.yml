@@ -1,0 +1,50 @@
+name: Smoke test six-site live Odds PNG downloads
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-20261026-odds-png-download-qa.yml']
+permissions:
+  contents: read
+jobs:
+  odds-png:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install real Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Download live main and five branded Odds PNGs
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFileSync} from 'node:fs';
+          const base='https://future-code-football-daily.pages.dev';
+          const fixtures=JSON.parse(readFileSync('football-daily/data/odds/2026-10-26.json','utf8'));
+          if(fixtures.reportDate!=='2026-10-26'||fixtures.matches.length!==11)throw Error('Source fixtures changed');
+          const urls=[['Main','/odds.html','#tofSave'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected']];
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          let success=0;
+          try{
+           for(const [label,path,selector] of urls){
+            const context=await browser.newContext({viewport:{width:460,height:850},deviceScaleFactor:1,acceptDownloads:true});
+            const page=await context.newPage();
+            try{
+             await page.goto(base+path,{waitUntil:'domcontentloaded',timeout:45000});
+             const button=page.locator(selector);
+             await button.waitFor({state:'visible',timeout:60000});
+             await page.waitForFunction(sel=>{const b=document.querySelector(sel);return b&&!b.disabled;},selector,{timeout:60000});
+             const [download]=await Promise.all([page.waitForEvent('download',{timeout:90000}),button.click()]);
+             const bytes=readFileSync(await download.path());
+             if(bytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||bytes.length<15000)throw Error('Invalid downloaded PNG');
+             console.log(label+' ODDS PNG PASS bytes='+bytes.length+' dimensions='+bytes.readUInt32BE(16)+'x'+bytes.readUInt32BE(20));
+             success++;
+            }catch(e){
+             const message=await page.locator('#tofStatus,#brandOddsStatus,#oddsStatus,#oddsExportStatus').allTextContents().catch(()=>[]);
+             throw Error(label+' odds PNG failed: '+e.message+' STATUS '+message.join(' / ').slice(0,700));
+            }finally{await context.close()}
+           }
+          }finally{await browser.close()}
+          if(success!==6)throw Error('Not all branded sites passed');
+          NODE
