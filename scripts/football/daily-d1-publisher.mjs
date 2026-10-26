@@ -36,7 +36,7 @@ async function payload(event){
   }
   const report=resources['data/today.json'],sheet=resources['data/odds/'+m.date+'.json'],archive=resources['data/archive/'+yesterday+'.json'];
   check(report.reportDate===m.date&&sheet.reportDate===m.date&&archive.reportDate===yesterday,'Wrong source report dates');
-  check(report.matches.length===11&&archive.matches.length===22&&archive.matches.every(x=>x.status==='finished'&&/^\\d{1,2}-\\d{1,2}$/.test(x.finalScore||'')),'Unexpected 26 October source package or 25 October score archive');
+  check(report.matches.length===11&&archive.matches.length===22&&archive.matches.every(x=>x.status==='finished'&&/^\d{1,2}-\d{1,2}$/.test(x.finalScore||'')),'Unexpected 26 October source package or 25 October score archive');
   const verified=evidence=>({passed:true,evidence}),pending=evidence=>({passed:false,evidence});
   const review={
    pdfFidelity:verified('Owner PDF SHA-256 recorded in report sourceManifest; 11 numbered PDF rows preserved in odds and report'),
