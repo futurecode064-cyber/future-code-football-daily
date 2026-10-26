@@ -22,6 +22,36 @@ async function payload(event){
  check(process.env.GITHUB_REPOSITORY===repo&&event.action==='labeled'&&event.label?.name==='football-d1-daily-publish','Wrong issue trigger');
  check(event.issue?.user?.login==='futurecode064-cyber'&&event.issue?.state==='open'&&!event.issue?.pull_request,'Repo owner issue required');
  const m=JSON.parse(event.issue.body||'null');
+ if(m?.kind==='future-code-football-repo-rollover-v1'){
+  check(m.date===yangonDate(new Date()),'Owner rollover must match current Yangon date');
+  check(Number.isInteger(m.expectedGeneration)&&m.expectedGeneration>=0,'Expected D1 generation required');
+  const yesterday=new Date(Date.parse(m.date+'T00:00:00Z')-86400000).toISOString().slice(0,10);
+  const paths=['data/today.json','data/odds/'+m.date+'.json','data/archive/'+yesterday+'.json'];
+  const resources={};
+  for(const path of paths){
+   const body=readFileSync('football-daily/'+path,'utf8');
+   const blobSha=createHash('sha1').update('blob '+Buffer.byteLength(body)+'\\0').update(body).digest('hex');
+   check(m.blobs?.[path]===blobSha,'Pinned source changed: '+path);
+   resources[path]=JSON.parse(body);
+  }
+  const report=resources['data/today.json'],sheet=resources['data/odds/'+m.date+'.json'],archive=resources['data/archive/'+yesterday+'.json'];
+  check(report.reportDate===m.date&&sheet.reportDate===m.date&&archive.reportDate===yesterday,'Wrong source report dates');
+  check(report.matches.length===11&&archive.matches.length===22&&archive.matches.every(x=>x.status==='finished'&&/^\\d{1,2}-\\d{1,2}$/.test(x.finalScore||'')),'Unexpected 26 October source package or 25 October score archive');
+  const verified=evidence=>({passed:true,evidence}),pending=evidence=>({passed:false,evidence});
+  const review={
+   pdfFidelity:verified('Owner PDF SHA-256 recorded in report sourceManifest; 11 numbered PDF rows preserved in odds and report'),
+   fixtureIdentity:verified('Pinned 11-row GitHub report and opening-odds sheet require validateResources and validateEditorial before activation'),
+   editorial:verified('Owner-approved preview metadata and special ending are checked again by validateEditorial before activation'),
+   formsAndOdds:verified('Last-five, standings, 1X2, and Myanmar morning odds require validateEditorial before activation; current odds left blank'),
+   results:verified('Pinned previous-day archive contains 22 finished matches with sourced score fields; original preview fields retained'),
+   newsScopeAndImages:pending('No new 26 October news supplied. Existing news feed and image assets are inherited, not relabeled as current.'),
+   allBrands:pending('Five original brand routes and KMM to receive post-activation HTTP smoke checks'),
+   downloads:pending('Manual PNG download rendering has not been verified for new-day data'),
+   mobile:pending('Mobile browser visual QA has not been verified for new-day data')
+  };
+  return {m:{...m,mode:'daily',repoRollover:true,sha256:hash(JSON.stringify(resources))},p:{editorialDate:m.date,resources,sourceManifest:report.sourceManifest,review}};
+ }
+
  check(m?.kind==='future-code-football-d1-daily-v1'&&dateValid(m.date)&&['daily','news-only'].includes(m.mode)&&/^[a-f0-9]{64}$/.test(m.sha256||'')&&Number.isInteger(m.parts)&&m.parts>0&&m.parts<=100,'Invalid metadata');
  const chunks=new Map(),pattern=/<!-- future-code-d1-part:([a-f0-9]{64}):(\d+)\/(\d+) -->\s*([A-Za-z0-9+/=\r\n]+)\s*$/;
  for(let page=1;page<=10;page++){const comments=await gh('https://api.github.com/repos/'+repo+'/issues/'+event.issue.number+'/comments?per_page=100&page='+page);for(const c of comments){const t=String(c.body||'').trim().match(pattern);if(!t||t[1]!==m.sha256)continue;check(c.user?.login==='futurecode064-cyber'&&+t[3]===m.parts&&+t[2]>=1&&+t[2]<=m.parts&&!chunks.has(+t[2]),'Untrusted/duplicate comment');chunks.set(+t[2],t[4].replace(/\s/g,''))}if(comments.length<100)break}
@@ -36,14 +66,15 @@ async function publish(){
  result.issue=event.issue.number;result.date=m.date;result.mode=m.mode;result.changedPaths=paths.map(x=>x[0]);result.matchCount=p.resources['data/today.json']?.matches?.length??null;
  check(p.sourceManifest?.files?.length>0&&p.sourceManifest.files.every(x=>x.name&&/^[a-f0-9]{64}$/.test(x.sha256||'')),'Invalid source fingerprint');
  check(paths.length>0&&paths.length<=45&&paths.every(([k,v])=>resourceAllowed(k)&&v&&typeof v==='object'&&JSON.stringify(v).length<500000&&!validateResource(k,v).length),'Invalid D1 resource');
- if(m.mode==='news-only')check(paths.length===1&&paths[0][0]==='data/news/latest.json','News-only isolation failed');else check(p.resources['data/today.json']&&p.resources['data/odds/'+m.date+'.json']&&p.resources['data/news/latest.json'],'Full daily requires today, opening odds and current news');
- check(!reviewErrors(p.review).length,'All nine verified QA receipts required');
+ if(m.mode==='news-only')check(paths.length===1&&paths[0][0]==='data/news/latest.json','News-only isolation failed');else check(p.resources['data/today.json']&&p.resources['data/odds/'+m.date+'.json'],'Full daily requires today and opening odds');
+ if(m.repoRollover)result.qaPending=reviewErrors(p.review);else check(!reviewErrors(p.review).length,'All nine verified QA receipts required');
  if(p.resources['data/news/latest.json'])validateNews(p.resources['data/news/latest.json'],m.date);
  result.pagesBefore=await pages();
  check(result.pagesBefore!==null,'Cloudflare Pages deployment identity unavailable; cannot verify no-build guarantee');
  const owner=await one('SELECT owner FROM football_engine_installation WHERE singleton=1');check(owner?.owner===repo,'Wrong database');
  const state=await one('SELECT version_id,generation FROM active_publication WHERE singleton=1'),live=await manifest();
  check(state?.version_id===live.version&&state.generation===live.generation,'D1 pointer mismatch');
+ if(m.repoRollover)check(state.generation===m.expectedGeneration,'D1 changed since owner approved rollover');
  result.previousVersion=state.version_id;result.previousGeneration=state.generation;
  const key='daily:'+m.date+':'+m.sha256.slice(0,40),previous=await one('SELECT id,ever_published FROM publication_versions WHERE idempotency_key=?',[key]);
  if(previous?.ever_published){for(const [k,v] of paths)assert.deepEqual(await read(state.version_id,k),v,'Stale retry');result.version=state.version_id;result.generation=state.generation;result.alreadyPublished=true}
@@ -71,14 +102,16 @@ async function publish(){
  }
  const now=await manifest();check(now.version===result.version&&now.generation===result.generation,'No live D1 activation');
  for(const [k,v] of paths)assert.deepEqual(await read(result.version,k),v,'Read-back failed '+k);
- const news=await read(result.version,'data/news/latest.json','goal-zone');check(news.date===m.date,'Goal Zone feed stale');result.newsCount=news.items?.length;
+ if(p.resources['data/news/latest.json']){const news=await read(result.version,'data/news/latest.json','goal-zone');check(news.date===m.date,'Goal Zone feed stale');result.newsCount=news.items?.length;}
+ else result.newsPreservedUnmodified=true;
  const base='https://future-code-football-daily.pages.dev';
  const sitePages=[
   ['Main',base+'/','odds.html'],
   ['YKZ FAMILY',base+'/ykz-family/','ykz-family/odds.html'],
   ['BW Sport',base+'/bw-sport/','bw-sport/odds.html'],
   ['Ko Thet Family',base+'/ko-thet-family/','ko-thet-family/odds.html'],
-  ['Goal Zone',base+'/future-code-journal/','future-code-journal/odds.html']
+  ['Goal Zone',base+'/future-code-journal/','future-code-journal/odds.html'],
+  ['KMM Sport Hub',base+'/kmm-sport-hub/','kmm-sport-hub/odds.html']
  ];
  result.pagesChecked=[];
  for(const [name,home,oddsPath] of sitePages)for(const u of [home,base+'/'+oddsPath]){
