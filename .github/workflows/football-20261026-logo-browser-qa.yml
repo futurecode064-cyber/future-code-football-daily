@@ -31,7 +31,7 @@ jobs:
             const page=await ctx.newPage();
             page.on('console',m=>{if(m.type()==='error')console.log(name+' console: '+m.text().slice(0,160))});
             await page.goto(origin+route,{waitUntil:'domcontentloaded',timeout:50000});
-            await page.waitForFunction(()=>!!window.FutureCodeCanvasKit&&!!window.FutureCodeFramePreview&&!!(window.FutureCodeMainLogoAssets||window.FutureCodeBrandExportData)===false,null,{timeout:35000});
+            await page.waitForFunction(()=>!!window.FutureCodeCanvasKit&&!!window.FutureCodeFramePreview&&!!(window.FutureCodeMainLogoAssets||window.FutureCodeBrandExportData),null,{timeout:35000});
             const summary=await page.evaluate(async matches=>{
              const mapper=window.FutureCodeMainLogoAssets||window.FutureCodeBrandExportData;
              const crestUrls=[...new Set(matches.flatMap(m=>[m.homeCrestUrl,m.awayCrestUrl]))];
