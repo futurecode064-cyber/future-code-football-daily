@@ -1,0 +1,79 @@
+name: QA main odds frame tight rows and clock labels
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/qa-main-odds-tight-frame-20261026.yml']
+permissions:
+  contents: read
+jobs:
+  main-frame:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup real Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Assert live 11-row PNG table has one date and exact short times with compact alignment
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFileSync,mkdirSync} from 'node:fs';
+          const app='https://future-code-football-daily.pages.dev/odds.html?date=2026-10-26';
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const results=[];
+          try{
+           for(const width of [1280,390]){
+            const context=await browser.newContext({viewport:{width,height:870},deviceScaleFactor:1,acceptDownloads:true});
+            const page=await context.newPage();
+            await page.goto(app,{waitUntil:'domcontentloaded',timeout:45000});
+            await page.waitForFunction(()=>document.querySelectorAll('#oddsList .odds-table tbody tr').length===11&&document.querySelector('#tofSave')&&document.querySelector('#oddsList td.odds-current')?.textContent?.trim()==='1+90',null,{timeout:50000});
+            await page.evaluate(()=>{
+             window.__frameLayout=[];
+             const capture=window.html2canvas;
+             if(typeof capture!=='function')throw Error('Missing html2canvas');
+             window.html2canvas=(root,options)=>{
+              const rows=[...root.querySelectorAll('.odds-group .odds-table tbody tr')];
+              const times=rows.map(r=>r.querySelector('td.time')?.textContent.trim());
+              const groups=[...root.querySelectorAll('.odds-group')];
+              const groupGaps=groups.slice(1).map((g,i)=>Math.round(g.getBoundingClientRect().top-groups[i].getBoundingClientRect().bottom));
+              const heights=rows.map(r=>Math.round(r.getBoundingClientRect().height));
+              const widths=rows.map(r=>Math.round(r.getBoundingClientRect().width));
+              const headDisplays=groups.map(g=>getComputedStyle(g.querySelector('thead')).display);
+              const tableDisplays=groups.map(g=>getComputedStyle(g.querySelector('table')).display);
+              const theDates=[...root.querySelectorAll('.fc-odds-date-heading')].map(x=>x.textContent.trim());
+              window.__frameLayout.push({times,groupGaps,heights,widths,headDisplays,tableDisplays,theDates,mainMode:root.classList.contains('fc-main-compact-odds')});
+              return capture(root,options);
+             };
+            });
+            const downloadPromise=page.waitForEvent('download',{timeout:120000});
+            await page.locator('#tofSave').click();
+            const download=await downloadPromise;
+            const bytes=readFileSync(await download.path());
+            if(bytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||bytes.length<100000)throw Error('Downloaded PNG invalid');
+            const audits=await page.evaluate(()=>window.__frameLayout);
+            if(audits.length===0)throw Error('Frame never passed through live DOM capture');
+            const layout=audits[0];
+            const expected=['၀၂:၃၀','၀၂:၀၀','၀၀:၃၀','၀၁:၁၅','၀၂:၀၀','၀၂:၁၅','၀၂:၁၅','၂၂:၃၀','၂၂:၃၀','၀၁:၀၀','၀၀:၃၅'];
+            if(JSON.stringify(layout.times)!==JSON.stringify(expected))throw Error('Frame time labels are not clock-only: '+JSON.stringify(layout.times));
+            if(layout.theDates.length!==1||layout.theDates[0]!=='2026-10-26')throw Error('Date should be heading only '+JSON.stringify(layout.theDates));
+            if(layout.heights.some(h=>h>96||h<50))throw Error('Unaligned/oversized rows '+layout.heights);
+            if(layout.groupGaps.some(g=>g>8||g<0))throw Error('Oversized gaps between league groups '+layout.groupGaps);
+            if(layout.headDisplays.some(x=>x!=='table-header-group')||layout.tableDisplays.some(x=>x!=='table'))throw Error('Responsive mobile table override '+JSON.stringify(layout));
+            if(!layout.mainMode)throw Error('Main-only frame CSS missing');
+            mkdirSync('frame-qa', {recursive:true});
+            await download.saveAs('frame-qa/main-odds-'+width+'px.png');
+            results.push({width,rowHeights:layout.heights,groupGaps:layout.groupGaps,clockCells:layout.times.length,oneDate:layout.theDates[0],pngBytes:bytes.length});
+            await context.close();
+           }
+           console.log('FRAME-COMPACT-QA-PASS '+JSON.stringify(results));
+          }finally{await browser.close();}
+          NODE
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: main-odds-frame-layout-check
+          path: frame-qa/*.png
+          retention-days: 7
+          if-no-files-found: ignore
