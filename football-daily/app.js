@@ -15,7 +15,7 @@ const LEAGUE_NAMES={
  "FIFA World Cup":"ကမ္ဘာ့ဖလား","FIFA World Cup Qualifying":"ကမ္ဘာ့ဖလား ခြေစစ်ပွဲ",
  "UEFA Euro":"ဥရောပနိုင်ငံများဖလား","UEFA Euro Qualifying":"ယူရို ခြေစစ်ပွဲ"
 };
-Object.assign(LEAGUE_NAMES,{"Danish Cup":"ဒိန်းမတ် ဖလား","Norwegian 1. Division":"နော်ဝေးလိဂ် ၁","Veikkausliiga Playoffs":"ဖင်လန် လိဂ် ပလေးအော့"});
+Object.assign(LEAGUE_NAMES,{"Danish Cup":"ဒိန်းမတ် ဖလား","Norwegian 1. Division":"နော်ဝေးလိဂ် ၁","Veikkausliiga Playoffs":"ဖင်လန် လိဂ် ပလေးအော့","Danish Superliga":"ဒိန်းမတ် စူပါလိဂ်","Liga Portugal":"ပေါ်တူဂီ ပရီးမီးယားလိဂ်","Turkish Super Lig":"တူရကီ စူပါလိဂ်","Superettan":"ဆွီဒင် စူပါရက်တန်လိဂ်","La Liga":"စပိန်လာလီဂါ","La Liga 2":"စပိန်လာလီဂါ ၂","Ligue 1":"ပြင်သစ်လီဂူးဝမ်း","Ligue 2":"ပြင်သစ်လီဂူး ၂"});
 const LEAGUE_ALIASES={
  "England League 1":"League One","EFL League One":"League One",
  "League 1":"League One","English League One":"League One",
@@ -71,10 +71,6 @@ const $=id=>document.getElementById(id);
 function dateParts(){
  const preview=typeof location==='undefined'?null:new URLSearchParams(location.search),day=preview?.get('date');
  if(preview?.get('fcDraft')&&/^\d{4}-\d{2}-\d{2}$/.test(day||'')){const [year,month,date]=day.split('-');return {key:day,day:`${date}/${month}/${year}`};}
- const published=window.FootballData?.currentDate?.();
- if(/^\d{4}-\d{2}-\d{2}$/.test(published||'')){
-  const [year,month,date]=published.split('-');return {key:published,day:date+'/'+month+'/'+year};
- }
  const pieces=new Intl.DateTimeFormat("en-GB",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
  const p=Object.fromEntries(pieces.filter(x=>x.type!=="literal").map(x=>[x.type,x.value]));
  return {key:`${p.year}-${p.month}-${p.day}`,day:`${p.day}/${p.month}/${p.year}`};
@@ -488,8 +484,6 @@ function refreshDateLabels(){
 }
 async function load(){
  const sequence=++loadSequence;
- if(window.FootballData?.ready)await window.FootballData.ready();
- if(sequence!==loadSequence)return;
  const offset=selectedDay,target=selectedDateKey(offset);
  const isCurrent=()=>sequence===loadSequence&&offset===selectedDay&&target===selectedDateKey(offset);
  loading=true;refreshDateLabels();render();
