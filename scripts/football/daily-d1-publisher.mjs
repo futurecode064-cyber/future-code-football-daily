@@ -30,7 +30,7 @@ async function payload(event){
   const resources={};
   for(const path of paths){
    const body=readFileSync('football-daily/'+path,'utf8');
-   const blobSha=createHash('sha1').update('blob '+Buffer.byteLength(body)+'\\0').update(body).digest('hex');
+   const blobSha=createHash('sha1').update('blob '+Buffer.byteLength(body)+'\0').update(body).digest('hex');
    check(m.blobs?.[path]===blobSha,'Pinned source changed: '+path);
    resources[path]=JSON.parse(body);
   }
