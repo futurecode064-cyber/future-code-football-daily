@@ -1,0 +1,46 @@
+name: Audit 26 Oct evening odds on six live sites
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-20261026-evening-live-qa.yml']
+permissions:
+  contents: read
+jobs:
+  evening-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install browser
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Compare all 11 current odds and actually download PNG from six sites
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFileSync} from 'node:fs';
+          const expected=[["1+90","2-40"],["1-85","3-90"],["1-25","3-5"],["1-50","3+90"],["-60","2-75"],["-30","3+90"],["-35","2-50"],["1-80","3-60"],["-100","3="],["-80","3-40"],["-10","3+90"]];
+          const origins=[['Main','/odds.html','#tofSave'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected']];
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          try{
+           for(const [name,route,selector] of origins){
+            const ctx=await browser.newContext({viewport:{width:420,height:860},deviceScaleFactor:1,acceptDownloads:true});
+            const page=await ctx.newPage();
+            try{
+             await page.goto('https://future-code-football-daily.pages.dev'+route+'?date=2026-10-26',{waitUntil:'domcontentloaded',timeout:45000});
+             await page.waitForFunction(()=>document.querySelectorAll('.odds-table td.odds-current').length===22,{},{timeout:50000});
+             const actual=await page.locator('.odds-table td.odds-current').allTextContents();
+             for(let i=0;i<11;i++){
+              if(actual[2*i].trim()!==expected[i][0]||actual[2*i+1].trim()!==expected[i][1])throw Error(name+' row '+(i+1)+' wrong current: '+JSON.stringify(actual.slice(i*2,i*2+2)));
+             }
+             const count=await page.locator('.odds-table tbody tr').count();if(count!==11)throw Error(name+' row count '+count);
+             const button=page.locator(selector);await button.waitFor({state:'visible',timeout:25000});
+             const [download]=await Promise.all([page.waitForEvent('download',{timeout:100000}),button.click()]);
+             const bytes=readFileSync(await download.path());
+             if(bytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||bytes.length<15000)throw Error(name+' bad PNG');
+             console.log(name+' CURRENT 11/11 VERIFIED, 22 current cells, PNG PASS '+bytes.length+' bytes');
+            }finally{await ctx.close()}
+           }
+          }finally{await browser.close()}
+          NODE
