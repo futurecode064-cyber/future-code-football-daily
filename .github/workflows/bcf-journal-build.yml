@@ -1,0 +1,88 @@
+name: BCF Android Journal - isolated build
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/bcf-journal-build.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Prepare isolated BCF application
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          src=Path("android-journal")
+          dst=Path("/tmp/bcf-native")
+          shutil.copytree(src,dst,ignore=shutil.ignore_patterns("build"))
+          replacements=[
+            ("mm.futurecode.sportsjournal","mm.futurecode.betcityfamily"),
+            ("future-code-journal","bet-city-family"),
+            ("ဂိုးဇုံ အားကစား ဂျာနယ်","BCF ဘောလုံးဂျာနယ်"),
+            ("Goal Zone Sports Journal","BCF Journal"),
+            ("Goal-Zone-Journal-","BCF-Journal-"),
+            ("Goal-Zone-Sports-Journal","BCF-Journal"),
+            ("Policy.HOME+\"odds\"","Policy.HOME+\"odds.html\""),
+            ("0xff111111","0xff020a2d"),
+            ("0xff171717","0xff09164c"),
+            ("0xffedc66b","0xffffd77d"),
+            ("0xffd4ae57","0xff1053c8"),
+            ("#111111","#020A2D"),
+          ]
+          for path in [*dst.rglob("*.java"),*dst.rglob("*.xml"),*dst.rglob("*.js"),dst/"README.md"]:
+            value=path.read_text(encoding="utf8")
+            for old,new in replacements:
+              value=value.replace(old,new)
+            if path.name=="AndroidManifest.xml" and path.parent==dst:
+              value=value.replace('android:versionCode="2" android:versionName="1.0.1"','android:versionCode="1" android:versionName="1.0.0"')
+            if path.name=="Policy.java":
+              value=value.replace('public static final String MANIFEST=HOME+"android/latest.json";','public static final String MANIFEST="https://raw.githubusercontent.com/futurecode064-cyber/future-code-football-daily/main/bcf-android/latest.json";')
+              start=value.index("public static boolean trustedApk(")
+              value=value[:start]+'''public static boolean trustedApk(String value){try{java.net.URI u=new java.net.URI(value);return "https".equals(u.getScheme())&&"github.com".equals(u.getHost())&&u.getPath().startsWith("/futurecode064-cyber/future-code-football-daily/releases/download/bcf-journal-v")&&u.getPath().endsWith(".apk");}catch(Exception e){return false;}}
+          }
+          '''
+            if path.name=="Net.java":
+              value=value.replace('!"future-code-football-daily.pages.dev".equals(url.getHost())','!("future-code-football-daily.pages.dev".equals(url.getHost())||("raw.githubusercontent.com".equals(url.getHost())&&address.equals(Policy.MANIFEST))||("github.com".equals(url.getHost())&&Policy.trustedApk(address)))')
+              value=value.replace('c.setInstanceFollowRedirects(false);','c.setInstanceFollowRedirects(Policy.trustedApk(address));')
+            path.write_text(value,encoding="utf8")
+          for test in dst.glob("tests/src/**/*.java"):
+            if "sportsjournal" in test.read_text():
+              raise Exception("Original journal package not converted")
+          assert (dst/"src/mm/futurecode/sportsjournal/MainActivity.java").exists()
+          main=(dst/"src/mm/futurecode/sportsjournal/MainActivity.java").read_text()
+          assert "mm.futurecode.betcityfamily" in main
+          assert "BCF ဘောလုံးဂျာနယ်" in main
+          assert "Policy.HOME+\"odds.html\"" in main
+          print("BCF app identity, notification channels, image saving and update verification prepared")
+          PY
+          curl -fL --retry 3 "https://raw.githubusercontent.com/futurecode064-cyber/AI-Recap-GitHub/football-daily-render/football-daily/bet-city-family/assets/logo.png" -o /tmp/bcf-native/res/drawable-nodpi/logo.png
+          file /tmp/bcf-native/res/drawable-nodpi/logo.png
+          python3 /tmp/bcf-native/build.py
+          cp /tmp/bcf-native/build/Future-Code-Sports-Journal-unsigned.apk BCF-Journal-v1.0.0-unsigned.apk
+          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" bcf-apksigner.jar
+      - name: Verify unsigned APK package and dex
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging BCF-Journal-v1.0.0-unsigned.apk | grep "mm.futurecode.betcityfamily"
+          unzip -l BCF-Journal-v1.0.0-unsigned.apk | grep classes.dex
+      - name: Upload owner-signing build
+        uses: actions/upload-artifact@v4
+        with:
+          name: BCF-Journal-Unsigned-Build
+          path: |
+            BCF-Journal-v1.0.0-unsigned.apk
+            bcf-apksigner.jar
+          if-no-files-found: error
