@@ -12,10 +12,11 @@ const sourceRepo = 'futurecode064-cyber/future-code-football-daily';
 const productionRepo = 'futurecode064-cyber/AI-Recap-GitHub';
 const productionBranch = 'football-daily-render';
 const base = process.env.FOOTBALL_LIVE_ROOT || 'https://future-code-football-daily.pages.dev';
-const date = process.env.FOOTBALL_EXPECT_DATE || new Intl.DateTimeFormat('en-CA', {
+const yangonParts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
   timeZone: 'Asia/Yangon', year: 'numeric', month: '2-digit', day: '2-digit'
-}).format(new Date());
-if (!/^\\d{4}-\\d{2}-\\d{2}$/.test(date)) throw Error('FOOTBALL_EXPECT_DATE must be YYYY-MM-DD');
+}).formatToParts(new Date()).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
+const date = process.env.FOOTBALL_EXPECT_DATE || [yangonParts.year, yangonParts.month, yangonParts.day].join('-');
+if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw Error('FOOTBALL_EXPECT_DATE must be YYYY-MM-DD');
 const report = { kind: 'future-code-daily-static-live-audit-v1', date, checkedAt: new Date().toISOString(),
   sourceRepo, productionRepo, productionBranch, root: base, errors: [], warnings: [], checks: {}, sites: {} };
 const error = (s) => report.errors.push(s);
@@ -58,7 +59,7 @@ try {
     count: sourceData.matches?.length ?? null };
   report.production = { reportDate: productionData.reportDate, published: productionData.published,
     count: productionData.matches?.length ?? null, contentSha256: sha256(productionText) };
-  const found = engineText.match(/enabled\\s*:\\s*(true|false)/);
+  const found = engineText.match(/enabled\s*:\s*(true|false)/);
   report.engineReaderEnabled = found ? found[1] === 'true' : null;
   if (!found) error('Production engine reader status cannot be determined.');
   if (report.engineReaderEnabled === true)
@@ -119,7 +120,7 @@ try {
   await Promise.all(sitePaths.map(async (path) => {
     try {
       const html = await request(base + path);
-      const ok = /<html[\\s>]/i.test(html) && /(?:app\\.js|football|ဘောလုံး)/i.test(html);
+      const ok = /<html[\s>]/i.test(html) && /(?:app\.js|football|ဘောလုံး)/i.test(html);
       report.sites[path] = { accessible: true, htmlLength: html.length, footballEntrypoint: ok };
       if (!ok) error('Unrecognized live football page at ' + path);
     } catch (e) { report.sites[path] = { accessible: false, reason: e.message }; error('LIVE route unverified ' + path); }
