@@ -50,11 +50,29 @@ jobs:
             if path.name=="AndroidManifest.xml" and path.parent==dst:
               value=value.replace('android:versionCode="2" android:versionName="1.0.1"','android:versionCode="1" android:versionName="1.0.0"')
             if path.name=="Policy.java":
-              value=value.replace('public static final String MANIFEST=HOME+"android/latest.json";','public static final String MANIFEST="https://raw.githubusercontent.com/futurecode064-cyber/future-code-football-daily/main/bcf-android/latest.json";')
+              value=value.replace('public static final String MANIFEST=HOME+"android/latest.json";','public static final String MANIFEST=HOME+"android/latest.json";')
               start=value.index("public static boolean trustedApk(")
               value=value[:start]+'''public static boolean trustedApk(String value){try{java.net.URI u=new java.net.URI(value);return "https".equals(u.getScheme())&&"github.com".equals(u.getHost())&&u.getPath().startsWith("/futurecode064-cyber/future-code-football-daily/releases/download/bcf-journal-v")&&u.getPath().endsWith(".apk");}catch(Exception e){return false;}}
           }
           '''
+            if path.name=="ContentNotifier.java":
+              point=" public static synchronized void check(Context c)throws Exception{"
+              assert point in value
+              value=value.replace(point,''' public static void ownerBroadcast(Context c){
+  try{
+    org.json.JSONObject j=Net.json(Policy.HOME+"android/notifications.json");
+    if(!j.optBoolean("active",false))return;
+    String id=j.optString("id","").trim(),title=j.optString("title","").trim(),body=j.optString("body","").trim();
+    if(id.isEmpty()||id.length()>100||title.isEmpty()||body.isEmpty()||title.length()>120||body.length()>500)return;
+    String route=j.optString("route",Policy.HOME);
+    if(!Policy.trustedPage(route))route=Policy.HOME;
+    android.content.SharedPreferences prefs=c.getSharedPreferences("bcf_owner_notice",0);
+    if(id.equals(prefs.getString("last_id","")))return;
+    if(post(c,105,title,body,route,false))prefs.edit().putString("last_id",id).apply();
+  }catch(Exception ignored){}
+ }
+'''+point)
+              value=value.replace('  channels(c);if(!enabled(c))return;','  channels(c);if(!enabled(c))return;ownerBroadcast(c);')
             if path.name=="Net.java":
               value=value.replace('!"future-code-football-daily.pages.dev".equals(url.getHost())','!("future-code-football-daily.pages.dev".equals(url.getHost())||("raw.githubusercontent.com".equals(url.getHost())&&address.equals(Policy.MANIFEST))||("github.com".equals(url.getHost())&&Policy.trustedApk(address)))')
               value=value.replace('c.setInstanceFollowRedirects(false);','c.setInstanceFollowRedirects(Policy.trustedApk(address));')
