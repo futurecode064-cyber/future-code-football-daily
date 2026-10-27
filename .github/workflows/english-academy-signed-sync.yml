@@ -44,7 +44,7 @@ jobs:
           path=Path('football-daily/english-academy/latest.json')
           obj=json.loads(path.read_text(encoding='utf-8'))
           obj['versionCode']=5
-          obj['versionName']='1.0.2'
+          obj['versionName']='1.0.4'
           obj['apkUrl']='https://future-code-football-daily.pages.dev/english-academy/Future_Code_English_Academy_v1.0.4.apk'
           obj['sha256']='4a6d6adae48ef0a4c12e88c903f5a47c1340b2f6c79e3a0197c82ea55be6682c'
           obj['sizeBytes']=6722175
