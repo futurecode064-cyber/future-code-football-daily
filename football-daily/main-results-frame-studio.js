@@ -159,7 +159,7 @@
     if(artwork&&sourceBottom){
       ctx.drawImage(artwork,0,artwork.height-sourceBottom,artwork.width,sourceBottom,0,H-bh,W,bh);
     }else if(bottom)ctx.drawImage(bottom,0,H-bh,W,bh);
-    return canvas;
+    return window.FutureCodeProfessionalFrames ? await window.FutureCodeProfessionalFrames.wrap(canvas,"results") : canvas;
   }
   function init(){
     const bar=document.getElementById("resultsDownloadBar");
