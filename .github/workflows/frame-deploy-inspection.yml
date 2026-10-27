@@ -1,0 +1,33 @@
+name: Frame production deployment inspection
+on:
+  push:
+    branches: [fix/frame-deploy-check-20261027]
+    paths: ['.github/workflows/frame-deploy-inspection.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect Pages deployment status
+        env:
+          CF_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+        run: |
+          node --input-type=module <<'NODE'
+          const token=process.env.CF_TOKEN;
+          if(!token)throw Error('Pages API token is not configured');
+          const account='86851bf21d81d8f0972052aff8162149';
+          const base='https://api.cloudflare.com/client/v4/accounts/'+account+'/pages/projects/future-code-football-daily';
+          for(const suffix of ['', '/deployments?per_page=5']) {
+            const res=await fetch(base+suffix,{headers:{Authorization:'Bearer '+token}});
+            const data=await res.json();
+            console.log('RESPONSE',suffix||'project',res.status);
+            if(!res.ok){console.log('ERRORS',JSON.stringify((data.errors||[]).map(x=>({code:x.code,message:x.message}))));continue;}
+            if(!suffix)console.log('PROJECT',JSON.stringify({name:data.result?.name,source:data.result?.source?.config?.production_branch,latest:data.result?.latest_deployment?.id}));
+            else console.log('DEPLOYMENTS',JSON.stringify((data.result||[]).map(x=>({id:x.id,env:x.environment,status:x.latest_stage?.status,stage:x.latest_stage?.name,created:x.created_on,branch:x.deployment_trigger?.metadata?.branch,commit:x.deployment_trigger?.metadata?.commit_hash}))));
+          }
+          NODE
