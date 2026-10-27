@@ -1,12 +1,12 @@
 {
   "packageName": "mm.futurecode.englishacademy",
-  "versionCode": 3,
+  "versionCode": 5,
   "versionName": "1.0.2",
-  "apkUrl": "https://future-code-football-daily.pages.dev/english-academy/Future_Code_English_Academy_v1.0.2.apk",
+  "apkUrl": "https://future-code-football-daily.pages.dev/english-academy/Future_Code_English_Academy_v1.0.4.apk",
   "published": true,
-  "releaseNotes": "54 bilingual lessons A0-C1; corrected lesson progress, speech feedback, offline exercises, practice and reminders.",
-  "sha256": "957379eb6f464f0573226967636e6f9f351bc1d0836459b4c2281964b8e56f20",
+  "releaseNotes": "54 bilingual lessons A0-C1, 270 embedded offline English MP3 clips, writing, speaking and progress.",
+  "sha256": "4a6d6adae48ef0a4c12e88c903f5a47c1340b2f6c79e3a0197c82ea55be6682c",
   "certificateSha256": "0e37a26cd08900280d2486ff47fa4ea0375c3c89ac5cba51b47ac31be908ecc3",
   "publishedAt": "2026-10-27",
-  "sizeBytes": 148299
+  "sizeBytes": 6722175
 }
