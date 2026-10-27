@@ -105,7 +105,7 @@ const key=select.dataset.section;select.replaceChildren(new Option("မူရင
 select.value=state.selected[key]||"none";
 });
 }
-function mini(){
+function mini(){let created=false;
 const targets={results:"#mainResultsFrameStudio",previews:"#brandPreviewStudio",odds:/^\/odds/.test(location.pathname)?"#mainTableOddsFrames":"#brandOddsStudio",ai:"#fcAiExportPanel",news:"#fcNewsSection"};
 for(const [key,selector] of Object.entries(targets)){
 const target=document.querySelector(selector);if(!target||target.querySelector(".fcp-mini"))continue;
@@ -114,8 +114,8 @@ const label=document.createElement("label"),select=document.createElement("selec
 label.textContent="Professional Frame";select.dataset.section=key;label.append(select);
 link.href="#fcProfessionalFrameStudio";link.textContent="Frame / Banner ပြင်မယ်";
 select.onchange=async()=>{state.selected[key]=select.value;try{await save();const master=el("fcpAssignments")?.querySelector('select[data-section="'+key+'"]');if(master)master.value=select.value;status(labels[key]+" Frame သိမ်းပြီး");}catch(e){status(e.message,true);}};
-row.append(label,link);target.prepend(row);
-}syncMini();
+row.append(label,link);target.prepend(row);created=true;
+}if(created)syncMini();
 }
 async function compress(file){
 if(!file)return null;
