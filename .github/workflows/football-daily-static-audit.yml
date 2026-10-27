@@ -4,8 +4,11 @@ on:
     branches: [main]
     paths:
       - 'scripts/football/daily-state-audit.mjs'
+      - 'scripts/football/daily-live-browser-qa.mjs'
       - '.github/workflows/football-daily-static-audit.yml'
   workflow_dispatch:
+  issues:
+    types: [opened]
 permissions:
   contents: read
 concurrency:
@@ -13,6 +16,10 @@ concurrency:
   cancel-in-progress: true
 jobs:
   read-only-audit:
+    if: >-
+      github.event_name != 'issues' ||
+      (github.event.issue.user.login == 'futurecode064-cyber' &&
+       startsWith(github.event.issue.title, '[FOOTBALL-DAILY-VERIFY]'))
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
@@ -35,3 +42,34 @@ jobs:
           retention-days: 14
           if-no-files-found: warn
 # This is a read-only audit; it never publishes or modifies D1, Cloudflare Pages or GitHub files.
+
+  browser-png-qa:
+    needs: read-only-audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify browser QA syntax
+        run: node --check scripts/football/daily-live-browser-qa.mjs
+      - name: Install headless Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Verify six mobile pages and download actual odds PNGs
+        run: node scripts/football/daily-live-browser-qa.mjs
+      - name: Store PNG dimensions and browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-daily-live-browser-evidence
+          path: football-daily-live-browser-evidence/
+          retention-days: 14
+          if-no-files-found: warn
+# To re-run both checks from ChatGPT without manual workflow setup:
+# create a new issue whose title starts with [FOOTBALL-DAILY-VERIFY].
+# Owner-issued issues only; read-only. A passed audit is not a claim of independent fact-checking.
