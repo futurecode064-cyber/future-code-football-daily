@@ -1,0 +1,37 @@
+name: Football Daily Static Production Readback Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/football/daily-state-audit.mjs'
+      - '.github/workflows/football-daily-static-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: football-daily-static-read-audit
+  cancel-in-progress: true
+jobs:
+  read-only-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify audit syntax
+        run: node --check scripts/football/daily-state-audit.mjs
+      - name: Audit current production against six live brand routes
+        run: node scripts/football/daily-state-audit.mjs football-daily-audit.json
+      - name: Attach read-only audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-daily-static-audit
+          path: football-daily-audit.json
+          retention-days: 14
+          if-no-files-found: warn
+# This is a read-only audit; it never publishes or modifies D1, Cloudflare Pages or GitHub files.
