@@ -30,7 +30,9 @@ jobs:
             if(!suffix)console.log('PROJECT',JSON.stringify({name:data.result?.name,source:data.result?.source?.config?.production_branch,latest:data.result?.latest_deployment?.id}));
             else console.log('DEPLOYMENTS',JSON.stringify((data.result||[]).map(x=>({id:x.id,env:x.environment,status:x.latest_stage?.status,stage:x.latest_stage?.name,created:x.created_on,branch:x.deployment_trigger?.metadata?.branch,commit:x.deployment_trigger?.metadata?.commit_hash}))));
           }
-          const logRes=await fetch(base+'/deployments/d51e703d-e491-4239-87df-06a71f66a0bf/history/logs',{headers:{Authorization:'Bearer '+token}});
+          const listData=await (await fetch(base+'/deployments?per_page=1',{headers:{Authorization:'Bearer '+token}})).json();
+          const latest=listData.result?.[0]?.id;
+          const logRes=await fetch(base+'/deployments/'+latest+'/history/logs',{headers:{Authorization:'Bearer '+token}});
           const logData=await logRes.json();
           const lines=(logData.result?.data||[]).map(x=>x.line||x.message||'').filter(x=>/error|fail|limit|exceed|unable/i.test(x)).map(x=>x.replace(/(Bearer|token|secret|password)[^ ]*/gi,'[redacted]').slice(0,450));
           console.log('DEPLOY LOG',logRes.status,JSON.stringify(lines.slice(-12)));
