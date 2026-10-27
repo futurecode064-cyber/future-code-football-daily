@@ -34,3 +34,11 @@
 - `BLOCKED` — name the exact missing source, permission, failed test, deployment or verification step; don't ask for information already supplied.
 
 No paid APIs, no card-required service, no unrequested cron jobs. A GitHub Action cannot autonomously generate original verified Burmese reporting without real data/AI providers. **The one-message trigger is handled by ChatGPT using connected tools**, with preflight and readback; it is not a claim that a background assistant persists between chats.
+
+## Main-only user Frame Studio (approved 2026-10-27)
+
+- Preserve `football-daily/main-frame-editor.js` loaded **only** from root `football-daily/odds.html`; five branded odds pages must stay unchanged.
+- Allow locally saved custom frame images (JPG/PNG/WEBP), user-set names/colors/top and bottom artwork proportions, edits/hiding/restoring stock frame choices, and Frame ZIP based on the live in-memory `designs` list. `main-odds-dom-frame.js` supports custom `design[4].image` while preserving original built-in banner assets.
+- League and each fixture's home/away Burmese display names may be overridden **only in the temporary cloned PNG DOM**. Never modify published team identity, league IDs, the real on-screen odds table, actual price data or shared `data/odds` JSON. `FutureCodeFrameEditor.exportNames(date)` provides the current date-scoped overrides.
+- Presets, uploads and export-only names are stored in the visiting browser's IndexedDB, not globally on the website, with JSON backup/import for device transfer. Do not claim public/server-side ownership, privacy across users, or multi-device sync. A globally shared, owner-only manager requires authentication and persistent backend storage.
+- Validate a real 2160-wide custom PNG, local persistence across reload, stock frame hide/restore, export-only text fidelity, and no UI leakage into brand mirrors. The production QA workflow is `.github/workflows/main-frame-editor-live-qa.yml` on `AI-Recap-GitHub:football-daily-render`.
