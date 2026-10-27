@@ -112,7 +112,8 @@
   ctx.font='400 16px Arial, sans-serif';
   creditLines.forEach((line,i)=>ctx.fillText(line,68,footerY+68+i*25));
 
-  const blob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error("PNG unavailable")),"image/png"));
+  const poster=window.FutureCodeProfessionalFrames?await window.FutureCodeProfessionalFrames.wrap(canvas,"news"):canvas;
+  const blob=await new Promise((resolve,reject)=>poster.toBlob(b=>b?resolve(b):reject(new Error("PNG unavailable")),"image/png"));
   return {blob,width:canvas.width,height:canvas.height,filename:(isGoalZone?"Goal-Zone":"Future-Code")+"-News-"+s.id.replace(/[^a-z0-9_-]/gi,"-")+".png"};
  }
  function posterFor(s){
