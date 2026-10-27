@@ -59,19 +59,19 @@ jobs:
               point=" public static synchronized void check(Context c)throws Exception{"
               assert point in value
               value=value.replace(point,''' public static void ownerBroadcast(Context c){
-  try{
-    org.json.JSONObject j=Net.json(Policy.HOME+"android/notifications.json");
-    if(!j.optBoolean("active",false))return;
-    String id=j.optString("id","").trim(),title=j.optString("title","").trim(),body=j.optString("body","").trim();
-    if(id.isEmpty()||id.length()>100||title.isEmpty()||body.isEmpty()||title.length()>120||body.length()>500)return;
-    String route=j.optString("route",Policy.HOME);
-    if(!Policy.trustedPage(route))route=Policy.HOME;
-    android.content.SharedPreferences prefs=c.getSharedPreferences("bcf_owner_notice",0);
-    if(id.equals(prefs.getString("last_id","")))return;
-    if(post(c,105,title,body,route,false))prefs.edit().putString("last_id",id).apply();
-  }catch(Exception ignored){}
- }
-'''+point)
+            try{
+              org.json.JSONObject j=Net.json(Policy.HOME+"android/notifications.json");
+              if(!j.optBoolean("active",false))return;
+              String id=j.optString("id","").trim(),title=j.optString("title","").trim(),body=j.optString("body","").trim();
+              if(id.isEmpty()||id.length()>100||title.isEmpty()||body.isEmpty()||title.length()>120||body.length()>500)return;
+              String route=j.optString("route",Policy.HOME);
+              if(!Policy.trustedPage(route))route=Policy.HOME;
+              android.content.SharedPreferences prefs=c.getSharedPreferences("bcf_owner_notice",0);
+              if(id.equals(prefs.getString("last_id","")))return;
+              if(post(c,105,title,body,route,false))prefs.edit().putString("last_id",id).apply();
+            }catch(Exception ignored){}
+           }
+          '''+point)
               value=value.replace('  channels(c);if(!enabled(c))return;','  channels(c);if(!enabled(c))return;ownerBroadcast(c);')
             if path.name=="Net.java":
               value=value.replace('!"future-code-football-daily.pages.dev".equals(url.getHost())','!("future-code-football-daily.pages.dev".equals(url.getHost())||("raw.githubusercontent.com".equals(url.getHost())&&address.equals(Policy.MANIFEST))||("github.com".equals(url.getHost())&&Policy.trustedApk(address)))')
