@@ -133,7 +133,7 @@ jobs:
           sha256sum "$APK" | tee BCF-v1.0.0-SHA256.txt
           gh release view bcf-journal-v1.0.0 > /dev/null 2>&1 || gh release create bcf-journal-v1.0.0 \
             --title 'BCF ဘောလုံးဂျာနယ် Android v1.0.0' \
-            --notes 'Android 8+; BCF live site; gallery image save; periodic updates and notifications. Future same-app upgrades require the same owner's release signing certificate.'
+            --notes "Android 8+; BCF live site; gallery image save; periodic updates and notifications. Future same-app upgrades require the same signing certificate."
           gh release upload bcf-journal-v1.0.0 "$APK" BCF-v1.0.0-SHA256.txt --clobber
       - name: Upload owner-signing build
         uses: actions/upload-artifact@v4
