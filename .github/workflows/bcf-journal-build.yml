@@ -5,7 +5,7 @@ on:
     paths: ['.github/workflows/bcf-journal-build.yml']
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -96,6 +96,45 @@ jobs:
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging BCF-Journal-v1.0.0-unsigned.apk | grep "mm.futurecode.betcityfamily"
           unzip -l BCF-Journal-v1.0.0-unsigned.apk | grep classes.dex
+
+      - name: Create installable Android APK release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER_KEYSTORE_B64: ${{ secrets.BCF_RELEASE_KEYSTORE_B64 }}
+          OWNER_STOREPASS: ${{ secrets.BCF_RELEASE_STOREPASS }}
+          OWNER_ALIAS: ${{ secrets.BCF_RELEASE_ALIAS }}
+          OWNER_KEYPASS: ${{ secrets.BCF_RELEASE_KEYPASS }}
+        run: |
+          set -euo pipefail
+          # Prefer a protected, stable owner signing key when configured.
+          # Without it, this first release can be installed, but its certificate
+          # cannot be used for future in-place updates. The owner must provision
+          # the same signing key for every release.
+          if [[ -n "$OWNER_KEYSTORE_B64" && -n "$OWNER_STOREPASS" ]]; then
+            printf '%s' "$OWNER_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/bcf-release.p12"
+            export ALIAS="${OWNER_ALIAS:-bcf-release}"
+            export KEY_PASS="${OWNER_KEYPASS:-$OWNER_STOREPASS}"
+            echo "Owner release signing configured"
+          else
+            keytool -genkeypair -noprompt -storetype PKCS12 -keystore "$RUNNER_TEMP/bcf-release.p12" \
+              -storepass android -keypass android -alias bcf-release -keyalg RSA \
+              -keysize 3072 -validity 3650 -dname 'CN=BCF Journal Initial Release,O=Future Code'
+            export OWNER_STOREPASS=android ALIAS=bcf-release KEY_PASS=android
+            echo "::warning::No stable release signing secrets configured; future upgrades cannot use a different key"
+          fi
+          APK=BCF-Bet-City-Family-v1.0.0.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign \
+            --ks "$RUNNER_TEMP/bcf-release.p12" --ks-type PKCS12 \
+            --ks-key-alias "$ALIAS" --ks-pass "env:OWNER_STOREPASS" \
+            --key-pass "env:KEY_PASS" --out "$APK" BCF-Journal-v1.0.0-unsigned.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep "package: name='mm.futurecode.betcityfamily'"
+          sha256sum "$APK" | tee BCF-v1.0.0-SHA256.txt
+          gh release view bcf-journal-v1.0.0 > /dev/null 2>&1 || gh release create bcf-journal-v1.0.0 \
+            --title 'BCF ဘောလုံးဂျာနယ် Android v1.0.0' \
+            --notes 'Android 8+; BCF live site; gallery image save; periodic updates and notifications. Future same-app upgrades require the same owner's release signing certificate.'
+          gh release upload bcf-journal-v1.0.0 "$APK" BCF-v1.0.0-SHA256.txt --clobber
       - name: Upload owner-signing build
         uses: actions/upload-artifact@v4
         with:
