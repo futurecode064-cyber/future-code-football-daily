@@ -23,10 +23,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p football-daily/english-academy
-          URL="https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/english-academy-v1.0.2/Future_Code_English_Academy_v1.0.2.apk"
-          FILE="football-daily/english-academy/Future_Code_English_Academy_v1.0.2.apk"
+          URL="https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/english-academy-v1.0.4/Future_Code_English_Academy_v1.0.4.apk"
+          FILE="football-daily/english-academy/Future_Code_English_Academy_v1.0.4.apk"
           curl -fL --retry 4 --retry-delay 2 "$URL" -o "$FILE"
-          echo "957379eb6f464f0573226967636e6f9f351bc1d0836459b4c2281964b8e56f20  $FILE" | sha256sum -c -
+          echo "4a6d6adae48ef0a4c12e88c903f5a47c1340b2f6c79e3a0197c82ea55be6682c  $FILE" | sha256sum -c -
       - name: Sync matching public English web lessons
         shell: bash
         run: |
@@ -43,17 +43,17 @@ jobs:
           from pathlib import Path
           path=Path('football-daily/english-academy/latest.json')
           obj=json.loads(path.read_text(encoding='utf-8'))
-          obj['versionCode']=3
+          obj['versionCode']=5
           obj['versionName']='1.0.2'
-          obj['apkUrl']='https://future-code-football-daily.pages.dev/english-academy/Future_Code_English_Academy_v1.0.2.apk'
-          obj['sha256']='957379eb6f464f0573226967636e6f9f351bc1d0836459b4c2281964b8e56f20'
-          obj['sizeBytes']=148299
-          obj['releaseNotes']='54 bilingual lessons A0-C1; corrected lesson progress, speech feedback, offline exercises, practice and reminders.'
+          obj['apkUrl']='https://future-code-football-daily.pages.dev/english-academy/Future_Code_English_Academy_v1.0.4.apk'
+          obj['sha256']='4a6d6adae48ef0a4c12e88c903f5a47c1340b2f6c79e3a0197c82ea55be6682c'
+          obj['sizeBytes']=6722175
+          obj['releaseNotes']='54 bilingual lessons A0-C1, 270 embedded offline English MP3 clips, writing, speaking and progress.'
           path.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add football-daily/english-academy/Future_Code_English_Academy_v1.0.2.apk football-daily/english-academy/latest.json football-daily/english-academy/app/app.js football-daily/english-academy/app/lessons.js
+          git add football-daily/english-academy/Future_Code_English_Academy_v1.0.4.apk football-daily/english-academy/latest.json football-daily/english-academy/app/app.js football-daily/english-academy/app/lessons.js
           if git diff --cached --quiet; then echo "English Academy already synced"; exit 0; fi
-          git commit -m "Publish verified English Academy v1.0.2 APK and updated web lessons"
+          git commit -m "Publish verified English Academy v1.0.4 APK and updated web lessons"
           git push origin HEAD:main
