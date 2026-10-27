@@ -1,16 +1,10 @@
-ဒီ PDF ကို နေ့စဉ် update အတွက် သုံးပါ။ GitHub repository
-futurecode064-cyber/future-code-football-daily ၏
-football-engine/workers-d1-migration branch မှ AGENTS.md နှင့် config/football/project.json ကို အရင်ဖတ်ပါ။
-ထို့နောက် docs/football/PROGRESS.md၊ DAILY_UPDATE_WORKFLOW.md၊ validation-rules.json နှင့်
-FUTURE_CODE_DAILY_MASTER_PROMPT_V3.txt တို့ကို ဖတ်ပြီး လက်ရှိ deployment status ကို စစ်ပါ။
+နေ့စဉ် “ဒီနေ့အတွက် တင်ပါ” ဆိုသော တစ်ကြောင်းတည်းမှ Future Code Football Daily ၏ အပြည့်အစုံလုပ်ငန်းစဉ်ကို စတင်ပါ။ အခြားညွှန်ကြားချက် အသစ်ရှိလျှင် ထိုနေ့အတွက် ဦးစားပေးပါ။
 
-စနစ်က live-verified မဖြစ်သေးလျှင် နေ့စဉ် content အသစ် မရေးမထုတ်ဝေပါနှင့်။
-သိမ်းထားသော checkpoint မှ infrastructure migration ကျန်အဆင့်များကိုသာ ဆက်လုပ်ပါ။
-API URL၊ Admin Endpoint၊ credential access နှင့် QA ရလဒ်များကို မတီထွင်ပါနှင့်။
+အလုပ်စခါစ GitHub repo futurecode064-cyber/future-code-football-daily ၏ main branch မှ AGENTS.md နှင့် docs/football/DAILY_COMMAND_RUNBOOK.md ကို ဖတ်ပါ။ ထို runbook က ယနေ့လုပ်ဆောင်ရမည့် အတည်ပြုပြီး စနစ်နှင့် production verification အတွက် အဓိက reference ဖြစ်သည်။
 
-live-verified ဖြစ်ပြီးမှ PDF source ledger → research → full previews → Special Choice →
-AI → yesterday results → news/photos (ယနေ့ညွှန်ကြားချက်အတိုင်း) → draft import → validation →
-publish → site/download verify ကို stored rules အတိုင်း အဆုံးထိ လုပ်ပါ။
-မူလကြေး/ယခုကြေး မရောရ။ သတင်းက Main + Goal Zone တွင်သာ ပေါ်ရမည်။
-နေ့စဉ် data update အတွက် GitHub commit သို့မဟုတ် Cloudflare build မလုပ်ပါနှင့်။
-ယနေ့ သီးခြားညွှန်ကြားချက်များရှိလျှင် ထိုညွှန်ကြားချက်ကို ဦးစားပေးပါ။
+Production သည် futurecode064-cyber/AI-Recap-GitHub ၏ football-daily-render branch မှ football-daily/ folder ဖြစ်နိုင်သဖြင့် တကယ်အသက်ဝင်နေသော football-engine-config.js ကို အရင်စစ်ပါ။ enabled:false ဖြစ်လျှင် Static GitHub → Cloudflare Pages route ဖြစ်ပြီး D1 Data တင်ရုံနှင့် website live မဖြစ်ပါ။ Source main ၏ မနေ့က data ကို Production ယနေ့ data ပေါ် မထပ်ရေးပါနှင့်။ GitHub SHA အသစ်နှင့် LIVE readback နှစ်မျိုးစလုံး အတည်ပြုပါ။
+
+နေ့စဉ် Yesterday FT results → Today's fixtures Myanmar time → team/league logo, last 5, league standings/points, 1X2 → PDF မူလကြေး၊ ယခုကြေး၊ အင်တာနက်ခန့်မှန်းချက် → owner-provided professional Burmese previews, ၂ ပွဲ Special Choice (ပေးထားသောစာသားအတိုင်း) → shared JSON publish → all six site routes, PNG/mobile/browser QA → evidence-based receipt အဆင့်တိုင်း ဆက်လုပ်ပါ။ မလုံလောက်သေးလျှင် အကြောင်းရင်းကို ရှင်းပြပါ။ အသုံးပြုသူကို တင်နေကြ Format အကြောင်း နေ့စဉ် ပြန်မေးခြင်း မလုပ်ပါနှင့်။
+
+Runbook: docs/football/DAILY_COMMAND_RUNBOOK.md
+Read-only live audit: node scripts/football/daily-state-audit.mjs
