@@ -1,0 +1,75 @@
+name: Publish Verified Football Frame and Tips to Existing Pages
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-frame-tip-production-release.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: football-frame-tip-publish
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: futurecode064-cyber/AI-Recap-GitHub
+          ref: football-daily-render
+          path: publish-source
+          fetch-depth: 1
+      - name: Release snapshot and asset preflight
+        run: |
+          set -euo pipefail
+          test "$(git -C publish-source rev-parse HEAD)" = "e15b284e39025f6637b795ddb4b666f152030056"
+          test -f publish-source/football-daily/_worker.js
+          test -f publish-source/football-daily/_routes.json
+          test -f publish-source/football-daily/main-tip-scores.js
+          grep -q 'main-tip-scores.js' publish-source/football-daily/index.html
+          grep -q 'sectionLayoutSettings' publish-source/football-daily/frame-editor.html
+          node --check publish-source/football-daily/main-tip-scores.js
+          node --check publish-source/football-daily/frame-workspace.js
+          node -e 'if(require("./publish-source/football-daily/data/tips/2026-10-28.json").items.length!==18)process.exit(1)'
+      - name: Verify correct Cloudflare project before writing
+        env:
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          CF_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+        run: |
+          node --input-type=module <<'NODE'
+          const token=process.env.FOOTBALL_PAGES_CF_API_TOKEN;
+          if(!token||token.length<24)throw Error('Cloudflare token missing; no changes made');
+          const url='https://api.cloudflare.com/client/v4/accounts/'+process.env.CF_ACCOUNT_ID+'/pages/projects/future-code-football-daily';
+          const r=await fetch(url,{headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(25000)});
+          const a=await r.json();
+          if(!r.ok||!a.success)throw Error('Pages project inaccessible');
+          const p=a.result;
+          if(p.name!=='future-code-football-daily'||p.production_branch!=='football-daily-render'||p.source?.config?.owner!=='futurecode064-cyber'||p.source?.config?.repo_name!=='AI-Recap-GitHub'||p.build_config?.destination_dir!=='football-daily')
+           throw Error('Unexpected Pages source or project; refuse deployment');
+          console.log('Project verified. Current deployment:',p.canonical_deployment?.id);
+          NODE
+      - name: Install existing Wrangler
+        run: npm ci --prefix services/football-engine --ignore-scripts
+      - name: Deploy approved production snapshot
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+        run: |
+          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash e15b284e39025f6637b795ddb4b666f152030056 --commit-message "Sourced VIP Bookies AI + Unified Frame Editor" --commit-dirty=true
+      - name: Verify production HTML and script bytes
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 15); do
+            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/main-tip-scores.js?v=20261028-vip-bookie-ai-v3' -o /tmp/future-tip.js || true
+            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/' -o /tmp/future-home.html || true
+            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/frame-editor.html' -o /tmp/future-frame.html || true
+            if grep -q 'FutureCodeTipScores' /tmp/future-tip.js && grep -q 'main-tip-scores.js?v=20261028-vip-bookie-ai-v3' /tmp/future-home.html && grep -q 'sectionLayoutSettings' /tmp/future-frame.html; then
+              echo "LIVE FOOTBALL TIP AND FRAME RELEASE VERIFIED"
+              exit 0
+            fi
+            sleep 8
+          done
+          echo "Live assets do not yet match submitted release"
+          exit 1
