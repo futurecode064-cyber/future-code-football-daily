@@ -39,7 +39,8 @@ jobs:
               const scripts=await page.locator('script[src*="frame-export-engine.js"]').count();
               const version=await page.locator('script[src*="frame-workspace.js"]').getAttribute('src');
               const exporterVersion=await page.locator('script[src*="frame-export-engine.js"]').getAttribute('src');
-              if(response?.ok()&&scripts===1&&version?.includes('pair-layout-v5')&&exporterVersion?.includes('pair-layout-v6')){deployed=true;break;}
+              if(response?.ok()&&scripts===1&&version?.includes('pair-layout-v5')&&exporterVersion?.includes('pair-layout-v6')&&
+                (await page.locator('iframe#engineHome').getAttribute('src')).includes('local-crest-v6')){deployed=true;break;}
               await page.waitForTimeout(6500);
             }
             if(!deployed)throw Error('Production Frame Editor missing new exporter script after 18 probes');
@@ -84,7 +85,7 @@ jobs:
             });
             if(imageAudit.time!=='02:00')throw Error('AI clock-only normalization failed '+JSON.stringify(imageAudit));
             if(!imageAudit.crest.width)throw Error('Jeddeloh crest asset failed '+JSON.stringify(imageAudit));
-            if(!imageAudit.crest.src.startsWith('https://upload.wikimedia.org/'))throw Error('Expected source-approved direct PNG crest rather than redirected icon');
+            if(!imageAudit.crest.src.startsWith('https://future-code-football-daily.pages.dev/assets/main-export-teams/ssv-jeddeloh-ii.png'))throw Error('Expected same-origin verified public-domain crest asset');
             report.images.push({type:'verified independent team crest and AI clock',imageAudit});
             const rows=await page.evaluate(()=>window.FCStudio.filtered('odds').length);
             if(rows<2)throw Error('Published odds rows missing '+rows);
