@@ -1,11 +1,13 @@
 "use strict";
 (function(){
  const branded=document.documentElement?.dataset?.footballBrandName==="YKZ FAMILY GROUP";
+ const bcfBranded=document.documentElement?.dataset?.footballBrandName==="Bet City Family ဘောလုံးဂျာနယ်";
  const kmmBranded=document.documentElement?.dataset?.footballBrandName==="KMM Sport Hub";
  const bwBranded=document.documentElement?.dataset?.footballBrandName==="BW SPORT ဘောလုံးဂျာနယ်";
  const fcjBranded=document.documentElement?.dataset?.footballBrandName==="ဂိုးဇုံ အားကစား ဂျာနယ်";
  const ktfBranded=document.documentElement?.dataset?.footballBrandName==="Ko Thet Family ဘောလုံးဂျာနယ်";
- const C=kmmBranded?{bg:"#100705",head:"#980000",panel:"#1e0b07",panelAlt:"#35170d",divider:"#997238",orange:"#f3c65a",pale:"#fff1cb",muted:"#e8d19e",white:"#fffaf0"}:
+ const C=bcfBranded?{bg:"#020a31",head:"#0b45af",panel:"#081d59",panelAlt:"#143b92",divider:"#527ad2",orange:"#ffd371",pale:"#eff6ff",muted:"#d1ddf5",white:"#ffffff"}:
+ kmmBranded?{bg:"#100705",head:"#980000",panel:"#1e0b07",panelAlt:"#35170d",divider:"#997238",orange:"#f3c65a",pale:"#fff1cb",muted:"#e8d19e",white:"#fffaf0"}:
  branded?
   {bg:"#111111",head:"#960000",panel:"#242424",panelAlt:"#353030",divider:"#812f2f",orange:"#ffcf58",pale:"#fff8e9",muted:"#e0cbc0",white:"#fff9ee"}:
  bwBranded?
@@ -14,6 +16,10 @@
   {bg:"#15090d",head:"#671019",panel:"#34181d",panelAlt:"#45242a",divider:"#9d7133",orange:"#ffd269",pale:"#fff0d4",muted:"#e1c4a6",white:"#fff5e6"}:
  fcjBranded?{bg:"#090909",head:"#322714",panel:"#191713",panelAlt:"#282217",divider:"#7d6032",orange:"#edc66b",pale:"#fff4d9",muted:"#c9bda3",white:"#fff8e8"}:
   {bg:"#101b20",head:"#1d3135",panel:"#203436",panelAlt:"#263d3d",divider:"#425855",orange:"#ffac75",pale:"#f7f5eb",muted:"#bcd0c9",white:"#f5f7f3"};
+ if(typeof FontFace!=="undefined"&&document.fonts?.add){
+  const localFont=new FontFace("Noto Sans Myanmar",'url("'+new URL("assets/fonts/NotoSansMyanmar-Variable.ttf",new URL(document.currentScript?.src||"canvas-image-kit.js",document.baseURI)).href+'")',{weight:"100 900",style:"normal"});
+  document.fonts.add(localFont);
+ }
  const FONT='"Noto Sans Myanmar",sans-serif';
  const imageCache=new Map();
  function sleep(ms){return new Promise(done=>setTimeout(done,ms))}
@@ -124,8 +130,8 @@
  function day(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||"")?v:"unknown"}
  function top(ctx,W,title,date,detail){
   fill(ctx,0,0,W,13,C.orange);fill(ctx,0,13,W,195,C.head);
-  text(ctx,kmmBranded?"KMM Sport Hub":branded?"YKZ FAMILY GROUP":bwBranded?"BW SPORT ဘောလုံးဂျာနယ်":ktfBranded?"KO THET FAMILY ဘောလုံးဂျာနယ်":fcjBranded?"ဂိုးဇုံ အားကစား ဂျာနယ်":"FUTURE CODE FOOTBALL DAILY",28,48,22,C.orange,true);
-  if(kmmBranded){crest(ctx,document.documentElement?.dataset?.footballBrandLogoUrl,W-113,22,78,"KMM");}else if(branded){
+  text(ctx,bcfBranded?"Bet City Family ဘောလုံးဂျာနယ်":kmmBranded?"KMM Sport Hub":branded?"YKZ FAMILY GROUP":bwBranded?"BW SPORT ဘောလုံးဂျာနယ်":ktfBranded?"KO THET FAMILY ဘောလုံးဂျာနယ်":fcjBranded?"ဂိုးဇုံ အားကစား ဂျာနယ်":"FUTURE CODE FOOTBALL DAILY",28,48,22,C.orange,true);
+  if(bcfBranded){crest(ctx,document.documentElement?.dataset?.footballBrandLogoUrl,W-113,22,78,"BCF");}else if(kmmBranded){crest(ctx,document.documentElement?.dataset?.footballBrandLogoUrl,W-113,22,78,"KMM");}else if(branded){
    text(ctx,"အတူရှေ့ဆက် YKZ",Math.min(W-260,340),48,19,C.pale,true);
    crest(ctx,document.documentElement?.dataset?.footballBrandLogoUrl,W-113,22,78,"YKZ");
   }else if(bwBranded){

@@ -1,11 +1,20 @@
 "use strict";
 const tz="Asia/Yangon";
 function dateKey(){
- const published=window.FootballData?.currentDate?.();
- if(/^\d{4}-\d{2}-\d{2}$/.test(published||''))return published;
  const p=new Intl.DateTimeFormat("en-CA",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());
  const x=Object.fromEntries(p.map(v=>[v.type,v.value]));return x.year+"-"+x.month+"-"+x.day;
 }
+// Shared across all odds pages, including tomorrow: only HH:mm in fixture rows.
+function shortKickoffClock(match){
+ for(const v of [match?.kickoff,match?.sourceKickoff,match?.kickoffDisplay]){
+  if(v==null)continue;
+  const s=String(v).replace(/[၀-၉]/g,d=>String("၀၁၂၃၄၅၆၇၈၉".indexOf(d))).trim();
+  const m=s.match(/(?:^|[^\d])([01]?\d|2[0-3]):([0-5]\d)(?!\d)/);
+  if(m)return m[1].padStart(2,"0")+":"+m[2];
+ }
+ return "—";
+}
+window.FutureCodeOddsClock=Object.freeze({short:shortKickoffClock});
 function element(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=String(txt);return e;}
 function append(parent,...items){items.forEach(n=>parent.appendChild(n));return parent;}
 function safeLogo(src){if(typeof src!=="string")return "";try{const u=new URL(src,document.baseURI);return u.protocol==="https:"?u.href:"";}catch{return "";}}
@@ -19,13 +28,15 @@ function badge(name,url,cls="team-badge"){
  }else frame.appendChild(element("span","logo-fallback",name.slice(0,2)));
  return frame;
 }
-const groups={"UEFA Champions League":"ချန်ပီယံလိဂ်","Championship":"အင်္ဂလန် ချန်ပီယံရှစ်","Swedish Superettan":"ဆွီဒင် စူပါတန် လိဂ်","German 3. Liga":"ဂျာမန် ဘွန်ဒစ်လီဂါ ၃","Premier League":"အင်္ဂလန် ပရီးမီးယားလိဂ်","Serie A":"အီတလီ စီးရီးအေ","La Liga":"စပိန် လာလီဂါ","Veikkausliiga":"ဖင်လန် လိဂ်","Eliteserien":"နော်ဝေး လိဂ်","Allsvenskan":"ဆွီဒင် လိဂ်","Danish Superliga":"ဒိန်းမတ် စူပါလိဂ်","Primeira Liga":"ပေါ်တူဂီ ပရီးမီးယားလိဂ်","La Liga 2":"စပိန် လာလီဂါ ၂","Ligue 2":"ပြင်သစ် လိဂ် ၂","Turkish Super Lig":"တူရကီ စူပါလိဂ်","Italian Serie C":"အီတလီ စီးရီးစီ","Danish Cup":"ဒိန်းမတ် ဖလား","Norwegian 1. Division":"နော်ဝေးလိဂ် ၁","Veikkausliiga Playoffs":"ဖင်လန် လိဂ် ပလေးအော့"};
+const groups={"Copa del Rey":"စပိန် ဘုရင့်ဖလား","EFL Cup":"အင်္ဂလန် ကာရာဘောင်း ဖလား","DFB-Pokal":"ဂျာမန် ပိုကယ်ဖလား","Serie B":"အီတလီ စီးရီးဘီ","UEFA Champions League":"ချန်ပီယံလိဂ်","Championship":"အင်္ဂလန် ချန်ပီယံရှစ်","Swedish Superettan":"ဆွီဒင် စူပါတန် လိဂ်","German 3. Liga":"ဂျာမန် ဘွန်ဒစ်လီဂါ ၃","Premier League":"အင်္ဂလန် ပရီးမီးယားလိဂ်","Serie A":"အီတလီ စီးရီးအေ","La Liga":"စပိန် လာလီဂါ","Veikkausliiga":"ဖင်လန် လိဂ်","Eliteserien":"နော်ဝေး လိဂ်","Allsvenskan":"ဆွီဒင် လိဂ်","Danish Superliga":"ဒိန်းမတ် စူပါလိဂ်","Primeira Liga":"ပေါ်တူဂီ ပရီးမီးယားလိဂ်","La Liga 2":"စပိန် လာလီဂါ ၂","Ligue 2":"ပြင်သစ် လိဂ် ၂","Turkish Super Lig":"တူရကီ စူပါလိဂ်","Italian Serie C":"အီတလီ စီးရီးစီ","Danish Cup":"ဒိန်းမတ် ဖလား","Norwegian 1. Division":"နော်ဝေးလိဂ် ၁","Veikkausliiga Playoffs":"ဖင်လန် လိဂ် ပလေးအော့"};
 const leagueLogos={"Premier League":"https://crests.football-data.org/PL.png","Serie A":"https://crests.football-data.org/SA.png","La Liga":"https://crests.football-data.org/PD.png","La Liga 2":"https://commons.wikimedia.org/wiki/Special:FilePath/LaLiga%20Hypermotion%202023%20Vertical%20Logo.svg","Primeira Liga":"https://crests.football-data.org/PPL.png","Bundesliga":"https://crests.football-data.org/BL1.png","Ligue 1":"https://crests.football-data.org/FL1.png","Championship":"https://crests.football-data.org/ELC.png","Allsvenskan":"https://commons.wikimedia.org/wiki/Special:FilePath/Allsvenskan%20logo.svg","Danish Superliga":"https://commons.wikimedia.org/wiki/Special:FilePath/3F%20Superliga%20Logo%202024.png","Ligue 2":"https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20Ligue%202%20BKT%202024.svg","Turkish Super Lig":"https://commons.wikimedia.org/wiki/Special:FilePath/Trendyol%20S%C3%BCper%20Lig%20logo%20dikey.svg","Swedish Superettan":"https://commons.wikimedia.org/wiki/Special:FilePath/Superettan%20logo%20%282024%29.webp"};
 function matchCell(m){
  const div=element("div","odds-matchup");
  append(div,element("span","club-label",m.home),badge(m.home,m.homeCrestUrl),element("span","mini-vs","VS"),badge(m.away,m.awayCrestUrl),element("span","club-label",m.away));
  return div;
 }
+// Verified cup competition logos are provided by the fixture source; never show a fake club/league crest.
+Object.assign(leagueLogos,{"EFL Cup":"https://a.espncdn.com/i/leaguelogos/soccer/500/41.png","DFB-Pokal":"https://a.espncdn.com/i/leaguelogos/soccer/500/2061.png","Copa del Rey":"https://a.espncdn.com/i/leaguelogos/soccer/500/80.png"});
 const mainLeagueFiles={"Premier League":"eng.1","Serie A":"ita.1","La Liga":"esp.1","Allsvenskan":"swe.1","Danish Superliga":"den.1","Primeira Liga":"por.1","La Liga 2":"esp.2","Ligue 2":"fra.2","Turkish Super Lig":"tur.1","Swedish Superettan":"swe.2","Danish Cup":"den.cup","Norwegian 1. Division":"nor.2","Veikkausliiga Playoffs":"fin.1"};
 const isMainOdds=!document.documentElement.dataset.footballBrandName&&/^\/odds(?:\.html)?\/?$/.test(location.pathname);
 if(isMainOdds){
@@ -144,7 +155,7 @@ function brandMobileOdds(matches){
   const card=element("article","bmo-card"),teams=element("div","bmo-teams");
   card.setAttribute("role","listitem");
   const time=String(m.kickoffDisplay||m.kickoff||"");
-  const timeNode=element("div","bmo-time",time.replace(/^.*? ည /,"ည ")||"ပွဲချိန် မဖော်ပြထားပါ");
+  const timeNode=element("div","bmo-time",shortKickoffClock(m));
   timeNode.title=time;
   append(teams,team(m.home,m.homeCrestUrl),element("span","bmo-vs","VS"),team(m.away,m.awayCrestUrl));
   const markets=element("div","bmo-markets");
@@ -200,7 +211,7 @@ function render(data){
    const time=String(m.kickoffDisplay||m.kickoff||"");
    // The full editorial date remains available on hover; short evening
    // notation lets team names and original/latest prices stay readable.
-   const shortTime=time.replace(/^.*? ည /,"ည ");
+   const shortTime=shortKickoffClock(m);
    const t=element("td","time",shortTime),pair=element("td","team-pair");
    t.title=time;
    pair.appendChild(matchCell(m));
@@ -315,7 +326,6 @@ function setupLeagueFilter(data){
 }
 
 async function load(){
- if(window.FootballData?.ready)await window.FootballData.ready();
  const query=new URLSearchParams(location.search).get("date");
  const day=/^\d{4}-\d{2}-\d{2}$/.test(query||"")?query:dateKey();
  try{

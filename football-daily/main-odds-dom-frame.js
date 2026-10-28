@@ -41,11 +41,38 @@
       });
     } finally { URL.revokeObjectURL(url); }
   }
+  // html2canvas lays out Myanmar syllables as separate text fragments. Hide
+  // league labels only in its private clone and paint each complete label ONCE
+  // with the browser's native shaping, retaining the real background and logo.
+  function repaintLeagueLabels(canvas,root){
+    const ctx=canvas.getContext("2d");
+    const origin=root.getBoundingClientRect(),scale=canvas.width/origin.width;
+    for(const label of root.querySelectorAll("[data-fc-native-league]")){
+      const box=label.getBoundingClientRect(),style=getComputedStyle(label);
+      const name=String(label.textContent||"").normalize("NFC").trim();
+      const left=parseFloat(style.paddingLeft)||0,right=parseFloat(style.paddingRight)||0;
+      const width=box.width-left-right-4,height=box.height;
+      if(!name||width<=0||height<=0)continue;
+      ctx.save();ctx.setTransform(scale,0,0,scale,0,0);
+      const x=box.left-origin.left+left+2,y=box.top-origin.top;
+      ctx.beginPath();ctx.rect(x,y,width,height);ctx.clip();
+      ctx.fillStyle=style.color;ctx.textAlign="left";ctx.textBaseline="middle";
+      let size=Math.min(parseFloat(style.fontSize)||26,30);
+      while(size>16){
+        ctx.font=(style.fontWeight||700)+' '+size+'px "Noto Sans Myanmar",sans-serif';
+        if(ctx.measureText(name).width<=width)break;
+        size--;
+      }
+      ctx.font=(style.fontWeight||700)+' '+size+'px "Noto Sans Myanmar",sans-serif';
+      ctx.fillText(name,x,y+height/2,width);
+      ctx.restore();
+    }
+  }
   function waitFonts() {
     if (!document.fonts?.ready) return Promise.resolve();
     return Promise.race([
-      document.fonts.ready.catch(()=>{}),
-      new Promise(resolve=>setTimeout(resolve,3500))
+      Promise.all([document.fonts.load('700 22px "Noto Sans Myanmar"',"မြန်မာ စီးရီးအေ ကာရာဘောင်း"),document.fonts.ready]).catch(()=>{}),
+      new Promise(resolve=>setTimeout(resolve,6500))
     ]);
   }
   function waitFrame() {
@@ -178,6 +205,14 @@
       const trs=[...group.querySelectorAll("tbody tr")];
       if(trs.length!==originals.length)throw Error("Website ပွဲအရေအတွက် မကိုက်ညီပါ။");
       trs.forEach((tr,i)=>{if(!wanted.has(i))tr.remove();});
+      // Normalize cloned PNG rows for Main and all six journals.
+      trs.forEach((tr,i)=>{
+        if(!tr.parentNode)return;
+        const fixture=originals[i],cell=tr.querySelector("td.time");
+        if(!cell)return;
+        cell.textContent=window.FutureCodeOddsClock?.short(fixture)||"—";
+        cell.title=String(fixture?.kickoffDisplay||fixture?.kickoff||"");
+      });
       // Export-only edits operate on a CLONE; the website's odds are untouched.
       const edits=!document.documentElement?.dataset?.footballBrandName
         ?window.FutureCodeFrameEditor?.exportNames(date):null;
@@ -321,12 +356,22 @@
       }
       body .fc-odds-direct-export.brand-odds-export .odds-league-heading {
         display:flex!important;align-items:center!important;gap:12px!important;
+        width:100%!important;min-width:0!important;margin:0!important;flex:none!important;
         color:#fff!important;font:900 26px/1.5 "Noto Sans Myanmar",sans-serif!important;
       }
       body .fc-odds-direct-export.brand-odds-export .odds-league-heading .league-crest,
       body .fc-odds-direct-export.brand-odds-export .odds-league-heading .league-mark {
         width:54px!important;height:54px!important;box-sizing:border-box!important;
         background:#fff!important;border-radius:8px!important;padding:4px!important;
+      }
+      body .fc-odds-direct-export.brand-odds-export .odds-league-heading span:last-child {
+        display:block!important;flex:1 1 0!important;min-width:0!important;
+        font:700 26px/1.9 "Noto Sans Myanmar",sans-serif!important;
+        letter-spacing:0!important;white-space:nowrap!important;overflow:hidden!important;
+      }
+      body .fc-odds-direct-export.brand-odds-export .odds-league-heading .league-crest,
+      body .fc-odds-direct-export.brand-odds-export .odds-league-heading .league-mark {
+        flex:0 0 54px!important;object-fit:contain!important;
       }
       body .fc-odds-direct-export .fc-odds-date-heading {
         background:linear-gradient(110deg,#111,var(--sheet-brand),#111)!important;
@@ -494,6 +539,9 @@
         new Promise(resolve=>setTimeout(resolve,4000))
       ]);
       await waitFrame();
+      for(const label of root.querySelectorAll(".odds-league-heading span:last-child, th.main-league-name")){
+        label.setAttribute("data-fc-native-league","");
+      }
       const height=Math.ceil(root.scrollHeight);
       if(height<70||height>13000)
         throw Error("PNG ပုံအမြင့်များလွန်းပါသည်။ ပုံခွဲ၍ Download လုပ်ပါ။");
@@ -519,10 +567,16 @@
             windowHeight:Math.max(800,Math.min(17000,height)),
             scrollX:0,
             scrollY:0,
-            foreignObjectRendering:false
+            foreignObjectRendering:false,
+            onclone:doc=>{
+              for(const label of doc.querySelectorAll(".fc-odds-direct-export [data-fc-native-league]")){
+                label.style.setProperty("visibility","hidden","important");
+              }
+            }
           }),25000,"Website HTML Screenshot");
           if(!canvas||!canvas.width||!canvas.height)
             throw Error("HTML Screenshot canvas အလွတ်ဖြစ်နေပါသည်");
+          repaintLeagueLabels(canvas,root);
           window.FutureCodeOddsDomFrame.lastCapture="html2canvas-website-dom";
           return {picture:canvas,height:canvas.height,width:canvas.width};
         }catch(error){
@@ -567,12 +621,13 @@
     if(!Array.isArray(rows)||!rows.length)throw Error("ပေါက်ကြေး ပွဲစာရင်းမရှိပါ။");
     const design=settings.design;
     const custom=design[4]||null;
-    const colourOnly=design[0]==="colour"||(custom&&!custom.image);
+    const separate=!!(custom?.topImage||custom?.bottomImage);
+    const colourOnly=!separate&&(design[0]==="colour"||(custom&&!custom.image));
     const theme=colourOnly?(design[0]==="colour"?settings.colour:design[2]):design[2];
     const framed=Boolean(design[3]),dir="./assets/table-odds-frames/";
-    const banner=framed?await localArtwork(custom?.image||dir+design[0]+"-frame.jpg"):null;
-    const top=(!framed&&!colourOnly)?await localArtwork(dir+design[0]+"-top.jpg"):null;
-    const bottom=(!framed&&!colourOnly)?await localArtwork(dir+design[0]+"-bottom.jpg"):null;
+    const banner=framed&&!separate?await localArtwork(custom?.image||dir+design[0]+"-frame.jpg"):null;
+    const top=separate?(custom.topImage?await localArtwork(custom.topImage):null):(!framed&&!colourOnly)?await localArtwork(dir+design[0]+"-top.jpg"):null;
+    const bottom=separate?(custom.bottomImage?await localArtwork(custom.bottomImage):null):(!framed&&!colourOnly)?await localArtwork(dir+design[0]+"-bottom.jpg"):null;
     const shot=await captureWebsite(rows,theme,settings.date);
     const W=2160;
     const {canvas,ctx}=window.FutureCodeCanvasKit.create(W,1);
@@ -604,7 +659,8 @@
     ctx.fillStyle="#080608";ctx.fillRect(x-5,y-5,cw+10,ch+10);
     ctx.drawImage(shot.picture,x,y,cw,ch);
     ctx.strokeStyle=theme;ctx.lineWidth=6;ctx.strokeRect(x-3,y-3,cw+6,ch+6);
-    return window.FutureCodeProfessionalFrames ? await window.FutureCodeProfessionalFrames.wrap(canvas,"odds") : canvas;
+    return window.FutureCodeProfessionalFrames ? await window.FutureCodeProfessionalFrames.wrap(canvas,"odds",settings.professionalFrame) : canvas;
   }
   window.FutureCodeOddsDomFrame={draw};
 })();
+

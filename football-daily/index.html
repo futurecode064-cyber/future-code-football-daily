@@ -14,31 +14,33 @@
 <link rel="stylesheet" href="./styles.css?v=png-balanced-20261017">
 <link rel="stylesheet" href="./video-studio.css?v=20261016-video2">
 <link rel="stylesheet" href="./main-preview-design.css?v=stadium-compact-20261020">
-<link rel="stylesheet" href="./main-ai-score.css?v=20261021-ai-one-png-zip-v1">
+<link rel="stylesheet" href="./main-ai-score.css?v=20261028-vip-bookie-ai-v1">
 <link rel="stylesheet" href="./main-probability.css?v=20261024-v2">
-<script defer src="./main-export-logos.js?v=20261026-team-logos-v2"></script>
-<script defer src="./main-professional-frame-studio.js?v=20261028-unified-frames-v3"></script>
-<script defer src="./card-export.js?v=stadium-compact-20261020"></script>
-<script defer src="./social-export.js"></script>
-<script defer src="./canvas-image-kit.js?v=stadium-compact-20261020"></script>
-<script defer src="./daily-image-export.js?v=stadium-compact-20261020"></script>
-<script defer src="./main-match-screenshot.js?v=20261016-transparent-all"></script>
-<script defer src="./app.js?v=20261026-logo-png-fix-v3"></script>
+<script defer src="./main-professional-frame-studio.js?v=20261028-odds-cards-v5"></script>
+<script defer src="./main-custom-frames.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./main-export-logos.js?v=20261028-complete-logos-v1"></script>
+<script defer src="./card-export.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./social-export.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./canvas-image-kit.js?v=20261028-export-layout-v1"></script>
+<script defer src="./daily-image-export.js?v=20261028-export-layout-v1"></script>
+<script defer src="./main-match-screenshot.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./app.js?v=20261027-complete-form-v3"></script>
 <script defer src="./main-ai-score-model.js?v=20261017-main1"></script>
-<script defer src="./main-ai-bulk-export.js?v=20261021-ai-frame-download-names"></script>
-<script defer src="./main-ai-score.js?v=20261021-ai-frame-download-names"></script>
+<script defer src="./main-ai-bulk-export.js?v=20261028-clockonly-v3"></script>
+<script defer src="./main-tip-scores.js?v=20261028-vip-bookie-ai-v3"></script>
+<script defer src="./main-ai-score.js?v=20261028-my-label-v7"></script>
 <script defer src="./video-studio.js?v=20261028-my-label-v7"></script>
 <script defer src="./main-probability.js?v=20261024-v2"></script>
 <script defer src="./main-section-tabs.js?v=20261024-nine-tabs"></script>
 <link rel="stylesheet" href="./news-section.css?v=news-poster-20261020-v3">
-<script defer src="./news-section.js?v=daily-20261021"></script>
+<script defer src="./news-section.js?v=20261028-frame-workspace-v1"></script>
 <!-- Main Future Code publication: text selection and copy are allowed. -->
-<script defer src="./frame-preview-renderer.js?v=stadium-compact-20261020"></script>
+<script defer src="./frame-preview-renderer.js?v=20261028-export-layout-v1"></script>
 <script defer src="./frame-zip.js?v=20261018-1"></script>
-<script defer src="./brand-preview-studio.js?v=d1-today-20261024"></script>
-<script defer src="./brand-odds-studio.js?v=20261020-bold-team-names-v2"></script>
-<script defer src="./main-results-frame-studio.js?v=results-league-d1-20261024"></script>
-<style data-desktop-layout="1200">html,body{min-width:1200px}</style></head>
+<script defer src="./main-built-in-frame-editor.js?v=20261028-one-editor-v1"></script><script defer src="./brand-preview-studio.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./brand-odds-studio.js?v=20261027-frame-assign-v4"></script>
+<script defer src="./main-results-frame-studio.js?v=20261027-frame-assign-v4"></script>
+<style data-desktop-layout="1200">html,body{min-width:1200px}</style><script>if(new URLSearchParams(location.search).has("frame-engine"))document.documentElement.classList.add("fc-frame-engine");</script><style>html:not(.fc-frame-engine) #fcProfessionalFrameStudio,html:not(.fc-frame-engine) .fc-built-in-frame-editor,html:not(.fc-frame-engine) #brandPreviewStudio,html:not(.fc-frame-engine) #brandOddsStudio,html:not(.fc-frame-engine) #mainResultsFrameStudio,html:not(.fc-frame-engine) #fcAiExportPanel,html:not(.fc-frame-engine) .fc-news-export,html:not(.fc-frame-engine) label:has(#fcMatchCustomFrame),html:not(.fc-frame-engine) label:has(#fcSpecialCustomFrame),html:not(.fc-frame-engine) label:has(#fcNewsCustomFrame),html:not(.fc-frame-engine) .fcp-mini,html:not(.fc-frame-engine) .fc-main-preview-frame-tab,html:not(.fc-frame-engine) .fc-main-odds-frame-tab{display:none!important}</style></head>
 <body data-fc-main-view="today">
 <header class="site-header"><div class="container header-inner">
   <a class="logo" href="./" aria-label="Future Code Football"><span class="logo-icon">FC<span>+</span></span><span class="logo-lines"><b>FUTURE CODE</b><small>FOOTBALL ANALYSIS</small></span></a>
@@ -53,14 +55,16 @@
  <section class="content container">
    <div class="dashboard-bar"><div class="dashboard-stat"><span class="stat-label">SELECTED DATE MATCHES</span><strong id="matchCount">—</strong></div><div class="dashboard-stat"><span class="stat-label">SPECIAL CHOICES</span><strong id="specialCount">—</strong></div><div class="dashboard-stat"><span class="stat-label">UPDATE STATUS</span><strong class="status-label" id="statusText">စစ်ဆေးနေသည်</strong></div><button id="reloadBtn" type="button" class="reload-btn"><span aria-hidden="true">↻</span> Refresh</button></div>
    <div class="section-heading"><div><span class="section-eyebrow">THE DAILY MATCH REPORT</span><h2 id="reportHeading">ယနေ့ ပွဲကြိုသုံးသပ်ချက်များ</h2></div><span class="today-pill" id="reportPill">● TODAY</span></div>
+   <label style="display:block;margin:14px 0;color:#fff">ပွဲကြိုသုံးသပ်ချက် PNG Frame <select id="fcMatchCustomFrame"><option value="">မူရင်းပုံစံ</option></select></label>
+   <label style="display:block;margin:10px 0;color:#fff">Special Choice PNG Frame <select id="fcSpecialCustomFrame"><option value="">မူရင်းပုံစံ</option></select></label>
    <nav class="date-tabs fc-main-five-nav" id="dateTabs" aria-label="Future Code Football အဓိက အပိုင်း ၉ ခု">
      <button type="button" data-day="-1">မနေ့ကရလဒ် <small id="dateYesterday"></small></button>
      <button type="button" data-day="0" class="active">ယနေ့ ပွဲကြိုသုံးသပ်ချက်များ <small id="dateToday"></small></button>
      <a class="date-tab-odds" href="./odds.html">ယနေ့ ပေါက်ကြေးများ<small>ပွဲအားလုံး၏ ကြေးစာရင်း ↗</small></a>
      <a class="fc-main-prob-tab" href="#fcProbSection">ပွဲစဉ် ဖြစ်နိုင်ခြေ (%)<small>အိမ်ရှင် · ဧည့်သည် · ဂိုးပေါ်/အောက်</small></a>
      <a class="fc-main-studio-tab" href="#fcVideoStudio">Video Download Studio<small>Video ဖန်တီး / Download</small></a>
-     <a class="fc-main-ai-tab" href="#fcAiScoreSection">AI ခန့်မှန်းချက်များ<small>AI ခန့်မှန်း ၁ · ၂ · ၃</small></a>
-     <a class="fc-main-frame-manager-tab" href="#fcProfessionalFrameStudio">Frame Editor<small>Frame တစ်နေရာတည်းမှ ပြင် / ဖြုတ် / Section ရွေး</small></a>
+     <a class="fc-main-ai-tab" href="#fcAiScoreSection">VIP Internet · Bookies · AI Tips<small>သုံးမျိုး သီးခြားရလဒ်များ</small></a>
+     <a class="fc-main-frame-manager-tab" href="./frame-editor.html">Frame Editor<small>Frame အသစ် / မူရင်းပြင် / ဖြုတ် / Section ရွေး</small></a>
      <a class="fc-main-preview-frame-tab" href="#brandPreviewStudio">ပွဲကြို Frame PNG<small>Frame ရွေး / PNG Download</small></a>
      <a class="fc-main-odds-frame-tab" href="#brandOddsStudio">ပေါက်ကြေး Frame PNG<small>Frame ရွေး / ပုံခွဲ Download</small></a>
      <a class="fc-main-news-tab" href="#fcNewsSection">ယနေ့ ဘောလုံးသတင်း<small>သတင်းအမျိုးအစားအလိုက် ဖတ်ရန်</small></a>
@@ -78,6 +82,7 @@
 <section class="fc-news-section" id="fcNewsSection" aria-labelledby="fcNewsTitle" data-news-url="./data/news/latest.json">
   <div class="fc-news-header"><div><span class="fc-news-eyebrow">FUTURE CODE · FOOTBALL NEWS</span><h2 id="fcNewsTitle">ယနေ့ ဘောလုံးသတင်း သီးသန့်</h2><p class="fc-news-window" id="fcNewsWindow">သတင်းများ ရယူနေသည်…</p></div><span class="fc-news-count" id="fcNewsCount" aria-live="polite"></span></div>
   <a class="fc-news-owner-link" href="/editor/news.html">＋ ဘောလုံးသတင်းတင်ရန် / ပြင်ရန် ↗</a>
+  <label style="color:#fff">သတင်း PNG Frame <select id="fcNewsCustomFrame"><option value="">မူရင်းပုံစံ</option></select></label>
   <nav class="fc-news-filters" id="fcNewsFilters" aria-label="သတင်းအမျိုးအစားရွေးရန်"></nav>
   <div class="fc-news-grid" id="fcNewsGrid" aria-live="polite"><p class="fc-news-status">သတင်းများ ရယူနေသည်…</p></div>
   <p class="fc-news-illustration-note">သတင်းပုံများနှင့် သတင်းအချက်အလက်များကို သက်ဆိုင်ရာ ရင်းမြစ်နှင့် အသုံးပြုခွင့်အတိုင်း ဖော်ပြထားသည်။</p>
@@ -89,7 +94,7 @@
    <!-- Main Future Code Website ONLY. Other brand pages do not load these scripts/styles. -->
     <section class="fc-ai-predictions" id="fcAiScoreSection" aria-labelledby="fcAiScoreTitle">
       <span class="fc-ai-eyebrow">FUTURE CODE · MATCH SCORE STUDIO</span>
-      <h2 id="fcAiScoreTitle">AI ဂိုးရလဒ် ခန့်မှန်းချက်များ</h2>
+      <h2 id="fcAiScoreTitle">VIP Internet · Bookies · AI Tips ခန့်မှန်းချက်များ</h2>
       <div class="fc-ai-controls">
         <label for="fcAiScoreLeague">လိဂ်အလိုက် ပွဲစဉ်ရွေးရန်</label>
         <select id="fcAiScoreLeague" aria-label="လိဂ်ရွေးရန်"><option value="all">လိဂ်အားလုံး</option></select>
@@ -97,7 +102,7 @@
         <span class="fc-ai-status" id="fcAiScoreStatus" role="status"></span>
       </div>
       <div class="fc-ai-export-panel" id="fcAiExportPanel" aria-label="AI ခန့်မှန်းချက်များ PNG Download">
-        <h3>AI ခန့်မှန်းချက် ပုံ Download</h3>
+        <h3>VIP Internet · Bookies · AI Tips PNG</h3>
          <div class="fc-ai-frame-controls">
            <label for="fcAiFrameStyle">PNG Frame ရွေးရန်</label>
            <select id="fcAiFrameStyle" aria-label="AI PNG Download Frame ရွေးရန်">
