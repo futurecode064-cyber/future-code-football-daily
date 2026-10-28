@@ -24,7 +24,7 @@ jobs:
       - name: Release snapshot and asset preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "5d0b6871010d72a3c0a186005447da76573733b2"
+          test "$(git -C publish-source rev-parse HEAD)" = "6854b67788db402f12b0ec1cbe4bf32431ac3c1b"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
@@ -32,6 +32,9 @@ jobs:
           grep -q 'sectionLayoutSettings' publish-source/football-daily/frame-editor.html
           node --check publish-source/football-daily/main-tip-scores.js
           node --check publish-source/football-daily/frame-workspace.js
+          node --check publish-source/football-daily/frame-export-engine.js
+          node --check publish-source/football-daily/main-ai-bulk-export.js
+          node --test publish-source/football-daily/tests/frame-download-center.test.cjs
           node -e 'if(require("./publish-source/football-daily/data/tips/2026-10-28.json").items.length!==18)process.exit(1)'
       - name: Verify correct Cloudflare project before writing
         env:
@@ -57,7 +60,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
         run: |
-          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 5d0b6871010d72a3c0a186005447da76573733b2 --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
+          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 6854b67788db402f12b0ec1cbe4bf32431ac3c1b --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
       - name: Verify production HTML and script bytes
         run: |
           set -euo pipefail
