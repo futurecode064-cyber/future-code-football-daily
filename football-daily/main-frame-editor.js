@@ -180,7 +180,14 @@
    @media(max-width:620px){#futureCodeFrameEditor .fcfe-row{grid-template-columns:1fr}}
   `;
   document.head.appendChild(style);
-  (document.getElementById("fcProfessionalFrameStudio")||target).append(panel);
+  const host=document.getElementById("fcProfessionalFrameStudio");
+   (host||target).append(panel);
+   if(!host){const watcher=new MutationObserver(()=>{
+     const studio=document.getElementById("fcProfessionalFrameStudio");
+     if(studio){studio.append(panel);watcher.disconnect();}
+   });watcher.observe(document.body,{childList:true,subtree:true});
+   setTimeout(()=>watcher.disconnect(),15000);
+   }
   document.getElementById("tofDesign").addEventListener("change",fill);
   node("fcfeFile").addEventListener("change",async e=>{
    try{pendingImage=await upload(e.target.files[0]);node("fcfePicture").textContent="Frame ပုံအသစ် ရွေးပြီး။ သိမ်းရန် ခလုတ်နှိပ်ပါ။";}
