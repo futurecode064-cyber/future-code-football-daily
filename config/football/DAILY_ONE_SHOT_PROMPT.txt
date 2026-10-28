@@ -1,10 +1,11 @@
-နေ့စဉ် “ဒီနေ့အတွက် တင်ပါ” ဆိုသော တစ်ကြောင်းတည်းမှ Future Code Football Daily ၏ အပြည့်အစုံလုပ်ငန်းစဉ်ကို စတင်ပါ။ အခြားညွှန်ကြားချက် အသစ်ရှိလျှင် ထိုနေ့အတွက် ဦးစားပေးပါ။
+မနက်ခင်း ပေါက်ကြေး PDF ကို တွဲပို့ထားပါတယ်။ ဒီနေ့အတွက် လုပ်ပါ။
 
-အလုပ်စခါစ GitHub repo futurecode064-cyber/future-code-football-daily ၏ main branch မှ AGENTS.md နှင့် docs/football/DAILY_COMMAND_RUNBOOK.md ကို ဖတ်ပါ။ ထို runbook က ယနေ့လုပ်ဆောင်ရမည့် အတည်ပြုပြီး စနစ်နှင့် production verification အတွက် အဓိက reference ဖြစ်သည်။
+လက်ရှိ main website ရဲ့ ဒီနေ့အသုံးပြုနေတဲ့ စနစ်၊ section အစီအစဉ်၊ Frame Editor နဲ့ Download Center ပုံစံအတိုင်း နေ့စဉ်အကြောင်းအရာအားလုံးကို စစ်ဆေးပြင်ဆင်ပြီး website တွေမှာ တင်ပါ။
 
-Production သည် futurecode064-cyber/AI-Recap-GitHub ၏ football-daily-render branch မှ football-daily/ folder ဖြစ်နိုင်သဖြင့် တကယ်အသက်ဝင်နေသော football-engine-config.js ကို အရင်စစ်ပါ။ enabled:false ဖြစ်လျှင် Static GitHub → Cloudflare Pages route ဖြစ်ပြီး D1 Data တင်ရုံနှင့် website live မဖြစ်ပါ။ Source main ၏ မနေ့က data ကို Production ယနေ့ data ပေါ် မထပ်ရေးပါနှင့်။ GitHub SHA အသစ်နှင့် LIVE readback နှစ်မျိုးစလုံး အတည်ပြုပါ။
+စမလုပ်မီ GitHub futurecode064-cyber/AI-Recap-GitHub ရဲ့ football-daily-render branch မှ football-daily/AGENTS.md နဲ့ football-daily/docs/DAILY_PUBLICATION_V7.md ကို နောက်ဆုံး version အတိုင်း ဖတ်ပြီး လိုက်နာပါ။ မူရင်း journalist/news master နဲ့ DAILY_TIPS_POLICY ကိုပါ ဖတ်ပါ။ Source main အဟောင်းကို production အသစ်ပေါ် မထပ်ရေးပါနဲ့။
 
-နေ့စဉ် Yesterday FT results → Today's fixtures Myanmar time → team/league logo, last 5, league standings/points, 1X2 → PDF မူလကြေး၊ ယခုကြေး၊ အင်တာနက်ခန့်မှန်းချက် → owner-provided professional Burmese previews, ၂ ပွဲ Special Choice (ပေးထားသောစာသားအတိုင်း) → shared JSON publish → all six site routes, PNG/mobile/browser QA → evidence-based receipt အဆင့်တိုင်း ဆက်လုပ်ပါ။ မလုံလောက်သေးလျှင် အကြောင်းရင်းကို ရှင်းပြပါ။ အသုံးပြုသူကို တင်နေကြ Format အကြောင်း နေ့စဉ် ပြန်မေးခြင်း မလုပ်ပါနှင့်။
+PDF စာမျက်နှာအားလုံး၊ ကြေးစာရင်းအားလုံးကို စစ်ပါ။ မြင်ရတဲ့ အသင်းနာမည်၊ လိဂ်နာမည်တွေကို PDF အတိုင်း မြန်မာလို တစ်သမတ်တည်းသုံးပါ။ English canonical ID ကို ချိတ်ဆက်ဖို့ပဲသုံးပါ။ ပွဲကြိုရေးရမယ့် eligible ပွဲအားလုံးအတွက် အသင်းနှစ်သင်းရဲ့ last five၊ standings၊ 1X2၊ logo၊ လက်ရှိကစားသမား/နည်းပြ/ဒဏ်ရာသတင်းတွေကို အတည်ပြုပါ။ ငါစာသားပေးထားရင် အတိအကျကူးပါ။ PDF တစ်ခုတည်းဆိုရင် professional မြန်မာဘောလုံးဂျာနယ်ဟန်နဲ့ အသစ်ရေးပါ။ Special Choice ၂ ခုကို လက်ရှိ format အတိုင်း သီးခြားသုံးသပ်ပါ။
 
-Runbook: docs/football/DAILY_COMMAND_RUNBOOK.md
-Read-only live audit: node scripts/football/daily-state-audit.mjs
+မနေ့က FT၊ ယနေ့ပွဲကြို၊ Special Choice၊ မူလပေါက်ကြေးအားလုံး၊ ဖြစ်နိုင်ခြေ၊ VIP Internet / Bookies / AI Tips၊ နောက်ဆုံးဘောလုံးသတင်း ၁၀ ပုဒ်၊ Video နဲ့ Frame/PNG/ZIP သုံးတဲ့ data အားလုံးကို section coverage စာရင်းနဲ့ စစ်ပါ။ မနက် PDF ကို ယခုကြေးအဖြစ် မသုံးပါနဲ့။ မသေချာတဲ့ data ကို မဖန်တီးပါနဲ့။
+
+Candidate package guard နဲ့ လိုအပ်တဲ့ regression/browser/download စစ်ဆေးမှုလုပ်ပါ။ လက်ရှိ active writer နဲ့ တင်ပြီး live resources၊ သတ်မှတ်ထားတဲ့ website ခြောက်ခု၊ မြန်မာနာမည်၊ logo ပါတဲ့ တကယ် download ရတဲ့ PNG/ZIP နဲ့ section တိုင်း data ရောက်မှုကို ပြန်စစ်ပါ။ Commit တင်ရုံနဲ့ ပြီးပြီလို့ မပြောပါနဲ့။ အားလုံးအောင်မှ COMPLETE၊ မပြည့်ရင် PARTIAL/BLOCKED နဲ့ ကျန်တဲ့ section/အကြောင်းရင်းကို အတိအကျဖော်ပြပါ။ လုပ်ငန်းပြီးတဲ့အခါ PDF row/preview/Special Choice/FT/tips/news အရေအတွက်၊ live commit နဲ့ QA အထောက်အထားကို အတိုချုံးပေးပါ။
