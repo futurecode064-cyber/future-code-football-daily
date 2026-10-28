@@ -4,7 +4,7 @@
 if(document.documentElement.dataset.footballBrandName||!(/^\/(?:index\.html)?$/.test(location.pathname)||/^\/odds(?:\.html)?\/?$/.test(location.pathname)))return;
 const labels={results:"ဂိုးရလဒ်",previews:"ပွဲကြိုသုံးသပ်ချက်",specials:"Special Choice",odds:"ပေါက်ကြေး",ai:"AI ခန့်မှန်းချက်",news:"ဘောလုံးသတင်း"},types=Object.keys(labels);
 const templates=[["navy","Professional Navy","#16486c"],["gold","Premium Gold","#856119"],["red","Editorial Red","#842630"],["green","Sports Green","#18553d"]].map(a=>({id:a[0],name:a[1],color:a[2],top:110,bottom:75,fit:"contain",topImage:"",bottomImage:"",builtin:true}));
-const empty=()=>({version:2,frames:templates.map(x=>({...x})),selected:Object.fromEntries(types.map(x=>[x,"none"]))});
+const empty=()=>({version:2,frames:templates.map(x=>({...x,sections:[...types],archived:false})),selected:Object.fromEntries(types.map(x=>[x,"none"]))});
 let state=empty(),panel=null,active="navy",queue=Promise.resolve();
 const get=id=>state.frames.find(f=>f.id===id);
 const color=s=>/^#[\da-f]{6}$/i.test(s||"")?s:"#16486c";
@@ -16,12 +16,13 @@ if(!v||v.version!==2||!Array.isArray(v.frames)||v.frames.length>44)throw Error("
 const out=empty(),used=new Set();
 out.frames=v.frames.filter(x=>x&&/^[a-z0-9-]{2,60}$/.test(x.id)&&!used.has(x.id)&&used.add(x.id)).map(x=>({
 id:x.id,name:trim(x.name)||"My Frame",color:color(x.color),top:number(x.top,110),bottom:number(x.bottom,75),
-fit:x.fit==="cover"?"cover":"contain",topImage:pic(x.topImage),bottomImage:pic(x.bottomImage),builtin:templates.some(t=>t.id===x.id)}));
-for(const f of templates)if(!out.frames.some(x=>x.id===f.id))out.frames.unshift({...f});
-for(const k of types){const id=v.selected?.[k];out.selected[k]=getId(id,out.frames)?id:"none";}
+fit:x.fit==="cover"?"cover":"contain",topImage:pic(x.topImage),bottomImage:pic(x.bottomImage),builtin:templates.some(t=>t.id===x.id),
+sections:Array.isArray(x.sections)?types.filter(k=>x.sections.includes(k)):[...types],archived:!!x.archived}));
+for(const f of templates)if(!out.frames.some(x=>x.id===f.id))out.frames.unshift({...f,sections:[...types],archived:false});
+for(const k of types){const id=v.selected?.[k];out.selected[k]=getId(id,out.frames,k)?id:"none";}
 return out;
 }
-function getId(id,frames){return id==="none"||frames.some(f=>f.id===id);}
+function getId(id,frames,section){return id==="none"||frames.some(f=>f.id===id&&!f.archived&&(!section||f.sections.includes(section)));}
 function openDB(){return new Promise((resolve,reject)=>{
 const r=indexedDB.open("future-code-professional-frame-studio-v2",1);
 r.onupgradeneeded=()=>r.result.createObjectStore("config");
@@ -58,7 +59,7 @@ c.drawImage(source,0,top+pad);
 c.strokeStyle=f.color;c.lineWidth=Math.max(3,Math.floor(pad/2));c.strokeRect(c.lineWidth/2,top+pad+c.lineWidth/2,w-c.lineWidth,source.height-c.lineWidth);
 return out;
 }
-async function wrap(canvas,section){if(!canvas||!types.includes(section))return canvas;await ready;const f=get(state.selected[section]);return f?composite(canvas,f):canvas;}
+async function wrap(canvas,section){if(!canvas||!types.includes(section))return canvas;await ready;const f=get(state.selected[section]);return f&&!f.archived&&f.sections.includes(section)?composite(canvas,f):canvas;}
 window.FutureCodeProfessionalFrames=Object.freeze({wrap,ready,getSelected:async name=>(await ready,state.selected[name]||"none"),sections:labels});
 const el=id=>panel?.querySelector("#"+id);
 function status(msg,error){const n=el("fcpStatus");if(n){n.textContent=msg;n.style.color=error?"#ff9c9c":"#aef3ca";}}
@@ -81,19 +82,28 @@ el("fcpFrame").value=f.id;el("fcpName").value=f.name;el("fcpColor").value=f.colo
 el("fcpTopFile").value="";el("fcpBottomFile").value="";
 el("fcpTopState").textContent=f.topImage?"အပေါ် Banner ပုံ ထည့်ထားသည်":"အပေါ် Banner မရှိပါ";
 el("fcpBottomState").textContent=f.bottomImage?"အောက် Banner ပုံ ထည့်ထားသည်":"အောက် Banner မရှိပါ";
-el("fcpDelete").disabled=f.builtin;preview();
+el("fcpDelete").disabled=f.builtin;
+ const host=el("fcpVisible");if(host){host.replaceChildren();for(const section of types){
+  const label=document.createElement("label"),input=document.createElement("input");input.type="checkbox";input.checked=f.sections.includes(section);
+  input.onchange=async()=>{const before=[...f.sections],old={...state.selected};
+   f.sections=input.checked?[...new Set([...f.sections,section])]:f.sections.filter(k=>k!==section);
+   if(!input.checked&&state.selected[section]===f.id)state.selected[section]="none";
+   try{await save();syncControls();status(labels[section]+" Setting သိမ်းပြီး");}catch(e){f.sections=before;state.selected=old;syncControls();status(e.message,true);}};
+  label.append(input,document.createTextNode(" "+labels[section]));host.append(label);
+ }}
+ el("fcpArchive").textContent=f.archived?"Frame ပြန်ဖော်မယ်":"Frame ရွေးစရာမှ ဖြုတ်မယ်";preview();
 }
 function syncControls(){
 if(!panel)return;
-const sel=el("fcpFrame");sel.replaceChildren(...state.frames.map(f=>new Option(f.name,f.id)));
+const sel=el("fcpFrame");sel.replaceChildren(...state.frames.filter(f=>!f.archived&&f.sections.includes(key)).map(f=>new Option(f.name,f.id)));
 if(!get(active))active=state.frames[0].id;sel.value=active;
 const host=el("fcpAssignments");host.replaceChildren();
 for(const key of types){
 const label=document.createElement("label"),select=document.createElement("select");
 label.textContent=labels[key];select.dataset.section=key;
 select.add(new Option("မူရင်းအတိုင်း (Frame မထည့်)","none"));
-state.frames.forEach(f=>select.add(new Option(f.name,f.id)));
-select.value=state.selected[key];
+state.frames.filter(f=>!f.archived&&f.sections.includes(key)).forEach(f=>select.add(new Option(f.name,f.id)));
+select.value=getId(state.selected[key],state.frames,key)?state.selected[key]:"none";
 select.onchange=async()=>{const previous=state.selected[key];state.selected[key]=select.value;try{await save();status(labels[key]+" Frame သိမ်းပြီး");syncMini();}catch(e){state.selected[key]=previous;status(e.message,true);}};
 label.append(select);host.append(label);
 }
@@ -137,14 +147,14 @@ panel.innerHTML='<div class="fcp-head"><div><small>FUTURE CODE · MAIN WEBSITE</
 '<div class="fcp-pair"><label>အပေါ် Banner အမြင့်<input id="fcpTop" type="number" min="0" max="360"></label><label>အောက် Banner အမြင့်<input id="fcpBottom" type="number" min="0" max="360"></label></div>'+
 '<div class="fcp-upload"><b>အပေါ် Banner ပုံ (Top)</b><input type="file" id="fcpTopFile" accept="image/png,image/jpeg,image/webp"><small id="fcpTopState"></small><button id="fcpRemoveTop">Top Banner ဖြုတ်</button></div>'+
 '<div class="fcp-upload"><b>အောက် Banner ပုံ (Bottom)</b><input type="file" id="fcpBottomFile" accept="image/png,image/jpeg,image/webp"><small id="fcpBottomState"></small><button id="fcpRemoveBottom">Bottom Banner ဖြုတ်</button></div>'+
-'<div class="fcp-buttons"><button id="fcpAdd">＋ Frame အသစ်</button><button id="fcpSave">ပြင်ဆင်ချက် သိမ်းမယ်</button><button id="fcpDelete">Frame ဖျက်မယ်</button><button id="fcpReset">မူရင်း Frame ပြန်ထား</button></div></div>'+
+'<div class="fcp-buttons"><button id="fcpAdd">＋ Frame အသစ်</button><button id="fcpSave">ပြင်ဆင်ချက် သိမ်းမယ်</button><button id="fcpArchive">Frame ရွေးစရာမှ ဖြုတ်မယ်</button><button id="fcpDelete">Frame ဖျက်မယ်</button><button id="fcpReset">မူရင်း Frame ပြန်ထား</button></div><h3>ဒီ Frame ကို အသုံးပြုမည့် Section များ</h3><div id="fcpVisible"></div></div>'+
 '<div class="fcp-card"><h3>Frame Preview</h3><canvas id="fcpPreview" width="500" height="300"></canvas><p>Download ပုံထဲမှာ စာ/ဇယားကို မဖုံးဘဲ Banner များကို အပေါ်နှင့်အောက် သီးခြားထည့်ပေးပါမည်။</p><h3>Section အလိုက် Frame ချိတ်ဆက်ရန်</h3><div id="fcpAssignments"></div></div></div>'+
 '<div class="fcp-buttons"><button id="fcpBackup">Settings Backup Download</button><label>Backup Import<input id="fcpImport" type="file" accept=".json,application/json"></label><span id="fcpStatus" role="status" aria-live="polite"></span></div>'+
 '<p>Settings ကို ဒီ Browser ၏ IndexedDB တွင် သိမ်းထားပါသည်။ အခြား Device သို့ ပြောင်းရန် Backup/Import လုပ်ပါ။ Original data မပြောင်းပါ။</p>';
 if(/^\/odds/.test(location.pathname))document.querySelector("main")?.prepend(panel);else document.querySelector("main>.hero")?.after(panel);
-const css=document.createElement("style");css.textContent='#fcProfessionalFrameStudio{max-width:1180px;box-sizing:border-box;margin:20px auto;padding:24px;background:#102937;color:#ecf5fc;border:1px solid #527b8f;border-radius:17px;font:14px/1.8 "Noto Sans Myanmar",sans-serif}#fcProfessionalFrameStudio *{box-sizing:border-box}#fcProfessionalFrameStudio h2{font-size:25px;margin:0;color:#ffe1ad}#fcProfessionalFrameStudio h3{color:#ffe1ad}#fcProfessionalFrameStudio p,#fcProfessionalFrameStudio small{color:#c9dde6}#fcProfessionalFrameStudio .fcp-head{display:flex;justify-content:space-between;gap:20px}#fcProfessionalFrameStudio a{color:#ffdb9f}#fcProfessionalFrameStudio .fcp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}#fcProfessionalFrameStudio .fcp-card{padding:18px;background:#1a3848;border:1px solid #446a7c;border-radius:12px}#fcProfessionalFrameStudio label{display:flex;flex-direction:column;gap:5px;margin:8px 0;font-weight:700;color:#fff}#fcProfessionalFrameStudio .fcp-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}#fcProfessionalFrameStudio select,#fcProfessionalFrameStudio input:not([type=color]){width:100%;min-height:39px;padding:8px;background:#fff;color:#172e3a;border:1px solid #a2bdc8;border-radius:7px;font:inherit}#fcProfessionalFrameStudio input[type=color]{width:100%;height:43px}#fcProfessionalFrameStudio .fcp-upload{border:1px dashed #6f94a6;border-radius:9px;padding:12px;margin:12px 0;display:grid;gap:6px}#fcProfessionalFrameStudio button{background:#f1bf78;color:#203443;padding:9px 12px;border:0;border-radius:8px;font:700 13px "Noto Sans Myanmar",sans-serif;cursor:pointer}#fcProfessionalFrameStudio button:disabled{opacity:.4}#fcProfessionalFrameStudio .fcp-buttons{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:15px 0}#fcProfessionalFrameStudio #fcpDelete{background:#ec9292}#fcProfessionalFrameStudio canvas{display:block;width:100%;height:auto;border-radius:6px}#fcProfessionalFrameStudio #fcpAssignments{display:grid;grid-template-columns:1fr 1fr;gap:8px}#fcProfessionalFrameStudio #fcpStatus{flex:1 1 100%}.fcp-mini{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0;padding:10px;background:#183d4b;border:1px solid #508095;border-radius:10px;color:#fff}.fcp-mini label{display:flex;align-items:center;gap:8px;color:#fff!important}.fcp-mini select{max-width:260px;min-height:34px;background:#fff;color:#163345;border-radius:6px;padding:5px}.fcp-mini a{color:#ffdda2;text-decoration:underline}@media(max-width:760px){#fcProfessionalFrameStudio .fcp-grid{grid-template-columns:1fr}#fcProfessionalFrameStudio #fcpAssignments{grid-template-columns:1fr}}';document.head.append(css);
+const css=document.createElement("style");css.textContent='#fcProfessionalFrameStudio{max-width:1180px;box-sizing:border-box;margin:20px auto;padding:24px;background:#102937;color:#ecf5fc;border:1px solid #527b8f;border-radius:17px;font:14px/1.8 "Noto Sans Myanmar",sans-serif}#fcProfessionalFrameStudio *{box-sizing:border-box}#fcProfessionalFrameStudio h2{font-size:25px;margin:0;color:#ffe1ad}#fcProfessionalFrameStudio h3{color:#ffe1ad}#fcProfessionalFrameStudio p,#fcProfessionalFrameStudio small{color:#c9dde6}#fcProfessionalFrameStudio .fcp-head{display:flex;justify-content:space-between;gap:20px}#fcProfessionalFrameStudio a{color:#ffdb9f}#fcProfessionalFrameStudio .fcp-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 0}#fcProfessionalFrameStudio .fcp-card{padding:18px;background:#1a3848;border:1px solid #446a7c;border-radius:12px}#fcProfessionalFrameStudio label{display:flex;flex-direction:column;gap:5px;margin:8px 0;font-weight:700;color:#fff}#fcProfessionalFrameStudio .fcp-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}#fcProfessionalFrameStudio select,#fcProfessionalFrameStudio input:not([type=color]){width:100%;min-height:39px;padding:8px;background:#fff;color:#172e3a;border:1px solid #a2bdc8;border-radius:7px;font:inherit}#fcProfessionalFrameStudio input[type=color]{width:100%;height:43px}#fcProfessionalFrameStudio .fcp-upload{border:1px dashed #6f94a6;border-radius:9px;padding:12px;margin:12px 0;display:grid;gap:6px}#fcProfessionalFrameStudio button{background:#f1bf78;color:#203443;padding:9px 12px;border:0;border-radius:8px;font:700 13px "Noto Sans Myanmar",sans-serif;cursor:pointer}#fcProfessionalFrameStudio button:disabled{opacity:.4}#fcProfessionalFrameStudio .fcp-buttons{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:15px 0}#fcProfessionalFrameStudio #fcpDelete{background:#ec9292}#fcProfessionalFrameStudio canvas{display:block;width:100%;height:auto;border-radius:6px}#fcProfessionalFrameStudio #fcpAssignments,#fcProfessionalFrameStudio #fcpVisible{display:grid;grid-template-columns:1fr 1fr;gap:8px}#fcProfessionalFrameStudio #fcpVisible label{display:flex;flex-direction:row;align-items:center}#fcProfessionalFrameStudio #fcpArchive{background:#dce4ed}#fcProfessionalFrameStudio #fcpStatus{flex:1 1 100%}.fcp-mini{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:10px 0;padding:10px;background:#183d4b;border:1px solid #508095;border-radius:10px;color:#fff}.fcp-mini label{display:flex;align-items:center;gap:8px;color:#fff!important}.fcp-mini select{max-width:260px;min-height:34px;background:#fff;color:#163345;border-radius:6px;padding:5px}.fcp-mini a{color:#ffdda2;text-decoration:underline}@media(max-width:760px){#fcProfessionalFrameStudio .fcp-grid{grid-template-columns:1fr}#fcProfessionalFrameStudio #fcpAssignments{grid-template-columns:1fr}}';document.head.append(css);
 el("fcpFrame").onchange=e=>{active=e.target.value;fill();};
-el("fcpAdd").onclick=async()=>{if(state.frames.length>=44)return status("Frame အများဆုံး ၄၄ မျိုး",true);const id="custom-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7);state.frames.push({id,name:"Frame အသစ်",color:"#244c75",top:110,bottom:75,fit:"contain",topImage:"",bottomImage:"",builtin:false});await save();active=id;syncControls();status("Frame အသစ် ဖန်တီးပြီး။ Banner နှစ်ခု ရွေးနိုင်ပါပြီ");};
+el("fcpAdd").onclick=async()=>{if(state.frames.length>=44)return status("Frame အများဆုံး ၄၄ မျိုး",true);const id="custom-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7);state.frames.push({id,name:"Frame အသစ်",color:"#244c75",top:110,bottom:75,fit:"contain",topImage:"",bottomImage:"",builtin:false,sections:[...types],archived:false});await save();active=id;syncControls();status("Frame အသစ် ဖန်တီးပြီး။ Banner နှစ်ခု ရွေးနိုင်ပါပြီ");};
 el("fcpSave").onclick=async()=>{const f=get(active);if(!f)return;try{
 const name=trim(el("fcpName").value);if(!name)throw Error("Frame နာမည် ထည့်ပါ။");
 const top=number(el("fcpTop").value,110),bottom=number(el("fcpBottom").value,75);
@@ -156,8 +166,11 @@ Object.assign(f,next);await save();syncControls();status("Frame နှင့် 
 }catch(e){status(e.message,true);}};
 el("fcpRemoveTop").onclick=async()=>{get(active).topImage="";await save();fill();status("အပေါ် Banner ဖြုတ်ပြီး");};
 el("fcpRemoveBottom").onclick=async()=>{get(active).bottomImage="";await save();fill();status("အောက် Banner ဖြုတ်ပြီး");};
-el("fcpDelete").onclick=async()=>{const f=get(active);if(f.builtin||!confirm("ဤ Frame ဖျက်မလား?"))return;state.frames=state.frames.filter(x=>x.id!==active);for(const k of types)if(state.selected[k]===active)state.selected[k]="none";await save();active="navy";syncControls();status("Frame ဖျက်ပြီး");};
-el("fcpReset").onclick=async()=>{const f=get(active),t=templates.find(x=>x.id===active);if(!t)return status("မူရင်း Template မဟုတ်ပါ",true);Object.assign(f,{...t});await save();syncControls();status("မူရင်း Frame ပြန်ထားပြီး");};
+el("fcpArchive").onclick=async()=>{const f=get(active);if(!f)return;const before=!!f.archived;
+ f.archived=!before;if(f.archived)for(const k of types)if(state.selected[k]===active)state.selected[k]="none";
+ try{await save();syncControls();status(f.archived?"Frame ကို ရွေးစရာမှ ဖြုတ်ထားပါသည်၊ မဖျက်ထားပါ":"Frame ပြန်ဖော်ပြီး");}catch(e){f.archived=before;status(e.message,true);}};
+ el("fcpDelete").onclick=async()=>{const f=get(active);if(f.builtin||!confirm("ဤ Frame ဖျက်မလား?"))return;state.frames=state.frames.filter(x=>x.id!==active);for(const k of types)if(state.selected[k]===active)state.selected[k]="none";await save();active="navy";syncControls();status("Frame ဖျက်ပြီး");};
+el("fcpReset").onclick=async()=>{const f=get(active),t=templates.find(x=>x.id===active);if(!t)return status("မူရင်း Template မဟုတ်ပါ",true);Object.assign(f,{...t,sections:[...types],archived:false});await save();syncControls();status("မူရင်း Frame ပြန်ထားပြီး");};
 el("fcpBackup").onclick=downloadJson;
 el("fcpImport").onchange=async e=>{try{const file=e.target.files[0];if(!file||file.size>12000000)throw Error("Backup ဖိုင် ကြီးလွန်းသည်");state=validate(JSON.parse(await file.text()));await save();active=state.frames[0].id;syncControls();status("Backup Import ပြီးပါပြီ");}catch(err){status(err.message,true);}finally{e.target.value="";}};
 syncControls();mini();
