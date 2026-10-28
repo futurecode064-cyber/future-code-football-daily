@@ -38,7 +38,8 @@ jobs:
               const response=await page.goto(src+'?qa='+Date.now(),{waitUntil:'domcontentloaded',timeout:45000});
               const scripts=await page.locator('script[src*="frame-export-engine.js"]').count();
               const version=await page.locator('script[src*="frame-workspace.js"]').getAttribute('src');
-              if(response?.ok()&&scripts===1&&version?.includes('pair-layout-v5')){deployed=true;break;}
+              const exporterVersion=await page.locator('script[src*="frame-export-engine.js"]').getAttribute('src');
+              if(response?.ok()&&scripts===1&&version?.includes('pair-layout-v5')&&exporterVersion?.includes('pair-layout-v6')){deployed=true;break;}
               await page.waitForTimeout(6500);
             }
             if(!deployed)throw Error('Production Frame Editor missing new exporter script after 18 probes');
@@ -67,6 +68,23 @@ jobs:
             });
             if(!logo.width||logo.width<20)throw Error('EFL Cup logo not renderable: '+JSON.stringify(logo));
             report.images.push({type:'verified EFL Cup crest',logo});
+            const imageAudit=await page.evaluate(async()=>{
+              const w=window.FCStudio.getHome();
+              const api=w.FutureCodeAiBulkExport;
+              const time=api?.kickoffClock?.('2026-10-29 02:00 MMT');
+              const original='https://www.ssv-regionalliga.de/files/cto_layout/img/vereinswappen/SSV-JeddelohII-Logo21_608x383_RGB.png';
+              const src=w.FutureCodeMainLogoAssets?.imageUrl(original);
+              const crest=await new Promise(resolve=>{
+                const im=new Image();im.crossOrigin='anonymous';
+                im.onload=()=>resolve({src,width:im.naturalWidth,height:im.naturalHeight});
+                im.onerror=()=>resolve({src,error:'Crest unavailable/CORS'});
+                im.src=src;
+              });
+              return {time,crest};
+            });
+            if(imageAudit.time!=='02:00')throw Error('AI clock-only normalization failed '+JSON.stringify(imageAudit));
+            if(!imageAudit.crest.width)throw Error('Jeddeloh crest asset failed '+JSON.stringify(imageAudit));
+            report.images.push({type:'verified independent team crest and AI clock',imageAudit});
             const rows=await page.evaluate(()=>window.FCStudio.filtered('odds').length);
             if(rows<2)throw Error('Published odds rows missing '+rows);
             await page.locator('#downPreview').click();
