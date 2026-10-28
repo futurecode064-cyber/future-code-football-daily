@@ -33,15 +33,13 @@ jobs:
            await page.locator('#frameList .frame-row').first().waitFor({timeout:70000});
            await page.waitForTimeout(1500);
            const diag=await page.evaluate(()=>{
-             let refreshError=null;
-             try{window.FCStudioMulti?.refresh?.();}catch(err){refreshError=String(err)+' '+err.stack;}
              return {multi:!!window.FCStudioMulti,studio:!!window.FCStudio,state:!!window.FCStudio?.getState?.(),
               cards:document.querySelectorAll('#multiSelectionCenter details[data-section]').length,
               root:document.getElementById('multiSelectionCenter')?.textContent?.slice(0,250),
-              status:document.getElementById('status')?.textContent,refreshError};
+              status:document.getElementById('status')?.textContent};
            });
            console.log('FRAME RUNTIME DIAGNOSTIC',JSON.stringify({diag,errors}));
-           if(diag.refreshError)throw Error(diag.refreshError);
+           // No forced refresh: the real website must initialize every section itself.
            await page.waitForFunction(()=>window.FCStudioMulti?.plans&&document.querySelectorAll('#multiSelectionCenter details[data-section]').length===7,null,{timeout:65000});
            assert.equal(await page.locator('#multiSelectionCenter details[data-section]').count(),7);
            // All mutations are only in this isolated browser profile, not published data.
