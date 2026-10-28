@@ -24,7 +24,7 @@ jobs:
       - name: Final owner-approved frame release snapshot and source preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "6cb656a69b4fd1253561d7f7774f0babed695b47"
+          test "$(git -C publish-source rev-parse HEAD)" = "72375a8665729ce9462dea991f104a5b9b851074"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
@@ -36,7 +36,7 @@ jobs:
           grep -q 'value="oddsCards"' publish-source/football-daily/frame-editor.html
           grep -q 'id="frameDownloadName"' publish-source/football-daily/frame-editor.html
           grep -q 'id="multiSelectionCenter"' publish-source/football-daily/frame-editor.html
-          grep -q 'frame-multi-download.js?v=20261028-multi-select-v1' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-multi-download.js?v=20261028-multi-select-v2' publish-source/football-daily/frame-editor.html
           test -s publish-source/football-daily/frame-multi-download.js
           node --check publish-source/football-daily/frame-multi-download.js
           node --test publish-source/football-daily/tests/frame-multi-selection.test.cjs
@@ -98,17 +98,17 @@ jobs:
           cd publish-source
           git branch --show-current
           test "$(git branch --show-current)" = "football-daily-render"
-          ../services/football-engine/node_modules/.bin/wrangler pages deploy football-daily --project-name future-code-football-daily --commit-hash 6cb656a69b4fd1253561d7f7774f0babed695b47 --commit-message "Owner-approved complete seven-section Multi-Selection Frame Editor" --commit-dirty=true
+          ../services/football-engine/node_modules/.bin/wrangler pages deploy football-daily --project-name future-code-football-daily --commit-hash 72375a8665729ce9462dea991f104a5b9b851074 --commit-message "Owner-approved complete seven-section Multi-Selection Frame Editor" --commit-dirty=true
 
       - name: Verify live PRODUCTION frame editor, all seven sections, independent filter modules and unified ZIP
         run: |
           set -euo pipefail
           for i in $(seq 1 18); do
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-editor?release=6cb656a69-$i" -o /tmp/fc-frame.html || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-multi-download.js?release=6cb656a69-$i" -o /tmp/fc-multi.js || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-export-engine.js?release=6cb656a69-$i" -o /tmp/fc-export.js || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-workspace.js?release=6cb656a69-$i" -o /tmp/fc-workspace.js || true
-            if grep -q '20261028-multi-select-v1' /tmp/fc-frame.html && grep -q 'id="multiSelectionCenter"' /tmp/fc-frame.html && grep -q 'value="oddsCards"' /tmp/fc-frame.html && grep -q 'getPreferences' /tmp/fc-multi.js && grep -q 'FCStudioMulti?.plans?.()' /tmp/fc-export.js && grep -q 'PNG-Images/' /tmp/fc-export.js && grep -q 'getRows:rawData' /tmp/fc-workspace.js; then
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-editor?release=72375a866-$i" -o /tmp/fc-frame.html || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-multi-download.js?release=72375a866-$i" -o /tmp/fc-multi.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-export-engine.js?release=72375a866-$i" -o /tmp/fc-export.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-workspace.js?release=72375a866-$i" -o /tmp/fc-workspace.js || true
+            if grep -q 'frame-multi-download.js?v=20261028-multi-select-v2' /tmp/fc-frame.html && grep -q '20261028-multi-select-v1' /tmp/fc-frame.html && grep -q 'id="multiSelectionCenter"' /tmp/fc-frame.html && grep -q 'value="oddsCards"' /tmp/fc-frame.html && grep -q 'getPreferences' /tmp/fc-multi.js && grep -q 'FCStudioMulti?.plans?.()' /tmp/fc-export.js && grep -q 'PNG-Images/' /tmp/fc-export.js && grep -q 'getRows:rawData' /tmp/fc-workspace.js; then
               echo 'PRODUCTION SEVEN-SECTION FRAME MULTI-SELECT VERIFIED'
               exit 0
             fi
