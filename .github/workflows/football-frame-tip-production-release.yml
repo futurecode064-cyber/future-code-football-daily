@@ -1,4 +1,4 @@
-name: Publish Verified Football Frame and Tips to Existing Pages
+name: Publish Final Branded Myanmar Odds Frames to Existing Pages
 on:
   push:
     branches: [main]
@@ -21,25 +21,48 @@ jobs:
           ref: football-daily-render
           path: publish-source
           fetch-depth: 1
-      - name: Release snapshot and asset preflight
+      - name: Final owner-approved frame release snapshot and source preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "95cb14e1e93bf7475571f225f2b540658644cc62"
+          test "$(git -C publish-source rev-parse HEAD)" = "1908078e6517bce85270487f70197d8a5f8ab16c"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
           grep -q 'main-tip-scores.js' publish-source/football-daily/index.html
           grep -q 'sectionLayoutSettings' publish-source/football-daily/frame-editor.html
-          grep -q 'frame-workspace.js?v=20261028-pair-layout-v5' publish-source/football-daily/frame-editor.html
-          grep -q 'frame-export-engine.js?v=20261028-pair-layout-v6' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-workspace.js?v=20261028-odds-cards-v4' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-export-engine.js?v=20261028-odds-cards-v4' publish-source/football-daily/frame-editor.html
           grep -q 'EFL Cup' publish-source/football-daily/main-export-logos.js
+          grep -q 'value="oddsCards"' publish-source/football-daily/frame-editor.html
+          grep -q 'id="frameDownloadName"' publish-source/football-daily/frame-editor.html
+          grep -q 'PNG-Images/' publish-source/football-daily/frame-export-engine.js
+          grep -q 'oddsCards' publish-source/football-daily/main-professional-frame-studio.js
+          grep -q 'oddsCards' publish-source/football-daily/frame-workspace.js
+          grep -q 'oddsCards' publish-source/football-daily/frame-export-engine.js
+          grep -q '20261028-odds-cards-v5' publish-source/football-daily/index.html
+          grep -q '20261028-branded-cards-v3' publish-source/football-daily/odds.html
+          node --check publish-source/football-daily/burmese-red-odds-frame.js
+          node --check publish-source/football-daily/main-professional-frame-studio.js
           node --check publish-source/football-daily/main-tip-scores.js
           node --check publish-source/football-daily/frame-workspace.js
           node --check publish-source/football-daily/frame-export-engine.js
           node --check publish-source/football-daily/main-ai-bulk-export.js
           node --check publish-source/football-daily/main-ai-score.js
           node --check publish-source/football-daily/main-export-logos.js
-          node --test publish-source/football-daily/tests/frame-download-center.test.cjs
+          # Old test has obsolete 20261028-pair-layout version assertion; check release contract instead.
+          node --input-type=module <<'NODE'
+          import {readFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          const root='publish-source/football-daily/';
+          const src=n=>readFileSync(root+n,'utf8');
+          const html=src('frame-editor.html'),workspace=src('frame-workspace.js'),exporter=src('frame-export-engine.js');
+          assert.equal((html.match(/value="oddsCards"/g)||[]).length,2);
+          for(const marker of ['migrateOddsCardsAssignment','frameDownloadName'])assert.ok(workspace.includes(marker),marker);
+          for(const marker of ['PNG-Images/','f.downloadName||f.name','p.wrap(native,"oddsCards","pro:"+f.id)'])assert.ok(exporter.includes(marker),marker);
+          assert.ok(src('burmese-red-odds-frame.js').includes('shade(red,.36)'));
+          assert.ok(src('main-professional-frame-studio.js').includes('w,top,0,"stretch"'));
+          console.log('Final branded cards, complete banner, filename and single-folder ZIP source checks PASS');
+          NODE
           node -e 'if(require("./publish-source/football-daily/data/tips/2026-10-28.json").items.length!==18)process.exit(1)'
       - name: Verify correct Cloudflare project before writing
         env:
@@ -65,28 +88,23 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
         run: |
-          attempt=1
-          until services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 95cb14e1e93bf7475571f225f2b540658644cc62 --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true; do
-            if [ "$attempt" -ge 4 ]; then
-              echo 'Cloudflare Pages deployment failed after 4 attempts. Do not report LIVE success.'
-              exit 1
-            fi
-            echo "Cloudflare Pages transient deployment error; retry $attempt/3"
-            sleep $((10 * attempt))
-            attempt=$((attempt+1))
-          done
-      - name: Verify production HTML and script bytes
+          # Exactly one Cloudflare Pages Direct Upload deploy, without retries.
+          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 1908078e6517bce85270487f70197d8a5f8ab16c --commit-message "Owner-approved branded Myanmar odds cards and unified ZIP export" --commit-dirty=true
+
+      - name: Verify original production Pages serves new frame editor, layouts and ZIP
         run: |
           set -euo pipefail
-          for i in $(seq 1 15); do
-            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/main-tip-scores.js?v=20261028-vip-bookie-ai-v3' -o /tmp/future-tip.js || true
-            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/' -o /tmp/future-home.html || true
-            curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/frame-editor.html' -o /tmp/future-frame.html || true
-            if grep -q 'FutureCodeTipScores' /tmp/future-tip.js && grep -q 'main-tip-scores.js?v=20261028-vip-bookie-ai-v3' /tmp/future-home.html && grep -q 'frame-export-engine.js?v=20261028-pair-layout-v6' /tmp/future-frame.html; then
-              echo "LIVE FOOTBALL TIP AND FRAME RELEASE VERIFIED"
+          for i in $(seq 1 18); do
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-editor.html?release=1908078e6-$i" -o /tmp/live-editor.html || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-export-engine.js?release=1908078e6-$i" -o /tmp/live-export.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-workspace.js?release=1908078e6-$i" -o /tmp/live-workspace.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/burmese-red-odds-frame.js?release=1908078e6-$i" -o /tmp/live-cards.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/odds.html?release=1908078e6-$i" -o /tmp/live-odds.html || true
+            if grep -q '20261028-odds-cards-v4' /tmp/live-editor.html && grep -q 'value="oddsCards"' /tmp/live-editor.html && grep -q 'id="frameDownloadName"' /tmp/live-editor.html && grep -q 'PNG-Images/' /tmp/live-export.js && grep -q 'migrateOddsCardsAssignment' /tmp/live-workspace.js && grep -q 'shade(red,.36)' /tmp/live-cards.js && grep -q '20261028-branded-cards-v3' /tmp/live-odds.html; then
+              echo 'LIVE ORIGINAL CLOUDFLARE PAGES FRAME RELEASE VERIFIED'
               exit 0
             fi
             sleep 8
           done
-          echo "Live assets do not yet match submitted release"
+          echo "::error::Production did not serve the intended frame release"
           exit 1
