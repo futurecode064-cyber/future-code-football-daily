@@ -1,0 +1,117 @@
+name: Football Frame Download Center Live Browser QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-frame-download-center-live-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: football-frame-download-center-live-qa
+  cancel-in-progress: false
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install free Chromium test runner
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Verify real production Frame Editor, PNG, ZIP and six websites
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
+          const base='https://future-code-football-daily.pages.dev';
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const report={runAt:new Date().toISOString(),routes:[],images:[],status:'INCOMPLETE'};
+          mkdirSync('frame-download-qa',{recursive:true});
+          try{
+            const context=await browser.newContext({viewport:{width:1280,height:900},deviceScaleFactor:1,acceptDownloads:true});
+            const page=await context.newPage();
+            page.on('pageerror',e=>console.log('PAGE_ERROR',e.message));
+            const src=base+'/frame-editor.html';
+            let deployed=false;
+            for(let i=0;i<18;i++){
+              const response=await page.goto(src+'?qa='+Date.now(),{waitUntil:'domcontentloaded',timeout:45000});
+              const scripts=await page.locator('script[src*="frame-export-engine.js"]').count();
+              if(response?.ok()&&scripts===1){deployed=true;break;}
+              await page.waitForTimeout(6500);
+            }
+            if(!deployed)throw Error('Production Frame Editor missing new exporter script after 18 probes');
+            await page.waitForFunction(()=>window.FCStudio?.getState?.()?.frames?.length>0&&window.FCStudio?.getReport?.()?.matches?.length>0,null,{timeout:85000});
+            await page.locator('#navDownloads').click();
+            for(const section of ['odds','previews','specials','results','ai','news']){
+              if(await page.locator('select[data-frame-section="'+section+'"]').count()!==1)throw Error('Missing section layout '+section);
+            }
+            await page.selectOption('select[data-frame-section="odds"]','pair');
+            await page.selectOption('#downSection','odds');
+            const option=await page.evaluate(()=>{
+              const opts=[...document.querySelector('#downFrame').options];
+              return opts.find(v=>v.value==='odds-best')?.value||opts.find(v=>v.value!=='all')?.value;
+            });
+            if(!option)throw Error('No assigned odds frame; owner may need to assign one in Library');
+            await page.selectOption('#downFrame',option);
+            const rows=await page.evaluate(()=>window.FCStudio.filtered('odds').length);
+            if(rows<2)throw Error('Published odds rows missing '+rows);
+            await page.locator('#downPreview').click();
+            await page.waitForFunction(()=>{const el=document.querySelector('#downPreviewImage');return el&&!el.hidden&&el.complete&&el.naturalWidth>=500;},null,{timeout:90000});
+            const pngWait=page.waitForEvent('download',{timeout:45000});
+            await page.locator('#downloadLink').click();
+            const png=await pngWait;
+            const pngBytes=readFileSync(await png.path());
+            if(pngBytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||pngBytes.length<5000)throw Error('Preview download is not a valid PNG');
+            await png.saveAs('frame-download-qa/odds-preview-pair.png');
+            report.images.push({type:'preview PNG',bytes:pngBytes.length,frame:option});
+            const zipWait=page.waitForEvent('download',{timeout:200000});
+            await page.locator('#downZip').click();
+            const zip=await zipWait;
+            const bytes=readFileSync(await zip.path());
+            if(bytes.subarray(0,4).toString('hex')!=='504b0304')throw Error('ZIP header invalid');
+            const count=bytes.readUInt16LE(bytes.length-12),expected=Math.ceil(rows/2);
+            if(count!==expected)throw Error('Expected '+expected+' pair PNGs in ZIP, found '+count);
+            await zip.saveAs('frame-download-qa/odds-pair.zip');
+            report.images.push({type:'ZIP all published odds in 2-match PNGs',rows,expectedImages:expected,actualImages:count,bytes:bytes.length});
+            await page.selectOption('#downSection','ai');
+            const aiFrame=await page.evaluate(()=>[...document.querySelector('#downFrame').options].find(x=>x.value!=='all')?.value);
+            if(!aiFrame)throw Error('No AI frame assigned');
+            await page.selectOption('#downFrame',aiFrame);
+            await page.locator('#downPreview').click();
+            await page.waitForFunction(()=>{const el=document.querySelector('#downPreviewImage');return el&&!el.hidden&&el.complete&&el.naturalWidth>=500;},null,{timeout:90000});
+            report.images.push({type:'VIP / Bookies / AI PNG preview',frame:aiFrame});
+            await page.screenshot({path:'frame-download-qa/frame-download-center-desktop.png',fullPage:true});
+            await context.close();
+            for(const width of [1280,390]){
+              const ctx=await browser.newContext({viewport:{width,height:860},deviceScaleFactor:1});
+              const p=await ctx.newPage();
+              for(const route of ['/','/ykz-family/','/bw-sport/','/ko-thet-family/','/future-code-journal/','/kmm-sport-hub/']){
+                const r=await p.goto(base+route,{waitUntil:'domcontentloaded',timeout:45000});
+                if(!r||r.status()>=400)throw Error('Site route fails '+route+' @'+width+': '+r?.status());
+                report.routes.push({route,width,status:r.status()});
+                if(route==='/'&&width===390){
+                  await p.waitForTimeout(1500);
+                  await p.screenshot({path:'frame-download-qa/main-mobile.png',fullPage:true});
+                }
+              }
+              await ctx.close();
+            }
+            report.status='PASS';
+            console.log('LIVE_FRAME_EXPORT_QA_PASS',JSON.stringify(report));
+          }catch(e){
+            report.status='FAIL';report.error=String(e.stack||e);
+            console.error('LIVE_FRAME_EXPORT_QA_FAIL',report.error);
+            throw e;
+          }finally{
+            writeFileSync('frame-download-qa/report.json',JSON.stringify(report,null,2));
+            await browser.close();
+          }
+          NODE
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-live-frame-download-qa
+          path: frame-download-qa/
+          retention-days: 7
+          if-no-files-found: warn
