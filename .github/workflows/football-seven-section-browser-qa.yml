@@ -55,7 +55,8 @@ jobs:
            // Verify a second section can be enabled independently, then disable for single PNG.
            const odds=page.locator('details[data-section="odds"]');
            await odds.locator('summary input[type=checkbox]').check();
-           assert.equal(await page.evaluate(()=>window.FCStudioMulti.plans().length),3);
+           const both=await page.evaluate(()=>window.FCStudioMulti.plans().map(x=>x.section));
+           assert(both.includes('odds')&&both.includes('oddsCards'),'Independent odds/card selection failed');
            await odds.locator('summary input[type=checkbox]').uncheck();
            assert.equal(await page.evaluate(()=>window.FCStudioMulti.plans().length),1);
            await page.locator('#downPreview').click();
