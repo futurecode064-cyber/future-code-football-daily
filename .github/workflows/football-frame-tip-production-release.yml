@@ -24,12 +24,14 @@ jobs:
       - name: Release snapshot and asset preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "6854b67788db402f12b0ec1cbe4bf32431ac3c1b"
+          test "$(git -C publish-source rev-parse HEAD)" = "994a4abdeef58f07b06b2283564ff0126b85a927"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
           grep -q 'main-tip-scores.js' publish-source/football-daily/index.html
           grep -q 'sectionLayoutSettings' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-workspace.js?v=20261028-pair-layout-v5' publish-source/football-daily/frame-editor.html
+          grep -q 'EFL Cup' publish-source/football-daily/main-export-logos.js
           node --check publish-source/football-daily/main-tip-scores.js
           node --check publish-source/football-daily/frame-workspace.js
           node --check publish-source/football-daily/frame-export-engine.js
@@ -60,7 +62,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
         run: |
-          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 6854b67788db402f12b0ec1cbe4bf32431ac3c1b --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
+          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 994a4abdeef58f07b06b2283564ff0126b85a927 --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
       - name: Verify production HTML and script bytes
         run: |
           set -euo pipefail
@@ -68,7 +70,7 @@ jobs:
             curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/main-tip-scores.js?v=20261028-vip-bookie-ai-v3' -o /tmp/future-tip.js || true
             curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/' -o /tmp/future-home.html || true
             curl -fsSL --max-time 18 'https://future-code-football-daily.pages.dev/frame-editor.html' -o /tmp/future-frame.html || true
-            if grep -q 'FutureCodeTipScores' /tmp/future-tip.js && grep -q 'main-tip-scores.js?v=20261028-vip-bookie-ai-v3' /tmp/future-home.html && grep -q 'sectionLayoutSettings' /tmp/future-frame.html; then
+            if grep -q 'FutureCodeTipScores' /tmp/future-tip.js && grep -q 'main-tip-scores.js?v=20261028-vip-bookie-ai-v3' /tmp/future-home.html && grep -q 'frame-workspace.js?v=20261028-pair-layout-v5' /tmp/future-frame.html; then
               echo "LIVE FOOTBALL TIP AND FRAME RELEASE VERIFIED"
               exit 0
             fi
