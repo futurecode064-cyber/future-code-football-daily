@@ -1,3 +1,5 @@
+> **2026-10-28 CURRENT OWNER SYSTEM:** The active daily publication contract is `football-daily/docs/DAILY_PUBLICATION_V7.md` (repository-root path). Read it first. Earlier infrastructure states, paragraph counts, manuscript requirements and separate-approval text below are historical where conflicting. Preserve today's current website system and original journalist master; PDF + “ဒီနေ့အတွက် လုပ်ပါ” authorizes full morning publication with section-by-section validation and live verification.
+
 ## Owner corrections — 24 October 2026 code release
 
 The current owner instruction authorizes editing already-published resources independently of a new daily import. Open `/editor/engine.html`, edit a section/row, save a correction draft, then press the explicit Live publish button. Previews use a plain text field and retain the exact supplied Unicode text; presentation bold markers are not required in the stored article.
