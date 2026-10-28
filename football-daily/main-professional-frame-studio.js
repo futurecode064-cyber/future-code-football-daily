@@ -34,7 +34,13 @@ r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);
 });}
 async function load(){const d=await openDB();return new Promise((res,rej)=>{const t=d.transaction("config"),r=t.objectStore("config").get("main");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);t.oncomplete=()=>d.close();});}
 async function persist(){const snapshot=JSON.parse(JSON.stringify(state)),d=await openDB();return new Promise((res,rej)=>{const t=d.transaction("config","readwrite");t.objectStore("config").put(snapshot,"main");t.oncomplete=()=>{d.close();res();};t.onerror=()=>rej(t.error);});}
-function save(){queue=queue.catch(()=>{}).then(persist);return queue;}
+const crossTab=typeof BroadcastChannel!=="undefined"?new BroadcastChannel("future-code-frame-studio-updates-v2"):null;
+function save(){queue=queue.catch(()=>{}).then(persist).then(()=>{crossTab?.postMessage({type:"updated"});});return queue;}
+crossTab?.addEventListener("message",async event=>{
+ if(event.data?.type!=="updated")return;
+ try{await queue;const latest=await load();if(latest){state=validate(latest);if(panel){syncControls();status("အခြား Tab မှ Frame ပြင်ဆင်ချက်များ Sync ပြီး");}}}
+ catch(error){console.warn("Frame Studio cross-tab reload failed",error);}
+});
 const ready=load().then(v=>{if(v)state=validate(v);}).catch(e=>console.warn("Professional frames: browser storage",e));
 function shade(hex,scale){return "#"+hex.slice(1).match(/../g).map(v=>Math.round(parseInt(v,16)*scale).toString(16).padStart(2,"0")).join("");}
 function image(src){return new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>rej(Error("Banner ပုံ ဖတ်မရပါ"));im.src=src;});}
