@@ -130,12 +130,34 @@ label.append(select);host.append(label);
 }
 fill();syncMini();
 }
+function nativeSelector(section){
+ const id=section==="previews"?"brandFrame":section==="results"?"rfsFrame":section==="ai"?"fcAiFrameStyle":section==="odds"?(location.pathname.startsWith("/odds")?"tofDesign":"boFrame"):"";
+ return id?document.getElementById(id):null;
+}
+function neutralOption(control){
+ if(!control)return null;
+ return [...control.options].find(o=>o.value==="plain"||o.value==="standard"||/Colour Background Change/i.test(o.textContent||""))||null;
+}
+function neutralize(section){
+ if(state.selected[section]==="none")return;
+ const control=nativeSelector(section),normal=neutralOption(control);
+ if(control&&normal&&control.value!==normal.value){control.value=normal.value;control.dispatchEvent(new Event("change",{bubbles:true}));}
+}
 function syncMini(){
 document.querySelectorAll(".fcp-mini select[data-section]").forEach(select=>{
 const key=select.dataset.section;select.replaceChildren(new Option("မူရင်းပုံ","none"),...state.frames.map(f=>new Option(f.name,f.id)));
 select.value=state.selected[key]||"none";
+ neutralize(key);
 });
 }
+document.addEventListener("change",event=>{
+ const select=event.target;if(!select?.id)return;
+ const section=select.id==="brandFrame"?"previews":select.id==="rfsFrame"?"results":select.id==="fcAiFrameStyle"?"ai":select.id==="boFrame"||select.id==="tofDesign"?"odds":null;
+ if(!section||state.selected[section]==="none")return;
+ const normal=neutralOption(select);if(!normal||select.value===normal.value)return;
+ state.selected[section]="none";
+ save().then(()=>{syncMini();status(labels[section]+" မူရင်း Frame ရွေးချယ်ပြီး");}).catch(e=>status(e.message,true));
+},true);
 function mini(){let created=false;
 const targets={results:"#mainResultsFrameStudio",previews:"#brandPreviewStudio",odds:/^\/odds/.test(location.pathname)?"#mainTableOddsFrames":"#brandOddsStudio",ai:"#fcAiExportPanel",news:"#fcNewsSection"};
 for(const [key,selector] of Object.entries(targets)){
