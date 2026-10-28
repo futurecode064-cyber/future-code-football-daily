@@ -84,6 +84,7 @@ jobs:
             });
             if(imageAudit.time!=='02:00')throw Error('AI clock-only normalization failed '+JSON.stringify(imageAudit));
             if(!imageAudit.crest.width)throw Error('Jeddeloh crest asset failed '+JSON.stringify(imageAudit));
+            if(!imageAudit.crest.src.startsWith('https://upload.wikimedia.org/'))throw Error('Expected source-approved direct PNG crest rather than redirected icon');
             report.images.push({type:'verified independent team crest and AI clock',imageAudit});
             const rows=await page.evaluate(()=>window.FCStudio.filtered('odds').length);
             if(rows<2)throw Error('Published odds rows missing '+rows);
