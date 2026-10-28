@@ -37,7 +37,8 @@ jobs:
             for(let i=0;i<18;i++){
               const response=await page.goto(src+'?qa='+Date.now(),{waitUntil:'domcontentloaded',timeout:45000});
               const scripts=await page.locator('script[src*="frame-export-engine.js"]').count();
-              if(response?.ok()&&scripts===1){deployed=true;break;}
+              const version=await page.locator('script[src*="frame-workspace.js"]').getAttribute('src');
+              if(response?.ok()&&scripts===1&&version?.includes('pair-layout-v5')){deployed=true;break;}
               await page.waitForTimeout(6500);
             }
             if(!deployed)throw Error('Production Frame Editor missing new exporter script after 18 probes');
@@ -54,6 +55,18 @@ jobs:
             });
             if(!option)throw Error('No assigned odds frame; owner may need to assign one in Library');
             await page.selectOption('#downFrame',option);
+            const logo=await page.evaluate(async()=>{
+              const src=window.FCStudio.getOdds().FutureCodeMainLogoAssets?.leagueCrest('EFL Cup');
+              return new Promise(resolve=>{
+                if(!src)return resolve({error:'No cup crest mapping'});
+                const img=new Image();img.crossOrigin='anonymous';
+                img.onload=()=>resolve({src,width:img.naturalWidth,height:img.naturalHeight});
+                img.onerror=()=>resolve({src,error:'Logo load/CORS failure'});
+                img.src=src;
+              });
+            });
+            if(!logo.width||logo.width<20)throw Error('EFL Cup logo not renderable: '+JSON.stringify(logo));
+            report.images.push({type:'verified EFL Cup crest',logo});
             const rows=await page.evaluate(()=>window.FCStudio.filtered('odds').length);
             if(rows<2)throw Error('Published odds rows missing '+rows);
             await page.locator('#downPreview').click();
@@ -74,13 +87,24 @@ jobs:
             if(count!==expected)throw Error('Expected '+expected+' pair PNGs in ZIP, found '+count);
             await zip.saveAs('frame-download-qa/odds-pair.zip');
             report.images.push({type:'ZIP all published odds in 2-match PNGs',rows,expectedImages:expected,actualImages:count,bytes:bytes.length});
+            const oldPreviewUrl=await page.locator('#downPreviewImage').getAttribute('src');
             await page.selectOption('#downSection','ai');
+            if(!await page.locator('#downPreviewImage').isHidden())throw Error('Stale odds PNG remains visible after switching to AI section');
             const aiFrame=await page.evaluate(()=>[...document.querySelector('#downFrame').options].find(x=>x.value!=='all')?.value);
             if(!aiFrame)throw Error('No AI frame assigned');
             await page.selectOption('#downFrame',aiFrame);
             await page.locator('#downPreview').click();
-            await page.waitForFunction(()=>{const el=document.querySelector('#downPreviewImage');return el&&!el.hidden&&el.complete&&el.naturalWidth>=500;},null,{timeout:90000});
-            report.images.push({type:'VIP / Bookies / AI PNG preview',frame:aiFrame});
+            await page.waitForFunction(oldUrl=>{
+              const el=document.querySelector('#downPreviewImage');
+              return el&&!el.hidden&&el.complete&&el.naturalWidth>=500&&el.getAttribute('src')!==oldUrl;
+            },oldPreviewUrl,{timeout:90000});
+            const aiPngWait=page.waitForEvent('download',{timeout:45000});
+            await page.locator('#downloadLink').click();
+            const aiPng=await aiPngWait;
+            const aiBytes=readFileSync(await aiPng.path());
+            if(aiBytes.subarray(0,8).toString('hex')!=='89504e470d0a1a0a'||aiBytes.length<5000)throw Error('AI preview PNG invalid');
+            await aiPng.saveAs('frame-download-qa/ai-vip-bookies-preview.png');
+            report.images.push({type:'NEW VIP / Bookies / AI PNG preview',frame:aiFrame,bytes:aiBytes.length});
             await page.screenshot({path:'frame-download-qa/frame-download-center-desktop.png',fullPage:true});
             await context.close();
             for(const width of [1280,390]){
