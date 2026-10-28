@@ -1,0 +1,82 @@
+name: Verify Live Seven-Section Frame Multi-Selection PNG and Flat ZIP
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-seven-section-browser-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Check real live production Frame Editor, multi-selection, custom PNG name and ZIP content
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {readFile} from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const root='https://future-code-football-daily.pages.dev/';
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          try{
+           const ctx=await browser.newContext({viewport:{width:1450,height:1080},acceptDownloads:true});
+           const page=await ctx.newPage();page.setDefaultTimeout(25000);
+           const errors=[];page.on('pageerror',e=>errors.push(e.message));
+           await page.goto(root+'frame-editor.html?browser-qa=seven-sections',{waitUntil:'domcontentloaded',timeout:60000});
+           await page.locator('#frameList .frame-row').first().waitFor({timeout:70000});
+           assert.equal(await page.locator('#multiSelectionCenter details[data-section]').count(),7);
+           // All mutations are only in this isolated browser profile, not published data.
+           await page.locator('#librarySection').selectOption('odds');
+           await page.locator('#frameList .frame-row').filter({hasText:'BCF · ပေါက်ကြေး'}).first().click();
+           assert(await page.locator('#scopeChecks input[value=oddsCards]').isChecked(),'BCF cannot be used in card section');
+           await page.locator('#frameDownloadName').fill('BCF-စမ်းသပ်-ကြေး');
+           await page.locator('#saveFrame').click();
+           await page.waitForFunction(()=>document.querySelector('#status')?.textContent?.includes('သိမ်းပြီး'),null,{timeout:65000});
+           await page.locator('#navDownloads').click();
+           await page.waitForFunction(()=>window.FCStudioMulti?.plans?.().length>0&&window.FCStudio.getRows('oddsCards').length>0,null,{timeout:50000});
+           const card=page.locator('details[data-section="oddsCards"]');
+           await card.evaluate(el=>el.open=true);
+           await card.locator('button[data-field="frames"][data-action="none"]').click();
+           await card.locator('.multi-group').nth(0).locator('input[value="odds-bcf"]').check();
+           await card.locator('button[data-field="matches"][data-action="none"]').click();
+           await card.locator('.multi-group').nth(2).locator('.multi-option input').first().check();
+           let selected=await page.evaluate(()=>window.FCStudioMulti.plans().map(x=>({section:x.section,frame:x.frame.id,rows:x.rows.length})));
+           assert.deepEqual(selected,[{section:'oddsCards',frame:'odds-bcf',rows:1}]);
+           const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('fc-frame-download-multi-v1')));
+           assert.equal(saved.oddsCards.frames[0],'odds-bcf');
+           assert.equal(saved.oddsCards.matches.length,1);
+           // Verify a second section can be enabled independently, then disable for single PNG.
+           const odds=page.locator('details[data-section="odds"]');
+           await odds.locator('summary input[type=checkbox]').check();
+           assert.equal(await page.evaluate(()=>window.FCStudioMulti.plans().length),3);
+           await odds.locator('summary input[type=checkbox]').uncheck();
+           assert.equal(await page.evaluate(()=>window.FCStudioMulti.plans().length),1);
+           await page.locator('#downPreview').click();
+           const img=page.locator('#downPreviewImage');
+           await img.waitFor({state:'visible',timeout:100000});
+           const dimensions=await img.evaluate(x=>({w:x.naturalWidth,h:x.naturalHeight}));
+           assert(dimensions.w>=1200&&dimensions.h>300,'Generated canvas too small: '+JSON.stringify(dimensions));
+           const name=await page.locator('#downloadLink').getAttribute('download');
+           assert.equal(name,'BCF-စမ်းသပ်-ကြေး.png','Frame setting did not become actual PNG filename');
+           const download=page.waitForEvent('download',{timeout:110000});
+           await page.locator('#downZip').click();
+           const file=await download;
+           assert(file.suggestedFilename().endsWith('.zip'));
+           const bytes=await readFile(await file.path()),names=[];
+           for(let i=0;i<bytes.length-46;i++){
+            if(bytes.readUInt32LE(i)!==0x02014b50)continue;
+            const n=bytes.readUInt16LE(i+28),e=bytes.readUInt16LE(i+30),c=bytes.readUInt16LE(i+32);
+            names.push(bytes.subarray(i+46,i+46+n).toString('utf8'));i+=45+n+e+c;
+           }
+           assert.deepEqual(names,['PNG-Images/BCF-စမ်းသပ်-ကြေး.png'],'ZIP should have only one flat PNG-Images folder');
+           console.log('LIVE MULTI-SECTION PNG/ZIP QA PASS',JSON.stringify({selected,dimensions,name,zip:file.suggestedFilename(),names,scriptErrors:errors}));
+           await ctx.close();
+          }finally{await browser.close();}
+          NODE
