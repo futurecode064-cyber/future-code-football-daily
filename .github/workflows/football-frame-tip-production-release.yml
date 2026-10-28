@@ -24,7 +24,7 @@ jobs:
       - name: Release snapshot and asset preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "3dd6b5bef9099ed28a7eb6b92402c64015a803a0"
+          test "$(git -C publish-source rev-parse HEAD)" = "5d0b6871010d72a3c0a186005447da76573733b2"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
@@ -57,7 +57,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
         run: |
-          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 3dd6b5bef9099ed28a7eb6b92402c64015a803a0 --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
+          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 5d0b6871010d72a3c0a186005447da76573733b2 --commit-message "Final verified VIP Bookies AI + fixed result PNG Frame Editor" --commit-dirty=true
       - name: Verify production HTML and script bytes
         run: |
           set -euo pipefail
