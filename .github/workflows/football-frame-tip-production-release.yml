@@ -1,4 +1,4 @@
-name: Publish Final Branded Myanmar Odds Frames to Existing Pages
+name: Publish Complete Seven-Section Multi-Select Football Frame Editor
 on:
   push:
     branches: [main]
@@ -24,17 +24,22 @@ jobs:
       - name: Final owner-approved frame release snapshot and source preflight
         run: |
           set -euo pipefail
-          test "$(git -C publish-source rev-parse HEAD)" = "1908078e6517bce85270487f70197d8a5f8ab16c"
+          test "$(git -C publish-source rev-parse HEAD)" = "6cb656a69b4fd1253561d7f7774f0babed695b47"
           test -f publish-source/football-daily/_worker.js
           test -f publish-source/football-daily/_routes.json
           test -f publish-source/football-daily/main-tip-scores.js
           grep -q 'main-tip-scores.js' publish-source/football-daily/index.html
           grep -q 'sectionLayoutSettings' publish-source/football-daily/frame-editor.html
-          grep -q 'frame-workspace.js?v=20261028-odds-cards-v4' publish-source/football-daily/frame-editor.html
-          grep -q 'frame-export-engine.js?v=20261028-odds-cards-v4' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-workspace.js?v=20261028-multi-select-v1' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-export-engine.js?v=20261028-multi-select-v1' publish-source/football-daily/frame-editor.html
           grep -q 'EFL Cup' publish-source/football-daily/main-export-logos.js
           grep -q 'value="oddsCards"' publish-source/football-daily/frame-editor.html
           grep -q 'id="frameDownloadName"' publish-source/football-daily/frame-editor.html
+          grep -q 'id="multiSelectionCenter"' publish-source/football-daily/frame-editor.html
+          grep -q 'frame-multi-download.js?v=20261028-multi-select-v1' publish-source/football-daily/frame-editor.html
+          test -s publish-source/football-daily/frame-multi-download.js
+          node --check publish-source/football-daily/frame-multi-download.js
+          node --test publish-source/football-daily/tests/frame-multi-selection.test.cjs
           grep -q 'PNG-Images/' publish-source/football-daily/frame-export-engine.js
           grep -q 'oddsCards' publish-source/football-daily/main-professional-frame-studio.js
           grep -q 'oddsCards' publish-source/football-daily/frame-workspace.js
@@ -88,23 +93,26 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
         run: |
-          # Exactly one Cloudflare Pages Direct Upload deploy, without retries.
-          services/football-engine/node_modules/.bin/wrangler pages deploy publish-source/football-daily --project-name future-code-football-daily --branch football-daily-render --commit-hash 1908078e6517bce85270487f70197d8a5f8ab16c --commit-message "Owner-approved branded Myanmar odds cards and unified ZIP export" --commit-dirty=true
+          # Checkout the actual production branch and omit --branch so Wrangler
+          # uses the project's production environment (not a preview alias).
+          cd publish-source
+          git branch --show-current
+          test "$(git branch --show-current)" = "football-daily-render"
+          ../services/football-engine/node_modules/.bin/wrangler pages deploy football-daily --project-name future-code-football-daily --commit-hash 6cb656a69b4fd1253561d7f7774f0babed695b47 --commit-message "Owner-approved complete seven-section Multi-Selection Frame Editor" --commit-dirty=true
 
-      - name: Verify original production Pages serves new frame editor, layouts and ZIP
+      - name: Verify live PRODUCTION frame editor, all seven sections, independent filter modules and unified ZIP
         run: |
           set -euo pipefail
           for i in $(seq 1 18); do
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-editor.html?release=1908078e6-$i" -o /tmp/live-editor.html || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-export-engine.js?release=1908078e6-$i" -o /tmp/live-export.js || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-workspace.js?release=1908078e6-$i" -o /tmp/live-workspace.js || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/burmese-red-odds-frame.js?release=1908078e6-$i" -o /tmp/live-cards.js || true
-            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/odds.html?release=1908078e6-$i" -o /tmp/live-odds.html || true
-            if grep -q '20261028-odds-cards-v4' /tmp/live-editor.html && grep -q 'value="oddsCards"' /tmp/live-editor.html && grep -q 'id="frameDownloadName"' /tmp/live-editor.html && grep -q 'PNG-Images/' /tmp/live-export.js && grep -q 'migrateOddsCardsAssignment' /tmp/live-workspace.js && grep -q 'shade(red,.36)' /tmp/live-cards.js && grep -q '20261028-branded-cards-v3' /tmp/live-odds.html; then
-              echo 'LIVE ORIGINAL CLOUDFLARE PAGES FRAME RELEASE VERIFIED'
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-editor?release=6cb656a69-$i" -o /tmp/fc-frame.html || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-multi-download.js?release=6cb656a69-$i" -o /tmp/fc-multi.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-export-engine.js?release=6cb656a69-$i" -o /tmp/fc-export.js || true
+            curl -fsSL --max-time 18 "https://future-code-football-daily.pages.dev/frame-workspace.js?release=6cb656a69-$i" -o /tmp/fc-workspace.js || true
+            if grep -q '20261028-multi-select-v1' /tmp/fc-frame.html && grep -q 'id="multiSelectionCenter"' /tmp/fc-frame.html && grep -q 'value="oddsCards"' /tmp/fc-frame.html && grep -q 'getPreferences' /tmp/fc-multi.js && grep -q 'FCStudioMulti?.plans?.()' /tmp/fc-export.js && grep -q 'PNG-Images/' /tmp/fc-export.js && grep -q 'getRows:rawData' /tmp/fc-workspace.js; then
+              echo 'PRODUCTION SEVEN-SECTION FRAME MULTI-SELECT VERIFIED'
               exit 0
             fi
             sleep 8
           done
-          echo "::error::Production did not serve the intended frame release"
+          echo "::error::Production hostname does not show the final frame editor."
           exit 1
