@@ -25,7 +25,7 @@ for(const [brand,version,url] of entries){
   assert.ok(extract(main)[0].includes('href="'+url+'"'),'main link must match brand release');
   assert.ok(extract(download)[0].includes('href="'+url+'"'),'download link must match brand release');
   assert.ok(main.includes(note),'main note is owner requested exact note');
-  assert.ok(download.includes(note),'download page note is owner's exact requested note');
+  assert.ok(download.includes(note),'download page note is owner requested exact note');
   assert.match(main,new RegExp('v'+version.replaceAll('.','\\.')));
   assert.match(download,new RegExp('v'+version.replaceAll('.','\\.')));
   assert.ok(!/App Data ပျောက်|Data ပျောက်|data loss/i.test(main+download),'No unwanted data warning');
