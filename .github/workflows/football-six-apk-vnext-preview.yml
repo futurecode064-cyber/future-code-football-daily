@@ -20,6 +20,10 @@ jobs:
       FC_FIREBASE_API_KEY_BCF: ${{ secrets.FC_FIREBASE_API_KEY_BCF }}
       FC_FIREBASE_PROJECT_ID: ${{ secrets.FC_FIREBASE_PROJECT_ID }}
       FC_FIREBASE_SENDER_ID: ${{ secrets.FC_FIREBASE_SENDER_ID }}
+      FC_APK_RELEASE_KEYSTORE_B64: ${{ secrets.FC_APK_RELEASE_KEYSTORE_B64 }}
+      FC_APK_RELEASE_STOREPASS: ${{ secrets.FC_APK_RELEASE_STOREPASS }}
+      FC_APK_RELEASE_ALIAS: ${{ secrets.FC_APK_RELEASE_ALIAS }}
+      FC_APK_RELEASE_KEYPASS: ${{ secrets.FC_APK_RELEASE_KEYPASS }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -57,16 +61,16 @@ jobs:
             SRC='/tmp/bcf-native/fcm'
             TOPIC='fc_football_bcf'
             PACKAGE='mm.futurecode.betcityfamily'
-            CODE=3
-            VERSION='1.0.2'
-            OUT='FC-BCF-v1.0.2-FCM-FRESH-INSTALL.apk'
+            CODE=4
+            VERSION='1.0.3'
+            OUT='FC-BCF-v1.0.3-FCM-OWNER-SIGNED.apk'
           else
             SRC='android-journal/fcm'
             TOPIC='fc_football_goal_zone'
             PACKAGE='mm.futurecode.sportsjournal'
-            CODE=4
-            VERSION='1.0.3'
-            OUT='FC-Goal-Zone-v1.0.3-FCM-FRESH-INSTALL.apk'
+            CODE=5
+            VERSION='1.0.4'
+            OUT='FC-Goal-Zone-v1.0.4-FCM-OWNER-SIGNED.apk'
           fi
           if [[ "${{ matrix.brand }}" == "bcf" ]]; then
             FC_APP_ID="$FC_FIREBASE_APP_ID_BCF"; FC_APP_API_KEY="$FC_FIREBASE_API_KEY_BCF"
@@ -89,10 +93,39 @@ jobs:
           echo "FC_VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "FC_OUT=$OUT" >> "$GITHUB_ENV"
       - name: Build FCM variant
+        shell: bash
         run: |
+          set -euo pipefail
           cd "$FC_SRC"
-          gradle --no-daemon :assembleDebug -PFC_PACKAGE="$FC_PACKAGE" \
-            -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ -z "$FC_APK_RELEASE_KEYSTORE_B64" || -z "$FC_APK_RELEASE_STOREPASS" || -z "$FC_APK_RELEASE_ALIAS" || -z "$FC_APK_RELEASE_KEYPASS" ]]; then
+              echo "::error::Original owner/stable signing key missing: refusing to publish another ephemeral-debug-signed APK"
+              exit 1
+            fi
+            set +x
+            export FC_APK_KEYSTORE_PATH="$RUNNER_TEMP/fc-owner-release.jks"
+            printf '%s' "$FC_APK_RELEASE_KEYSTORE_B64" | base64 --decode > "$FC_APK_KEYSTORE_PATH"
+            chmod 600 "$FC_APK_KEYSTORE_PATH"
+            trap 'rm -f "$FC_APK_KEYSTORE_PATH"' EXIT
+            cat >> build.gradle <<'FC_OWNER_SIGN'
+          android {
+            signingConfigs {
+              fcOwner {
+                storeFile file(System.getenv('FC_APK_KEYSTORE_PATH'))
+                storePassword System.getenv('FC_APK_RELEASE_STOREPASS')
+                keyAlias System.getenv('FC_APK_RELEASE_ALIAS')
+                keyPassword System.getenv('FC_APK_RELEASE_KEYPASS')
+              }
+            }
+            buildTypes { release { signingConfig signingConfigs.fcOwner; minifyEnabled false } }
+          }
+          FC_OWNER_SIGN
+            gradle --no-daemon :assembleRelease -PFC_PACKAGE="$FC_PACKAGE" \
+              -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+          else
+            gradle --no-daemon :assembleDebug -PFC_PACKAGE="$FC_PACKAGE" \
+              -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+          fi
       - name: Validate package, version, FCM service and release hash
         shell: bash
         run: |
@@ -107,7 +140,11 @@ jobs:
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "staged/$FC_OUT" AndroidManifest.xml | grep -F PushMessageService
           unzip -l "staged/$FC_OUT" | grep classes.dex
           sha256sum "staged/$FC_OUT" | tee "staged/$FC_OUT.sha256"
-          echo "Build is signed by temporary CI debug key. Do NOT install over existing app until signer matches old certificate." >> "$GITHUB_STEP_SUMMARY"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Owner/stable keystore release signing used. Confirm fingerprint and real-device delivery before production link swap." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "CI debug build only: not suitable as an in-place APK update." >> "$GITHUB_STEP_SUMMARY"
+          fi
           if [[ -z "$FC_FIREBASE_APP_ID" || -z "$FC_FIREBASE_API_KEY" || -z "$FC_FIREBASE_PROJECT_ID" || -z "$FC_FIREBASE_SENDER_ID" ]]; then
             echo "Firebase config missing: FCM inactive in this build." >> "$GITHUB_STEP_SUMMARY"
           fi
@@ -124,9 +161,9 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ matrix.brand }}" == "bcf" ]]; then
-            TAG='fc-bcf-v1.0.2-notification-preview'
+            TAG='fc-bcf-v1.0.3-fcm-owner-signed'
           else
-            TAG='fc-goal-zone-v1.0.3-notification-preview'
+            TAG='fc-goal-zone-v1.0.4-fcm-owner-signed'
           fi
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "::error::Preview release already exists: do not overwrite existing APK binaries"
