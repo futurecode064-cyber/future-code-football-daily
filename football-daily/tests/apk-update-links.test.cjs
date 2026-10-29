@@ -5,12 +5,12 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const entries=[
- ['future-code-journal','1.0.2','https://github.com/futurecode064-cyber/future-code-football-daily/releases/download/fc-goal-zone-v1.0.2-fcm-preview/FC-Goal-Zone-v1.0.2-FCM-FRESH-INSTALL.apk'],
- ['ykz-family','1.2.0','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-ykz-v1.2.0-preview/YKZ-Soccer-Tips.apk'],
- ['bw-sport','1.0.1','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-bw-v1.0.1-preview/BW-Sport-Journal.apk'],
- ['ko-thet-family','1.0.2','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-ko-thet-v1.0.2-preview/Ko-Thet-Family-Journal.apk'],
- ['kmm-sport-hub','1.0.1','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-kmm-v1.0.1-preview/KMM-Sport-Hub.apk'],
- ['bet-city-family','1.0.1','https://github.com/futurecode064-cyber/future-code-football-daily/releases/download/fc-bcf-v1.0.1-fcm-preview/FC-BCF-v1.0.1-FCM-FRESH-INSTALL.apk']
+ ['future-code-journal','1.0.3','https://github.com/futurecode064-cyber/future-code-football-daily/releases/download/fc-goal-zone-v1.0.3-notification-preview/FC-Goal-Zone-v1.0.3-FCM-FRESH-INSTALL.apk'],
+ ['ykz-family','1.2.1','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-ykz-v1.2.1-preview/YKZ-Soccer-Tips.apk'],
+ ['bw-sport','1.0.2','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-bw-v1.0.2-preview/BW-Sport-Journal.apk'],
+ ['ko-thet-family','1.0.3','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-ko-thet-v1.0.3-preview/Ko-Thet-Family-Journal.apk'],
+ ['kmm-sport-hub','1.0.2','https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/fc-kmm-v1.0.2-preview/KMM-Sport-Hub.apk'],
+ ['bet-city-family','1.0.2','https://github.com/futurecode064-cyber/future-code-football-daily/releases/download/fc-bcf-v1.0.2-notification-preview/FC-BCF-v1.0.2-FCM-FRESH-INSTALL.apk']
 ];
 const note='Note: Update APK install ပါက version အဟောင်းကို အရင် Uninstall လုပ်ဖို့ လိုပါတယ်။';
 for(const [brand,version,url] of entries){
