@@ -1,0 +1,47 @@
+name: Football bundled FCM staging QA
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths:
+      - 'android-journal/**'
+      - 'services/football-engine/**'
+      - '.github/workflows/football-bundled-fcm-staging.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Test publication FCM eligibility and duplicate protection
+        run: |
+          node --test services/football-engine/tests/push.test.mjs
+          node --check services/football-engine/src/push.mjs
+          node --check services/football-engine/src/worker.mjs
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: 'temurin', java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: Configure Android SDK
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compile FCM variant (CI debug only; never publish or sign owner release)
+        run: |
+          cd android-journal/fcm
+          gradle --no-daemon --stacktrace assembleDebug -PFC_TOPIC=fc_football_goal_zone
+      - name: Validate package
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging android-journal/fcm/build/outputs/apk/debug/fcm-debug.apk | grep "package: name='mm.futurecode.sportsjournal'"
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: STAGING-ONLY-FCM-DEBUG-NOT-OWNER-SIGNED
+          path: android-journal/fcm/build/outputs/apk/debug/*.apk
+          retention-days: 3
