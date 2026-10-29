@@ -1,4 +1,5 @@
 import test from "node:test";
+import {generateKeyPairSync} from "node:crypto";
 import assert from "node:assert/strict";
 import {BRANDS,MORNING_BODY,EVENING_BODY,EVENING_TITLE,notificationReadiness,previousDay,firebaseMessage,dispatchPublicationNotifications} from "../src/push.mjs";
 const day="2026-10-29",prev="2026-10-28";
@@ -50,4 +51,40 @@ test("FCM disabled and not-ready modes never write to database or network",async
  const n=resources();n["data/today.json"].published=false;
  assert.equal((await dispatchPublicationNotifications(env,"v1",day,n)).status,"not-ready");
  assert.equal(called,false);
+});
+
+test("D1 outbox reserves exactly 1 dispatch per brand/day/kind on repeated publish",async()=>{
+ const {privateKey}=generateKeyPairSync("rsa",{modulusLength:2048});
+ const creds={project_id:"unit-test-only",client_email:"ci@example.invalid",
+  private_key:privateKey.export({type:"pkcs8",format:"pem"})};
+ const ledger=new Map(),calls=[];
+ const db={prepare(sql){return {bind(...args){return {async run(){
+  if(sql.startsWith("INSERT INTO notification_outbox")){
+   const [id,brand,date,kind,version]=args;
+   if(ledger.has(id))return {meta:{changes:0}};
+   ledger.set(id,{brand,date,kind,version,status:"reserved"});return {meta:{changes:1}};
+  }
+  if(sql.startsWith("UPDATE notification_outbox")){
+   const id=args[args.length-1];const row=ledger.get(id);
+   if(row)row.status=sql.includes("status='sent'")?"sent":"failed";
+   return {meta:{changes:1}};
+  }
+  throw new Error("unexpected database SQL");
+ }}}}}};
+ const fetcher=async(url,req)=>{
+  calls.push({url,method:req.method});
+  if(url.includes("oauth2"))return {ok:true,async json(){return {access_token:"test-access"}}};
+  assert.match(req.headers.Authorization,/Bearer test-access/);
+  return {ok:true,async json(){return {name:"projects/unit-test-only/messages/test"}}};
+ };
+ const env={DB:db,FC_PUSH_ENABLED:"true",FIREBASE_SERVICE_ACCOUNT_JSON:JSON.stringify(creds)};
+ const first=await dispatchPublicationNotifications(env,"v1",day,resources(),fetcher);
+ assert.deepEqual([first.status,first.sent,first.failed],["sent",14,0]);
+ assert.equal(ledger.size,14);
+ assert.equal([...ledger.values()].filter(x=>x.status==="sent").length,14);
+ const firstMessages=calls.filter(x=>x.url.includes("fcm.googleapis.com")).length;
+ assert.equal(firstMessages,14);
+ const second=await dispatchPublicationNotifications(env,"v2",day,resources(),fetcher);
+ assert.equal(second.status,"already-dispatched");
+ assert.equal(calls.filter(x=>x.url.includes("fcm.googleapis.com")).length,14);
 });
