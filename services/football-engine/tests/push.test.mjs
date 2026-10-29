@@ -78,8 +78,10 @@ test("D1 outbox reserves exactly 1 dispatch per brand/day/kind on repeated publi
   return {ok:true,async json(){return {name:"projects/unit-test-only/messages/test"}}};
  };
  const env={DB:db,FC_PUSH_ENABLED:"true",FIREBASE_SERVICE_ACCOUNT_JSON:JSON.stringify(creds)};
+ const targeted=await dispatchPublicationNotifications(env,"v1",day,resources(),fetcher,{brand:"goal_zone",kind:"morning"});
+ assert.deepEqual([targeted.status,targeted.sent,targeted.failed],["sent",1,0]);
  const first=await dispatchPublicationNotifications(env,"v1",day,resources(),fetcher);
- assert.deepEqual([first.status,first.sent,first.failed],["sent",14,0]);
+ assert.deepEqual([first.status,first.sent,first.failed],["sent",13,0]);
  assert.equal(ledger.size,14);
  assert.equal([...ledger.values()].filter(x=>x.status==="sent").length,14);
  const firstMessages=calls.filter(x=>x.url.includes("fcm.googleapis.com")).length;
@@ -87,4 +89,10 @@ test("D1 outbox reserves exactly 1 dispatch per brand/day/kind on repeated publi
  const second=await dispatchPublicationNotifications(env,"v2",day,resources(),fetcher);
  assert.equal(second.status,"already-dispatched");
  assert.equal(calls.filter(x=>x.url.includes("fcm.googleapis.com")).length,14);
+});
+
+test("Manual send validates brand/kind before touching secrets or database",async()=>{
+ const env={FC_PUSH_ENABLED:"false",DB:{prepare(){throw new Error("database should not be touched");}}};
+ await assert.rejects(()=>dispatchPublicationNotifications(env,"v1",day,resources(),fetch,{brand:"unknown"}),/Invalid notification brand/);
+ await assert.rejects(()=>dispatchPublicationNotifications(env,"v1",day,resources(),fetch,{kind:"fake"}),/Invalid notification kind/);
 });
