@@ -1,0 +1,19 @@
+name: Football APK Download Pages QA
+on:
+  push:
+    branches: ['feature/football-apk-download-pages-20261029']
+    paths: ['football-daily/**', '.github/workflows/football-apk-download-pages-qa.yml']
+  pull_request:
+    branches: [main]
+    paths: ['football-daily/**', '.github/workflows/football-apk-download-pages-qa.yml']
+  workflow_dispatch:
+permissions: { contents: read }
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Verify 6 brand APK URLs and install-only notes
+        run: node --test football-daily/tests/apk-update-links.test.cjs
