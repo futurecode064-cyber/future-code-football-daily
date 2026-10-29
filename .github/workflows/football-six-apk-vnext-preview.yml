@@ -1,0 +1,121 @@
+name: FC Goal Zone and BCF FCM vNext previews
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths: ['.github/workflows/football-six-apk-vnext-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: {brand: [goal_zone, bcf]}
+    timeout-minutes: 30
+    env:
+      FC_FIREBASE_APP_ID: ${{ secrets.FC_FIREBASE_APP_ID }}
+      FC_FIREBASE_API_KEY: ${{ secrets.FC_FIREBASE_API_KEY }}
+      FC_FIREBASE_PROJECT_ID: ${{ secrets.FC_FIREBASE_PROJECT_ID }}
+      FC_FIREBASE_SENDER_ID: ${{ secrets.FC_FIREBASE_SENDER_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: Android SDK
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Prepare brand from original native source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          src=Path("android-journal")
+          dest=Path("/tmp/bcf-native")
+          shutil.copytree(src,dest,ignore=shutil.ignore_patterns("build"))
+          changes=[
+            ("mm.futurecode.sportsjournal","mm.futurecode.betcityfamily"),
+            ("future-code-journal","bet-city-family"),
+            ("ဂိုးဇုံ အားကစား ဂျာနယ်","BCF ဘောလုံးဂျာနယ်"),
+            ("Goal Zone Sports Journal","BCF Journal"),
+            ('Policy.HOME+"odds"','Policy.HOME+"odds.html"'),
+          ]
+          for p in [*dest.rglob("*.java"),*dest.rglob("*.xml"),*dest.rglob("*.gradle"),dest/"README.md"]:
+            s=p.read_text(encoding="utf-8")
+            for a,b in changes:s=s.replace(a,b)
+            p.write_text(s,encoding="utf-8")
+          assert "bet-city-family" in (dest/"src/mm/futurecode/sportsjournal/Policy.java").read_text()
+          assert (dest/"fcm/src/main/java/mm/futurecode/sportsjournal/FcmStarter.java").exists()
+          PY
+            SRC='/tmp/bcf-native/fcm'
+            TOPIC='fc_football_bcf'
+            PACKAGE='mm.futurecode.betcityfamily'
+            CODE=2
+            VERSION='1.0.1'
+            OUT='FC-BCF-v1.0.1-FCM-FRESH-INSTALL.apk'
+          else
+            SRC='android-journal/fcm'
+            TOPIC='fc_football_goal_zone'
+            PACKAGE='mm.futurecode.sportsjournal'
+            CODE=3
+            VERSION='1.0.2'
+            OUT='FC-Goal-Zone-v1.0.2-FCM-FRESH-INSTALL.apk'
+          fi
+          echo "FC_SRC=$SRC" >> "$GITHUB_ENV"
+          echo "FC_TOPIC=$TOPIC" >> "$GITHUB_ENV"
+          echo "FC_PACKAGE=$PACKAGE" >> "$GITHUB_ENV"
+          echo "FC_CODE=$CODE" >> "$GITHUB_ENV"
+          echo "FC_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "FC_OUT=$OUT" >> "$GITHUB_ENV"
+      - name: Build FCM variant
+        run: |
+          cd "$FC_SRC"
+          gradle --no-daemon :assembleDebug -PFC_PACKAGE="$FC_PACKAGE" \
+            -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+      - name: Validate package, version, FCM service and release hash
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find "$FC_SRC/build/outputs/apk" -type f -name '*.apk' | head -n1)"
+          test -n "$APK" && test -s "$APK"
+          mkdir -p staged
+          cp "$APK" "staged/$FC_OUT"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "staged/$FC_OUT"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "name='$FC_PACKAGE'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "versionCode='$FC_CODE'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "staged/$FC_OUT" AndroidManifest.xml | grep -F PushMessageService
+          unzip -l "staged/$FC_OUT" | grep classes.dex
+          sha256sum "staged/$FC_OUT" | tee "staged/$FC_OUT.sha256"
+          echo "Build is signed by temporary CI debug key. Do NOT install over existing app until signer matches old certificate." >> "$GITHUB_STEP_SUMMARY"
+          if [[ -z "$FC_FIREBASE_APP_ID" || -z "$FC_FIREBASE_API_KEY" || -z "$FC_FIREBASE_PROJECT_ID" || -z "$FC_FIREBASE_SENDER_ID" ]]; then
+            echo "Firebase config missing: FCM inactive in this build." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: FC-${{ matrix.brand }}-FCM-FRESH-INSTALL-ONLY
+          path: staged/*
+          retention-days: 30
+      - name: Release separate preview (do not overwrite live download)
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            TAG='fc-bcf-v1.0.1-fcm-preview'
+          else
+            TAG='fc-goal-zone-v1.0.2-fcm-preview'
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "::error::Preview release already exists: do not overwrite existing APK binaries"
+            exit 1
+          fi
+          gh release create "$TAG" "staged/$FC_OUT" "staged/$FC_OUT.sha256" --target "$GITHUB_SHA" --prerelease \
+            --title "$FC_PACKAGE FCM vNext (FRESH INSTALL PREVIEW)" \
+            --notes 'This is a separate preview APK, not an in-place update. CI debug signature differs from original owner APK signature. Existing release URLs untouched. FCM notification requires Firebase client and server config and real-device validation. Do not distribute as a production update.'
