@@ -47,7 +47,7 @@ jobs:
           find android-journal/fcm -name "*.apk" -type f -print
           APK="$(find android-journal/fcm/build/outputs/apk -type f -name "*.apk" | head -n1)"
           test -n "$APK" && test -s "$APK"
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep "package: name=\x27mm.futurecode.sportsjournal\x27"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep -F "mm.futurecode.sportsjournal"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
