@@ -6,6 +6,12 @@ on:
       - 'android-journal/**'
       - 'services/football-engine/**'
       - '.github/workflows/football-bundled-fcm-staging.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'android-journal/**'
+      - 'services/football-engine/**'
+      - '.github/workflows/football-bundled-fcm-staging.yml'
   workflow_dispatch:
 permissions:
   contents: read
