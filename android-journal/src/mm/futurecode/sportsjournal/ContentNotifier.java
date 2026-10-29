@@ -19,8 +19,28 @@ public final class ContentNotifier {
   if(material.isEmpty())return;String stamp=date+":"+Policy.hash(material);SharedPreferences p=c.getSharedPreferences("journal_seen",0);
   if(Policy.shouldNotify(date,Policy.today(),published,count,stamp,p.getString(kind,""))&&post(c,id,title,body,route,false))p.edit().putString(kind,stamp).apply();
  }
+ static boolean fcmEnabled(Context c){
+  try{
+   Object result=Class.forName(c.getPackageName()+".FcmStarter").getMethod("configured").invoke(null);
+   return Boolean.TRUE.equals(result);
+  }catch(Exception e){return false;}
+ }
  public static synchronized void check(Context c)throws Exception{
   channels(c);if(!enabled(c))return;
+  // FCM updates send one bundled notice per published section; do not poll content in FCM builds.
+  // Preserve the separate application-update check.
+  if(fcmEnabled(c)){
+   try{
+    JSONObject update=AppUpdate.latest(c);
+    if(update!=null){
+     String key="app_"+update.getInt("versionCode");
+     SharedPreferences p=c.getSharedPreferences("journal_seen",0);
+     if(!p.getBoolean(key,false)&&post(c,104,"App ဗားရှင်းအသစ် ရပါပြီ","ဂိုးဇုံ အားကစား ဂျာနယ် "+update.getString("versionName")+" ကို Update လုပ်နိုင်ပါပြီ။",Policy.HOME,true))
+      p.edit().putBoolean(key,true).apply();
+    }
+   }catch(Exception e){throw new java.io.IOException("App update check needs retry",e);}
+   return;
+  }
   String today=Policy.today();boolean failed=false;
   try{
    JSONObject d=Net.json(Policy.ORIGIN+"/data/today.json");JSONArray m=d.optJSONArray("matches");StringBuilder content=new StringBuilder();int count=0;
