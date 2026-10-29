@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="my"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Future Code Football — Notification Control</title>
+<style>
+:root{color-scheme:dark;font:16px/1.8 system-ui,"Noto Sans Myanmar",sans-serif}
+body{max-width:650px;margin:28px auto;padding:0 18px;background:#07172a;color:#edf5ff}
+.panel{border:1px solid #416291;background:#0d2440;border-radius:16px;padding:23px}
+h1{font-size:23px;margin:0 0 7px}p{margin:0 0 15px}
+label{display:block;font-weight:700;margin:14px 0 4px}
+input,select,button{font:inherit;border-radius:9px;padding:10px;width:100%;box-sizing:border-box}
+input,select{border:1px solid #637d9e;background:#07172a;color:white}
+button{margin:16px 0;background:#f4cb76;color:#18222c;border:0;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#050d18;border-radius:10px;padding:12px}
+small{color:#bacbdf}
+</style></head><body><main class="panel">
+<h1>🔔 Football Notification Control</h1>
+<p>ပေါက်ကြေးများ Publish ပြီးမှ Brand တစ်ခုချင်းစီကို Notification ပို့ရန်။ တစ်နေ့ မနက်/ညနေ တစ်ကြိမ်စီသာ ပို့နိုင်ပါသည်။</p>
+<form id="form" autocomplete="off">
+<label for="token">Owner Admin Token</label>
+<input id="token" type="password" required autocomplete="off" placeholder="Secret ကို ဒီ browser session မှာပဲ သုံးမည်">
+<label for="brand">APK / Brand</label>
+<select id="brand">
+<option value="goal_zone">Goal Zone</option><option value="ykz">YKZ</option>
+<option value="bw">BW Sport</option><option value="ko_thet">Ko Thet Family</option>
+<option value="kmm">KMM Sport Hub</option><option value="bcf">BCF Bet City Family</option>
+<option value="main">Future Code Football</option></select>
+<label for="kind">ပို့မည့် Notification</label>
+<select id="kind"><option value="morning">မနက်ပိုင်း ပေါက်ကြေး/ပွဲကြို</option><option value="afternoon">ညနေပိုင်း ယခုကြေး</option></select>
+<button id="send" type="submit">Notification ပို့ရန်</button>
+</form><small>အတည်ပြုထားသော Live Data မပြည့်စုံပါက ပို့မည်မဟုတ်ပါ။ Firebase ချိတ်ထားမှ အလုပ်လုပ်ပါမည်။ Token ကို Website မှ သိမ်းမထားပါ။</small>
+<pre id="result" aria-live="polite">အဆင်သင့်</pre></main>
+<script>
+"use strict";
+const API="https://future-code-football-engine.futurecode-dubai-86851bf2.workers.dev";
+const form=document.getElementById("form"),output=document.getElementById("result"),button=document.getElementById("send");
+form.addEventListener("submit",async e=>{
+ e.preventDefault();
+ const token=document.getElementById("token").value,brand=document.getElementById("brand").value,kind=document.getElementById("kind").value;
+ if(!confirm("သက်ဆိုင်ရာ APK သို့ "+(kind==="morning"?"မနက်ပိုင်း":"ညနေပိုင်း")+" Notification ပို့မလား?"))return;
+ button.disabled=true;output.textContent="ပို့ရန် စစ်ဆေးနေသည်…";
+ try{
+  const response=await fetch(API+"/api/admin/push-now",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({brand,kind}),cache:"no-store"});
+  const data=await response.json();
+  output.textContent=response.ok?(data.status==="sent"?"FCM သို့ ပို့ပြီးပါပြီ (ဖုန်းပေါ်ရောက်ရှိမှုကို သီးခြားစစ်ပါ)":"ပို့မပြီးပါ — "+JSON.stringify(data)):"ပို့၍မရပါ — "+(data.error||response.status);
+ }catch(err){output.textContent="ချိတ်ဆက်မှု မရပါ: "+String(err.message||err)}
+ finally{button.disabled=false}
+});
+</script></body></html>
