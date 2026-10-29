@@ -31,7 +31,7 @@ jobs:
             const page=await context.newPage();
             try{
              await page.goto(base+path,{waitUntil:'domcontentloaded',timeout:45000});
-             const button=page.locator(selector);
+             const button=page.locator(selector).first();
              await button.waitFor({state:'visible',timeout:60000});
              await page.waitForFunction(sel=>{const b=document.querySelector(sel);return b&&!b.disabled;},selector,{timeout:60000});
              const [download]=await Promise.all([page.waitForEvent('download',{timeout:90000}),button.click()]);
