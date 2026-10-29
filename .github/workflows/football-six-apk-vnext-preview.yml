@@ -14,8 +14,10 @@ jobs:
       matrix: {brand: [goal_zone, bcf]}
     timeout-minutes: 30
     env:
-      FC_FIREBASE_APP_ID: ${{ secrets.FC_FIREBASE_APP_ID }}
-      FC_FIREBASE_API_KEY: ${{ secrets.FC_FIREBASE_API_KEY }}
+      FC_FIREBASE_APP_ID_GOAL_ZONE: ${{ secrets.FC_FIREBASE_APP_ID_GOAL_ZONE }}
+      FC_FIREBASE_API_KEY_GOAL_ZONE: ${{ secrets.FC_FIREBASE_API_KEY_GOAL_ZONE }}
+      FC_FIREBASE_APP_ID_BCF: ${{ secrets.FC_FIREBASE_APP_ID_BCF }}
+      FC_FIREBASE_API_KEY_BCF: ${{ secrets.FC_FIREBASE_API_KEY_BCF }}
       FC_FIREBASE_PROJECT_ID: ${{ secrets.FC_FIREBASE_PROJECT_ID }}
       FC_FIREBASE_SENDER_ID: ${{ secrets.FC_FIREBASE_SENDER_ID }}
     steps:
@@ -66,6 +68,20 @@ jobs:
             VERSION='1.0.3'
             OUT='FC-Goal-Zone-v1.0.3-FCM-FRESH-INSTALL.apk'
           fi
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            FC_APP_ID="$FC_FIREBASE_APP_ID_BCF"; FC_APP_API_KEY="$FC_FIREBASE_API_KEY_BCF"
+          else
+            FC_APP_ID="$FC_FIREBASE_APP_ID_GOAL_ZONE"; FC_APP_API_KEY="$FC_FIREBASE_API_KEY_GOAL_ZONE"
+          fi
+          echo "FC_FIREBASE_APP_ID=$FC_APP_ID" >> "$GITHUB_ENV"
+          echo "FC_FIREBASE_API_KEY=$FC_APP_API_KEY" >> "$GITHUB_ENV"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && {
+            [[ -z "$FC_APP_ID" ]] || [[ -z "$FC_APP_API_KEY" ]] || [[ -z "$FC_FIREBASE_PROJECT_ID" ]] || [[ -z "$FC_FIREBASE_SENDER_ID" ]] ||
+            [[ "$FC_APP_ID" != "1:$FC_FIREBASE_SENDER_ID:android:"* ]]
+          }; then
+            echo "::error::FCM app-specific Firebase client setup is missing/invalid for ${{ matrix.brand }}. Refusing release."
+            exit 1
+          fi
           echo "FC_SRC=$SRC" >> "$GITHUB_ENV"
           echo "FC_TOPIC=$TOPIC" >> "$GITHUB_ENV"
           echo "FC_PACKAGE=$PACKAGE" >> "$GITHUB_ENV"
@@ -102,7 +118,7 @@ jobs:
           path: staged/*
           retention-days: 30
       - name: Release separate preview (do not overwrite live download)
-        if: success()
+        if: success() && github.event_name == 'workflow_dispatch'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
