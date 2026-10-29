@@ -1,6 +1,7 @@
 import {resourceAllowed,dateValid,yangonDate,validateResource,validateResources,reviewErrors} from './validation.mjs';
 import {validateEditorial} from './editorial-validation.mjs';
 import {mergeCorrection,newlyIntroduced} from './corrections.mjs';
+import {dispatchPublicationNotifications,previousDay} from './push.mjs';
 const enc=new TextEncoder(), MAX_BODY=1500000;
 const sha=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode(s))),b=>b.toString(16).padStart(2,'0')).join('');
 class ApiError extends Error{constructor(status,message){super(message);this.status=status;}}
@@ -25,6 +26,14 @@ async function authorize(request,env){
 const statement=(db,sql,...args)=>db.prepare(sql).bind(...args);
 async function active(db){return db.prepare('SELECT version_id,generation,changed_at FROM active_publication WHERE singleton=1').first();}
 async function resourcesFor(db,id,paths){const rows=await statement(db,'SELECT path,body FROM resources WHERE version_id=?'+(paths?' AND path IN ('+paths.map(()=>'?').join(',')+')':''),id,...(paths||[])).all();return Object.fromEntries(rows.results.map(x=>[x.path,JSON.parse(x.body)]));}
+async function notifyAfterPublication(env,versionId){
+ if(env.FC_PUSH_ENABLED!=="true"||!env.FIREBASE_SERVICE_ACCOUNT_JSON)return;
+ const v=await versionFor(env.DB,versionId);
+ const day=v.editorial_date;
+ const paths=["data/today.json","data/odds/"+day+".json","data/archive/"+previousDay(day)+".json","data/odds/evening/"+day+".json"];
+ const resources=await resourcesFor(env.DB,versionId,paths);
+ return dispatchPublicationNotifications(env,versionId,day,resources);
+}
 async function snapshotResponse(db,id,metadata){
  // Stream already validated raw JSON without parsing and stringifying every
  // historical article again. Each D1 row stays below its own string-size limit.
@@ -211,7 +220,11 @@ async function publicGet(request,env,url,ctx){
  if(cacheKey&&request.method==='GET'){const save=cache.put(cacheKey,response.clone()).catch(()=>{});if(ctx?.waitUntil)ctx.waitUntil(save);else await save;}
  return response;
 }
-export default {async scheduled(event,env,ctx){const job=runScheduledPublication(env,new Date(event.scheduledTime||Date.now()));if(ctx?.waitUntil)ctx.waitUntil(job);else await job;},async fetch(request,env,ctx){
+export default {async scheduled(event,env,ctx){
+ const job=(async()=>{const result=await runScheduledPublication(env,new Date(event.scheduledTime||Date.now()));
+  if(result.status==="published")await notifyAfterPublication(env,result.version);})();
+ if(ctx?.waitUntil)ctx.waitUntil(job);else await job;
+},async fetch(request,env,ctx){
  const url=new URL(request.url),origin=request.headers.get('Origin');
  const allowed=(env.ALLOWED_ORIGINS||'').split(',').map(s=>s.trim()).filter(Boolean);
  let response;try{
@@ -241,6 +254,10 @@ export default {async scheduled(event,env,ctx){const job=runScheduledPublication
    }
    else if(request.method==='POST'&&['import','validate','publish','rollback','update-odds'].includes(name)){
     const b=await bodyJson(request);response=name==='import'?await importDraft(request,env,b):name==='update-odds'?await updateOdds(request,env,b):name==='validate'?await validateDraft(env,b):await activate(env,b,name==='rollback');
+    if(name==="publish"&&response.ok&&env.FC_PUSH_ENABLED==="true"){
+     const task=notifyAfterPublication(env,b.version).catch(e=>console.error("Notification dispatch failed",String(e)));
+     if(ctx?.waitUntil)ctx.waitUntil(task);else await task;
+    }
    }else fail(405,'Unsupported admin endpoint/method');
   }else if(url.pathname.startsWith('/api/football/')&&['GET','HEAD'].includes(request.method))response=await publicGet(request,env,url,ctx);
   else fail(404,'Unknown endpoint');
