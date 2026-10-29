@@ -1,7 +1,7 @@
 import {resourceAllowed,dateValid,yangonDate,validateResource,validateResources,reviewErrors} from './validation.mjs';
 import {validateEditorial} from './editorial-validation.mjs';
 import {mergeCorrection,newlyIntroduced} from './corrections.mjs';
-import {dispatchPublicationNotifications,previousDay} from './push.mjs';
+import {BRANDS,dispatchPublicationNotifications,previousDay} from './push.mjs';
 const enc=new TextEncoder(), MAX_BODY=1500000;
 const sha=async s=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode(s))),b=>b.toString(16).padStart(2,'0')).join('');
 class ApiError extends Error{constructor(status,message){super(message);this.status=status;}}
@@ -233,7 +233,24 @@ export default {async scheduled(event,env,ctx){
   else if(!env.DB?.prepare)fail(503,'Database binding not configured');
   else if(url.pathname.startsWith('/api/admin/')){
    await authorize(request,env);const name=url.pathname.slice('/api/admin/'.length);
-   if(request.method==='GET'&&name==='state')response=json(await active(env.DB));
+   if(request.method==='GET'&&name==='push-status'){
+    const a=await active(env.DB);
+    response=json({configured:Boolean(env.FIREBASE_SERVICE_ACCOUNT_JSON),enabled:env.FC_PUSH_ENABLED==="true",activePublication:a.version_id||null,brands:Object.keys(BRANDS),delivery:"FCM delivery requires configured Android clients and Google Play Services"});
+   }
+   else if(request.method==='POST'&&name==='push-now'){
+    if(env.FC_PUSH_ENABLED!=="true"||!env.FIREBASE_SERVICE_ACCOUNT_JSON)fail(503,'FCM is not configured/enabled');
+    const b=await bodyJson(request);
+    if(!b||!Object.hasOwn(BRANDS,b.brand)||!["morning","afternoon"].includes(b.kind))fail(400,'Valid brand and kind required');
+    const a=await active(env.DB);if(!a.version_id)fail(409,'No active publication');
+    const v=await versionFor(env.DB,a.version_id);
+    if(!v.ever_published)fail(409,'Current version has not been published');
+    const day=v.editorial_date;
+    const paths=["data/today.json","data/odds/"+day+".json","data/archive/"+previousDay(day)+".json","data/odds/evening/"+day+".json"];
+    const resources=await resourcesFor(env.DB,v.id,paths);
+    const outcome=await dispatchPublicationNotifications(env,v.id,day,resources,fetch,{brand:b.brand,kind:b.kind});
+    response=json({brand:b.brand,kind:b.kind,editorialDate:day,...outcome});
+   }
+   else if(request.method==='GET'&&name==='state')response=json(await active(env.DB));
    else if(request.method==='GET'&&name==='resource'){
     const id=url.searchParams.get('version'),path=url.searchParams.get('path');if(!resourceAllowed(path))fail(400,'Disallowed resource');
     await versionFor(env.DB,id);const row=await statement(env.DB,'SELECT body FROM resources WHERE version_id=? AND path=?',id,path).first();if(!row)fail(404,'Resource absent from draft');
