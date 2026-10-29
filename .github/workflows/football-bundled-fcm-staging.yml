@@ -44,7 +44,10 @@ jobs:
           gradle --no-daemon --stacktrace assembleDebug -PFC_TOPIC=fc_football_goal_zone
       - name: Validate package
         run: |
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging android-journal/fcm/build/outputs/apk/debug/fcm-debug.apk | grep "package: name='mm.futurecode.sportsjournal'"
+          find android-journal/fcm -name "*.apk" -type f -print
+          APK="$(find android-journal/fcm/build/outputs/apk -type f -name "*.apk" | head -n1)"
+          test -n "$APK" && test -s "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | grep "package: name=\x27mm.futurecode.sportsjournal\x27"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
