@@ -108,9 +108,9 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ matrix.brand }}" == "bcf" ]]; then
-            TAG='fc-bcf-v1.0.2-fcm-preview'
+            TAG='fc-bcf-v1.0.2-notification-preview'
           else
-            TAG='fc-goal-zone-v1.0.3-fcm-preview'
+            TAG='fc-goal-zone-v1.0.3-notification-preview'
           fi
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "::error::Preview release already exists: do not overwrite existing APK binaries"
