@@ -18,9 +18,14 @@ for(const [brand,version,url] of entries){
   const main=fs.readFileSync(path.join(root,brand,'index.html'),'utf8');
   const download=fs.readFileSync(path.join(root,brand,'android','index.html'),'utf8');
   const extract=(text)=>[...text.matchAll(/<a\b[^>]*data-fc-apk-download[^>]*>/g)].map(([a])=>a);
-  assert.match(main,/<section class="fc-apk-update-box"/);
+  assert.match(main,/<a class="fc-apk-date-tile"/);
   assert.match(main,/Update Version APK ယူရန်/);
-  assert.equal(extract(main).length,1,'Exactly one update link in section');
+  assert.equal(extract(main).length,1,'Exactly one update link in four-card section');
+  const nav=main.match(/<nav class="date-tabs"[^>]*>[\s\S]*?<\/nav>/);
+  assert.ok(nav, 'The original date tabs must remain');
+  assert.ok(nav[0].includes('class="fc-apk-date-tile"'), 'APK tile must be an immediate sibling in date row');
+  assert.equal((nav[0].match(/<button /g)||[]).length,2, 'Yesterday/today remain');
+  assert.ok(nav[0].includes('class="date-tab-odds"'), 'Odds remains next to APK');
   assert.equal(extract(download).length,1,'Exactly one download link on Android page');
   assert.ok(extract(main)[0].includes('href="'+url+'"'),'main link must match brand release');
   assert.ok(extract(download)[0].includes('href="'+url+'"'),'download link must match brand release');
