@@ -237,6 +237,19 @@ export default {async scheduled(event,env,ctx){
     const a=await active(env.DB);
     response=json({configured:Boolean(env.FIREBASE_SERVICE_ACCOUNT_JSON),enabled:env.FC_PUSH_ENABLED==="true",activePublication:a.version_id||null,brands:Object.keys(BRANDS),delivery:"FCM delivery requires configured Android clients and Google Play Services"});
    }
+   else if(request.method==='POST'&&name==='push-static'){
+    if(env.FC_PUSH_ENABLED!=="true"||!env.FIREBASE_SERVICE_ACCOUNT_JSON)fail(503,'FCM is not configured/enabled');
+    const b=await bodyJson(request);
+    if(!b||!dateValid(b.editorialDate)||!(/^[a-f0-9]{40}$/).test(b.version||""))fail(400,'Editorial date and source commit SHA required');
+    if(b.brand&&!Object.hasOwn(BRANDS,b.brand))fail(400,'Invalid notification brand');
+    if(b.kind&&!["morning","afternoon"].includes(b.kind))fail(400,'Invalid notification kind');
+    const current=yangonDate(new Date());
+    if(b.editorialDate!==current&&b.editorialDate!==previousDay(current))fail(409,'Only current or previous Yangon day can be notified');
+    const paths=["data/today.json","data/odds/"+b.editorialDate+".json","data/archive/"+previousDay(b.editorialDate)+".json","data/odds/evening/"+b.editorialDate+".json"];
+    if(!b.resources||typeof b.resources!=="object"||Array.isArray(b.resources)||Object.keys(b.resources).some(p=>!paths.includes(p)))fail(400,'Only published football resources are permitted');
+    const result=await dispatchPublicationNotifications(env,b.version,b.editorialDate,b.resources,fetch,{brand:b.brand,kind:b.kind});
+    response=json({source:"static-site",editorialDate:b.editorialDate,...result});
+   }
    else if(request.method==='POST'&&name==='push-now'){
     if(env.FC_PUSH_ENABLED!=="true"||!env.FIREBASE_SERVICE_ACCOUNT_JSON)fail(503,'FCM is not configured/enabled');
     const b=await bodyJson(request);
