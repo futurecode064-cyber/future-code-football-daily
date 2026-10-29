@@ -79,16 +79,18 @@ export function firebaseMessage(brand,kind,day){
   webpush:{fcm_options:{link:route}}}};
 }
 // Topic sends are single backend dispatches, not guarantees of exactly-once device delivery.
-export async function dispatchPublicationNotifications(env,versionId,day,resources,fetcher=fetch){
+export async function dispatchPublicationNotifications(env,versionId,day,resources,fetcher=fetch,options={}){
+ if(options?.brand && !Object.hasOwn(BRANDS,options.brand))throw new Error("Invalid notification brand");
+ if(options?.kind && !["morning","afternoon"].includes(options.kind))throw new Error("Invalid notification kind");
  if(env.FC_PUSH_ENABLED!=="true")return {status:"disabled"};
  if(!env.FIREBASE_SERVICE_ACCOUNT_JSON)return {status:"missing-firebase-secret"};
  const checks=notificationReadiness(day,resources);
- const kinds=["morning","afternoon"].filter(k=>checks[k]);
+ const kinds=["morning","afternoon"].filter(k=>checks[k]&&(!options.kind||options.kind===k));
  if(!kinds.length)return {status:"not-ready",checks:checks.checks};
  const credentials=JSON.parse(env.FIREBASE_SERVICE_ACCOUNT_JSON),db=env.DB;
  // Reserve every day/brand/kind before making network requests. No replay on ambiguous failure.
  const reserved=[];
- for(const kind of kinds)for(const brand of Object.keys(BRANDS)){
+ for(const kind of kinds)for(const brand of Object.keys(BRANDS).filter(b=>!options.brand||options.brand===b)){
   const id=brand+":"+day+":"+kind;
   const row=await db.prepare("INSERT INTO notification_outbox(id,brand,editorial_date,kind,version_id,status,created_at) VALUES(?,?,?,?,?,'reserved',?) ON CONFLICT(id) DO NOTHING")
    .bind(id,brand,day,kind,versionId,new Date().toISOString()).run();
