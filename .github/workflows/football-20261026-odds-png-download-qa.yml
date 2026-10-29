@@ -22,7 +22,7 @@ jobs:
           import {readFileSync} from 'node:fs';
           const base='https://future-code-football-daily.pages.dev';
           // The published site rolls over daily; avoid a stale 26 Oct fixture expectation.
-          const urls=[['Main','/odds.html','#oddsPngPages .odds-part-download'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected'],['BCF','/bet-city-family/odds.html','#brandSingleSelected']];
+          const urls=[['Main','/odds.html?frame-engine=1','#oddsPngPages .odds-part-download'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected'],['BCF','/bet-city-family/odds.html','#brandSingleSelected']];
           const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
           let success=0;
           try{
