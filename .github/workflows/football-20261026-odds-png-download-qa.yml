@@ -1,4 +1,4 @@
-name: Smoke test six-site live Odds PNG downloads
+name: Live Seven-site Odds PNG Browser QA
 on:
   push:
     branches: [main]
@@ -15,15 +15,14 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright
           npx playwright install --with-deps chromium
-      - name: Download live main and five branded Odds PNGs
+      - name: Download live main and six branded Odds PNGs
         run: |
           node --input-type=module <<'NODE'
           import {chromium} from 'playwright';
           import {readFileSync} from 'node:fs';
           const base='https://future-code-football-daily.pages.dev';
-          const fixtures=JSON.parse(readFileSync('football-daily/data/odds/2026-10-26.json','utf8'));
-          if(fixtures.reportDate!=='2026-10-26'||fixtures.matches.length!==11)throw Error('Source fixtures changed');
-          const urls=[['Main','/odds.html','#tofSave'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected']];
+          // The published site rolls over daily; avoid a stale 26 Oct fixture expectation.
+          const urls=[['Main','/odds.html','#oddsPngPages .odds-part-download'],['YKZ','/ykz-family/odds.html','#brandSingleSelected'],['BW','/bw-sport/odds.html','#brandSingleSelected'],['Ko Thet','/ko-thet-family/odds.html','#brandSingleSelected'],['Goal Zone','/future-code-journal/odds.html','#brandSingleSelected'],['KMM','/kmm-sport-hub/odds.html','#brandSingleSelected'],['BCF','/bet-city-family/odds.html','#brandSingleSelected']];
           const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
           let success=0;
           try{
@@ -46,5 +45,5 @@ jobs:
             }finally{await context.close()}
            }
           }finally{await browser.close()}
-          if(success!==6)throw Error('Not all branded sites passed');
+          if(success!==7)throw Error('Not all seven branded/main sites passed');
           NODE
