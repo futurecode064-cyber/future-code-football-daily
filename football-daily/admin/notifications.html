@@ -41,7 +41,24 @@ form.addEventListener("submit",async e=>{
  if(!confirm("သက်ဆိုင်ရာ APK သို့ "+(kind==="morning"?"မနက်ပိုင်း":"ညနေပိုင်း")+" Notification ပို့မလား?"))return;
  button.disabled=true;output.textContent="ပို့ရန် စစ်ဆေးနေသည်…";
  try{
-  const response=await fetch(API+"/api/admin/push-now",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({brand,kind}),cache:"no-store"});
+  const read=async file=>{
+   const r=await fetch("../"+file,{cache:"no-store"});
+   if(r.status===404)return null;
+   if(!r.ok)throw new Error("Data not available: "+file+" ("+r.status+")");
+   return r.json();
+  };
+  const today=await read("data/today.json");
+  if(!today?.published||!/^\\d{4}-\\d{2}-\\d{2}$/.test(today.reportDate||""))throw new Error("Published daily fixtures are not ready");
+  const day=today.reportDate,previous=new Date(day+"T12:00:00Z");
+  previous.setUTCDate(previous.getUTCDate()-1);
+  const last=previous.toISOString().slice(0,10);
+  const paths=["data/today.json","data/odds/"+day+".json","data/archive/"+last+".json","data/odds/evening/"+day+".json"];
+  const resources={};
+  for(const path of paths){const value=path==="data/today.json"?today:await read(path);if(value)resources[path]=value}
+  const bytes=new TextEncoder().encode(JSON.stringify(resources));
+  const digest=await crypto.subtle.digest("SHA-256",bytes);
+  const version=Array.from(new Uint8Array(digest),n=>n.toString(16).padStart(2,"0")).join("").slice(0,40);
+  const response=await fetch(API+"/api/admin/push-static",{method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({brand,kind,editorialDate:day,version,resources}),cache:"no-store"});
   const data=await response.json();
   output.textContent=response.ok?(data.status==="sent"?"FCM သို့ ပို့ပြီးပါပြီ (ဖုန်းပေါ်ရောက်ရှိမှုကို သီးခြားစစ်ပါ)":"ပို့မပြီးပါ — "+JSON.stringify(data)):"ပို့၍မရပါ — "+(data.error||response.status);
  }catch(err){output.textContent="ချိတ်ဆက်မှု မရပါ: "+String(err.message||err)}
