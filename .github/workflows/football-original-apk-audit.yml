@@ -1,3 +1,4 @@
+# Existing public APK binaries only; never signs, uploads, or replaces releases.
 name: Football Original APK Release Signatures (read-only)
 on:
   push:
