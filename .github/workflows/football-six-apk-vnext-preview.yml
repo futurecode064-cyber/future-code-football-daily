@@ -55,15 +55,15 @@ jobs:
             SRC='/tmp/bcf-native/fcm'
             TOPIC='fc_football_bcf'
             PACKAGE='mm.futurecode.betcityfamily'
-            CODE=4
-            VERSION='1.0.3'
+            CODE=3
+            VERSION='1.0.2'
             OUT='FC-BCF-v1.0.2-FCM-FRESH-INSTALL.apk'
           else
             SRC='android-journal/fcm'
             TOPIC='fc_football_goal_zone'
             PACKAGE='mm.futurecode.sportsjournal'
-            CODE=3
-            VERSION='1.0.2'
+            CODE=4
+            VERSION='1.0.3'
             OUT='FC-Goal-Zone-v1.0.3-FCM-FRESH-INSTALL.apk'
           fi
           echo "FC_SRC=$SRC" >> "$GITHUB_ENV"
