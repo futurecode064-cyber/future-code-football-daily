@@ -29,15 +29,22 @@ for brand in "${brands[@]}"; do
     ko_thet) sourceAPK=ko-thet-apk-output/Ko-Thet-Family-Journal.apk; name=FC-Ko-Thet-v1.0.3-FreshInstall.apk; pkg=com.futurecode.kothetfamilyjournal; code=4 ;;
     kmm) sourceAPK=kmm-apk-output/KMM-Sport-Hub.apk; name=FC-KMM-v1.0.2-FreshInstall.apk; pkg=com.futurecode.kmmsporthub; code=3 ;;
   esac
-  test -s "$sourceAPK"
+  echo "QA_START $brand (signed non-debug Android Release)"
+  test -s "$sourceAPK" || { echo "QA_FAIL $brand output missing"; exit 1; }
   cp "$sourceAPK" "$GDIR/dist/$name"
-  "$SIGN" verify --verbose "$GDIR/dist/$name" >/dev/null
-  "$AAPT" dump badging "$GDIR/dist/$name" | grep -F "name='$pkg'" >/dev/null
-  "$AAPT" dump badging "$GDIR/dist/$name" | grep -F "versionCode='$code'" >/dev/null
-  "$AAPT" dump badging "$GDIR/dist/$name" | grep -F 'application-debuggable' && { echo "BLOCKED: debuggable build $brand"; exit 1; } || true
-  "$AAPT" dump xmltree "$GDIR/dist/$name" AndroidManifest.xml | grep -F PushMessageService >/dev/null
-  "$AAPT" dump resources "$GDIR/dist/$name" | grep -F 'google_app_id' >/dev/null
-  "$AAPT" dump resources "$GDIR/dist/$name" | grep -F 'gcm_defaultSenderId' >/dev/null
+  "$SIGN" verify --verbose "$GDIR/dist/$name" >/dev/null || { echo "QA_FAIL $brand APK signature"; exit 1; }
+  echo "QA_OK $brand signature"
+  "$AAPT" dump badging "$GDIR/dist/$name" | grep -F "name='$pkg'" >/dev/null || { echo "QA_FAIL $brand package"; exit 1; }
+  echo "QA_OK $brand package"
+  "$AAPT" dump badging "$GDIR/dist/$name" | grep -F "versionCode='$code'" >/dev/null || { echo "QA_FAIL $brand versionCode"; exit 1; }
+  echo "QA_OK $brand version"
+  if "$AAPT" dump badging "$GDIR/dist/$name" | grep -F 'application-debuggable' >/dev/null; then echo "QA_FAIL $brand debuggable"; exit 1; fi
+  echo "QA_OK $brand not debuggable"
+  "$AAPT" dump xmltree "$GDIR/dist/$name" AndroidManifest.xml | grep -F PushMessageService >/dev/null || { echo "QA_FAIL $brand FCM service manifest"; exit 1; }
+  echo "QA_OK $brand Firebase service"
+  "$AAPT" dump resources "$GDIR/dist/$name" | grep -F 'google_app_id' >/dev/null || { echo "QA_FAIL $brand Firebase app resource"; exit 1; }
+  "$AAPT" dump resources "$GDIR/dist/$name" | grep -F 'gcm_defaultSenderId' >/dev/null || { echo "QA_FAIL $brand Firebase sender resource"; exit 1; }
+  echo "QA_OK $brand Firebase resources"
   sha256sum "$GDIR/dist/$name" > "$GDIR/dist/$name.sha256"
   echo "SIGNED_RELEASE_BUILT $brand $pkg versionCode=$code"
 done
