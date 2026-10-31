@@ -16,6 +16,8 @@ public final class FcmStarter {
  }
  public static synchronized void start(Context context) {
   if(initialized||!configured())return;
+  // Background FCM notifications need an existing Android 8+ channel.
+  ContentNotifier.channels(context);
   FirebaseOptions options=new FirebaseOptions.Builder()
    .setApplicationId(BuildConfig.FC_APP_ID)
    .setApiKey(BuildConfig.FC_API_KEY)
