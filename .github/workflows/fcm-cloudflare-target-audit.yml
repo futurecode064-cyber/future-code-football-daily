@@ -66,6 +66,16 @@ jobs:
               tables:rows.map(x=>x.name).filter(Boolean)});
           }
           console.log(JSON.stringify(report,null,2));
+          const stage=report.workers.find(x=>x.name==="future-code-football-engine-staging");
+          const secret=stage?.bindings?.filter(x=>x.name==="FIREBASE_SERVICE_ACCOUNT_JSON")||[];
+          const disabled=stage?.bindings?.some(x=>x.name==="FC_PUSH_ENABLED"&&x.type==="plain_text");
+          if(secret.length!==1||secret[0].type!=="secret_text"||
+              !stage.secretNames.includes("FIREBASE_SERVICE_ACCOUNT_JSON")||!disabled){
+            console.log("BLOCKED: staging Firebase credential is not one encrypted secret, or push-flag binding missing");
+            process.exitCode=1;
+          }else{
+            console.log("PASS: Firebase staging credential is encrypted secret_text and push flag exists");
+          }
           if(!report.workers.some(x=>x.settingsHttp===200)){
             console.log("BLOCKED: no Worker settings could be read; cannot select safe target.");
             process.exitCode=1;
