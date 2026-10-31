@@ -26,6 +26,40 @@ jobs:
       FC_APK_RELEASE_KEYPASS: ${{ secrets.FC_APK_RELEASE_KEYPASS }}
     steps:
       - uses: actions/checkout@v4
+      - name: Load project Firebase Android client config without printing keys
+        shell: bash
+        env:
+          FC_GOOGLE_SERVICES_JSON: ${{ secrets.FC_GOOGLE_SERVICES_JSON }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${FC_GOOGLE_SERVICES_JSON:-}" ]]; then
+            echo "Owner Firebase client JSON secret not configured. Preview build will not receive push."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json,os
+          d=json.loads(os.environ["FC_GOOGLE_SERVICES_JSON"])
+          project=d.get("project_info",{})
+          if not project.get("project_id") or not project.get("project_number"):
+              raise SystemExit("Invalid Firebase project info")
+          expected={"GOAL_ZONE":"mm.futurecode.sportsjournal","BCF":"mm.futurecode.betcityfamily"}
+          env={"FC_FIREBASE_PROJECT_ID":str(project["project_id"]),
+               "FC_FIREBASE_SENDER_ID":str(project["project_number"])}
+          for brand,package in expected.items():
+              clients=[x for x in d.get("client",[]) if x.get("client_info",{}).get("android_client_info",{}).get("package_name")==package]
+              if len(clients)!=1 or not clients[0].get("api_key",[]) or not clients[0]["api_key"][0].get("current_key"):
+                  raise SystemExit("Missing/multiple Firebase clients for "+brand)
+              app_id=clients[0]["client_info"].get("mobilesdk_app_id","")
+              if not app_id.startswith("1:"+env["FC_FIREBASE_SENDER_ID"]+":android:"):
+                  raise SystemExit("Firebase sender mismatch for "+brand)
+              env["FC_FIREBASE_APP_ID_"+brand]=app_id
+              env["FC_FIREBASE_API_KEY_"+brand]=clients[0]["api_key"][0]["current_key"]
+          with open(os.environ["GITHUB_ENV"],"a") as fh:
+              for k,v in env.items():
+                  if "\n" in v:raise SystemExit("Bad config value")
+                  fh.write(k+"="+v+"\n")
+          print("Firebase client config validated for Goal Zone and BCF; secret values hidden")
+          PY
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
       - uses: gradle/actions/setup-gradle@v4
