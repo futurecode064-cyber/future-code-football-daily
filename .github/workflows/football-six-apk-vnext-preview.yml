@@ -169,6 +169,22 @@ jobs:
           mkdir -p staged
           cp "$APK" "staged/$FC_OUT"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "staged/$FC_OUT"
+          if [[ -n "${FC_FIREBASE_APP_ID:-}" && -n "${FC_FIREBASE_SENDER_ID:-}" ]]; then
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "staged/$FC_OUT" | grep -F 'google_app_id' >/dev/null
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "staged/$FC_OUT" | grep -F 'gcm_defaultSenderId' >/dev/null
+          fi
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ "$FC_PACKAGE" == "mm.futurecode.sportsjournal" ]]; then
+              EXPECTED_SIGNER="98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+            else
+              EXPECTED_SIGNER="064c09d10cf21740754221680a85079acea50daa84c0ec9b16d8165c095904d7"
+            fi
+            ACTUAL_SIGNER="$("$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "staged/$FC_OUT" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p' | head -1)"
+            if [[ "${ACTUAL_SIGNER,,}" != "$EXPECTED_SIGNER" ]]; then
+              echo "::error::Original APK signing certificate mismatch for $FC_PACKAGE. Refusing release."
+              exit 1
+            fi
+          fi
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "name='$FC_PACKAGE'"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "versionCode='$FC_CODE'"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "staged/$FC_OUT" AndroidManifest.xml | grep -F PushMessageService
