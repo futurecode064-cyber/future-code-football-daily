@@ -1,4 +1,5 @@
 name: FCM Cloudflare Read-Only Target Audit
+# Post-staging verification; production Worker must remain unchanged
 on:
   push:
     branches: ['feature/football-bundled-fcm-20261029']
