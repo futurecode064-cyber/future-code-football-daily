@@ -2,7 +2,10 @@ name: Football Six Branded Signed Fresh Install APKs - 2026-10-31
 on:
   push:
     branches: ['feature/football-bundled-fcm-20261029']
-    paths: ['.github/workflows/football-six-signed-apk-release.yml']
+    paths:
+      - '.github/workflows/football-six-signed-apk-release.yml'
+      - 'scripts/football/build-six-release.sh'
+      - 'scripts/football/prepare-mobile-signing.mjs'
 permissions:
   contents: write
 concurrency:
