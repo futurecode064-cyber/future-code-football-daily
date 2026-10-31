@@ -1,4 +1,5 @@
 name: FC Goal Zone and BCF FCM vNext previews
+# Owner follow-up: verify Android client JSON in protected Actions secret (2026-10-31).
 on:
   push:
     branches: ['feature/football-bundled-fcm-20261029']
