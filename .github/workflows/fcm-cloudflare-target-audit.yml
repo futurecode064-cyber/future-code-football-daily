@@ -1,0 +1,83 @@
+name: FCM Cloudflare Read-Only Target Audit
+# Post-staging verification; production Worker must remain unchanged
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths: ['.github/workflows/fcm-cloudflare-target-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    env:
+      CF_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+      ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+    steps:
+      - name: Inspect exact known Worker metadata and D1 table presence without modifying resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          const account=process.env.ACCOUNT_ID;
+          const token=process.env.CF_TOKEN;
+          if(!token){console.log("GitHub Cloudflare access token unavailable");process.exit(2);}
+          const base="https://api.cloudflare.com/client/v4/accounts/"+account;
+          async function query(path,method="GET",body){
+            try{
+              const r=await fetch(base+path,{method,headers:{
+                Authorization:"Bearer "+token,
+                "Content-Type":"application/json"
+              },body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(16000)});
+              const j=await r.json().catch(()=>({}));
+              return {http:r.status,ok:r.ok&&j.success===true,result:j.result||null};
+            }catch{return {http:"network-error",ok:false,result:null};}
+          }
+          const names=["future-code-football-engine-staging","future-code-football-engine","future-code-football-test"];
+          const report={kind:"read-only-cloudflare-fcm-target-audit",workers:[],databases:[]};
+          for(const name of names){
+            const [settings,deployments,secrets]=await Promise.all([
+              query("/workers/scripts/"+name+"/settings"),
+              query("/workers/scripts/"+name+"/deployments"),
+              query("/workers/scripts/"+name+"/secrets")
+            ]);
+            const s=settings.result||{},d=deployments.result||{},x=secrets.result;
+            const bindings=(Array.isArray(s.bindings)?s.bindings:[]).map(b=>({
+              name:b.name,type:b.type
+            }));
+            const secretList=Array.isArray(x)?x:Array.isArray(x?.secrets)?x.secrets:[];
+            const latest=Array.isArray(d.deployments)?d.deployments[0]:null;
+            report.workers.push({name,settingsHttp:settings.http,
+              deploymentHttp:deployments.http,secretsHttp:secrets.http,
+              bindings,secretNames:secretList.map(v=>v.name).filter(Boolean),
+              deploymentId:latest?.id||null,deploymentCreatedAt:latest?.created_on||null});
+          }
+          const databases=[
+            {name:"production-football-db",id:"d2cc165f-5957-4b94-b2b1-9c79e79adbb1"},
+            {name:"staging-football-db",id:"a4ddc00f-411b-4ee5-ab4a-dfe13486c334"}
+          ];
+          for(const db of databases){
+            const q=await query("/d1/database/"+db.id+"/query","POST",{
+              sql:"SELECT name FROM sqlite_master WHERE type='table' AND name IN ('notification_outbox','active_publication','publication_versions') ORDER BY name"
+            });
+            const rows=Array.isArray(q.result)?q.result.flatMap(x=>x.results||[]):[];
+            report.databases.push({name:db.name,queryHttp:q.http,
+              tables:rows.map(x=>x.name).filter(Boolean)});
+          }
+          console.log(JSON.stringify(report,null,2));
+          const stage=report.workers.find(x=>x.name==="future-code-football-engine-staging");
+          const secret=stage?.bindings?.filter(x=>x.name==="FIREBASE_SERVICE_ACCOUNT_JSON")||[];
+          const disabled=stage?.bindings?.some(x=>x.name==="FC_PUSH_ENABLED"&&x.type==="plain_text");
+          if(secret.length!==1||secret[0].type!=="secret_text"||
+              !stage.secretNames.includes("FIREBASE_SERVICE_ACCOUNT_JSON")||!disabled){
+            console.log("BLOCKED: staging Firebase credential is not one encrypted secret, or push-flag binding missing");
+            process.exitCode=1;
+          }else{
+            console.log("PASS: Firebase staging credential is encrypted secret_text and push flag exists");
+          }
+          if(!report.workers.some(x=>x.settingsHttp===200)){
+            console.log("BLOCKED: no Worker settings could be read; cannot select safe target.");
+            process.exitCode=1;
+          }
+          JS
