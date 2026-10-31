@@ -22,6 +22,16 @@ brands=(ykz bw ko_thet kmm)
 for brand in "${brands[@]}"; do
   cd "$GDIR/upstream"
   python3 scripts/football-apk-vnext-build.py "$brand"
+  # Retry transient Maven/Google repository outages without rebuilding under a different signer.
+  python3 - "/tmp/football_vnext_${brand}.sh" <<'PY'
+import sys
+from pathlib import Path
+p=Path(sys.argv[1]);s=p.read_text()
+needle="gradle --no-daemon :app:assembleRelease"
+if s.count(needle)!=1:raise SystemExit("Unexpected signed release build command")
+s=s.replace(needle,needle+" || { sleep 12; "+needle+"; }")
+p.write_text(s)
+PY
   bash "/tmp/football_vnext_${brand}.sh"
   case "$brand" in
     ykz) sourceAPK=ykz-apk-output/YKZ-Soccer-Tips.apk; name=FC-YKZ-v1.2.1-FreshInstall.apk; pkg=com.futurecode.ykzsoccertips; code=4 ;;
@@ -117,7 +127,7 @@ android {
  buildTypes { release { signingConfig signingConfigs.fcOwner; minifyEnabled false } }
 }
 FCSIGNING
-  gradle --no-daemon :assembleRelease -PFC_PACKAGE="$pkg" -PFC_VERSION_CODE="$code" -PFC_VERSION_NAME="$version" -PFC_TOPIC="$topic"
+  gradle --no-daemon :assembleRelease -PFC_PACKAGE="$pkg" -PFC_VERSION_CODE="$code" -PFC_VERSION_NAME="$version" -PFC_TOPIC="$topic" || { sleep 12; gradle --no-daemon :assembleRelease -PFC_PACKAGE="$pkg" -PFC_VERSION_CODE="$code" -PFC_VERSION_NAME="$version" -PFC_TOPIC="$topic"; }
   APK="$(find build/outputs/apk/release -name '*.apk' -type f | head -n1)"
   test -s "$APK"
   cp "$APK" "$GDIR/dist/$name"
