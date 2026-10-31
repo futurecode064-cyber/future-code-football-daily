@@ -38,6 +38,8 @@ test("exact Myanmar copy and seven separate topics",()=>{
  for(const brand of Object.keys(BRANDS)){
   const m=firebaseMessage(brand,"morning",day).message;
   assert.equal(m.data.noticeId,brand+":"+day+":morning");
+  assert.equal(m.android.notification.channel_id,["goal_zone","bcf"].includes(brand)?"journal_content":"fc_live");
+  assert.equal(Object.hasOwn(m.android.notification,"click_action"),false);
   assert.equal(m.notification.body,MORNING_BODY);
   assert.match(m.data.route,/^https:\/\/future-code-football-daily\.pages\.dev\//);
  }
