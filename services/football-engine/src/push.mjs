@@ -75,7 +75,7 @@ export function firebaseMessage(brand,kind,day){
  const body=kind==="morning"?MORNING_BODY:EVENING_BODY;
  return {message:{topic:info.topic,notification:{title,body},
   data:{brand,kind,day,route,noticeId:brand+":"+day+":"+kind},
-  android:{priority:"HIGH",collapse_key:day+"-"+kind,notification:{channel_id:"journal_content",click_action:"FC_OPEN_NOTIFICATION"}},
+  android:{priority:"HIGH",collapse_key:day+"-"+kind,notification:{channel_id:["goal_zone","bcf"].includes(brand)?"journal_content":"fc_live"}},
   webpush:{fcm_options:{link:route}}}};
 }
 // Topic sends are single backend dispatches, not guarantees of exactly-once device delivery.
