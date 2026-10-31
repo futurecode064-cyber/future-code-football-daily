@@ -34,10 +34,10 @@ p.write_text(s)
 PY
   bash "/tmp/football_vnext_${brand}.sh"
   case "$brand" in
-    ykz) sourceAPK=ykz-apk-output/YKZ-Soccer-Tips.apk; name=FC-YKZ-v1.2.1-FreshInstall.apk; pkg=com.futurecode.ykzsoccertips; code=4 ;;
-    bw) sourceAPK=bw-apk-output/BW-Sport-Journal.apk; name=FC-BW-v1.0.2-FreshInstall.apk; pkg=com.futurecode.bwsportjournal; code=3 ;;
-    ko_thet) sourceAPK=ko-thet-apk-output/Ko-Thet-Family-Journal.apk; name=FC-Ko-Thet-v1.0.3-FreshInstall.apk; pkg=com.futurecode.kothetfamilyjournal; code=4 ;;
-    kmm) sourceAPK=kmm-apk-output/KMM-Sport-Hub.apk; name=FC-KMM-v1.0.2-FreshInstall.apk; pkg=com.futurecode.kmmsporthub; code=3 ;;
+    ykz) sourceAPK=$GDIR/ykz-apk-output/YKZ-Soccer-Tips.apk; name=FC-YKZ-v1.2.1-FreshInstall.apk; pkg=com.futurecode.ykzsoccertips; code=4 ;;
+    bw) sourceAPK=$GDIR/bw-apk-output/BW-Sport-Journal.apk; name=FC-BW-v1.0.2-FreshInstall.apk; pkg=com.futurecode.bwsportjournal; code=3 ;;
+    ko_thet) sourceAPK=$GDIR/ko-thet-apk-output/Ko-Thet-Family-Journal.apk; name=FC-Ko-Thet-v1.0.3-FreshInstall.apk; pkg=com.futurecode.kothetfamilyjournal; code=4 ;;
+    kmm) sourceAPK=$GDIR/kmm-apk-output/KMM-Sport-Hub.apk; name=FC-KMM-v1.0.2-FreshInstall.apk; pkg=com.futurecode.kmmsporthub; code=3 ;;
   esac
   echo "QA_START $brand (signed non-debug Android Release)"
   test -s "$sourceAPK" || { echo "QA_FAIL $brand output missing"; exit 1; }
