@@ -16,6 +16,9 @@ android {
   buildConfigField 'String','FC_API_KEY',quote(System.getenv('FC_FIREBASE_API_KEY'))
   buildConfigField 'String','FC_PROJECT_ID',quote(System.getenv('FC_FIREBASE_PROJECT_ID'))
   buildConfigField 'String','FC_SENDER_ID',quote(System.getenv('FC_FIREBASE_SENDER_ID'))
+  // Android release gate reads actual packaged client resources, not just DEX constants.
+  resValue 'string','google_app_id',quote(System.getenv('FC_FIREBASE_APP_ID'))
+  resValue 'string','gcm_defaultSenderId',quote(System.getenv('FC_FIREBASE_SENDER_ID'))
   buildConfigField 'String','FC_TOPIC',quote(findProperty('FC_TOPIC'))
  }
  buildFeatures { buildConfig true }
