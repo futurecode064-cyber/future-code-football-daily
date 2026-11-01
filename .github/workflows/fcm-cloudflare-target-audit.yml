@@ -65,6 +65,22 @@ jobs:
             report.databases.push({name:db.name,queryHttp:q.http,
               tables:rows.map(x=>x.name).filter(Boolean)});
           }
+          const prod=report.workers.find(x=>x.name==="future-code-football-engine");
+          report.pushReadiness={
+            productionFirebaseSecret:prod?.secretNames?.includes("FIREBASE_SERVICE_ACCOUNT_JSON")||false,
+            stagingFirebaseSecret:report.workers.find(x=>x.name==="future-code-football-engine-staging")?.secretNames?.includes("FIREBASE_SERVICE_ACCOUNT_JSON")||false,
+            productionFCMFlagType:prod?.bindings?.find(x=>x.name==="FC_PUSH_ENABLED")?.type||"missing",
+            stagingFCMFlagType:report.workers.find(x=>x.name==="future-code-football-engine-staging")?.bindings?.find(x=>x.name==="FC_PUSH_ENABLED")?.type||"missing",
+            productionOutbox:report.databases.find(x=>x.name==="production-football-db")?.tables?.includes("notification_outbox")||false,
+            stagingOutbox:report.databases.find(x=>x.name==="staging-football-db")?.tables?.includes("notification_outbox")||false
+          };
+          const activeRows=[];
+          for(const db of databases){
+            const q=await query("/d1/database/"+db.id+"/query","POST",{sql:"SELECT version_id,generation FROM active_publication WHERE singleton=1"});
+            const row=(Array.isArray(q.result)?q.result.flatMap(x=>x.results||[]):[])[0];
+            activeRows.push({name:db.name,http:q.http,hasPublishedVersion:Boolean(row?.version_id),generation:row?.generation??null});
+          }
+          report.activePublication=activeRows;
           console.log(JSON.stringify(report,null,2));
           const stage=report.workers.find(x=>x.name==="future-code-football-engine-staging");
           const secret=stage?.bindings?.filter(x=>x.name==="FIREBASE_SERVICE_ACCOUNT_JSON")||[];
