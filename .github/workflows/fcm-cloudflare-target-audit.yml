@@ -82,6 +82,13 @@ jobs:
             activeRows.push({name:db.name,http:q.http,hasPublishedVersion:Boolean(row?.version_id),generation:row?.generation??null});
           }
           report.activePublication=activeRows;
+          const schedules=await query("/workers/scripts/future-code-football-engine/schedules");
+          report.prodSchedules={http:schedules.http,crons:(Array.isArray(schedules.result)?schedules.result:
+            Array.isArray(schedules.result?.schedules)?schedules.result.schedules:[]).map(x=>x.cron).filter(Boolean)};
+          const routeCheck=await query("/workers/routes");
+          const routes=Array.isArray(routeCheck.result)?routeCheck.result:[];
+          report.prodRoutes={http:routeCheck.http,routeCountForWorker:routes.filter(x=>x.script==="future-code-football-engine").length};
+
           console.log(JSON.stringify(report,null,2));
           const stage=report.workers.find(x=>x.name==="future-code-football-engine-staging");
           const secret=stage?.bindings?.filter(x=>x.name==="FIREBASE_SERVICE_ACCOUNT_JSON")||[];
