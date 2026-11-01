@@ -1,0 +1,52 @@
+name: Football push after verified live publication
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: football-push-state
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load notification state
+        shell: bash
+        run: |
+          if git fetch origin football-push-state 2>/dev/null; then
+            git show FETCH_HEAD:state.json > "$RUNNER_TEMP/football-push-state.json"
+          else
+            printf '{}\n' > "$RUNNER_TEMP/football-push-state.json"
+          fi
+      - name: Send only completed daily slots
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        shell: bash
+        run: |
+          python3 -m pip install --user google-auth requests
+          python3 scripts/football/send-fcm-after-publish.py morning --state "$RUNNER_TEMP/football-push-state.json"
+          python3 scripts/football/send-fcm-after-publish.py evening --state "$RUNNER_TEMP/football-push-state.json"
+      - name: Persist acknowledged slots outside the website branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          STATE="$RUNNER_TEMP/football-push-state.json"
+          if [ "$(cat "$STATE")" = '{}' ]; then exit 0; fi
+          git config user.name 'future-code-push-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          if git fetch origin football-push-state 2>/dev/null; then
+            git switch -C football-push-state FETCH_HEAD
+          else
+            git switch --orphan football-push-state
+            git rm -rf . >/dev/null
+          fi
+          cp "$STATE" state.json
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record acknowledged FCM publication slots'
+            git push origin HEAD:refs/heads/football-push-state
+          fi
