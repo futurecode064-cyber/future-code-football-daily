@@ -1,5 +1,6 @@
 name: FCM Cloudflare Read-Only Target Audit
 # Post-staging verification; production Worker must remain unchanged
+# Owner-requested recheck after Firebase setup; read only, never inspect secret contents
 on:
   push:
     branches: ['feature/football-bundled-fcm-20261029']
