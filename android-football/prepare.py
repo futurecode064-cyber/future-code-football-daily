@@ -41,6 +41,7 @@ def prepare(brand, config):
             value = value.replace("JournalJob.schedule(this);", "")
             # Old periodic checks sent extra local notices. FCM owns the two slots.
             value = value.replace("new Thread(()->{try{ContentNotifier.check(this);}catch(Exception ignored){}}).start();", "")
+            value = value.replace("if(request==301&&results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED)", "")
         if source.name == "ContentNotifier.java":
             value = "package mm.futurecode.sportsjournal; import android.content.Context; public final class ContentNotifier { public static void check(Context c){} public static void channels(Context c){} }\n"
         (java / source.name).write_text(value, encoding="utf-8")
