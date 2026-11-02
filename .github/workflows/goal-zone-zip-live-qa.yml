@@ -81,6 +81,43 @@ jobs:
             await page.selectOption('#gzBulkLeague','all');
             await getZip('odds','single',1);
             await getZip('results','two',2);
+            // Re-select ALL categories and check the full multi-section ZIP.
+            await page.evaluate(()=>{
+              for(const box of document.querySelectorAll('input[name="gzCenterCategory"]')){
+                box.checked=true;
+                box.dispatchEvent(new Event('change',{bubbles:true}));
+              }
+            });
+            const counts=await page.evaluate(async()=>{
+              const read=async p=>await (await fetch(new URL('../data/'+p,document.baseURI),{cache:'no-store'})).json();
+              const report=await read('today.json');
+              const day=report.reportDate;
+              const previous=new Date(day+'T12:00:00Z');
+              previous.setUTCDate(previous.getUTCDate()-1);
+              const yday=previous.toISOString().slice(0,10);
+              const [odds,results,news]=await Promise.all([read('odds/'+day+'.json'),read('archive/'+yday+'.json'),read('news/latest.json')]);
+              const previews=report.matches.filter(m=>m.home&&m.away&&m.status!=='finished'&&!m.fixtureOnly);
+              const specials=previews.filter(m=>m.specialChoice===true);
+              const finished=results.matches.filter(m=>m.status==='finished'&&/^\\d+\\s*[-:]\\s*\\d+$/.test(String(m.finalScore||'')));
+              return {preview:previews.length,special:specials.length,odds:odds.matches.length?1:0,results:Math.min(2,finished.length),ai:Math.min(2,previews.length),probability:previews.length?1:0,news:news.items.length};
+            });
+            const allDownload=page.waitForEvent('download',{timeout:480000});
+            await page.locator('#gzBulkDownload').click();
+            const fullZip=await allDownload;
+            const fullBuf=readFileSync(await fullZip.path());
+            const allRows=zipItems(fullBuf);
+            const expected=Object.values(counts).reduce((a,b)=>a+b,0);
+            const actual=allRows.filter(r=>r.filename.endsWith('.png')).length;
+            const byType={};
+            for(const row of allRows.filter(r=>r.filename.endsWith('.png'))){
+              const category=row.filename.split('/')[0];
+              byType[category]=(byType[category]||0)+1;
+            }
+            console.log('ALL-SECTIONS ZIP',JSON.stringify({expected,actual,counts,byType,size:fullBuf.length,status:await page.locator('#gzBulkStatus').innerText(),extra:allRows.filter(r=>!r.filename.endsWith('.png'))}));
+            if(actual!==expected)throw Error('Incomplete Goal Zone all-section ZIP: '+actual+' PNGs versus '+expected);
+            for(const [type,count] of Object.entries(counts)){
+              if((byType[type]||0)!==count)throw Error('Incomplete category '+type+': '+byType[type]+' / '+count);
+            }
             if(pageErrors.length)console.log('Browser JS notices: '+JSON.stringify(pageErrors));
             console.log('GOAL ZONE ZIP LIVE QA COMPLETE');
           }finally{await browser.close();}
