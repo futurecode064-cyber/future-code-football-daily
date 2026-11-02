@@ -1,5 +1,5 @@
 "use strict";
-/* Main Website only. Uses the pinned Worker/D1 publication; never polls or scrapes in browsers. */
+/* Shared match-probability math: Main + Goal Zone only, using the same published rows. */
 (function(root){
  const finitePrice=x=>{const n=Number(x);return x!==null&&x!==undefined&&String(x).trim()!==""&&Number.isFinite(n)&&n>1.001&&n<1000?n:null;};
  function percentages(weights){
@@ -62,7 +62,8 @@
  if(typeof module==="object"&&module.exports)module.exports=model;
  if(!root||!root.document)return;
  const doc=root.document;
- if(!["/","/index.html"].includes(root.location.pathname))return;
+ const isGoalZone=/^\/future-code-journal\/(?:index\.html)?$/.test(root.location.pathname);
+ if(!["/","/index.html"].includes(root.location.pathname)&&!isGoalZone)return;
  const $=id=>doc.getElementById(id);
  const safeUrl=url=>{try{const u=new URL(url);return u.protocol==="https:"?u.href:null;}catch{return null;}};
  const mk=(tag,cls,txt)=>{const e=doc.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=String(txt);return e;};
@@ -123,19 +124,28 @@
     const client=root.FootballData;
     if(!client){status.textContent="D1 ဒေတာချိတ်ဆက်မှု မရသေးပါ";return;}
     const state=await client.ready();
-    if(state.fallback||state.stale||state.draft&&state.error){status.textContent="D1 ထုတ်ဝေမှု မရနိုင်သဖြင့် % အဟောင်းများကို မပြပါ";return;}
-    const report=state.resources?.["data/today.json"];
+    const localBase=new URL("../data/",root.location.href);
+    const localJSON=async path=>{
+      const r=await fetch(new URL(path,localBase),{cache:"no-store"});
+      if(!r.ok)throw Error("Published static data unavailable");
+      return r.json();
+    };
+    if(!isGoalZone&&(state.fallback||state.stale||state.draft&&state.error)){
+      status.textContent="D1 ထုတ်ဝေမှု မရနိုင်သဖြင့် % အဟောင်းများကို မပြပါ";return;
+    }
+    const usingStatic=isGoalZone&&(state.fallback||state.stale||!state.resources?.["data/today.json"]);
+    const report=usingStatic?await localJSON("today.json"):state.resources?.["data/today.json"];
     if(!report||!Array.isArray(report.matches)||!/^\d{4}-\d{2}-\d{2}$/.test(report.reportDate||"")){status.textContent="ပွဲစဉ်ဒေတာ မပြည့်စုံပါ";return;}
     day=report.reportDate;
-    const odds=state.resources["data/odds/"+day+".json"];
+    const odds=usingStatic?await localJSON("odds/"+day+".json"):state.resources["data/odds/"+day+".json"];
     if(!Array.isArray(odds?.matches)||!odds.matches.length){status.textContent="ယနေ့ ပေါက်ကြေး မထုတ်ဝေရသေးပါ";return;}
     const oddsById=new Map((Array.isArray(odds?.matches)?odds.matches:[]).filter(m=>m.fixtureId).map(m=>[m.fixtureId,m]));
     entries=report.matches.filter(m=>m&&m.home&&m.away&&m.status!=="cancelled").map(m=>({match:m,prob:analyze(m,oddsById.get(m.fixtureId),day)}));
     const unique=new Map(entries.map(x=>[x.match.league||"Other",x.match.leagueDisplay||x.match.league||"အခြားလိဂ်"]));
     filter.replaceChildren();const all=mk("option","","လိဂ်အားလုံး");all.value="all";filter.append(all);
     for(const [key,value] of unique){const opt=mk("option","",value);opt.value=key;filter.append(opt);}
-    $("fcProbDate").textContent="D1 ထုတ်ဝေသည့်ရက် "+day;
-    status.textContent="D1 Version "+state.version+" · ယနေ့ပွဲစဉ်များအတွက် အလိုအလျောက်တွက်ချက်ထားသည်";
+    $("fcProbDate").textContent=(usingStatic?"ထုတ်ဝေထားသောရက် ":"D1 ထုတ်ဝေသည့်ရက် ")+day;
+    status.textContent=(usingStatic?"ထုတ်ဝေထားသော ဒေတာ":"D1 Version "+state.version)+" · ယနေ့ပွဲစဉ်များအတွက် အလိုအလျောက်တွက်ချက်ထားသည်";
     render();
    }catch{status.textContent="ဒေတာဖတ်ရှုမှု မအောင်မြင်ပါ။ Refresh လုပ်ပါ။";}
   }
