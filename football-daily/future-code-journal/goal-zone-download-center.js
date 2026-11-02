@@ -87,14 +87,40 @@
     if(mode==="pair"){const out=[];for(let i=0;i<array.length;i+=2)out.push(array.slice(i,i+2));return out;}
     return array.map(x=>[x]);
   }
+  // Compact multi-column journal contact sheet rather than stacking 48 long
+  // articles into an unexportable 50,000px-high image. Preserve each card's
+  // original aspect ratio; choose the largest safe readable scale.
   function stack(canvases){
+    if(!canvases.length)throw Error("PNG ဆွဲရန် ပုံမရှိပါ");
     if(canvases.length===1)return canvases[0];
-    const width=Math.max(...canvases.map(c=>c.width));
-    const heights=canvases.map(c=>Math.ceil(c.height*width/c.width));
-    const gap=12,height=heights.reduce((a,b)=>a+b,0)+(canvases.length-1)*gap;
+    const gap=16,maxTileWidth=Math.max(...canvases.map(c=>c.width));
+    let best=null;
+    for(let columns=1;columns<=Math.min(canvases.length,7);columns++){
+      const rowCount=Math.ceil(canvases.length/columns);
+      const rowHeights=Array.from({length:rowCount},(_,r)=>
+        Math.max(...canvases.slice(r*columns,(r+1)*columns).map(c=>Math.ceil(c.height*maxTileWidth/c.width))));
+      const naturalWidth=columns*maxTileWidth+(columns-1)*gap;
+      const naturalHeight=rowHeights.reduce((a,b)=>a+b,0)+(rowCount-1)*gap;
+      const scale=Math.min(1,8000/naturalWidth,13500/naturalHeight,Math.sqrt(39000000/(naturalWidth*naturalHeight)));
+      if(!best||scale>best.scale+0.000001||(Math.abs(scale-best.scale)<0.000001&&naturalHeight<best.naturalHeight)){
+        best={columns,rowHeights,naturalWidth,naturalHeight,scale};
+      }
+    }
+    const {columns,rowHeights,naturalWidth,naturalHeight,scale}=best;
+    const width=Math.max(1,Math.floor(naturalWidth*scale)),height=Math.max(1,Math.floor(naturalHeight*scale));
     const result=canvasOf(width,height),ctx=result.getContext("2d");
-    ctx.fillStyle="#13100b";ctx.fillRect(0,0,width,height);
-    let y=0;canvases.forEach((c,i)=>{ctx.drawImage(c,0,y,width,heights[i]);y+=heights[i]+gap;});
+    ctx.fillStyle="#151008";ctx.fillRect(0,0,width,height);
+    let y=0;
+    for(let i=0;i<canvases.length;i++){
+      const row=Math.floor(i/columns),col=i%columns,c=canvases[i];
+      if(col===0&&row>0)y+=rowHeights[row-1]+gap;
+      const tileHeight=c.height*maxTileWidth/c.width;
+      const xx=Math.round((col*(maxTileWidth+gap))*scale),yy=Math.round(y*scale);
+      const tileW=Math.floor(maxTileWidth*scale),tileH=Math.floor(tileHeight*scale);
+      ctx.drawImage(c,xx,yy,tileW,tileH);
+      ctx.strokeStyle="#bd944a";ctx.lineWidth=Math.max(1,Math.round(scale*2));
+      ctx.strokeRect(xx,yy,tileW,tileH);
+    }
     return result;
   }
   function download(blob,filename){
@@ -194,10 +220,9 @@
     const panel=document.createElement("section");
     panel.id="gzDownloadCenter";panel.className="gz-bulk-panel";
     panel.setAttribute("aria-label","Goal Zone ZIP Download Center");
-    panel.innerHTML='<div class="gz-bulk-heading"><span>GOAL ZONE · DOWNLOAD CENTER</span><h2>ပုံအားလုံး ZIP Download</h2><p>Section အားလုံး၊ လိဂ်၊ ပွဲ၊ PNG ပုံခွဲပုံစံကို ရွေးပြီး မူလ GOAL ZONE Banner နှင့်အတူ တစ်ဖိုင်တည်း Download ရယူပါ။</p></div>'+
-      '<div class="gz-bulk-choices" id="gzBulkCategories"></div>'+
-      '<div class="gz-center-filters"><label>လိဂ်ရွေးရန်<select id="gzBulkLeague"><option value="all">လိဂ်အားလုံး</option></select></label>'+
-      '<label>PNG ပုံစံ<select id="gzBulkLayout"><option value="each">၁ ပွဲ / သတင်း ၁ ပုံစီ</option><option value="pair">၁ ပုံတွင် ၂ ပွဲ / သတင်း</option><option value="single">Section တစ်ခုလုံး ၁ ပုံ</option><option value="two">Section တစ်ခုလုံး ၂ ပုံခွဲ</option></select></label></div>'+
+    panel.innerHTML='<div class="gz-bulk-heading"><span>GOAL ZONE · DOWNLOAD CENTER</span><h2>ပုံအားလုံး ZIP Download</h2><p>Section တစ်ခုချင်းစီမှာ ပုံစံသီးသန့်ရွေးပါ။ ပေါက်ကြေး ၁ ပုံ၊ ဂိုးရလဒ် ၂ ပုံခွဲ စသဖြင့် မတူညီသော ပုံစံများကို ZIP တစ်ဖိုင်ထဲ စုနိုင်ပါသည်။</p></div>'+
+      '<div class="gz-bulk-choices gz-section-mode-list" id="gzBulkCategories" role="group" aria-label="Section တစ်ခုချင်းစီ PNG Download ပုံစံ"></div>'+
+      '<div class="gz-center-filters"><label>လိဂ်ရွေးရန်<select id="gzBulkLeague"><option value="all">လိဂ်အားလုံး</option></select></label></div>'+
       '<details class="gz-center-matches"><summary>ပွဲရွေးရန် — <span id="gzBulkMatchCount">စစ်ဆေးနေသည်…</span></summary>'+
       '<div class="gz-center-match-actions"><button type="button" id="gzMatchAll">ပွဲအားလုံးရွေး</button><button type="button" id="gzMatchNone">ရွေးထားမှုဖြုတ်</button></div>'+
       '<div id="gzBulkMatchList" role="group" aria-label="ပွဲစဉ်ရွေးချယ်မှု"></div></details>'+
@@ -205,10 +230,33 @@
       '<p id="gzBulkStatus" role="status" aria-live="polite">ထုတ်ဝေထားသော ပွဲနှင့် သတင်းများကို ဖတ်ယူနေပါသည်…</p>';
     anchor.insertAdjacentElement("afterend",panel);
     const categories=$("gzBulkCategories"),league=$("gzBulkLeague"),matchList=$("gzBulkMatchList"),status=$("gzBulkStatus"),btn=$("gzBulkDownload");
+    // Layout is intentionally SECTION-SPECIFIC. No global PNG layout switch.
+    const initialModes={preview:"each",special:"each",odds:"single",results:"two",ai:"two",probability:"single",news:"each"};
+    const sectionModeControls=new Map();
     for(const [id,labelText] of items){
-      const label=document.createElement("label"),input=document.createElement("input");
-      input.type="checkbox";input.name="gzCenterCategory";input.value=id;input.checked=true;
-      label.append(input,document.createTextNode(labelText));categories.append(label);
+      const row=document.createElement("div");row.className="gz-section-mode-row";row.dataset.section=id;
+      const label=document.createElement("label");label.className="gz-section-mode-label";
+      const checkbox=document.createElement("input");checkbox.type="checkbox";
+      checkbox.name="gzCenterCategory";checkbox.value=id;checkbox.checked=true;
+      label.append(checkbox,document.createTextNode(labelText));
+      const selectorLabel=document.createElement("label");selectorLabel.className="gz-section-mode-selector";
+      const caption=document.createElement("span");caption.textContent="Download ပုံစံ";
+      const select=document.createElement("select");select.id="gzMode_"+id;
+      select.setAttribute("aria-label",labelText+" PNG ပုံစံ");
+      const selections=[
+        ["single","ရွေးထားသော အားလုံး ၁ ပုံတည်း"],
+        ["two","ရွေးထားသော အားလုံး ၂ ပုံခွဲ"],
+        ["each",id==="news"?"သတင်း ၁ ပုဒ် ၁ ပုံစီ":"၁ ပွဲ ၁ ပုံစီ"],
+        ["pair",id==="news"?"သတင်း ၂ ပုဒ် ၁ ပုံ":"၂ ပွဲ ၁ ပုံ"]
+      ];
+      for(const [value,title] of selections){
+        const option=document.createElement("option");option.value=value;option.textContent=title;
+        if(value===initialModes[id])option.selected=true;
+        select.add(option);
+      }
+      selectorLabel.append(caption,select);
+      checkbox.addEventListener("change",()=>{select.disabled=!checkbox.checked;row.classList.toggle("gz-section-disabled",!checkbox.checked);});
+      row.append(label,selectorLabel);categories.append(row);sectionModeControls.set(id,select);
     }
     btn.disabled=true;
     let report,odds,previous,news,day,previousDay,allMatches;
@@ -245,7 +293,6 @@
       if(!chosen.length){status.textContent="Section အနည်းဆုံးတစ်ခု ရွေးပါ";return;}
       const selected=new Set([...matchList.querySelectorAll('input[name="gzCenterMatch"]:checked')].map(el=>el.value));
       const want=m=>(league.value==="all"||m.league===league.value)&&selected.has(key(m));
-      const mode=$("gzBulkLayout").value;
       const matches=report.matches.filter(m=>m.home&&m.away&&m.status!=="finished"&&!m.fixtureOnly&&want(m));
       const oddsMatches=(odds?.matches||[]).filter(m=>want(m));
       const finals=(previous?.matches||[]).filter(m=>m.status==="finished"&&/^\d+\s*[-:]\s*\d+$/.test(String(m.finalScore||""))&&want(m));
@@ -262,18 +309,19 @@
         for(const type of chosen){
           const records=source[type]||[];
           if(!records.length)continue;
+          const mode=sectionModeControls.get(type).value;
           const groups=pieces(records,mode);
           for(let i=0;i<groups.length;i++){
             status.textContent=type+" · "+(i+1)+"/"+groups.length+" ပုံ ဖန်တီးနေသည်…";
             const art=await exportGroup(type,groups[i],context);
             const branded=await withBanner(art);
-            const filename=type+"/GOAL-ZONE-"+day+"-"+type+"-"+String(i+1).padStart(2,"0")+"-of-"+String(groups.length).padStart(2,"0")+".png";
+            const filename=type+"/GOAL-ZONE-"+day+"-"+type+"-"+mode+"-"+String(i+1).padStart(2,"0")+"-of-"+String(groups.length).padStart(2,"0")+".png";
             await archive.add(filename,await png(branded));count++;
             await new Promise(resolve=>setTimeout(resolve,0));
           }
         }
         if(!count)throw Error("ရွေးထားသောပွဲ/Section အတွက် ထုတ်ဝေထားသော ပုံမရှိသေးပါ");
-        download(archive.finish(),"GOAL-ZONE-"+day+"-"+mode+"-"+count+"-PNGs.zip");
+        download(archive.finish(),"GOAL-ZONE-"+day+"-custom-sections-"+count+"-PNGs.zip");
         status.textContent="✓ ZIP တွင် PNG "+count+" ပုံ ပါဝင်သည်။ Download စတင်ပြီးပါပြီ။";
       }catch(e){console.error("Goal Zone ZIP export",e);status.textContent="ZIP Download မအောင်မြင်ပါ — "+(e.message||e);}
       finally{btn.disabled=false;btn.textContent=original;}
