@@ -98,7 +98,7 @@ jobs:
               const [odds,results,news]=await Promise.all([read('odds/'+day+'.json'),read('archive/'+yday+'.json'),read('news/latest.json')]);
               const previews=report.matches.filter(m=>m.home&&m.away&&m.status!=='finished'&&!m.fixtureOnly);
               const specials=previews.filter(m=>m.specialChoice===true);
-              const finished=results.matches.filter(m=>m.status==='finished'&&/^\\d+\\s*[-:]\\s*\\d+$/.test(String(m.finalScore||'')));
+              const finished=results.matches.filter(m=>m.status==='finished'&&/^\d+\s*[-:]\s*\d+$/.test(String(m.finalScore||'')));
               return {preview:previews.length,special:specials.length,odds:odds.matches.length?1:0,results:Math.min(2,finished.length),ai:Math.min(2,previews.length),probability:previews.length?1:0,news:news.items.length};
             });
             const allDownload=page.waitForEvent('download',{timeout:480000});
