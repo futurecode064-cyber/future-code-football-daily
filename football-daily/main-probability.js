@@ -60,6 +60,7 @@
  }
  const model=Object.freeze({percentages,winChance,goalChance,analyze});
  if(typeof module==="object"&&module.exports)module.exports=model;
+ if(root)root.FutureCodeProbabilityModel=model;
  if(!root||!root.document)return;
  const doc=root.document;
  const isGoalZone=/^\/future-code-journal\/(?:index\.html)?$/.test(root.location.pathname);
