@@ -1,0 +1,53 @@
+name: Future Code Manual Notification
+run-name: Manual Notification · ${{ inputs.request_id }}
+on:
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: "APK IDs CSV: goal,ykz,bw,kothet,kmm"
+        required: true
+        type: string
+      title:
+        description: "Notification title"
+        required: true
+        type: string
+      body:
+        description: "Notification text"
+        required: true
+        type: string
+      link:
+        description: "Optional branded site URL (single target only)"
+        required: false
+        type: string
+      request_id:
+        description: "Unique UUID to correlate status"
+        required: true
+        type: string
+      dry_run:
+        description: "FCM validation only; send no notifications"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: future-code-manual-notify
+  cancel-in-progress: false
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout official Future Code source
+        uses: actions/checkout@v4
+      - name: Python Firebase client
+        run: python3 -m pip install --user google-auth requests
+      - name: Validate and send to selected APK topics
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+          FC_MANUAL_TARGETS: ${{ inputs.targets }}
+          FC_MANUAL_TITLE: ${{ inputs.title }}
+          FC_MANUAL_BODY: ${{ inputs.body }}
+          FC_MANUAL_LINK: ${{ inputs.link }}
+          FC_MANUAL_REQUEST_ID: ${{ inputs.request_id }}
+          FC_MANUAL_DRY_RUN: ${{ inputs.dry_run }}
+        run: python3 scripts/football/send-fcm-manual.py
