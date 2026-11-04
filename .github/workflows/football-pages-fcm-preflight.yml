@@ -1,0 +1,42 @@
+name: Future Code Pages Firebase Preflight (No Sends)
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-pages-fcm-preflight.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Validate existing Secrets and production Pages access (read only)
+        env:
+          PAGES_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          FIREBASE_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node <<'NODE'
+          const account='86851bf21d81d8f0972052aff8162149';
+          const project='future-code-football-daily';
+          const token=process.env.PAGES_TOKEN||'';
+          const raw=process.env.FIREBASE_JSON||'';
+          let validFirebase=false;try{
+            const obj=JSON.parse(raw);
+            validFirebase=obj.project_id==='future-code-football'&&
+              typeof obj.private_key==='string'&&obj.private_key.includes('BEGIN PRIVATE KEY');
+          }catch{}
+          console.log('Firebase GitHub credential configured:',validFirebase);
+          console.log('Cloudflare Pages token configured:',token.length>20);
+          if(!validFirebase||token.length<=20){process.exitCode=2;return}
+          const res=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+'/pages/projects/'+project,{
+            headers:{Authorization:'Bearer '+token},signal:AbortSignal.timeout(20000)
+          });
+          const obj=await res.json();
+          const ok=res.ok&&obj.success===true&&obj.result?.name===project&&
+            obj.result?.production_branch==='football-daily-render'&&
+            obj.result?.source?.config?.repo_name==='AI-Recap-GitHub';
+          console.log('Verified exact production Pages access:',ok);
+          const names=Object.keys(obj?.result?.deployment_configs?.production?.env_vars||{});
+          console.log('Existing owner auth env names present:',names.includes('FCD_MAIN_PASSWORD')&&names.includes('FCD_SESSION_SECRET'));
+          if(!ok)process.exitCode=3;
+          NODE
