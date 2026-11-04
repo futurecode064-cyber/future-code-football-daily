@@ -13,7 +13,7 @@ import urllib.request
 from zoneinfo import ZoneInfo
 
 BASE = "https://future-code-football-daily.pages.dev"
-TOPICS = ("fc_goal", "fc_ykz", "fc_bw", "fc_kothet", "fc_kmm", "fc_bcf")
+TOPICS = ("fc_goal", "fc_ykz", "fc_bw", "fc_kothet", "fc_kmm")
 
 
 def live(path):
