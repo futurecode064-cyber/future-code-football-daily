@@ -1,6 +1,12 @@
 name: Future Code Manual Notification
 run-name: Manual Notification · ${{ inputs.request_id }}
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/football-manual-notification.yml'
+      - 'scripts/football/send-fcm-manual.py'
+      - 'scripts/football/test_send_fcm_manual.py'
   workflow_dispatch:
     inputs:
       targets:
@@ -33,7 +39,18 @@ concurrency:
   group: future-code-manual-notify
   cancel-in-progress: false
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Python syntax and manual notification inputs (no send)
+        run: |
+          python3 -m pip install --user google-auth requests
+          python3 -m py_compile scripts/football/send-fcm-manual.py
+          python3 -m unittest discover -s scripts/football -p test_send_fcm_manual.py -v
   send:
+    if: github.event_name == 'workflow_dispatch'
+    needs: lint
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
