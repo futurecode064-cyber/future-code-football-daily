@@ -1,0 +1,40 @@
+name: Future Code Cloudflare FCM Direct Sender Dry-Run QA
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-fcm-direct-cloudflare-validation.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read deployed Cloudflare Pages Worker code (public source)
+        run: |
+          curl --fail --silent --show-error -L --retry 3 -o "$RUNNER_TEMP/football-worker.mjs" \
+          "https://raw.githubusercontent.com/futurecode064-cyber/AI-Recap-GitHub/football-daily-render/football-daily/_worker.js"
+      - name: Test EXACT Cloudflare FCM OAuth/JWT + all topic payloads WITHOUT sending
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: \${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node <<'NODE'
+          async function main(){
+            const fs=require('fs');
+            const file=fs.readFileSync(process.env.RUNNER_TEMP+'/football-worker.mjs','utf8');
+            if(!file.includes('async function fcFcmToken(env)')||!file.includes('async function fcFcmSend(token,message,validateOnly)')||
+               !file.includes('function fcFcmMessage(key,title,body,route,id,date)'))throw Error('Direct FCM functions missing');
+            if(!process.env.FCM_SERVICE_ACCOUNT_JSON)throw Error('Firebase service account GitHub secret missing');
+            const code=file+'\nexport { fcFcmToken,fcFcmSend,fcFcmMessage };\n';
+            const module=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+            const token=await module.fcFcmToken({FCD_FCM_SERVICE_ACCOUNT_JSON:process.env.FCM_SERVICE_ACCOUNT_JSON});
+            for(const [name,slug] of Object.entries({goal:'future-code-journal',ykz:'ykz-family',bw:'bw-sport',kothet:'ko-thet-family',kmm:'kmm-sport-hub'})){
+              const msg=module.fcFcmMessage(name,'FCM server validation','Dry run - NO SEND',
+                'https://future-code-football-daily.pages.dev/'+slug+'/','d154f3a3-217e-4f6e-a329-cf4f239179ee','2026-11-04');
+              await module.fcFcmSend(token,msg,true);
+              console.log('FCM validate_only OK:',name);
+            }
+            console.log('All five topics validated with the direct Cloudflare sender implementation, NO messages sent');
+          }
+          main().catch(error=>{console.error('Firebase dry run failed:',error.message);process.exitCode=1});
+          NODE
