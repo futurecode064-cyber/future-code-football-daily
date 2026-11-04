@@ -9,11 +9,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 BRANDS = {
-    "goal": ("mm.futurecode.sportsjournal", "future-code-journal", "ဂိုးဇုံ အားကစားဂျာနယ်", "fc_goal", 6, "1.0.5"),
-    "ykz": ("com.futurecode.ykzsoccertips", "ykz-family", "YKZ Soccer Tips", "fc_ykz", 6, "1.2.3"),
-    "bw": ("com.futurecode.bwsportjournal", "bw-sport", "BW Sport Journal", "fc_bw", 5, "1.0.4"),
-    "kothet": ("com.futurecode.kothetfamilyjournal", "ko-thet-family", "Ko Thet Family Journal", "fc_kothet", 6, "1.0.5"),
-    "kmm": ("com.futurecode.kmmsporthub", "kmm-sport-hub", "KMM Sport Hub", "fc_kmm", 5, "1.0.4"),
+    "goal": ("mm.futurecode.sportsjournal", "future-code-journal", "ဂိုးဇုံ အားကစားဂျာနယ်", "fc_goal", 7, "1.0.6"),
+    "ykz": ("com.futurecode.ykzsoccertips", "ykz-family", "YKZ Soccer Tips", "fc_ykz", 7, "1.2.4"),
+    "bw": ("com.futurecode.bwsportjournal", "bw-sport", "BW Sport Journal", "fc_bw", 6, "1.0.5"),
+    "kothet": ("com.futurecode.kothetfamilyjournal", "ko-thet-family", "Ko Thet Family Journal", "fc_kothet", 7, "1.0.6"),
+    "kmm": ("com.futurecode.kmmsporthub", "kmm-sport-hub", "KMM Sport Hub", "fc_kmm", 6, "1.0.5"),
     "bcf": ("mm.futurecode.betcityfamily", "bet-city-family", "BCF Bet City Family", "fc_bcf", 5, "1.0.4"),
 }
 
