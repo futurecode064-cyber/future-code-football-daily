@@ -1,0 +1,79 @@
+name: Football push after verified live publication
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/football-push-after-live.yml']
+  schedule:
+    - cron: '30 23,9 * * *'
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Football Daily D1 Data-Only Publisher]
+    types: [completed]
+permissions:
+  contents: write
+concurrency:
+  group: football-push-state
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate five Firebase topics without notifying users
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        run: |
+          python3 -m pip install --user google-auth requests
+          python3 - <<'PYCODE'
+          import json,os
+          from google.oauth2 import service_account
+          from google.auth.transport.requests import AuthorizedSession
+          info=json.loads(os.environ['FCM_SERVICE_ACCOUNT_JSON'])
+          assert info['project_id']=='future-code-football'
+          c=service_account.Credentials.from_service_account_info(info,scopes=['https://www.googleapis.com/auth/firebase.messaging'])
+          session=AuthorizedSession(c)
+          for topic in ('fc_goal','fc_ykz','fc_bw','fc_kothet','fc_kmm'):
+            r=session.post('https://fcm.googleapis.com/v1/projects/future-code-football/messages:send',json={'validate_only':True,'message':{'topic':topic,'data':{'title':'Connection validation'}}},timeout=20)
+            r.raise_for_status()
+            print(topic,'FCM validation PASS')
+          PYCODE
+      - name: Load notification state
+        shell: bash
+        run: |
+          if git fetch origin football-push-state 2>/dev/null; then
+            git show FETCH_HEAD:state.json > "$RUNNER_TEMP/football-push-state.json"
+          else
+            printf '{}\n' > "$RUNNER_TEMP/football-push-state.json"
+          fi
+      - name: Send only completed daily slots
+        env:
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --user google-auth requests
+          python3 scripts/football/send-fcm-after-publish.py morning --state "$RUNNER_TEMP/football-push-state.json"
+          python3 scripts/football/send-fcm-after-publish.py evening --state "$RUNNER_TEMP/football-push-state.json"
+      - name: Persist acknowledged slots outside the website branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          STATE="$RUNNER_TEMP/football-push-state.json"
+          if [ "$(cat "$STATE")" = '{}' ]; then exit 0; fi
+          git config user.name 'future-code-push-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          if git fetch origin football-push-state 2>/dev/null; then
+            git switch -C football-push-state FETCH_HEAD
+          else
+            git switch --orphan football-push-state
+            git rm -rf . >/dev/null
+          fi
+          cp "$STATE" state.json
+          git add state.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record acknowledged FCM publication slots'
+            git push origin HEAD:refs/heads/football-push-state
+          fi
