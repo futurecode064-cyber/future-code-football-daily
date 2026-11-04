@@ -41,7 +41,7 @@ public final class MainActivity extends Activity {
   web.setDownloadListener((url,ua,cd,mime,length)->{if(!Policy.trustedPage(currentPage))return;if(url.startsWith("blob:")||url.startsWith("data:image/")||(url.startsWith(Policy.ORIGIN+"/")&&mime!=null&&mime.startsWith("image/")))web.evaluateJavascript("window.FCJournalSave&&window.FCJournalSave("+JSONObject.quote(url)+","+JSONObject.quote(URLUtil.guessFileName(url,cd,mime))+")",null);else msg("ပုံ Download ခလုတ်ကို အသုံးပြုပါ။");});
   if(saved==null)openIntent(getIntent());else web.restoreState(saved);
   ContentNotifier.channels(this);JournalJob.schedule(this);
-  if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED&&!getPreferences(0).getBoolean("asked_notifications",false))new AlertDialog.Builder(this).setTitle("အသိပေးချက် ဖွင့်မလား").setMessage("ပွဲကြိုသုံးသပ်ချက်၊ ပေါက်ကြေးအသစ်နဲ့ App Update ရလာချိန် အသိပေးနိုင်ဖို့ Allow နှိပ်ပေးပါ။").setPositiveButton("ဖွင့်မယ်",(d,w)->{getPreferences(0).edit().putBoolean("asked_notifications",true).apply();requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},301);}).setNegativeButton("နောက်မှ",null).show();
+  firstRunPermissions();
  }
  void installSaveHook(WebView w,String u){if(Policy.trustedPage(u))try{w.evaluateJavascript(new String(readAsset("native-save.js"),"UTF-8"),null);}catch(Exception e){msg("ပုံ Download စနစ်ကို ပြန်ဖွင့်ရန် Refresh နှိပ်ပါ။");}}
  byte[] readAsset(String name)throws IOException{try(InputStream in=getAssets().open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);return out.toByteArray();}}
@@ -49,14 +49,45 @@ public final class MainActivity extends Activity {
  @Override protected void onNewIntent(Intent i){super.onNewIntent(i);setIntent(i);openIntent(i);}
  @Override protected void onResume(){super.onResume();if(web!=null)web.onResume();JournalJob.schedule(this);if(System.currentTimeMillis()-lastContentCheck>180000){lastContentCheck=System.currentTimeMillis();new Thread(()->{try{ContentNotifier.check(this);}catch(Exception ignored){}},"ForegroundReports").start();}AppUpdate.check(this,false);}
  @Override protected void onPause(){if(web!=null)web.onPause();super.onPause();}
- @Override public void onRequestPermissionsResult(int request,String[] names,int[] results){super.onRequestPermissionsResult(request,names,results);if(request==301&&results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED)new Thread(()->{try{ContentNotifier.check(this);}catch(Exception ignored){}}).start();}
+ void firstRunPermissions(){
+  if(getPreferences(0).getBoolean("permissions_intro_v2",false))return;
+  new AlertDialog.Builder(this).setTitle("အသိပေးချက်နှင့် ပုံသိမ်းခွင့်")
+   .setMessage("သတင်းနှင့် ပေါက်ကြေးအသစ်များအတွက် Notification ကို Allow လုပ်ပေးပါ။\n\nပုံများကို Gallery / Pictures ထဲ သိမ်းပေးမည်။ Android 9 နှင့်အောက်တွင် ပုံသိမ်းခွင့်ကို Allow လုပ်ပေးပါ။ Android 10 နှင့်အထက်တွင် မိမိပုံများသိမ်းရန် Gallery အားလုံးကို ဖတ်ခွင့်ပေးရန် မလိုပါ။")
+   .setPositiveButton("ဆက်လုပ်မယ်",(d,w)->{getPreferences(0).edit().putBoolean("permissions_intro_v2",true).apply();requestNeededPermissions();})
+   .setNegativeButton("နောက်မှ",null).show();
+ }
+ void requestNeededPermissions(){
+  java.util.ArrayList<String> needed=new java.util.ArrayList<>();
+  if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)needed.add(Manifest.permission.POST_NOTIFICATIONS);
+  if(Build.VERSION.SDK_INT<=28&&checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED)needed.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+  if(!needed.isEmpty())requestPermissions(needed.toArray(new String[0]),302);
+  else if(!getSystemService(NotificationManager.class).areNotificationsEnabled())new AlertDialog.Builder(this).setTitle("အသိပေးချက် ပိတ်ထားသည်").setMessage("အသိပေးချက်ရရန် Settings တွင် ဖွင့်ပေးပါ။").setPositiveButton("Settings",(d,w)->startActivity(new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE,getPackageName()))).setNegativeButton("နောက်မှ",null).show();
+ }
+ @Override public void onRequestPermissionsResult(int request,String[] names,int[] results){
+  super.onRequestPermissionsResult(request,names,results);
+  if(request==302||request==303){
+   if(Build.VERSION.SDK_INT<=28&&pendingImage!=null){
+    byte[] bytes=pendingImage;String name=pendingName,mime=pendingMime;pendingImage=null;
+    if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)new Thread(()->{try{saveLegacyImage(bytes,name,mime);}catch(Exception e){runOnUiThread(()->msg("ပုံ သိမ်းမရပါ။ ဖုန်းသိုလှောင်မှုကို စစ်ပါ။"));}},"SaveGallery").start();
+    else new AlertDialog.Builder(this).setTitle("ပုံသိမ်းခွင့် လိုအပ်သည်").setMessage("Gallery ထဲ ပုံသိမ်းရန် App permissions တွင် Storage ကို ခွင့်ပြုပေးပါ။ ပြီးလျှင် Download ပြန်နှိပ်ပါ။").setPositiveButton("Settings",(d,w)->startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:"+getPackageName())))).setNegativeButton("နောက်မှ",null).show();
+   }
+  }
+ }
+ void saveLegacyImage(byte[] bytes,String filename,String mime)throws IOException{
+  File folder=new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"Goal Zone Sports Journal");
+  if(!folder.isDirectory()&&!folder.mkdirs())throw new IOException("Pictures folder unavailable");
+  File file=new File(folder,filename);if(file.exists())file=new File(folder,System.currentTimeMillis()+"-"+filename);
+  try(FileOutputStream out=new FileOutputStream(file)){out.write(bytes);out.flush();}catch(IOException e){file.delete();throw e;}
+  android.media.MediaScannerConnection.scanFile(this,new String[]{file.getAbsolutePath()},new String[]{mime},(path,uri)->runOnUiThread(()->msg(uri!=null?"ပုံကို Gallery / Pictures ထဲ သိမ်းပြီးပါပြီ။":"ပုံကို Pictures ထဲ သိမ်းပြီးပါပြီ။ Gallery ကို ပြန်ဖွင့်ကြည့်ပါ။")));
+ }
+
  void menu(View anchor){PopupMenu p=new PopupMenu(this,anchor);String[] titles={"ပွဲကြိုသုံးသပ်ချက်များ","ပေါက်ကြေးများ","AI ခန့်မှန်းချက်","ပြန်လည်ရယူရန်","အသိပေးချက် Settings","App Update စစ်ရန်","App အကြောင်း"};for(int n=0;n<titles.length;n++)p.getMenu().add(0,n,n,titles[n]);p.setOnMenuItemClickListener(item->{switch(item.getItemId()){case 0:web.loadUrl(Policy.HOME);break;case 1:web.loadUrl(Policy.HOME+"odds");break;case 2:web.loadUrl(Policy.HOME+"#fcj-ai");break;case 3:web.reload();break;case 4:startActivity(new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(Settings.EXTRA_APP_PACKAGE,getPackageName()));break;case 5:AppUpdate.check(this,true);break;case 6:new AlertDialog.Builder(this).setTitle("ဂိုးဇုံ အားကစား ဂျာနယ်").setMessage("Version 1.0.1\n\nပွဲကြို၊ ပေါက်ကြေး၊ AI ခန့်မှန်းချက်နှင့် PNG Download\n\nအသိပေးချက်သည် အင်တာနက်နှင့် ဖုန်း၏ နောက်ခံလုပ်ဆောင်ခွင့်အပေါ် မူတည်ပါသည်။ App ပိတ်ထားစဉ် အနည်းဆုံး ၁၅ မိနစ်ခြား စစ်ဆေးပြီး Battery စနစ်ကြောင့် နောက်ကျနိုင်ပါသည်။").setPositiveButton("အိုကေ",null).show();break;}return true;});p.show();}
  class NativeSave {
   @JavascriptInterface public void error(){runOnUiThread(()->msg("ပုံသိမ်းမရပါ။ ပြန်စမ်းပါ။"));}
   @JavascriptInterface public void save(String data,String name){if(!Policy.trustedPage(currentPage))return;new Thread(()->{try{
    if(data==null||data.length()>35000000||!data.startsWith("data:image/"))throw new IOException();int comma=data.indexOf(',');if(comma<0||comma>120||!data.substring(0,comma).endsWith(";base64"))throw new IOException();String mime=data.substring(5,data.indexOf(';')).toLowerCase(Locale.ROOT);if(!mime.matches("image/(png|jpeg|webp|gif)"))throw new IOException();byte[] bytes=Base64.decode(data.substring(comma+1),Base64.DEFAULT);if(bytes.length==0||bytes.length>24000000)throw new IOException();String ext=mime.equals("image/jpeg")?".jpg":mime.equals("image/webp")?".webp":mime.equals("image/gif")?".gif":".png";String filename=(name==null?"":name).replaceAll("[\\\\/\\p{Cntrl}]","_");if(filename.length()>120)filename=filename.substring(0,120);if(filename.isEmpty())filename="Goal-Zone-Journal-"+System.currentTimeMillis()+ext;if(!filename.toLowerCase(Locale.ROOT).endsWith(ext))filename+=ext;
-   if(Build.VERSION.SDK_INT>=29){ContentValues v=new ContentValues();v.put(MediaStore.Images.Media.DISPLAY_NAME,filename);v.put(MediaStore.Images.Media.MIME_TYPE,mime);v.put(MediaStore.Images.Media.RELATIVE_PATH,Environment.DIRECTORY_PICTURES+"/Goal Zone Sports Journal");v.put(MediaStore.Images.Media.IS_PENDING,1);Uri target=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,v);if(target==null)throw new IOException();try{try(OutputStream out=getContentResolver().openOutputStream(target)){if(out==null)throw new IOException();out.write(bytes);}ContentValues done=new ContentValues();done.put(MediaStore.Images.Media.IS_PENDING,0);getContentResolver().update(target,done,null,null);}catch(Exception e){getContentResolver().delete(target,null,null);throw e;}runOnUiThread(()->msg("ပုံကို Gallery / Pictures ထဲ သိမ်းပြီးပါပြီ။"));}
-   else{final String output=filename;runOnUiThread(()->{pendingImage=bytes;pendingMime=mime;pendingName=output;Intent create=new Intent(Intent.ACTION_CREATE_DOCUMENT).setType(mime).addCategory(Intent.CATEGORY_OPENABLE).putExtra(Intent.EXTRA_TITLE,output);startActivityForResult(create,201);});}
+   if(Build.VERSION.SDK_INT>=29){ContentValues v=new ContentValues();v.put(MediaStore.Images.Media.DISPLAY_NAME,filename);v.put(MediaStore.Images.Media.MIME_TYPE,mime);v.put(MediaStore.Images.Media.RELATIVE_PATH,Environment.DIRECTORY_PICTURES+"/Goal Zone Sports Journal");v.put(MediaStore.Images.Media.IS_PENDING,1);Uri target=getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,v);if(target==null)throw new IOException();try{try(OutputStream out=getContentResolver().openOutputStream(target)){if(out==null)throw new IOException();out.write(bytes);}ContentValues done=new ContentValues();done.put(MediaStore.Images.Media.IS_PENDING,0);if(getContentResolver().update(target,done,null,null)<1)throw new IOException("Gallery publish failed");}catch(Exception e){getContentResolver().delete(target,null,null);throw e;}runOnUiThread(()->msg("ပုံကို Gallery / Pictures ထဲ သိမ်းပြီးပါပြီ။"));}
+   else{if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED)saveLegacyImage(bytes,filename,mime);else{final String output=filename;runOnUiThread(()->{if(pendingImage!=null){msg("ပုံသိမ်းခွင့်ကို အရင်ခွင့်ပြုပေးပါ။");return;}pendingImage=bytes;pendingMime=mime;pendingName=output;requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},303);});}}
   }catch(Exception e){error();}},"SaveJournalImage").start();}
  }
  @Override protected void onActivityResult(int request,int result,Intent data){super.onActivityResult(request,result,data);if(request==401){if(getPackageManager().canRequestPackageInstalls())AppUpdate.install(this);return;}if(request==201){byte[] bytes=pendingImage;pendingImage=null;if(result==RESULT_OK&&data!=null&&data.getData()!=null&&bytes!=null){Uri uri=data.getData();new Thread(()->{try(OutputStream out=getContentResolver().openOutputStream(uri)){if(out==null)throw new IOException();out.write(bytes);runOnUiThread(()->msg("ပုံ သိမ်းပြီးပါပြီ။"));}catch(Exception e){runOnUiThread(()->msg("ပုံ သိမ်းမရပါ။"));}}).start();}}}
