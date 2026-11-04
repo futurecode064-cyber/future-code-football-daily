@@ -16,7 +16,7 @@ jobs:
           "https://raw.githubusercontent.com/futurecode064-cyber/AI-Recap-GitHub/football-daily-render/football-daily/_worker.js"
       - name: Test EXACT Cloudflare FCM OAuth/JWT + all topic payloads WITHOUT sending
         env:
-          FCM_SERVICE_ACCOUNT_JSON: \${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
+          FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
         run: |
           node <<'NODE'
           async function main(){
