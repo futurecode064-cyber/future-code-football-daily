@@ -1,0 +1,118 @@
+name: Football FCM - Safe Isolated Staging Backend
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths: ['.github/workflows/football-fcm-staging-backend.yml']
+permissions:
+  contents: read
+concurrency:
+  group: football-fcm-staging-backend
+  cancel-in-progress: false
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+      WORKER_NAME: future-code-football-engine-staging
+      DB_ID: a4ddc00f-411b-4ee5-ab4a-dfe13486c334
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - name: Install pinned Wrangler and test FCM/deduplication
+        working-directory: services/football-engine
+        run: |
+          npm ci
+          node --test tests/push.test.mjs
+          node --check src/worker.mjs
+      - name: Verify staging ownership, existing secret and unpublished database before writing
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          const acct=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN,
+            name=process.env.WORKER_NAME,db=process.env.DB_ID;
+          if(!token){throw Error("BLOCKED: existing Cloudflare access unavailable");}
+          async function call(path,body){
+            const r=await fetch("https://api.cloudflare.com/client/v4/accounts/"+acct+path,{
+              method:body?"POST":"GET",headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},
+              body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(18000)
+            });
+            const d=await r.json();if(!r.ok||d.success!==true)throw Error("Cloudflare staging read failed "+r.status);
+            return d.result;
+          }
+          const settings=await call("/workers/scripts/"+name+"/settings");
+          const bindings=settings.bindings||[];
+          function check(n,t){return bindings.find(x=>x.name===n&&x.type===t);}
+          if(!check("ADMIN_TOKEN","secret_text")||!check("DB","d1")||
+              !check("FOOTBALL_ENGINE_MANAGED_BY","plain_text")||
+              !check("ADMIN_RATE_LIMITER","ratelimit"))
+            throw Error("BLOCKED: staging Worker is not the expected owner-managed Worker");
+          const boundDb=check("DB","d1");
+          if(boundDb.id && boundDb.id!==db && boundDb.database_id!==db)
+            throw Error("BLOCKED: staging Worker database binding points elsewhere");
+          const q=await call("/d1/database/"+db+"/query",{
+            sql:"SELECT version_id,generation FROM active_publication WHERE singleton=1"
+          });
+          const row=q?.[0]?.results?.[0];
+          if(!row||row.version_id!==null||row.generation!==0)
+            throw Error("BLOCKED: staging publication has changed; deployment refused");
+          console.log("PASS: exact staging Worker, owner secret, DB binding, inactive publication");
+          JS
+      - name: Apply additive FCM outbox migration to existing isolated staging D1
+        working-directory: services/football-engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          import {readFileSync,writeFileSync} from "node:fs";
+          const config=JSON.parse(readFileSync("wrangler.jsonc.example","utf8"));
+          config.name="future-code-football-engine-staging";
+          config.account_id=process.env.CLOUDFLARE_ACCOUNT_ID;
+          config.d1_databases[0].database_id=process.env.DB_ID;
+          config.vars.FOOTBALL_ENGINE_MANAGED_BY="futurecode064-cyber/future-code-football-daily";
+          config.vars.FC_PUSH_ENABLED="false";
+          config.keep_vars=true;
+          writeFileSync("wrangler.fcm-staging.ci.jsonc",JSON.stringify(config,null,2));
+          JS
+          ./node_modules/.bin/wrangler d1 migrations apply DB --remote --config wrangler.fcm-staging.ci.jsonc
+      - name: Deploy staging Worker only; keep Dashboard vars and owner secret
+        working-directory: services/football-engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./node_modules/.bin/wrangler deploy --config wrangler.fcm-staging.ci.jsonc --keep-vars
+      - name: Verify staging FCM receiver remains off, D1 outbox present and production untouched
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'JS'
+          const acct=process.env.CLOUDFLARE_ACCOUNT_ID,token=process.env.CLOUDFLARE_API_TOKEN,
+            name=process.env.WORKER_NAME,db=process.env.DB_ID;
+          async function request(path,body){
+            const r=await fetch("https://api.cloudflare.com/client/v4/accounts/"+acct+path,{
+              method:body?"POST":"GET",
+              headers:{Authorization:"Bearer "+token,"Content-Type":"application/json"},
+              body:body?JSON.stringify(body):undefined,signal:AbortSignal.timeout(18000)
+            });
+            const d=await r.json();if(!r.ok||d.success!==true)throw Error("Staging postcheck HTTP "+r.status);
+            return d.result;
+          }
+          const [settings,q]=await Promise.all([
+            request("/workers/scripts/"+name+"/settings"),
+            request("/d1/database/"+db+"/query",{sql:"SELECT name FROM sqlite_master WHERE type='table' AND name='notification_outbox'"})
+          ]);
+          const bindings=settings.bindings||[];
+          if(!bindings.some(b=>b.name==="ADMIN_TOKEN"&&b.type==="secret_text"))
+            throw Error("BLOCKED: owner secret unexpectedly missing after staging deployment");
+          if(!q?.[0]?.results?.some(x=>x.name==="notification_outbox"))
+            throw Error("FCM outbox table missing after staging migration");
+          const v=bindings.find(b=>b.name==="FC_PUSH_ENABLED");
+          if(v&&v.text==="true")throw Error("BLOCKED: staging FCM flag must remain disabled");
+          const health=await fetch("https://future-code-football-engine-staging.futurecode-dubai-86851bf2.workers.dev/api/football/health",{
+            signal:AbortSignal.timeout(18000)});
+          if(!health.ok)throw Error("Staging Worker health HTTP "+health.status);
+          console.log("PASS: staging FCM backend deployed, outbox ready, admin secret preserved, FCM disabled; no production writes");
+          JS

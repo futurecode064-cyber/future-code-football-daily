@@ -41,7 +41,21 @@ public final class MainActivity extends Activity {
   web.setDownloadListener((url,ua,cd,mime,length)->{if(!Policy.trustedPage(currentPage))return;if(url.startsWith("blob:")||url.startsWith("data:image/")||(url.startsWith(Policy.ORIGIN+"/")&&mime!=null&&mime.startsWith("image/")))web.evaluateJavascript("window.FCJournalSave&&window.FCJournalSave("+JSONObject.quote(url)+","+JSONObject.quote(URLUtil.guessFileName(url,cd,mime))+")",null);else msg("ပုံ Download ခလုတ်ကို အသုံးပြုပါ။");});
   if(saved==null)openIntent(getIntent());else web.restoreState(saved);
   ContentNotifier.channels(this);JournalJob.schedule(this);
-  if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED&&!getPreferences(0).getBoolean("asked_notifications",false))new AlertDialog.Builder(this).setTitle("အသိပေးချက် ဖွင့်မလား").setMessage("ပွဲကြိုသုံးသပ်ချက်၊ ပေါက်ကြေးအသစ်နဲ့ App Update ရလာချိန် အသိပေးနိုင်ဖို့ Allow နှိပ်ပေးပါ။").setPositiveButton("ဖွင့်မယ်",(d,w)->{getPreferences(0).edit().putBoolean("asked_notifications",true).apply();requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},301);}).setNegativeButton("နောက်မှ",null).show();
+  // Optional FCM class exists only in the new, owner-signed Gradle variant.
+  try{
+   Class.forName(getPackageName()+".FcmStarter").getMethod("start",Context.class).invoke(null,this);
+  }catch(ClassNotFoundException ignored){}catch(Exception e){android.util.Log.w("FCM","Push bootstrap unavailable",e);}
+
+  if(!getPreferences(0).getBoolean("asked_notifications",false)) {
+   getPreferences(0).edit().putBoolean("asked_notifications",true).apply();
+   new AlertDialog.Builder(this)
+    .setTitle("Notification Allow")
+    .setMessage("Notification Allow ကို ON ထားပါက နေ့စဉ် ပေါက်ကြေးများ ရပြီ ဆိုတာကို သိရှိနိုင်ပါသည်။")
+    .setPositiveButton("Allow",(d,w)->{
+     if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)
+      requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS},301);
+    }).setNegativeButton("နောက်မှ",(d,w)->{}).show();
+  }
  }
  void installSaveHook(WebView w,String u){if(Policy.trustedPage(u))try{w.evaluateJavascript(new String(readAsset("native-save.js"),"UTF-8"),null);}catch(Exception e){msg("ပုံ Download စနစ်ကို ပြန်ဖွင့်ရန် Refresh နှိပ်ပါ။");}}
  byte[] readAsset(String name)throws IOException{try(InputStream in=getAssets().open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);return out.toByteArray();}}
