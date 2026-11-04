@@ -16,6 +16,7 @@ jobs:
           FIREBASE_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
         run: |
           node <<'NODE'
+          async function main(){
           const account='86851bf21d81d8f0972052aff8162149';
           const project='future-code-football-daily';
           const token=process.env.PAGES_TOKEN||'';
@@ -39,4 +40,6 @@ jobs:
           const names=Object.keys(obj?.result?.deployment_configs?.production?.env_vars||{});
           console.log('Existing owner auth env names present:',names.includes('FCD_MAIN_PASSWORD')&&names.includes('FCD_SESSION_SECRET'));
           if(!ok)process.exitCode=3;
+          }
+          main().catch(()=>{console.log('Cloudflare read-only probe failed');process.exitCode=4});
           NODE
