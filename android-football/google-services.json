@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "76526416523",
+    "project_id": "future-code-football",
+    "storage_bucket": "future-code-football.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:aeb76e5f92e63cff381a8e",
+        "android_client_info": {
+          "package_name": "com.futurecode.bwsportjournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:721e9204be3ca6c5381a8e",
+        "android_client_info": {
+          "package_name": "com.futurecode.kmmsporthub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:04cb91a05b276333381a8e",
+        "android_client_info": {
+          "package_name": "com.futurecode.kothetfamilyjournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:4e3e2b83db3e6f2d381a8e",
+        "android_client_info": {
+          "package_name": "com.futurecode.ykzsoccertips"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:06f4d92c794ac06d381a8e",
+        "android_client_info": {
+          "package_name": "mm.futurecode.betcityfamily"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76526416523:android:0243fcd9bcf6565b381a8e",
+        "android_client_info": {
+          "package_name": "mm.futurecode.sportsjournal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1B_9OMoroAoGRCfS_e7VRL70u0mkJ3sQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

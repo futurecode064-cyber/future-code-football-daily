@@ -1,0 +1,44 @@
+name: Football five release APKs for local signing
+on:
+  push:
+    branches: [verify-football-apk-release]
+    paths: ['.github/workflows/football-owner-local-sign.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        brand: [goal, ykz, bw, kothet, kmm]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.9'}
+      - name: Prepare release build
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+          python3 -m pip install --user pillow
+          python3 android-football/prepare.py '${{ matrix.brand }}' --config android-football/google-services.json > /tmp/meta.json
+          python3 - <<'PY'
+          import json,os
+          m=json.load(open('/tmp/meta.json'))
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+            for key,value in m.items(): f.write('FC_'+key.upper()+'='+str(value)+'\n')
+          PY
+      - name: Compile unsigned release
+        run: |
+          gradle -p android-football -PfcPackage="$FC_PACKAGE" -PfcVersionCode="$FC_VERSIONCODE" -PfcVersionName="$FC_VERSIONNAME" :app:assembleRelease
+          mkdir output
+          cp android-football/app/build/outputs/apk/release/app-release-unsigned.apk output/${{ matrix.brand }}-unsigned.apk
+          cp "$ANDROID_HOME/build-tools/35.0.0/lib/apksigner.jar" output/apksigner.jar
+          cp /tmp/meta.json output/meta.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: football-${{ matrix.brand }}-unsigned-release
+          path: output/
+          if-no-files-found: error
