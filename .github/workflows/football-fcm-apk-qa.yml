@@ -13,11 +13,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - {brand: goal, package: mm.futurecode.sportsjournal, code: 5}
-          - {brand: ykz, package: com.futurecode.ykzsoccertips, code: 5}
-          - {brand: bw, package: com.futurecode.bwsportjournal, code: 4}
-          - {brand: kothet, package: com.futurecode.kothetfamilyjournal, code: 5}
-          - {brand: kmm, package: com.futurecode.kmmsporthub, code: 4}
+          - {brand: goal, package: mm.futurecode.sportsjournal, code: 7}
+          - {brand: ykz, package: com.futurecode.ykzsoccertips, code: 7}
+          - {brand: bw, package: com.futurecode.bwsportjournal, code: 6}
+          - {brand: kothet, package: com.futurecode.kothetfamilyjournal, code: 7}
+          - {brand: kmm, package: com.futurecode.kmmsporthub, code: 6}
           - {brand: bcf, package: mm.futurecode.betcityfamily, code: 4}
     steps:
       - uses: actions/checkout@v4
