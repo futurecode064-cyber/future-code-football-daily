@@ -1,8 +1,11 @@
 name: Football push after verified live publication
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '30 23,9 * * *'
   workflow_dispatch:
+  workflow_run:
+    workflows: [Football Daily D1 Data-Only Publisher]
+    types: [completed]
 permissions:
   contents: write
 concurrency:
@@ -10,6 +13,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   publish:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -27,10 +31,12 @@ jobs:
           FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.FCM_SERVICE_ACCOUNT_JSON }}
         shell: bash
         run: |
+          set -euo pipefail
           python3 -m pip install --user google-auth requests
           python3 scripts/football/send-fcm-after-publish.py morning --state "$RUNNER_TEMP/football-push-state.json"
           python3 scripts/football/send-fcm-after-publish.py evening --state "$RUNNER_TEMP/football-push-state.json"
       - name: Persist acknowledged slots outside the website branch
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
