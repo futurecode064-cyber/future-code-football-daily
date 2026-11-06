@@ -44,6 +44,16 @@ jobs:
           }
           const en=output[1].details,my=output[0].details;
           console.log('GOAL ZONE LIVE PARITY',JSON.stringify(output,null,2));
+          const odds=await browser.newPage({viewport:{width:1366,height:900}});
+          const oddsErrors=[];odds.on('pageerror',e=>oddsErrors.push(e.message));
+          await odds.goto(base+'goal-zone-english/odds.html',{waitUntil:'domcontentloaded',timeout:65000});
+          try{await odds.locator('#oddsList .odds-group').first().waitFor({timeout:28000});}catch{}
+          await odds.waitForTimeout(1200);
+          const oddsInfo=await odds.evaluate(()=>({title:document.title,groups:document.querySelectorAll('#oddsList .odds-group').length,txt:document.body.innerText.slice(0,1600),myanmar:(document.body.innerText.match(/[\u1000-\u109f]/g)||[]).length}));
+          console.log('GOAL ZONE ENGLISH ODDS',JSON.stringify({oddsInfo,oddsErrors},null,2));
+          await odds.close();
+          if(oddsInfo.myanmar>0||oddsErrors.length)throw Error('English odds still include Burmese text or runtime errors');
+          if(oddsInfo.groups<1)throw Error('English odds groups were not rendered');
           await browser.close();
           if(en.cards<1)throw Error('English match cards failed to load');
           if(en.cards!==my.cards)throw Error('English match count differs from Myanmar');
