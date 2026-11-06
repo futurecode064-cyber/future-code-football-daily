@@ -1,0 +1,54 @@
+name: Goal Zone English Mirror Live Parity QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'football-daily/goal-zone-english/**'
+      - '.github/workflows/goal-zone-english-parity-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install browser testing tools
+        run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Verify English clone matches original site structure and live data
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});
+          const base='https://future-code-football-daily.pages.dev/';
+          const pages=[{path:'future-code-journal/',lang:'my'},{path:'goal-zone-english/',lang:'en'}];
+          const output=[];
+          for(const p of pages){
+            const page=await browser.newPage({viewport:{width:1366,height:900},acceptDownloads:true});
+            const errors=[],failures=[];
+            page.on('pageerror',e=>errors.push(e.message));
+            page.on('response',r=>{if(!r.ok()&&(/\.js(\?|$)|data\/today\.json/.test(r.url())))failures.push({status:r.status(),url:r.url()})});
+            await page.goto(base+p.path,{waitUntil:'domcontentloaded',timeout:65000});
+            try{await page.locator('#matchList .match-card').first().waitFor({timeout:25000});}catch{}
+            await page.waitForTimeout(1500);
+            const details=await page.evaluate(()=>({title:document.title,lang:document.documentElement.lang,cards:document.querySelectorAll('#matchList .match-card').length,news:document.querySelectorAll('#fcNewsGrid article').length,brand:document.querySelector('.logo-lines')?.innerText,sections:[...document.querySelectorAll('#gzSectionNav a')].map(x=>x.getAttribute('data-gz-section-link')).filter(Boolean),downloadCenter:!!document.getElementById('gzDownloadCenter'),status:document.getElementById('statusText')?.innerText,article:document.querySelector('.daily-preview-verbatim')?.innerText?.slice(0,120)}));
+            output.push({path:p.path,details,errors,failures});
+            await page.screenshot({path:'/tmp/goalzone-'+p.lang+'.png',fullPage:false});
+            await page.close();
+          }
+          const en=output[1].details,my=output[0].details;
+          console.log('GOAL ZONE LIVE PARITY',JSON.stringify(output,null,2));
+          await browser.close();
+          if(en.cards<1)throw Error('English match cards failed to load');
+          if(en.cards!==my.cards)throw Error('English match count differs from Myanmar');
+          if(JSON.stringify(en.sections)!==JSON.stringify(my.sections))throw Error('English navigation differs from original');
+          if(!en.downloadCenter)throw Error('English download center absent');
+          if(output[1].errors.length||output[1].failures.length)throw Error('English page runtime/network errors');
+          if(/[\u1000-\u109f]/.test(en.article||''))throw Error('English preview contains Burmese text');
+          NODE
