@@ -37,7 +37,7 @@ jobs:
             await page.goto(base+p.path,{waitUntil:'domcontentloaded',timeout:65000});
             try{await page.locator('#matchList .match-card').first().waitFor({timeout:25000});}catch{}
             await page.waitForTimeout(1500);
-            const details=await page.evaluate(()=>({title:document.title,lang:document.documentElement.lang,cards:document.querySelectorAll('#matchList .match-card').length,news:document.querySelectorAll('#fcNewsGrid article').length,brand:document.querySelector('.logo-lines')?.innerText,sections:[...document.querySelectorAll('#gzSectionNav a')].map(x=>x.getAttribute('data-gz-section-link')).filter(Boolean),downloadCenter:!!document.getElementById('gzDownloadCenter'),status:document.getElementById('statusText')?.innerText,article:document.querySelector('.daily-preview-verbatim')?.innerText?.slice(0,120)}));
+            const details=await page.evaluate(()=>({title:document.title,lang:document.documentElement.lang,cards:document.querySelectorAll('#matchList .match-card').length,news:document.querySelectorAll('#fcNewsGrid article').length,brand:document.querySelector('.logo-lines')?.innerText,sections:[...document.querySelectorAll('#gzSectionNav a')].map(x=>x.getAttribute('data-gz-section-link')).filter(Boolean),downloadCenter:!!document.getElementById('gzDownloadCenter'),status:document.getElementById('statusText')?.innerText,article:document.querySelector('.daily-preview-verbatim')?.innerText?.slice(0,120),visibleText:document.body.innerText.slice(0,2200),burmeseVisible:(document.body.innerText.match(/[\u1000-\u109f]/g)||[]).length}));
             output.push({path:p.path,details,errors,failures});
             await page.screenshot({path:'/tmp/goalzone-'+p.lang+'.png',fullPage:false});
             await page.close();
@@ -51,4 +51,5 @@ jobs:
           if(!en.downloadCenter)throw Error('English download center absent');
           if(output[1].errors.length||output[1].failures.length)throw Error('English page runtime/network errors');
           if(/[\u1000-\u109f]/.test(en.article||''))throw Error('English preview contains Burmese text');
+          if(en.burmeseVisible>0)throw Error('English site has Burmese text remaining: '+en.burmeseVisible);
           NODE
