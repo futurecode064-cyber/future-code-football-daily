@@ -1,0 +1,225 @@
+name: FC Goal Zone and BCF FCM vNext previews
+# Owner follow-up: verify Android client JSON and early background notification channel (2026-10-31).
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths: ['.github/workflows/football-six-apk-vnext-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: {brand: [goal_zone, bcf]}
+    timeout-minutes: 30
+    env:
+      FC_FIREBASE_APP_ID_GOAL_ZONE: ${{ secrets.FC_FIREBASE_APP_ID_GOAL_ZONE }}
+      FC_FIREBASE_API_KEY_GOAL_ZONE: ${{ secrets.FC_FIREBASE_API_KEY_GOAL_ZONE }}
+      FC_FIREBASE_APP_ID_BCF: ${{ secrets.FC_FIREBASE_APP_ID_BCF }}
+      FC_FIREBASE_API_KEY_BCF: ${{ secrets.FC_FIREBASE_API_KEY_BCF }}
+      FC_FIREBASE_PROJECT_ID: ${{ secrets.FC_FIREBASE_PROJECT_ID }}
+      FC_FIREBASE_SENDER_ID: ${{ secrets.FC_FIREBASE_SENDER_ID }}
+      FC_APK_RELEASE_KEYSTORE_B64: ${{ secrets.FC_APK_RELEASE_KEYSTORE_B64 }}
+      FC_APK_RELEASE_STOREPASS: ${{ secrets.FC_APK_RELEASE_STOREPASS }}
+      FC_APK_RELEASE_ALIAS: ${{ secrets.FC_APK_RELEASE_ALIAS }}
+      FC_APK_RELEASE_KEYPASS: ${{ secrets.FC_APK_RELEASE_KEYPASS }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load project Firebase Android client config without printing keys
+        shell: bash
+        env:
+          FC_GOOGLE_SERVICES_JSON: ${{ secrets.FC_GOOGLE_SERVICES_JSON }}
+        run: |
+          set -euo pipefail
+          if [[ -z "${FC_GOOGLE_SERVICES_JSON:-}" ]]; then
+            echo "Owner Firebase client JSON secret not configured. Preview build will not receive push."
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json,os
+          d=json.loads(os.environ["FC_GOOGLE_SERVICES_JSON"])
+          project=d.get("project_info",{})
+          if not project.get("project_id") or not project.get("project_number"):
+              raise SystemExit("Invalid Firebase project info")
+          expected={"GOAL_ZONE":"mm.futurecode.sportsjournal","BCF":"mm.futurecode.betcityfamily"}
+          env={"FC_FIREBASE_PROJECT_ID":str(project["project_id"]),
+               "FC_FIREBASE_SENDER_ID":str(project["project_number"])}
+          for brand,package in expected.items():
+              clients=[x for x in d.get("client",[]) if x.get("client_info",{}).get("android_client_info",{}).get("package_name")==package]
+              if len(clients)!=1 or not clients[0].get("api_key",[]) or not clients[0]["api_key"][0].get("current_key"):
+                  raise SystemExit("Missing/multiple Firebase clients for "+brand)
+              app_id=clients[0]["client_info"].get("mobilesdk_app_id","")
+              if not app_id.startswith("1:"+env["FC_FIREBASE_SENDER_ID"]+":android:"):
+                  raise SystemExit("Firebase sender mismatch for "+brand)
+              env["FC_FIREBASE_APP_ID_"+brand]=app_id
+              env["FC_FIREBASE_API_KEY_"+brand]=clients[0]["api_key"][0]["current_key"]
+          with open(os.environ["GITHUB_ENV"],"a") as fh:
+              for k,v in env.items():
+                  if "\n" in v:raise SystemExit("Bad config value")
+                  fh.write(k+"="+v+"\n")
+          print("Firebase client config validated for Goal Zone and BCF; secret values hidden")
+          PY
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '17' }
+      - uses: gradle/actions/setup-gradle@v4
+        with: { gradle-version: '8.9' }
+      - name: Android SDK
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Prepare brand from original native source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          src=Path("android-journal")
+          dest=Path("/tmp/bcf-native")
+          shutil.copytree(src,dest,ignore=shutil.ignore_patterns("build"))
+          changes=[
+            ("mm.futurecode.sportsjournal","mm.futurecode.betcityfamily"),
+            ("future-code-journal","bet-city-family"),
+            ("ဂိုးဇုံ အားကစား ဂျာနယ်","BCF ဘောလုံးဂျာနယ်"),
+            ("Goal Zone Sports Journal","BCF Journal"),
+            ('Policy.HOME+"odds"','Policy.HOME+"odds.html"'),
+          ]
+          for p in [*dest.rglob("*.java"),*dest.rglob("*.xml"),*dest.rglob("*.gradle"),dest/"README.md"]:
+            s=p.read_text(encoding="utf-8")
+            for a,b in changes:s=s.replace(a,b)
+            p.write_text(s,encoding="utf-8")
+          assert "bet-city-family" in (dest/"src/mm/futurecode/sportsjournal/Policy.java").read_text()
+          assert (dest/"fcm/src/main/java/mm/futurecode/sportsjournal/FcmStarter.java").exists()
+          PY
+            SRC='/tmp/bcf-native/fcm'
+            TOPIC='fc_football_bcf'
+            PACKAGE='mm.futurecode.betcityfamily'
+            CODE=4
+            VERSION='1.0.3'
+            OUT='FC-BCF-v1.0.3-FCM-OWNER-SIGNED.apk'
+          else
+            SRC='android-journal/fcm'
+            TOPIC='fc_football_goal_zone'
+            PACKAGE='mm.futurecode.sportsjournal'
+            CODE=5
+            VERSION='1.0.4'
+            OUT='FC-Goal-Zone-v1.0.4-FCM-OWNER-SIGNED.apk'
+          fi
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            FC_APP_ID="$FC_FIREBASE_APP_ID_BCF"; FC_APP_API_KEY="$FC_FIREBASE_API_KEY_BCF"
+          else
+            FC_APP_ID="$FC_FIREBASE_APP_ID_GOAL_ZONE"; FC_APP_API_KEY="$FC_FIREBASE_API_KEY_GOAL_ZONE"
+          fi
+          echo "FC_FIREBASE_APP_ID=$FC_APP_ID" >> "$GITHUB_ENV"
+          echo "FC_FIREBASE_API_KEY=$FC_APP_API_KEY" >> "$GITHUB_ENV"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && {
+            [[ -z "$FC_APP_ID" ]] || [[ -z "$FC_APP_API_KEY" ]] || [[ -z "$FC_FIREBASE_PROJECT_ID" ]] || [[ -z "$FC_FIREBASE_SENDER_ID" ]] ||
+            [[ "$FC_APP_ID" != "1:$FC_FIREBASE_SENDER_ID:android:"* ]]
+          }; then
+            echo "::error::FCM app-specific Firebase client setup is missing/invalid for ${{ matrix.brand }}. Refusing release."
+            exit 1
+          fi
+          echo "FC_SRC=$SRC" >> "$GITHUB_ENV"
+          echo "FC_TOPIC=$TOPIC" >> "$GITHUB_ENV"
+          echo "FC_PACKAGE=$PACKAGE" >> "$GITHUB_ENV"
+          echo "FC_CODE=$CODE" >> "$GITHUB_ENV"
+          echo "FC_VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "FC_OUT=$OUT" >> "$GITHUB_ENV"
+      - name: Build FCM variant
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$FC_SRC"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ -z "$FC_APK_RELEASE_KEYSTORE_B64" || -z "$FC_APK_RELEASE_STOREPASS" || -z "$FC_APK_RELEASE_ALIAS" || -z "$FC_APK_RELEASE_KEYPASS" ]]; then
+              echo "::error::Original owner/stable signing key missing: refusing to publish another ephemeral-debug-signed APK"
+              exit 1
+            fi
+            set +x
+            export FC_APK_KEYSTORE_PATH="$RUNNER_TEMP/fc-owner-release.jks"
+            printf '%s' "$FC_APK_RELEASE_KEYSTORE_B64" | base64 --decode > "$FC_APK_KEYSTORE_PATH"
+            chmod 600 "$FC_APK_KEYSTORE_PATH"
+            trap 'rm -f "$FC_APK_KEYSTORE_PATH"' EXIT
+            cat >> build.gradle <<'FC_OWNER_SIGN'
+          android {
+            signingConfigs {
+              fcOwner {
+                storeFile file(System.getenv('FC_APK_KEYSTORE_PATH'))
+                storePassword System.getenv('FC_APK_RELEASE_STOREPASS')
+                keyAlias System.getenv('FC_APK_RELEASE_ALIAS')
+                keyPassword System.getenv('FC_APK_RELEASE_KEYPASS')
+              }
+            }
+            buildTypes { release { signingConfig signingConfigs.fcOwner; minifyEnabled false } }
+          }
+          FC_OWNER_SIGN
+            gradle --no-daemon :assembleRelease -PFC_PACKAGE="$FC_PACKAGE" \
+              -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+          else
+            gradle --no-daemon :assembleDebug -PFC_PACKAGE="$FC_PACKAGE" \
+              -PFC_VERSION_CODE="$FC_CODE" -PFC_VERSION_NAME="$FC_VERSION" -PFC_TOPIC="$FC_TOPIC"
+          fi
+      - name: Validate package, version, FCM service and release hash
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="$(find "$FC_SRC/build/outputs/apk" -type f -name '*.apk' | head -n1)"
+          test -n "$APK" && test -s "$APK"
+          mkdir -p staged
+          cp "$APK" "staged/$FC_OUT"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose "staged/$FC_OUT"
+          if [[ -n "${FC_FIREBASE_APP_ID:-}" && -n "${FC_FIREBASE_SENDER_ID:-}" ]]; then
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "staged/$FC_OUT" | grep -F 'google_app_id' >/dev/null
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "staged/$FC_OUT" | grep -F 'gcm_defaultSenderId' >/dev/null
+          fi
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ "$FC_PACKAGE" == "mm.futurecode.sportsjournal" ]]; then
+              EXPECTED_SIGNER="98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+            else
+              EXPECTED_SIGNER="064c09d10cf21740754221680a85079acea50daa84c0ec9b16d8165c095904d7"
+            fi
+            ACTUAL_SIGNER="$("$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "staged/$FC_OUT" | sed -n 's/^Signer #1 certificate SHA-256 digest: //p' | head -1)"
+            if [[ "${ACTUAL_SIGNER,,}" != "$EXPECTED_SIGNER" ]]; then
+              echo "::error::Original APK signing certificate mismatch for $FC_PACKAGE. Refusing release."
+              exit 1
+            fi
+          fi
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "name='$FC_PACKAGE'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "staged/$FC_OUT" | grep -F "versionCode='$FC_CODE'"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "staged/$FC_OUT" AndroidManifest.xml | grep -F PushMessageService
+          unzip -l "staged/$FC_OUT" | grep classes.dex
+          sha256sum "staged/$FC_OUT" | tee "staged/$FC_OUT.sha256"
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Owner/stable keystore release signing used. Confirm fingerprint and real-device delivery before production link swap." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "CI debug build only: not suitable as an in-place APK update." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [[ -z "$FC_FIREBASE_APP_ID" || -z "$FC_FIREBASE_API_KEY" || -z "$FC_FIREBASE_PROJECT_ID" || -z "$FC_FIREBASE_SENDER_ID" ]]; then
+            echo "Firebase config missing: FCM inactive in this build." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: FC-${{ matrix.brand }}-FCM-FRESH-INSTALL-ONLY
+          path: staged/*
+          retention-days: 30
+      - name: Release separate preview (do not overwrite live download)
+        if: success() && github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          if [[ "${{ matrix.brand }}" == "bcf" ]]; then
+            TAG='fc-bcf-v1.0.3-fcm-owner-signed'
+          else
+            TAG='fc-goal-zone-v1.0.4-fcm-owner-signed'
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "::error::Preview release already exists: do not overwrite existing APK binaries"
+            exit 1
+          fi
+          gh release create "$TAG" "staged/$FC_OUT" "staged/$FC_OUT.sha256" --target "$GITHUB_SHA" --prerelease \
+            --title "$FC_PACKAGE FCM vNext (FRESH INSTALL PREVIEW)" \
+            --notes 'This is a separate preview APK, not an in-place update. CI debug signature differs from original owner APK signature. Existing release URLs untouched. FCM notification requires Firebase client and server config and real-device validation. Do not distribute as a production update.'

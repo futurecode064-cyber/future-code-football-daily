@@ -1,0 +1,94 @@
+name: Football Six Branded Signed Fresh Install APKs - 2026-10-31
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths:
+      - '.github/workflows/football-six-signed-apk-release.yml'
+      - 'scripts/football/build-six-release.sh'
+      - 'scripts/football/prepare-mobile-signing.mjs'
+permissions:
+  contents: write
+concurrency:
+  group: football-six-branded-signed-release-20261031
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      FC_GOOGLE_SERVICES_JSON: ${{ secrets.FC_GOOGLE_SERVICES_JSON }}
+      FOOTBALL_BACKUP_RECOVERY_KEY: ${{ secrets.FOOTBALL_BACKUP_RECOVERY_KEY }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout owner source
+        uses: actions/checkout@v4
+        with: {fetch-depth: 0, persist-credentials: true}
+      - name: Checkout existing four brand Android projects (no generic replacements)
+        uses: actions/checkout@v4
+        with:
+          repository: futurecode064-cyber/AI-Recap-GitHub
+          ref: feature/football-apk-vnext-20261029
+          path: upstream
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: {node-version: '24'}
+      - uses: actions/setup-java@v4
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+        with: {gradle-version: '8.9'}
+      - name: Android SDK and supported runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Prepare stable, private signing identity and encrypted recovery copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/football/prepare-mobile-signing.mjs
+          # Refuse to continue if a newly generated signing key cannot be durably backed up.
+          if ! git ls-files --error-unmatch config/football/mobile-release-signing-v1.enc.json >/dev/null 2>&1; then
+            test -s config/football/mobile-release-signing-v1.enc.json
+            git config user.name 'Future Code Release Bot'
+            git config user.email 'future-code-release-bot@users.noreply.github.com'
+            git add config/football/mobile-release-signing-v1.enc.json
+            git commit -m 'build(android): preserve encrypted stable APK signing identity'
+            git push origin HEAD:feature/football-bundled-fcm-20261029
+          fi
+          git ls-files --error-unmatch config/football/mobile-release-signing-v1.enc.json
+      - name: Rebuild and verify all six non-debug release APKs from native Android source
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/football/build-six-release.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FC-Six-Brands-FCM-SIGNED-FRESH-INSTALL-RELEASE-CANDIDATES
+          path: |
+            dist/*.apk
+            dist/*.sha256
+          retention-days: 60
+      - name: Publish independent branded release-candidate APKs (never overwrite old stable URLs)
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS='|' read -r tag apk brand; do
+            test -z "$tag" && continue
+            test -s "dist/$apk" && test -s "dist/$apk.sha256"
+            if gh release view "$tag" >/dev/null 2>&1; then
+              echo "::error::Tag already released; refusing overwrite: $tag"
+              exit 1
+            fi
+            gh release create "$tag" "dist/$apk" "dist/$apk.sha256" \
+              --target "$(git rev-parse HEAD)" --prerelease \
+              --title "Future Code $brand FCM signed vNext — Fresh Install" \
+              --notes "NEW SIGNING CERTIFICATE: Existing users must uninstall the older APK before installing. This is a genuine non-debug signed release candidate, NOT an in-place update to any previously published APK. Uses the owner's six registered Firebase Android client settings. Firebase server push activation and physical-device Gallery/FCM tests are not yet verified. Older stable links remain available for fallback."
+            echo "SIGNED_RELEASE_PUBLISHED $brand $tag"
+          done <<'TAGS'
+          fc-ykz-v1.2.1-signed-20261031|FC-YKZ-v1.2.1-FreshInstall.apk|YKZ
+          fc-bw-v1.0.2-signed-20261031|FC-BW-v1.0.2-FreshInstall.apk|BW Sport
+          fc-ko-thet-v1.0.3-signed-20261031|FC-Ko-Thet-v1.0.3-FreshInstall.apk|Ko Thet
+          fc-kmm-v1.0.2-signed-20261031|FC-KMM-v1.0.2-FreshInstall.apk|KMM
+          fc-goal-zone-v1.0.4-signed-20261031|FC-Goal-Zone-v1.0.4-FreshInstall.apk|Goal Zone
+          fc-bcf-v1.0.3-signed-20261031|FC-BCF-v1.0.3-FreshInstall.apk|BCF
+          TAGS

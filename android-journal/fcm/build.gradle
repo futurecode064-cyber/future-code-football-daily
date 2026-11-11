@@ -1,0 +1,32 @@
+plugins { id 'com.android.application' version '8.7.3' }
+def appPackage = (findProperty('FC_PACKAGE') ?: 'mm.futurecode.sportsjournal').toString()
+def appVersionCode = Integer.parseInt((findProperty('FC_VERSION_CODE') ?: '3').toString())
+def appVersionName = (findProperty('FC_VERSION_NAME') ?: '1.0.2').toString()
+def quote = { value -> '"' + ((value ?: '').toString().replace('\\','\\\\').replace('"','\\"')) + '"' }
+android {
+ namespace appPackage
+ compileSdk 35
+ defaultConfig {
+  applicationId appPackage
+  minSdk 26
+  targetSdk 35
+  versionCode appVersionCode
+  versionName appVersionName
+  buildConfigField 'String','FC_APP_ID',quote(System.getenv('FC_FIREBASE_APP_ID'))
+  buildConfigField 'String','FC_API_KEY',quote(System.getenv('FC_FIREBASE_API_KEY'))
+  buildConfigField 'String','FC_PROJECT_ID',quote(System.getenv('FC_FIREBASE_PROJECT_ID'))
+  buildConfigField 'String','FC_SENDER_ID',quote(System.getenv('FC_FIREBASE_SENDER_ID'))
+  // Android release gate reads actual packaged client resources, not just DEX constants.
+  resValue 'string','google_app_id',quote(System.getenv('FC_FIREBASE_APP_ID'))
+  resValue 'string','gcm_defaultSenderId',quote(System.getenv('FC_FIREBASE_SENDER_ID'))
+  buildConfigField 'String','FC_TOPIC',quote(findProperty('FC_TOPIC'))
+ }
+ buildFeatures { buildConfig true }
+ sourceSets { main { manifest.srcFile 'src/main/AndroidManifest.xml'
+                       java.srcDirs = ['../src','src/main/java']
+                       res.srcDirs = ['../res']
+                       assets.srcDirs = ['../assets'] } }
+ compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+ packaging { resources { excludes += ['META-INF/LICENSE*','META-INF/NOTICE*'] } }
+}
+dependencies { implementation 'com.google.firebase:firebase-messaging:26.0.1' }

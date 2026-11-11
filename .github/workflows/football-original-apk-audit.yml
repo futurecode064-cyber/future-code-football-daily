@@ -1,0 +1,49 @@
+# Existing public APK binaries only; never signs, uploads, or replaces releases.
+name: Football Original APK Release Signatures (read-only)
+on:
+  push:
+    branches: ['feature/football-bundled-fcm-20261029']
+    paths: ['.github/workflows/football-original-apk-audit.yml']
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/football-original-apk-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install official APK inspection tools
+        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'build-tools;35.0.0'
+      - name: Inspect already published binaries without signing or modifying them
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/football-release-check"
+          cd "$RUNNER_TEMP/football-release-check"
+          cat > apk-urls.tsv <<'URLS'
+          GoalZone	https://raw.githubusercontent.com/futurecode064-cyber/future-code-football-daily/main/football-daily/future-code-journal/android/GoalZone_Sports_Journal_v1.0.1.apk
+          YKZ	https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/ykz-soccer-tips-v1.1.0/YKZ-Soccer-Tips.apk
+          BW	https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/bw-sport-journal-v1.0.0/BW-Sport-Journal.apk
+          KoThet	https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/ko-thet-family-journal-v1.0.1/Ko-Thet-Family-Journal.apk
+          KMM	https://github.com/futurecode064-cyber/AI-Recap-GitHub/releases/download/kmm-sport-hub-v1.0.0/KMM-Sport-Hub.apk
+          BCF-Live	https://github.com/futurecode064-cyber/future-code-football-daily/releases/download/bcf-journal-v1.0.0/BCF-Bet-City-Family-v1.0.0.apk
+          URLS
+          while IFS=$'\t' read -r name url; do
+            echo "--- $name (existing published release; no mutation) ---" | tee -a "$GITHUB_STEP_SUMMARY"
+            if ! curl --fail --location --silent --show-error --retry 2 --max-time 70 "$url" -o "$name.apk"; then
+              echo "DOWNLOAD_FAILED" | tee -a "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            if ! "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$name.apk" > "$name.signature.txt" 2>&1; then
+              echo "SIGNATURE_VERIFICATION_FAILED" | tee -a "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$name.apk" | grep -m1 "^package:" | tee -a "$GITHUB_STEP_SUMMARY"
+            grep -m1 "Signer #1 certificate SHA-256 digest" "$name.signature.txt" | tee -a "$GITHUB_STEP_SUMMARY"
+            grep -m1 "Signer #1 certificate DN:" "$name.signature.txt" | tee -a "$GITHUB_STEP_SUMMARY" || true
+            echo "bytes: $(wc -c < "$name.apk")" | tee -a "$GITHUB_STEP_SUMMARY"
+          done < apk-urls.tsv
