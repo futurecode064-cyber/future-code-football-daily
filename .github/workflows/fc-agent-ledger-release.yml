@@ -1,0 +1,89 @@
+name: FC Agent Ledger - Free Cloudflare Worker + D1
+on:
+  push:
+    branches: [fc-agent-ledger-free-deploy]
+    paths:
+      - '.github/workflows/fc-agent-ledger-release.yml'
+      - 'fc-agent-ledger/source.zip'
+permissions:
+  contents: read
+concurrency:
+  group: fc-agent-ledger-free-deployment
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Unpack isolated agent-ledger source and verify integrity
+        run: |
+          unzip -q fc-agent-ledger/source.zip -d fc-agent-ledger/staging
+          test -f fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free/src/worker.mjs
+          test -f fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free/migrations/0001_initial.sql
+          cd fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+          node --check src/worker.mjs
+          node --test tests/*.test.mjs
+      - name: Install Wrangler on Free-capable project
+        working-directory: fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+        run: npm install --no-audit --no-fund
+      - name: Create dedicated D1 and apply protected first-owner setup
+        working-directory: fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const {execFileSync}=require('node:child_process');
+          const name='fc-agent-ledger-private-v1-db';
+          function list(){return JSON.parse(execFileSync('npx',['wrangler','d1','list','--json'],{encoding:'utf8'}));}
+          let db=list().find(x=>x.name===name);
+          if(!db){
+            console.log('Creating new dedicated D1 database:',name);
+            execFileSync('npx',['wrangler','d1','create',name,'--location','apac'],{encoding:'utf8'});
+            db=list().find(x=>x.name===name);
+          }
+          if(!db?.uuid&&!db?.id)throw new Error('D1 database UUID not available');
+          const conf=JSON.parse(fs.readFileSync('wrangler.jsonc','utf8'));
+          conf.name='fc-agent-ledger-private-v1';
+          conf.d1_databases[0].database_name=name;
+          conf.d1_databases[0].database_id=db.uuid||db.id;
+          conf.vars={SETUP_TOKEN_SHA256:'5561b50d355c6f8b053426c8ee4e1e387a28ef9d051871e7682dfc84bff6252e'};
+          fs.writeFileSync('wrangler.jsonc',JSON.stringify(conf,null,2)+'\n');
+          const file='src/worker.mjs';
+          let source=fs.readFileSync(file,'utf8');
+          const fromStatus="enabled:typeof env.SETUP_TOKEN==='string'&&env.SETUP_TOKEN.length>=32";
+          const toStatus="enabled:typeof env.SETUP_TOKEN_SHA256==='string'&&env.SETUP_TOKEN_SHA256.length===64";
+          const fromCheck="if(typeof env.SETUP_TOKEN!=='string'||env.SETUP_TOKEN.length<32||d.setupToken!==env.SETUP_TOKEN)fail(403,'Setup disabled or token invalid');";
+          const toCheck="if(typeof d.setupToken!=='string'||typeof env.SETUP_TOKEN_SHA256!=='string'||await hashSha(d.setupToken)!==env.SETUP_TOKEN_SHA256)fail(403,'Setup disabled or token invalid');";
+          if(!source.includes(fromStatus)||!source.includes(fromCheck))throw new Error('Bootstrap source marker changed, aborting');
+          source=source.replace(fromStatus,toStatus).replace(fromCheck,toCheck);
+          fs.writeFileSync(file,source);
+          console.log('Source patched for hash-only, first-owner setup. No plaintext secret stored.');
+          NODE
+          node --check src/worker.mjs
+      - name: Apply schema to dedicated D1 (not other databases)
+        working-directory: fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+        run: npx wrangler d1 execute fc-agent-ledger-private-v1-db --remote --file migrations/0001_initial.sql --yes
+      - name: Deploy new Worker (no changes to existing football sites)
+        working-directory: fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+        run: |
+          npx wrangler deploy 2>&1 | tee deploy-log.txt
+          grep -Eo 'https://[a-zA-Z0-9.-]+\.workers\.dev' deploy-log.txt | head -1 > deployment-url.txt
+          test -s deployment-url.txt
+      - name: Verify published Worker, D1, bootstrap enabled
+        working-directory: fc-agent-ledger/staging/FC-Agent-Ledger-Cloudflare-Free
+        run: |
+          SITE="$(cat deployment-url.txt)"
+          echo "FC_AGENT_LEDGER_LIVE_URL=$SITE"
+          curl -fsS --retry 3 "$SITE/health"
+          echo
+          curl -fsS --retry 3 "$SITE/api/bootstrap/status"
+          echo
