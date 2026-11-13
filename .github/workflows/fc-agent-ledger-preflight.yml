@@ -1,0 +1,33 @@
+name: FC Agent Ledger - Cloudflare free access preflight
+on:
+  push:
+    branches: [fc-agent-ledger-free-deploy]
+    paths:
+      - '.github/workflows/fc-agent-ledger-preflight.yml'
+permissions:
+  contents: read
+jobs:
+  read-only-check:
+    if: github.repository == 'futurecode064-cyber/future-code-football-daily'
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: '86851bf21d81d8f0972052aff8162149'
+    steps:
+      - name: Verify read access to D1 and Workers, never print token
+        shell: bash
+        run: |
+          node <<'NODE'
+          const token=process.env.CLOUDFLARE_API_TOKEN,account=process.env.CLOUDFLARE_ACCOUNT_ID;
+          if(!token){console.log('FC_LEDGER_ACCESS_TOKEN_MISSING');process.exitCode=1;return}
+          const routes=[['D1','/d1/database?per_page=1'],['WORKERS','/workers/scripts?per_page=1']];
+          for(const [type,path] of routes){
+            try{
+              const res=await fetch('https://api.cloudflare.com/client/v4/accounts/'+account+path,{headers:{Authorization:'Bearer '+token}});
+              const data=await res.json();
+              console.log('FC_LEDGER_'+type+'_HTTP_'+res.status+'_SUCCESS_'+Boolean(data?.success));
+              if(!res.ok||!data?.success)process.exitCode=1;
+            }catch(err){console.log('FC_LEDGER_'+type+'_NETWORK_FAILED');process.exitCode=1}
+          }
+          NODE
