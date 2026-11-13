@@ -1,0 +1,45 @@
+name: FC Agent Ledger - Production Read Only Smoke
+on:
+  push:
+    branches: [fc-agent-ledger-free-deploy]
+    paths:
+      - '.github/workflows/fc-agent-ledger-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate site and unauthenticated tenant isolation
+        env:
+          SITE: 'https://fc-agent-ledger-private-v1.futurecode-dubai-86851bf2.workers.dev'
+        run: |
+          node <<'NODE'
+          const base=process.env.SITE;
+          async function probe(path,expected){
+            const r=await fetch(base+path,{redirect:'manual'});
+            const text=await r.text();
+            if(r.status!==expected)throw new Error(path+' expected '+expected+' got '+r.status);
+            console.log('PASS '+path+' HTTP '+r.status);
+            return text;
+          }
+          const home=await probe('/',200);
+          if(!home.includes('Agent Ledger'))throw new Error('Home UI missing');
+          await probe('/app.js',200);
+          await probe('/style.css',200);
+          const health=JSON.parse(await probe('/health',200));
+          if(health.ok!==true)throw new Error('D1 unavailable');
+          const bootstrap=JSON.parse(await probe('/api/bootstrap/status',200));
+          if(bootstrap.needsSetup!==true||bootstrap.enabled!==true)throw new Error('Owner setup not enabled');
+          await probe('/api/me',401);
+          await probe('/api/dashboard',401);
+          await probe('/api/tenants',401);
+          await probe('/api/agents',401);
+          await probe('/api/tickets',401);
+          await probe('/api/reports',401);
+          console.log('ALL FC_AGENT_LEDGER_PUBLIC_SMOKE_CHECKS_PASS');
+          NODE
