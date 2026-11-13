@@ -20,7 +20,7 @@ jobs:
         run: |
           node <<'NODE'
           const token=process.env.CLOUDFLARE_API_TOKEN,account=process.env.CLOUDFLARE_ACCOUNT_ID;
-          if(!token){console.log('FC_LEDGER_ACCESS_TOKEN_MISSING');process.exitCode=1;return}
+          if(!token){console.log('FC_LEDGER_ACCESS_TOKEN_MISSING');process.exit(1)}
           const routes=[['D1','/d1/database?per_page=1'],['WORKERS','/workers/scripts?per_page=1']];
           for(const [type,path] of routes){
             try{
