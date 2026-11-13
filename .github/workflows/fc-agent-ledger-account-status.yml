@@ -1,0 +1,22 @@
+name: Agent Ledger Account Setup Status
+on:
+  push:
+    branches: [fc-agent-ledger-free-deploy]
+    paths: ['.github/workflows/fc-agent-ledger-account-status.yml']
+permissions:
+  contents: read
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Read only first owner account status
+        run: |
+          node <<'NODE'
+          const url = 'https://fc-agent-ledger-private-v1.futurecode-dubai-86851bf2.workers.dev/api/bootstrap/status';
+          const r=await fetch(url,{cache:'no-store'});
+          if(!r.ok)throw new Error('Status endpoint responded '+r.status);
+          const data=await r.json();
+          console.log('SUPER_ADMIN_SETUP_REQUIRED='+Boolean(data.needsSetup));
+          console.log('SETUP_ENABLED='+Boolean(data.enabled));
+          NODE
