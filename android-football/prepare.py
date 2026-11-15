@@ -9,11 +9,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
 BRANDS = {
-    "goal": ("mm.futurecode.sportsjournal", "future-code-journal", "ဂိုးဇုံ အားကစားဂျာနယ်", "fc_goal", 6, "1.0.5"),
-    "ykz": ("com.futurecode.ykzsoccertips", "ykz-family", "YKZ Soccer Tips", "fc_ykz", 6, "1.2.3"),
-    "bw": ("com.futurecode.bwsportjournal", "bw-sport", "BW Sport Journal", "fc_bw", 5, "1.0.4"),
-    "kothet": ("com.futurecode.kothetfamilyjournal", "ko-thet-family", "Ko Thet Family Journal", "fc_kothet", 6, "1.0.5"),
-    "kmm": ("com.futurecode.kmmsporthub", "kmm-sport-hub", "KMM Sport Hub", "fc_kmm", 5, "1.0.4"),
+    "goal": ("mm.futurecode.sportsjournal", "future-code-journal", "ဂိုးဇုံ အားကစားဂျာနယ်", "fc_goal", 7, "1.0.6"),
+    "ykz": ("com.futurecode.ykzsoccertips", "ykz-family", "YKZ Soccer Tips", "fc_ykz", 7, "1.2.4"),
+    "bw": ("com.futurecode.bwsportjournal", "bw-sport", "BW Sport Journal", "fc_bw", 6, "1.0.5"),
+    "kothet": ("com.futurecode.kothetfamilyjournal", "ko-thet-family", "Ko Thet Family Journal", "fc_kothet", 7, "1.0.6"),
+    "kmm": ("com.futurecode.kmmsporthub", "kmm-sport-hub", "KMM Sport Hub", "fc_kmm", 6, "1.0.5"),
     "bcf": ("mm.futurecode.betcityfamily", "bet-city-family", "BCF Bet City Family", "fc_bcf", 5, "1.0.4"),
 }
 
@@ -38,7 +38,7 @@ def prepare(brand, config):
             value = re.sub(r"public static boolean trustedApk\(String value\)\{.*?\}\s*$", "public static boolean trustedApk(String value){try{java.net.URI u=new java.net.URI(value);return \"https\".equals(u.getScheme())&&\"github.com\".equals(u.getHost())&&u.getPath().startsWith(\"/futurecode064-cyber/future-code-football-daily/releases/download/\")&&u.getPath().endsWith(\".apk\");}catch(Exception e){return false;}}\n}", value, flags=re.S)
         if source.name == "MainActivity.java":
             value = value.replace("super.onCreate(saved);", "super.onCreate(saved);PushService.subscribe(this);")
-            value = value.replace("JournalJob.schedule(this);", "")
+            value = value.replace("JournalJob.schedule(this);", "((android.app.job.JobScheduler)getSystemService(JOB_SCHEDULER_SERVICE)).cancelAll();")
             # Old periodic checks sent extra local notices. FCM owns the two slots.
             value = value.replace("new Thread(()->{try{ContentNotifier.check(this);}catch(Exception ignored){}}).start();", "")
 
@@ -59,6 +59,9 @@ def prepare(brand, config):
     manifest = manifest.replace('android:versionCode="2" android:versionName="1.0.1"', '')
     manifest = manifest.replace("ဂိုးဇုံ အားကစား ဂျာနယ်", label)
     manifest = manifest.replace('android:authorities="mm.futurecode.sportsjournal.updates"', 'android:authorities="${applicationId}.updates"')
+    manifest = re.sub(r'  <service android:name=".JournalJob"[^>]*/>\n', '', manifest)
+    manifest = re.sub(r'  <receiver android:name=".ScheduleReceiver".*?</receiver>\n', '', manifest)
+    manifest = manifest.replace('<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>', '')
     manifest = manifest.replace(" </application>", '  <service android:name=".PushService" android:exported="false"><intent-filter><action android:name="com.google.firebase.MESSAGING_EVENT"/></intent-filter></service>\n </application>')
     (main / "AndroidManifest.xml").write_text(manifest, encoding="utf-8")
     (main / "res/values/brand.xml").write_text(f'<resources><string name="push_topic">{topic}</string></resources>\n', encoding="utf-8")
