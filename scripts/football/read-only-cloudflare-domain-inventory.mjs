@@ -30,7 +30,7 @@ for(const [name,token] of possibleTokens){
     }else report.pages.status=p.status;
   }
   if(!report.zones.readable){
-    const z=await get('/zones?account.id='+accountId+'&per_page=50',token);
+    const z=await get('/zones?per_page=50',token);
     if(z.ok&&Array.isArray(z.data)){
       report.zones={readable:true,status:z.status,via:name,items:[]};
       for(const zone of z.data){
@@ -47,6 +47,6 @@ for(const [name,token] of possibleTokens){
 report.conclusion=report.zones.readable?'zones-readable':(report.pages.verified?'pages-only-no-zone-list':'cloudflare-access-unavailable');
 writeFileSync('cloudflare-domain-inventory.json',JSON.stringify(report,null,2)+'\n');
 console.log('Pages verified:',report.pages.verified,'linked domains:',report.pages.domains.length);
-console.log('Cloudflare zone list readable:',report.zones.readable,'zone count:',report.zones.items.length);
+console.log('Cloudflare zone list readable:',report.zones.readable,'visible zone count across accessible accounts:',report.zones.items.length);
 console.log('Final status:',report.conclusion);
 console.log('No infrastructure modifications performed.');
