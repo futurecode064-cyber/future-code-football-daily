@@ -1,0 +1,52 @@
+[
+  {
+    "package": "com.futurecode.bwsportjournal",
+    "topic": "fc_bw",
+    "versionCode": 6,
+    "versionName": "1.0.5",
+    "brand": "bw",
+    "file": "FC-bw-v1.0.5-UPDATE.apk",
+    "sha256": "027fdc08e2d0cb2d11be368c37605b2e7dab97469c87207bfb9475a99f2e0dc2",
+    "certificateSha256": "98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+  },
+  {
+    "package": "mm.futurecode.sportsjournal",
+    "topic": "fc_goal",
+    "versionCode": 7,
+    "versionName": "1.0.6",
+    "brand": "goal",
+    "file": "FC-goal-v1.0.6-UPDATE.apk",
+    "sha256": "d8ef9a00c3dc21c3b5b7490b211e86fe68d5f530e9ad6e4c1f59f4f03f5fb761",
+    "certificateSha256": "98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+  },
+  {
+    "package": "com.futurecode.kmmsporthub",
+    "topic": "fc_kmm",
+    "versionCode": 6,
+    "versionName": "1.0.5",
+    "brand": "kmm",
+    "file": "FC-kmm-v1.0.5-UPDATE.apk",
+    "sha256": "0652affad5808018865c937c146259d311dfe9c7d71450b49660f17d8ee7a154",
+    "certificateSha256": "98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+  },
+  {
+    "package": "com.futurecode.kothetfamilyjournal",
+    "topic": "fc_kothet",
+    "versionCode": 7,
+    "versionName": "1.0.6",
+    "brand": "kothet",
+    "file": "FC-kothet-v1.0.6-UPDATE.apk",
+    "sha256": "9dfa9da1bbd64cb339ffb81b61f4fd26d4c2258e2d1dd869a876f147535cb295",
+    "certificateSha256": "98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+  },
+  {
+    "package": "com.futurecode.ykzsoccertips",
+    "topic": "fc_ykz",
+    "versionCode": 7,
+    "versionName": "1.2.4",
+    "brand": "ykz",
+    "file": "FC-ykz-v1.2.4-UPDATE.apk",
+    "sha256": "4f94af825e271d75afd389a4f60bbf3132c1abc9d24bb5edf230738f307ce514",
+    "certificateSha256": "98407044295dba61390bf38c452aa2d8dc8bcfc7390261680bbccbf30d6a66a4"
+  }
+]
