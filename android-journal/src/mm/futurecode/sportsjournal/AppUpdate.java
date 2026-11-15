@@ -33,15 +33,15 @@ public final class AppUpdate {
  static void download(MainActivity a,JSONObject j){
   ProgressDialog progress=new ProgressDialog(a);progress.setMessage("Update Download လုပ်နေပါတယ်…");progress.setCancelable(false);progress.show();
   new Thread(()->{File part=new File(a.getCacheDir(),"journal-update.part"),apk=new File(a.getCacheDir(),"journal-update.apk");try{
-   HttpURLConnection c=Net.open(j.getString("apkUrl"));try{if(c.getResponseCode()!=200)throw new IOException("Download failed");try(InputStream in=c.getInputStream();OutputStream out=new FileOutputStream(part)){byte[] buf=new byte[16384];int n,total=0;while((n=in.read(buf))!=-1){total+=n;if(total>80000000)throw new IOException("App size limit");out.write(buf,0,n);}}}finally{c.disconnect();}
+   HttpURLConnection c=Net.download(j.getString("apkUrl"));try{if(c.getResponseCode()!=200)throw new IOException("Download failed");try(InputStream in=c.getInputStream();OutputStream out=new FileOutputStream(part)){byte[] buf=new byte[16384];int n,total=0;while((n=in.read(buf))!=-1){total+=n;if(total>80000000)throw new IOException("App size limit");out.write(buf,0,n);}}}finally{c.disconnect();}
    verify(a,part,j);if(apk.exists()&&!apk.delete())throw new IOException("Old download locked");if(!part.renameTo(apk))throw new IOException("Cannot save update");
    a.runOnUiThread(()->{if(!a.isFinishing()){progress.dismiss();install(a);}});
-  }catch(Exception e){part.delete();a.runOnUiThread(()->{if(!a.isFinishing()){progress.dismiss();a.msg("Update Download မပြီးပါ။ အင်တာနက်စစ်ပြီး ပြန်ကြိုးစားပါ။");}});}},"DownloadUpdate").start();
+  }catch(Exception e){part.delete();a.runOnUiThread(()->{if(!a.isFinishing()){progress.dismiss();a.msg(e.getMessage()!=null&&e.getMessage().contains("Signing key mismatch")?"ဖုန်းထဲက App နှင့် update ၏ signing key မတူပါ။ App ကို မဖျက်မီ မူလ version ကို စစ်ဆေးပါ။":"Update Download မပြီးပါ။ အင်တာနက်နှင့် download ဖိုင်ကို စစ်ပြီး ပြန်ကြိုးစားပါ။");}});}},"DownloadUpdate").start();
  }
  public static void install(MainActivity a){
   if(!a.getPackageManager().canRequestPackageInstalls()){
    new AlertDialog.Builder(a).setTitle("Update တင်ခွင့် ဖွင့်ရန်").setMessage("Settings ထဲမှာ Allow from this source ကို ဖွင့်ပြီး App ထဲ ပြန်လာပါ။").setPositiveButton("Settings ဖွင့်မယ်",(d,w)->a.startActivityForResult(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+a.getPackageName())),401)).setNegativeButton("နောက်မှ",null).show();return;
   }
-  File f=new File(a.getCacheDir(),"journal-update.apk");if(!f.exists())return;Uri uri=Uri.parse("content://"+a.getPackageName()+".updates/update.apk");Intent i=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"application/vnd.android.package-archive").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);try{a.startActivity(i);}catch(Exception e){a.msg("Installer ကို ဖွင့်မရပါ။");}
+  File f=new File(a.getCacheDir(),"journal-update.apk");if(!f.exists())return;Uri uri=Uri.parse("content://"+a.getPackageName()+".updates/update.apk");Intent i=new Intent(Intent.ACTION_VIEW).setDataAndType(uri,"application/vnd.android.package-archive").addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);i.setClipData(ClipData.newRawUri("App update",uri));try{a.startActivity(i);}catch(Exception e){a.msg("Installer ကို ဖွင့်မရပါ။");}
  }
 }
