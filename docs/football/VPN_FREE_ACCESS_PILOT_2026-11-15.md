@@ -2,6 +2,18 @@
 
 Status: **READ-ONLY PILOT PREPARED; PRODUCTION UNCHANGED.**
 
+## Verified read-only observations — 2026-11-15
+
+- GitHub Actions VPN-free preflight succeeded externally over **both HTTP/1.1 and HTTP/2**, status 200 for the five brand homepages, football engine manifest, Myanmar Kyar /health and GitHub Pages APK download landing page. Test run: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/43675005460
+- The Cloudflare Pages/Workers responses advertise `alt-svc: h3=":443"; ma=86400`, so compatible browsers may try HTTP/3 despite an available HTTP/2 path. GitHub Pages APK download landing page did **not** advertise that header in this external test.
+- A read-only Cloudflare Pages project GET using the **existing GitHub Actions secret** returned `future-code-football-daily.pages.dev` as its only linked domain and the correct production branch, `football-daily-render`. A zone-list API GET, scoped to the known account, returned **zero zones**. The token has Pages/Zone metadata read access. Artifact: https://github.com/futurecode064-cyber/future-code-football-daily/actions/runs/43675005507
+- The available Cloudflare API credentials are not proof that this account owns an unregistered custom domain. No custom host was invented; no TLS, DNS, HTTP/3, Pages, Worker, D1 or APK settings have been changed.
+- A separate safe check was added to list all zones visible to the existing token (not only the known account); that may be less comprehensive than logging in to the owner's full Cloudflare dashboard if token scope is limited.
+- The owner must authenticate the existing Cloudflare browser profile to inspect all accounts and configure zone/DNS settings. The saved profile has Google sign-in only; **do not** assume Cloudflare login exists until explicitly saved.
+- No paid domain purchase is authorized or attempted. If no owned domain can be located, a domain or verified delegated subdomain is a new dependency for a zone-controlled HTTP/3-off test.
+- The owner reports Chrome QUIC Disabled resolved browsing; do **not** treat changing Windows Chrome as a mechanism for changing every Android APK's network stack.
+- An unrelated legacy Football Engine Migration Checks job fails its pre-existing `check-config.mjs` guard. This pilot is draft-only and its new network checks pass; do not merge or override the migration guards to make the PR green.
+
 ## Confirmed evidence
 
 - User reported ERR_CONNECTION_RESET and ERR_QUIC_PROTOCOL_ERROR on Myanmar Kyar.
