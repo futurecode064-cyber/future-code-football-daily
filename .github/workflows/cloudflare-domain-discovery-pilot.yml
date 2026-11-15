@@ -1,0 +1,42 @@
+name: Cloudflare Domain Discovery (Read-Only Pilot)
+
+on:
+  pull_request:
+    paths:
+      - scripts/football/read-only-cloudflare-domain-inventory.mjs
+      - .github/workflows/cloudflare-domain-discovery-pilot.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    if: >-
+      github.repository == 'futurecode064-cyber/future-code-football-daily' &&
+      github.event_name == 'pull_request' &&
+      github.event.pull_request.number == 58 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'network/vpn-free-pilot-2026-11-15'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read Cloudflare Pages domain and zone inventory without writes
+        env:
+          FOOTBALL_PAGES_CF_API_TOKEN: ${{ secrets.FOOTBALL_PAGES_CF_API_TOKEN }}
+          FOOTBALL_STAGING_CF_API_TOKEN: ${{ secrets.FOOTBALL_STAGING_CF_API_TOKEN }}
+        run: node scripts/football/read-only-cloudflare-domain-inventory.mjs
+      - name: Save filtered non-secret inventory for owner
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: football-cloudflare-domain-inventory
+          path: cloudflare-domain-inventory.json
+          if-no-files-found: warn
