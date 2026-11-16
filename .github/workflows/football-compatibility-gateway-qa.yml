@@ -1,0 +1,32 @@
+name: Verify Football Compatibility Entrance
+on:
+  push:
+    paths: ['.github/workflows/football-compatibility-gateway-qa.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read-only public pages, data and image checks
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const base='https://future-code-football-connect.cheeky-elf-5504.chatgpt.site';
+          const paths=['/','/future-code-journal/','/ykz-family/','/kmm-sport-hub/','/ko-thet-family/','/bw-sport/','/bet-city-family/','/football-engine-config.js','/data/today.json','/_media/espn/i/teamlogos/soccer/500/360.png'];
+          for(const path of paths){
+            const r=await fetch(base+path,{signal:AbortSignal.timeout(45000)});
+            const bytes=await r.arrayBuffer(),type=r.headers.get('Content-Type')||'';
+            console.log(JSON.stringify({path,status:r.status,url:r.url,altSvc:r.headers.get('Alt-Svc'),type,bytes:bytes.byteLength}));
+            assert.equal(r.status,200,path);
+            assert.ok(!r.headers.get('Alt-Svc')?.includes('h3='),path+' advertises QUIC');
+            if(path==='/data/today.json'){
+              const text=new TextDecoder().decode(bytes),j=JSON.parse(text);
+              assert.ok(j.matches?.length);
+              assert.ok(!text.includes('https://future-code-football-daily.pages.dev'));
+              console.log(JSON.stringify({reportDate:j.reportDate,matches:j.matches.length}));
+            }
+            if(path.startsWith('/_media'))assert.ok(type.startsWith('image/'));
+          }
+          JS
